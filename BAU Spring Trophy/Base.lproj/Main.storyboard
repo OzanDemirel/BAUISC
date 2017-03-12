@@ -89,19 +89,19 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="nC3-QM-Vym">
-                                                                        <rect key="frame" x="148" y="387.33333333333331" width="118.33333333333337" height="33.333333333333371"/>
+                                                                        <rect key="frame" x="148" y="387" width="118.33333333333337" height="33.333333333333314"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="E4x-wu-sQP" userLabel="GaleryStackView">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="118.33333333333337" height="16.333333333333371"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="118.33333333333337" height="16.333333333333314"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GALERİ  /" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="Qru-dy-HTp">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="66" height="16.333333333333371"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="66" height="16.333333333333314"/>
                                                                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="13"/>
                                                                                         <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  GALERY" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="F4i-B2-oKZ">
-                                                                                        <rect key="frame" x="66" y="0.0" width="52.333333333333371" height="16.333333333333371"/>
+                                                                                        <rect key="frame" x="66" y="0.0" width="52.333333333333371" height="16.333333333333314"/>
                                                                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
                                                                                         <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <nil key="highlightedColor"/>
@@ -112,7 +112,7 @@
                                                                                 </constraints>
                                                                             </stackView>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="jsZ-ru-0Vu">
-                                                                                <rect key="frame" x="48.333333333333314" y="21.333333333333371" width="22" height="12"/>
+                                                                                <rect key="frame" x="48.333333333333314" y="21.333333333333314" width="22" height="12"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="22" id="38k-3V-lEo"/>
                                                                                     <constraint firstAttribute="height" constant="12" id="Qmt-BB-adv"/>
@@ -141,10 +141,10 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="DY8-Hd-nD5">
-                                                                        <rect key="frame" x="132" y="321" width="149.66666666666663" height="33.333333333333314"/>
+                                                                        <rect key="frame" x="132.33333333333331" y="321" width="149.66666666666669" height="33.333333333333314"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="2UJ-iV-e4p" userLabel="ResultsStackView">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="149.66666666666663" height="16.333333333333314"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="149.66666666666669" height="16.333333333333314"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SONUÇLAR  /" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="DYh-oU-stM">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="94.666666666666686" height="16.333333333333314"/>
@@ -153,7 +153,7 @@
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  RESULTS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="u7a-yM-o7G">
-                                                                                        <rect key="frame" x="94.666666666666686" y="0.0" width="54.999999999999943" height="16.333333333333314"/>
+                                                                                        <rect key="frame" x="94.666666666666686" y="0.0" width="55" height="16.333333333333314"/>
                                                                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
                                                                                         <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <nil key="highlightedColor"/>
@@ -193,7 +193,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="vcQ-ff-892">
-                                                                        <rect key="frame" x="139" y="254.66666666666671" width="136.33333333333337" height="33.333333333333286"/>
+                                                                        <rect key="frame" x="139" y="254.99999999999997" width="136.33333333333337" height="33.333333333333286"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="qHL-gg-acn" userLabel="TeamsStackView">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="136.33333333333337" height="16.333333333333314"/>
@@ -224,13 +224,13 @@
                                                                             </imageView>
                                                                         </subviews>
                                                                     </stackView>
-                                                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dF0-r4-dUc" userLabel="News Scroll View" customClass="NewsScrollPages" customModule="BAU_Spring_Trophy" customModuleProvider="target">
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Wk-2x-iJF" customClass="NewsScrollPages" customModule="BAU_Spring_Trophy" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="233"/>
-                                                                        <color key="backgroundColor" red="0.97647058823529409" green="0.72549019607843135" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="backgroundColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="width" secondItem="dF0-r4-dUc" secondAttribute="height" multiplier="16:9" id="sSt-GX-w8k"/>
+                                                                            <constraint firstAttribute="width" secondItem="5Wk-2x-iJF" secondAttribute="height" multiplier="16:9" id="PCF-ZC-wDF"/>
                                                                         </constraints>
-                                                                    </scrollView>
+                                                                    </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Bv-EH-nMN" userLabel="News Section View" customClass="NewsSelectionView" customModule="BAU_Spring_Trophy" customModuleProvider="target">
                                                                         <rect key="frame" x="178" y="203" width="58" height="10"/>
                                                                         <constraints>
@@ -238,49 +238,55 @@
                                                                             <constraint firstAttribute="height" constant="10" id="zDN-ug-LgG"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vpN-l4-eTK" userLabel="LeftArrow">
-                                                                        <rect key="frame" x="20" y="98" width="37" height="37"/>
+                                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vpN-l4-eTK" userLabel="LeftArrow">
+                                                                        <rect key="frame" x="20" y="98" width="37.333333333333314" height="37"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="vpN-l4-eTK" secondAttribute="height" multiplier="1:1" id="frv-WS-KG9"/>
                                                                         </constraints>
                                                                         <state key="normal" title="Button" image="LeftArrow"/>
+                                                                        <connections>
+                                                                            <action selector="arrowsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rcX-Xu-q3e"/>
+                                                                        </connections>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgz-Ob-vCs" userLabel="RightArrow">
+                                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgz-Ob-vCs" userLabel="RightArrow">
                                                                         <rect key="frame" x="357" y="98" width="37" height="37"/>
                                                                         <state key="normal" title="Button" image="RightArrow"/>
+                                                                        <connections>
+                                                                            <action selector="arrowsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OBd-Qc-gZ8"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="5Wk-2x-iJF" secondAttribute="trailing" id="3Lq-Gx-cdb"/>
                                                                     <constraint firstItem="Rhs-jz-zcR" firstAttribute="top" secondItem="2Bv-EH-nMN" secondAttribute="bottom" constant="20" id="3OY-ni-4Mb"/>
-                                                                    <constraint firstItem="xgz-Ob-vCs" firstAttribute="height" secondItem="vpN-l4-eTK" secondAttribute="height" id="4v7-6b-Ntl"/>
-                                                                    <constraint firstItem="vpN-l4-eTK" firstAttribute="height" secondItem="dF0-r4-dUc" secondAttribute="height" multiplier="0.16" id="74K-No-zgA"/>
-                                                                    <constraint firstItem="vpN-l4-eTK" firstAttribute="centerY" secondItem="dF0-r4-dUc" secondAttribute="centerY" id="90c-Rm-tx7"/>
+                                                                    <constraint firstItem="Rhs-jz-zcR" firstAttribute="top" secondItem="5Wk-2x-iJF" secondAttribute="bottom" id="Av3-eJ-QXk"/>
                                                                     <constraint firstItem="vcQ-ff-892" firstAttribute="centerX" secondItem="Rhs-jz-zcR" secondAttribute="centerX" id="Ci3-FX-nwt"/>
                                                                     <constraint firstItem="vpN-l4-eTK" firstAttribute="leading" secondItem="cFB-vp-LM5" secondAttribute="leading" constant="20" id="Cyw-wA-512"/>
                                                                     <constraint firstItem="f96-hJ-Qo0" firstAttribute="leading" secondItem="cFB-vp-LM5" secondAttribute="leading" id="Gyv-ub-gv3"/>
                                                                     <constraint firstItem="ddg-lO-Mvz" firstAttribute="top" secondItem="Rhs-jz-zcR" secondAttribute="bottom" id="Hd5-0d-Tab"/>
-                                                                    <constraint firstItem="dF0-r4-dUc" firstAttribute="top" secondItem="cFB-vp-LM5" secondAttribute="top" id="Htj-6W-7zk"/>
                                                                     <constraint firstItem="DY8-Hd-nD5" firstAttribute="centerX" secondItem="ddg-lO-Mvz" secondAttribute="centerX" id="K53-cV-jI5"/>
+                                                                    <constraint firstItem="vpN-l4-eTK" firstAttribute="centerY" secondItem="5Wk-2x-iJF" secondAttribute="centerY" id="KHM-dI-ZHA"/>
+                                                                    <constraint firstItem="5Wk-2x-iJF" firstAttribute="top" secondItem="cFB-vp-LM5" secondAttribute="top" id="Nvs-WJ-rpw"/>
                                                                     <constraint firstItem="DY8-Hd-nD5" firstAttribute="centerY" secondItem="ddg-lO-Mvz" secondAttribute="centerY" constant="5" id="Rk4-e8-kyg"/>
-                                                                    <constraint firstItem="xgz-Ob-vCs" firstAttribute="width" secondItem="vpN-l4-eTK" secondAttribute="width" id="USB-PD-vcl"/>
-                                                                    <constraint firstItem="Rhs-jz-zcR" firstAttribute="top" secondItem="dF0-r4-dUc" secondAttribute="bottom" id="V7i-ra-TvV"/>
                                                                     <constraint firstAttribute="trailing" secondItem="Rhs-jz-zcR" secondAttribute="trailing" id="W29-Zw-1yq"/>
                                                                     <constraint firstItem="vcQ-ff-892" firstAttribute="centerY" secondItem="Rhs-jz-zcR" secondAttribute="centerY" constant="5" id="WeV-Zx-oAl"/>
                                                                     <constraint firstAttribute="trailing" secondItem="f96-hJ-Qo0" secondAttribute="trailing" id="cOZ-Z7-MjQ"/>
                                                                     <constraint firstAttribute="trailing" secondItem="xgz-Ob-vCs" secondAttribute="trailing" constant="20" id="coX-Qb-b10"/>
                                                                     <constraint firstItem="ddg-lO-Mvz" firstAttribute="leading" secondItem="cFB-vp-LM5" secondAttribute="leading" id="cx2-UQ-Zlc"/>
-                                                                    <constraint firstItem="dF0-r4-dUc" firstAttribute="leading" secondItem="cFB-vp-LM5" secondAttribute="leading" id="dsL-d7-9A7"/>
                                                                     <constraint firstItem="nC3-QM-Vym" firstAttribute="centerX" secondItem="f96-hJ-Qo0" secondAttribute="centerX" id="eeM-1u-cyR"/>
+                                                                    <constraint firstItem="5Wk-2x-iJF" firstAttribute="leading" secondItem="cFB-vp-LM5" secondAttribute="leading" id="gc7-Z6-jfV"/>
                                                                     <constraint firstAttribute="height" constant="432" id="gku-A3-PtT"/>
                                                                     <constraint firstItem="AKL-WF-9oM" firstAttribute="height" secondItem="Rhs-jz-zcR" secondAttribute="height" multiplier="0.25" id="hcJ-OB-Nhj"/>
                                                                     <constraint firstItem="Rhs-jz-zcR" firstAttribute="leading" secondItem="cFB-vp-LM5" secondAttribute="leading" id="k90-qh-8k8"/>
-                                                                    <constraint firstAttribute="trailing" secondItem="dF0-r4-dUc" secondAttribute="trailing" id="lje-ft-0tp"/>
+                                                                    <constraint firstItem="xgz-Ob-vCs" firstAttribute="centerY" secondItem="5Wk-2x-iJF" secondAttribute="centerY" id="mDD-Ar-kwm"/>
                                                                     <constraint firstAttribute="trailing" secondItem="ddg-lO-Mvz" secondAttribute="trailing" id="mlD-UC-Vxg"/>
                                                                     <constraint firstItem="Qru-dy-HTp" firstAttribute="height" secondItem="f96-hJ-Qo0" secondAttribute="height" multiplier="0.25" id="qvp-2p-nFZ"/>
+                                                                    <constraint firstItem="xgz-Ob-vCs" firstAttribute="height" secondItem="vpN-l4-eTK" secondAttribute="height" id="rzA-Rj-887"/>
                                                                     <constraint firstItem="DYh-oU-stM" firstAttribute="height" secondItem="ddg-lO-Mvz" secondAttribute="height" multiplier="0.25" id="sVr-BW-RYB"/>
+                                                                    <constraint firstItem="vpN-l4-eTK" firstAttribute="height" secondItem="5Wk-2x-iJF" secondAttribute="height" multiplier="0.16" id="t4B-m4-PqV"/>
                                                                     <constraint firstItem="nC3-QM-Vym" firstAttribute="centerY" secondItem="f96-hJ-Qo0" secondAttribute="centerY" constant="5" id="v0B-fL-86y"/>
                                                                     <constraint firstItem="2Bv-EH-nMN" firstAttribute="centerX" secondItem="cFB-vp-LM5" secondAttribute="centerX" id="vOM-Ee-O9d"/>
-                                                                    <constraint firstItem="xgz-Ob-vCs" firstAttribute="centerY" secondItem="dF0-r4-dUc" secondAttribute="centerY" id="z1D-cO-fka"/>
+                                                                    <constraint firstItem="xgz-Ob-vCs" firstAttribute="width" secondItem="vpN-l4-eTK" secondAttribute="width" id="xW2-OX-YaD"/>
                                                                     <constraint firstItem="f96-hJ-Qo0" firstAttribute="top" secondItem="ddg-lO-Mvz" secondAttribute="bottom" id="ziu-FX-8cw"/>
                                                                 </constraints>
                                                             </view>
@@ -497,14 +503,16 @@
                         <outlet property="homeScrollContentViewHeight" destination="gku-A3-PtT" id="cjg-3l-hfe"/>
                         <outlet property="homeScrollView" destination="O44-KC-SLu" id="LdX-T8-d67"/>
                         <outlet property="homeView" destination="3cz-zn-qDe" id="jTq-bS-d0U"/>
+                        <outlet property="leftArrow" destination="vpN-l4-eTK" id="kj7-yP-OvA"/>
                         <outlet property="mainMenuWidth" destination="rhv-hP-aNH" id="emB-sL-wYs"/>
                         <outlet property="mainScrollView" destination="dkH-9o-NHB" id="EfI-Rg-l6b"/>
                         <outlet property="mainScrollViewContentHeight" destination="RvQ-1u-i0u" id="rIs-3f-anY"/>
                         <outlet property="mainScrollViewContentWidth" destination="4SX-SA-zxs" id="Xl1-Lf-LCj"/>
                         <outlet property="navigationBar" destination="oY8-Sz-HtA" id="gvi-Rf-3Dr"/>
-                        <outlet property="newsScrollView" destination="dF0-r4-dUc" id="lyV-PX-gVQ"/>
+                        <outlet property="newsScrollPages" destination="5Wk-2x-iJF" id="Pqf-ib-kAi"/>
                         <outlet property="newsSelectionView" destination="2Bv-EH-nMN" id="327-FD-BlM"/>
                         <outlet property="resultsBtnView" destination="ddg-lO-Mvz" id="dsU-VS-kGj"/>
+                        <outlet property="rightArrow" destination="xgz-Ob-vCs" id="0sx-ZF-ps0"/>
                         <outlet property="sideMenuTableView" destination="wnc-qs-Kwa" id="mnY-E6-VjY"/>
                         <outlet property="sideMenuWidth" destination="FT2-OK-EbQ" id="Z2d-cN-5aO"/>
                         <outlet property="teamsBtnView" destination="Rhs-jz-zcR" id="PuU-Hh-uW5"/>

@@ -31,8 +31,6 @@ class NewsSelectionView: UIView, UICollectionViewDelegate, UICollectionViewDataS
         collectionView.register(NewsSelectionCell.self, forCellWithReuseIdentifier: "newsSelectionCell")
         collectionView.selectItem(at: IndexPath(item: 0, section: 0) as IndexPath, animated: false, scrollPosition: [])
         
-        
-        
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

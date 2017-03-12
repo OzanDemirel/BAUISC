@@ -33,6 +33,7 @@
 		AB42DB541E7508A300549C65 /* NewsScrollPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB531E7508A300549C65 /* NewsScrollPages.swift */; };
 		AB42DB571E753BA400549C65 /* NewsSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB561E753BA400549C65 /* NewsSelectionView.swift */; };
 		AB42DB591E753CFC00549C65 /* NewsSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB581E753CFC00549C65 /* NewsSelectionCell.swift */; };
+		AB42DB5B1E755A9600549C65 /* NewsHorizontalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB5A1E755A9600549C65 /* NewsHorizontalCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		AB42DB531E7508A300549C65 /* NewsScrollPages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsScrollPages.swift; sourceTree = "<group>"; };
 		AB42DB561E753BA400549C65 /* NewsSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsSelectionView.swift; sourceTree = "<group>"; };
 		AB42DB581E753CFC00549C65 /* NewsSelectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsSelectionCell.swift; sourceTree = "<group>"; };
+		AB42DB5A1E755A9600549C65 /* NewsHorizontalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsHorizontalCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				AB42DB511E74775E00549C65 /* VideosBaseCell.swift */,
 				AB42DB4F1E746F4900549C65 /* VideosCell.swift */,
 				AB42DB531E7508A300549C65 /* NewsScrollPages.swift */,
+				AB42DB5A1E755A9600549C65 /* NewsHorizontalCell.swift */,
 				AB42DB561E753BA400549C65 /* NewsSelectionView.swift */,
 				AB42DB581E753CFC00549C65 /* NewsSelectionCell.swift */,
 			);
@@ -252,6 +255,7 @@
 				AB42DB4C1E7437F000549C65 /* PhotosBaseCell.swift in Sources */,
 				AB42DB361E73061500549C65 /* NewsVC.swift in Sources */,
 				AB3F202C1E700FE40058F327 /* AppDelegate.swift in Sources */,
+				AB42DB5B1E755A9600549C65 /* NewsHorizontalCell.swift in Sources */,
 				AB3F204C1E714A040058F327 /* NewsCell.swift in Sources */,
 				AB42DB3E1E73916200549C65 /* BaseCell.swift in Sources */,
 				AB3F20411E7030C40058F327 /* SideMenuCell.swift in Sources */,

@@ -12,7 +12,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
     @IBOutlet weak var sideMenuTableView: UITableView!
     @IBOutlet weak var mainScrollView: UIScrollView!
-    @IBOutlet weak var newsScrollView: NewsScrollPages!
+    @IBOutlet weak var newsScrollPages: NewsScrollPages!
     @IBOutlet weak var homeScrollView: UIScrollView!
     @IBOutlet weak var homeScrollContentView: UIView!
     @IBOutlet weak var teamsBtnView: UIImageView!
@@ -23,6 +23,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     @IBOutlet weak var bauiscLogoView: AnimatedLogoView!
     @IBOutlet weak var trophyLogoView: AnimatedLogoView!
     @IBOutlet weak var newsSelectionView: NewsSelectionView!
+    @IBOutlet weak var leftArrow: UIButton!
+    @IBOutlet weak var rightArrow :UIButton!
     
     var newsCollectionView: UICollectionView!
     var navigationBarBtn: UIButton = {
@@ -64,7 +66,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         homePageShadowView = UIImageView()
         
-        newsScrollView.homeVC = self
+        newsScrollPages.homeVC = self
         
     }
     
@@ -101,6 +103,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
  //
         trophyLogoView.startAnimation()
         bauiscLogoView.startAnimation()
+        
+        newsScrollPages.collectionView.scrollRectToVisible(CGRect(x: newsScrollPages.frame.width * 250, y: 0, width: newsScrollPages.frame.width, height: newsScrollPages.frame.height), animated: false)
         
     }
     
@@ -257,6 +261,15 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             arrangeMainScrollViewPosition(animated: true)
         } else {
             mainScrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), animated: true)
+        }
+    }
+    
+    @IBAction func arrowsPressed(_ sender: UIButton) {
+
+        if sender.tag == 1 && newsScrollPages.collectionView.contentOffset.x.truncatingRemainder(dividingBy: newsScrollPages.collectionView.frame.width) == 0 {
+            newsScrollPages.collectionView.scrollRectToVisible(CGRect(x: newsScrollPages.collectionView.contentOffset.x - newsScrollPages.collectionView.frame.width, y: 0, width: newsScrollPages.collectionView.frame.width, height: newsScrollPages.collectionView.frame.height), animated: true)
+        } else if sender.tag == 2 && newsScrollPages.collectionView.contentOffset.x.truncatingRemainder(dividingBy: newsScrollPages.collectionView.frame.width) == 0 {
+            newsScrollPages.collectionView.scrollRectToVisible(CGRect(x: newsScrollPages.collectionView.contentOffset.x + newsScrollPages.collectionView.frame.width, y: 0, width: newsScrollPages.collectionView.frame.width, height: newsScrollPages.collectionView.frame.height), animated: true)
         }
     }
     
