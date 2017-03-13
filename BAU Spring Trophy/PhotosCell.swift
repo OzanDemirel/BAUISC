@@ -22,7 +22,7 @@ class PhotosCell: BaseCell {
         backgroundColor = UIColor.clear
         addSubview(photoImageView)
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: photoImageView)
-        addConstraintsWithVisualFormat(format: "V:|[v0]|", views: photoImageView)  
+        addConstraintsWithVisualFormat(format: "V:|[v0]|", views: photoImageView)
     }
 
     func customizeNewsImages(news: Dictionary<String, String>) {

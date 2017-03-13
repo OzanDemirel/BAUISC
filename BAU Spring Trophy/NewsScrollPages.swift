@@ -70,22 +70,15 @@ class NewsScrollPages: UIView, UICollectionViewDelegate, UICollectionViewDataSou
         checkForIndex()
     }
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        checkForIndex()
-    }
-    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         checkForIndex()
     }
-    
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        checkForIndex()
-    }
-    
+
     func checkForIndex() {
-    
-        let index = Int(collectionView.contentOffset.x / frame.width) % 5
-        homeVC?.newsSelectionView.collectionView.selectItem(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: [])
+        
+        let index = Int(round(Double(collectionView.contentOffset.x / frame.width).truncatingRemainder(dividingBy: 5))) < 5 ? Int(round(Double(collectionView.contentOffset.x / frame.width).truncatingRemainder(dividingBy: 5))) : 0
+
+        homeVC?.newsSelectionView.collectionView.selectItem(at: IndexPath(item: index, section: 0), animated: false, scrollPosition: [])
         
     }
 

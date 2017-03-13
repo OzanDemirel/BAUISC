@@ -70,10 +70,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
     }
     
-    func selectItemInNewsSelection(itemIndex: Int) {
-        newsSelectionView.collectionView.selectItem(at: IndexPath(item: itemIndex, section: 0), animated: false, scrollPosition: [])
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -106,6 +102,10 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         newsScrollPages.collectionView.scrollRectToVisible(CGRect(x: newsScrollPages.frame.width * 250, y: 0, width: newsScrollPages.frame.width, height: newsScrollPages.frame.height), animated: false)
         
+    }
+    
+    func selectItemInNewsSelection(itemIndex: Int) {
+        newsSelectionView.collectionView.selectItem(at: IndexPath(item: itemIndex, section: 0), animated: false, scrollPosition: [])
     }
     
     func arrangeShadowView() {
@@ -151,7 +151,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     func configureNewsCollectionView() {
         
         homeScrollContentViewHeight.constant = galeryBtnView.frame.maxY
-        newsCollectionView = UICollectionView(frame: CGRect(x: 0, y: homeScrollContentViewHeight.constant, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width / 8 * 3 * 5), collectionViewLayout: UICollectionViewFlowLayout())
+        newsCollectionView = UICollectionView(frame: CGRect(x: 0, y: homeScrollContentViewHeight.constant, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width / 3 * 5), collectionViewLayout: UICollectionViewFlowLayout())
         newsCollectionView.delegate = self
         newsCollectionView.dataSource = self
         newsCollectionView.isScrollEnabled = false
@@ -240,7 +240,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     }
   
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width / 2, height: UIScreen.main.bounds.width / 8 * 3)
+        return CGSize(width: UIScreen.main.bounds.width / 2, height: UIScreen.main.bounds.width / 3)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
