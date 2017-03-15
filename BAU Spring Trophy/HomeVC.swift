@@ -26,21 +26,28 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     @IBOutlet weak var leftArrow: UIButton!
     @IBOutlet weak var rightArrow :UIButton!
     
+    @IBOutlet weak var mainScrollViewContentWidth: NSLayoutConstraint!
+    @IBOutlet weak var mainScrollViewContentHeight: NSLayoutConstraint!
+    @IBOutlet weak var sideMenuWidth: NSLayoutConstraint!
+    @IBOutlet weak var mainMenuWidth: NSLayoutConstraint!
+    @IBOutlet weak var homeScrollContentViewHeight: NSLayoutConstraint!
+    
+    var teamsTapGesture: UITapGestureRecognizer!
+    
+    var homePageShadowView: UIImageView!
+    
     var newsCollectionView: UICollectionView!
     var navigationBarBtn: UIButton = {
         let button = UIButton()
         return button
     }()
     
-    var homePageShadowView: UIImageView!
+    var teamsVC: TeamsVC!
+    var teamInfoVC: TeamInfoVC!
     
-    var newsVC: GaleryVC!
+    var newsVC: NewsVC!
     
-    @IBOutlet weak var mainScrollViewContentWidth: NSLayoutConstraint!
-    @IBOutlet weak var mainScrollViewContentHeight: NSLayoutConstraint!
-    @IBOutlet weak var sideMenuWidth: NSLayoutConstraint!
-    @IBOutlet weak var mainMenuWidth: NSLayoutConstraint!
-    @IBOutlet weak var homeScrollContentViewHeight: NSLayoutConstraint!
+    var galeryVC: GaleryVC!
     
     let sideMenuItems: [Dictionary<String, String>]! = [["Anasayfa / Home": "Home"], ["Takımlar / Teams": "Teams"] , ["Fotoğraflar / Photos": "Photos"], ["Videolar / Videos": "Videos"], ["Haberler / News": "News"], ["Sonuçlar / Results": "Results"], ["Yarışlar / Races": "Races"], ["İletişim / Contact": "Contact"], ["Sponsorlar / Sponsors": "Sponsors"]]
     
@@ -48,7 +55,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         sideMenuTableView.delegate = self
         sideMenuTableView.dataSource = self
@@ -82,26 +88,133 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         navigationBarBtn.addTarget(self, action: #selector(HomeVC.navigationBarBtnPressed), for: UIControlEvents.touchUpInside)
         
         homeScrollView.isScrollEnabled = fakeNews.count > 0 ? true : false
-//
+        
         arrangeShadowView()
         
-        newsVC = GaleryVC(nibName: "GaleryVC", bundle: nil)
-        addChildViewController(newsVC)
-        homeView.addSubview(newsVC.view)
-        newsVC.didMove(toParentViewController: self)
-        
-        
-        newsVC.view.frame = homeScrollView.frame
-        newsVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.maxX, y: navigationBar.frame.maxY)
-        newsVC.view.alpha = 0
-        
-        homeView.bringSubview(toFront: homePageShadowView)
- //
+        arrangeViews()
+ 
         trophyLogoView.startAnimation()
         bauiscLogoView.startAnimation()
         
         newsScrollPages.collectionView.scrollRectToVisible(CGRect(x: newsScrollPages.frame.width * 250, y: 0, width: newsScrollPages.frame.width, height: newsScrollPages.frame.height), animated: false)
         
+        teamsTapGesture = UITapGestureRecognizer(target: self, action: #selector(HomeVC.teamsTapGestureActive(sender:)))
+        view.addGestureRecognizer(teamsTapGesture)
+        
+        
+    }
+    
+    func teamsTapGestureActive(sender: UITapGestureRecognizer) {
+        
+        print("asdads")
+        
+    }
+    
+    func arrangeViews() {
+        
+        teamsVC = TeamsVC(nibName: "TeamsVC", bundle: nil)
+        teamsVC.homeVC = self
+        teamInfoVC = TeamInfoVC(nibName: "TeamInfoVC", bundle: nil)
+        teamInfoVC.homeVC = self
+        
+        newsVC = NewsVC(nibName: "NewsVC", bundle: nil)
+//        newsVC.homeVC = self
+        
+        galeryVC = GaleryVC(nibName: "GaleryVC", bundle: nil)
+//        galeryVC.homeVC = self
+    }
+    
+    func addTeamsPageToView() {
+        
+        addChildViewController(teamsVC)
+        homeView.addSubview(teamsVC.view)
+        teamsVC.didMove(toParentViewController: self)
+        teamsVC.view.frame = homeScrollView.frame
+        teamsVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.maxX, y: navigationBar.frame.maxY)
+        teamsVC.view.alpha = 0
+        
+        self.teamsVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.maxX, y: self.navigationBar.frame.maxY)
+        UIView.animate(withDuration: calculateAnimationDuration(startingPoint: teamsVC.view.frame.origin, destinationPoint: homeScrollView.frame.origin), animations: {
+            self.teamsVC.view.frame.origin = self.homeScrollView.frame.origin
+            self.teamsVC.view.alpha = 1
+        })
+        
+        homeView.bringSubview(toFront: homePageShadowView)
+        
+    }
+    
+    func removeTeamsPageFromView() {
+        
+        UIView.animate(withDuration: calculateAnimationDuration(startingPoint: teamsVC.view.frame.origin, destinationPoint: CGPoint(x: UIScreen.main.bounds.maxX, y: navigationBar.frame.maxY)), animations: { 
+            
+            self.teamsVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.maxX, y: self.navigationBar.frame.maxY)
+            self.teamsVC.view.alpha = 0
+            
+        }) { (completion) in
+            self.teamsVC.willMove(toParentViewController: self)
+            self.teamsVC.view.removeFromSuperview()
+            self.teamsVC.removeFromParentViewController()
+        }
+     
+    }
+    
+    func addTeamInfoPageToView() {
+        
+        teamInfoVC = TeamInfoVC(nibName: "TeamInfoVC", bundle: nil)
+        addChildViewController(teamInfoVC)
+        homeView.addSubview(teamInfoVC.view)
+        teamInfoVC.didMove(toParentViewController: self)
+        
+        teamInfoVC.view.frame = homeScrollView.frame
+        teamInfoVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.maxX, y: navigationBar.frame.maxY)
+        teamInfoVC.view.alpha = 0
+        
+        homeView.bringSubview(toFront: homePageShadowView)
+        
+        UIView.animate(withDuration: calculateAnimationDuration(startingPoint: teamInfoVC.view.frame.origin, destinationPoint: CGPoint(x: 0, y: 0)), animations: {
+            self.teamInfoVC.view.frame.origin = self.homeScrollView.frame.origin
+            self.teamInfoVC.view.alpha = 1
+        }) { (completion) in
+            self.teamInfoVC.flameLeftConstraint.constant = -200
+            self.teamInfoVC.flamaView.alpha = 1
+            self.teamInfoVC.teamNameLbl.alpha = 1
+            self.teamInfoVC.view.layoutIfNeeded()
+            UIView.animate(withDuration: self.calculateAnimationDuration(startingPoint: self.teamInfoVC.flamaView.frame.origin, destinationPoint: CGPoint(x: 0, y: self.teamInfoVC.flamaView.frame.minY)), animations: {
+                self.teamInfoVC.flameLeftConstraint.constant = 0
+                self.teamInfoVC.teamsBackground.alpha = 1
+                self.teamInfoVC.view.layoutIfNeeded()
+            }) { (completion) in
+                self.teamInfoVC.view.addGestureRecognizer(self.teamInfoVC.leftEgdeGesture)
+                self.teamsVC.view.alpha = 0
+            }
+        }
+        
+    }
+    
+    func removeTeamInfoPageFromView() {
+        
+        teamsVC.view.alpha = 1
+        
+        UIView.animate(withDuration: calculateAnimationDuration(startingPoint: teamInfoVC.flamaView.frame.origin, destinationPoint: CGPoint(x: -200, y: homeScrollView.frame.minY)), animations: {
+            self.teamInfoVC?.teamsBackground.alpha = 0
+            self.teamInfoVC?.flameLeftConstraint.constant = -200
+            self.teamInfoVC?.view.layoutIfNeeded()
+        }, completion: { (completion) in
+            self.teamInfoVC?.flamaView.alpha = 0
+            self.teamInfoVC?.teamNameLbl.alpha = 0
+            UIView.animate(withDuration: self.calculateAnimationDuration(startingPoint: self.teamInfoVC.view.frame.origin, destinationPoint: CGPoint(x: (self.teamInfoVC.view.frame.maxX), y: (self.navigationBar.frame.maxY))), animations: {
+                self.teamInfoVC.view.frame.origin = CGPoint(x: self.teamInfoVC.view.frame.maxX, y: (self.navigationBar.frame.maxY))
+            }, completion: { (completion) in
+                self.teamInfoVC.willMove(toParentViewController: self)
+                self.teamInfoVC.view.removeFromSuperview()
+                self.teamInfoVC.removeFromParentViewController()
+            })
+        })
+
+    }
+    
+    func disableMainScrollView() {
+        mainScrollView.isScrollEnabled = false
     }
     
     func selectItemInNewsSelection(itemIndex: Int) {
@@ -120,34 +233,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
     func navigationBarBtnPressed() {
         homeScrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: homeScrollView.frame.width, height: homeScrollView.frame.height), animated: true)
-        
-        if newsVC.view.frame.origin.x >= UIScreen.main.bounds.maxX {
-            UIView.animate(withDuration: calculateAnimationDuration(startingPoint: newsVC.view.frame.origin, destinationPoint: homeScrollView.frame.origin), animations: {
-                self.newsVC.view.frame.origin = self.homeScrollView.frame.origin
-                self.newsVC.view.alpha = 1
-            })
-        } else {
-            UIView.animate(withDuration: calculateAnimationDuration(startingPoint: newsVC.view.frame.origin, destinationPoint: CGPoint(x: UIScreen.main.bounds.maxX, y: self.navigationBar.frame.maxY)), animations: {
-                self.newsVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.maxX, y: self.navigationBar.frame.maxY)
-                self.newsVC.view.alpha = 0
-            }, completion: { (true) in
-                self.newsVC.willMove(toParentViewController: self)
-                self.newsVC.view.removeFromSuperview()
-                self.newsVC.removeFromParentViewController()
-            })
-        }
+        addTeamsPageToView()
     }
-    
-    func calculateAnimationDuration(startingPoint: CGPoint, destinationPoint: CGPoint) -> TimeInterval {
 
-        if abs(startingPoint.x - destinationPoint.x) >= abs(startingPoint.y - destinationPoint.y) {
-            return abs(TimeInterval(startingPoint.x - destinationPoint.x)) / abs(TimeInterval((startingPoint.x - destinationPoint.x) * 1.5))
-        } else {
-            return abs(TimeInterval(startingPoint.y - destinationPoint.y)) / abs(TimeInterval((startingPoint.y - destinationPoint.y) * 1.5))
-        }
-        
-    }
-    
     func configureNewsCollectionView() {
         
         homeScrollContentViewHeight.constant = galeryBtnView.frame.maxY
@@ -166,12 +254,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
     func arrangeMainScrollViewPosition(animated: Bool) {
         mainScrollView.scrollRectToVisible(CGRect(x: UIScreen.main.bounds.width / 3 * 2, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), animated: animated)
-    }
-
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
-        mainScrollView.isScrollEnabled = false
-        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -200,10 +282,18 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             homePageShadowView.isUserInteractionEnabled = true
         }
         
-        mainScrollView.isScrollEnabled = true
-        
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        sideMenuTableView.deselectRow(at: indexPath, animated: true)
+        tableView.isUserInteractionEnabled = false
+        
+        _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
+            tableView.isUserInteractionEnabled = true
+        })
+    }
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -256,10 +346,10 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     }
     
     @IBAction func sideMenuBtnPressed(_ sender: UIButton) {
-        
-        if mainScrollView.contentOffset.x <= 0 {
+        print(mainScrollView.contentOffset.x)
+        if mainScrollView.contentOffset.x == 0 {
             arrangeMainScrollViewPosition(animated: true)
-        } else {
+        } else if mainScrollView.contentOffset.x == UIScreen.main.bounds.width / 3 * 2 {
             mainScrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), animated: true)
         }
     }

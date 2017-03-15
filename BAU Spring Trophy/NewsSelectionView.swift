@@ -17,13 +17,13 @@ class NewsSelectionView: UIView, UICollectionViewDelegate, UICollectionViewDataS
         cv.backgroundColor = UIColor.clear
         cv.delegate = self
         cv.dataSource = self
-        cv.isUserInteractionEnabled = false
         return cv
     }()
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        isUserInteractionEnabled = false
         addSubview(collectionView)
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: collectionView)
         addConstraintsWithVisualFormat(format: "H:[v0(\((flashNewsCount * 10) + (2 * flashNewsCount - 1)))]", views: collectionView)

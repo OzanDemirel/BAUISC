@@ -17,6 +17,7 @@ class SideMenuCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+
     }
     
     func setupCell(menuItem: Dictionary<String, String>) {
@@ -34,20 +35,16 @@ class SideMenuCell: UITableViewCell {
         
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        
+//
+//        // Configure the view for the selected state
+//    }
+//    
+//    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+//        
+//        
+//    }
 
-        // Configure the view for the selected state
-    }
-    
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        
-        
-    }
-    
-    func checkForFontSize(cellSize: CGSize) {
-        
-        //let size = CGSize(width: cellSize., height: <#T##CGFloat#>)
-    }
 
 }

@@ -34,6 +34,7 @@ class NewsHorizontalCell: BaseCell {
         textView.isEditable = false
         textView.isSelectable = false
         textView.isScrollEnabled = false
+        textView.isUserInteractionEnabled = false
         textView.textColor = UIColor(red: 249/255, green: 185/255, blue: 24/255, alpha: 1)
         textView.textContainer.maximumNumberOfLines = 2
         return textView

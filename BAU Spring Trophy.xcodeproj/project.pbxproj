@@ -36,9 +36,20 @@
 		AB42DB5B1E755A9600549C65 /* NewsHorizontalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB5A1E755A9600549C65 /* NewsHorizontalCell.swift */; };
 		AB42DB5D1E76FCED00549C65 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB5C1E76FCED00549C65 /* Team.swift */; };
 		AB42DB5F1E76FF0900549C65 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB5E1E76FF0900549C65 /* News.swift */; };
+		AB42DB611E771E3600549C65 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB42DB601E771E3600549C65 /* GoogleService-Info.plist */; };
+		AB42DB641E77370400549C65 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB631E77370400549C65 /* ApiService.swift */; };
+		AB42DB6D1E787E6800549C65 /* TeamsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB6B1E787E6800549C65 /* TeamsVC.swift */; };
+		AB42DB6E1E787E6800549C65 /* TeamsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB42DB6C1E787E6800549C65 /* TeamsVC.xib */; };
+		AB42DB701E789BFD00549C65 /* TeamsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB6F1E789BFD00549C65 /* TeamsCell.swift */; };
+		AB42DB741E78B9C700549C65 /* TeamInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB731E78B9C700549C65 /* TeamInfoVC.swift */; };
+		AB42DB761E78BA4100549C65 /* TeamInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB42DB751E78BA4100549C65 /* TeamInfoVC.xib */; };
+		AB42DB781E78C14E00549C65 /* CrewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB771E78C14E00549C65 /* CrewCell.swift */; };
+		FD60F8A336291FF9445F2EF6 /* Pods_BAU_Spring_Trophy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8219F067E66EDAC2ADFDAC9 /* Pods_BAU_Spring_Trophy.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05375D0D446632B99B98DCFB /* Pods-BAU Spring Trophy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BAU Spring Trophy.release.xcconfig"; path = "Pods/Target Support Files/Pods-BAU Spring Trophy/Pods-BAU Spring Trophy.release.xcconfig"; sourceTree = "<group>"; };
+		A8219F067E66EDAC2ADFDAC9 /* Pods_BAU_Spring_Trophy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BAU_Spring_Trophy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB3F20281E700FE40058F327 /* BAU Spring Trophy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BAU Spring Trophy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB3F202B1E700FE40058F327 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB3F202D1E700FE40058F327 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -71,6 +82,15 @@
 		AB42DB5A1E755A9600549C65 /* NewsHorizontalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsHorizontalCell.swift; sourceTree = "<group>"; };
 		AB42DB5C1E76FCED00549C65 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		AB42DB5E1E76FF0900549C65 /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		AB42DB601E771E3600549C65 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AB42DB631E77370400549C65 /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		AB42DB6B1E787E6800549C65 /* TeamsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamsVC.swift; sourceTree = "<group>"; };
+		AB42DB6C1E787E6800549C65 /* TeamsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamsVC.xib; sourceTree = "<group>"; };
+		AB42DB6F1E789BFD00549C65 /* TeamsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamsCell.swift; sourceTree = "<group>"; };
+		AB42DB731E78B9C700549C65 /* TeamInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamInfoVC.swift; sourceTree = "<group>"; };
+		AB42DB751E78BA4100549C65 /* TeamInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamInfoVC.xib; sourceTree = "<group>"; };
+		AB42DB771E78C14E00549C65 /* CrewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrewCell.swift; sourceTree = "<group>"; };
+		C5A2C11E8E7D56E769E8649D /* Pods-BAU Spring Trophy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BAU Spring Trophy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BAU Spring Trophy/Pods-BAU Spring Trophy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,17 +98,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD60F8A336291FF9445F2EF6 /* Pods_BAU_Spring_Trophy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3397BC7D560D28176DAF0C8E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A8219F067E66EDAC2ADFDAC9 /* Pods_BAU_Spring_Trophy.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AB3F201F1E700FE40058F327 = {
 			isa = PBXGroup;
 			children = (
 				AB3F202A1E700FE40058F327 /* BAU Spring Trophy */,
 				AB3F20291E700FE40058F327 /* Products */,
+				CF0BFB66E9A11EC76BF4587C /* Pods */,
+				3397BC7D560D28176DAF0C8E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +134,7 @@
 		AB3F202A1E700FE40058F327 /* BAU Spring Trophy */ = {
 			isa = PBXGroup;
 			children = (
+				AB42DB621E7736DF00549C65 /* Service */,
 				AB3F20421E704FEF0058F327 /* Resource */,
 				AB3F203F1E70171C0058F327 /* Model */,
 				AB3F203E1E7017170058F327 /* View */,
@@ -112,6 +144,7 @@
 				AB3F20321E700FE40058F327 /* Assets.xcassets */,
 				AB3F20341E700FE40058F327 /* LaunchScreen.storyboard */,
 				AB3F20371E700FE40058F327 /* Info.plist */,
+				AB42DB601E771E3600549C65 /* GoogleService-Info.plist */,
 			);
 			path = "BAU Spring Trophy";
 			sourceTree = "<group>";
@@ -119,6 +152,8 @@
 		AB3F203D1E7017100058F327 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				AB42DB731E78B9C700549C65 /* TeamInfoVC.swift */,
+				AB42DB6B1E787E6800549C65 /* TeamsVC.swift */,
 				AB3F202D1E700FE40058F327 /* HomeVC.swift */,
 				AB42DB341E73061500549C65 /* NewsVC.swift */,
 				AB42DB411E73929C00549C65 /* GaleryVC.swift */,
@@ -129,25 +164,12 @@
 		AB3F203E1E7017170058F327 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AB42DB431E7397D200549C65 /* AnimatedLogoView.swift */,
-				AB42DB471E739BBB00549C65 /* DesignableView.swift */,
-				AB3F20461E708A6E0058F327 /* DesignableImageView.swift */,
-				AB3F20491E7090970058F327 /* SideMenuView.swift */,
-				AB3F20401E7030C40058F327 /* SideMenuCell.swift */,
-				AB42DB3D1E73916200549C65 /* BaseCell.swift */,
-				AB3F204B1E714A040058F327 /* NewsCell.swift */,
-				AB42DB351E73061500549C65 /* NewsVC.xib */,
-				AB42DB3F1E73928700549C65 /* GaleryVC.xib */,
-				AB42DB451E739B8100549C65 /* GaleryPageSelectionBarView.swift */,
-				AB42DB491E73A92500549C65 /* GaleryPageSelectionCell.swift */,
-				AB42DB4B1E7437F000549C65 /* PhotosBaseCell.swift */,
-				AB42DB4D1E743BE800549C65 /* PhotosCell.swift */,
-				AB42DB511E74775E00549C65 /* VideosBaseCell.swift */,
-				AB42DB4F1E746F4900549C65 /* VideosCell.swift */,
-				AB42DB531E7508A300549C65 /* NewsScrollPages.swift */,
-				AB42DB5A1E755A9600549C65 /* NewsHorizontalCell.swift */,
-				AB42DB561E753BA400549C65 /* NewsSelectionView.swift */,
-				AB42DB581E753CFC00549C65 /* NewsSelectionCell.swift */,
+				AB42DB691E77466B00549C65 /* Side Menu */,
+				AB42DB681E77465900549C65 /* Custom Views */,
+				AB42DB671E77464800549C65 /* News Page */,
+				AB42DB6A1E787DF400549C65 /* Teams Page */,
+				AB42DB661E77462D00549C65 /* Galery Page */,
+				AB42DB651E77460C00549C65 /* Home Page */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -170,6 +192,88 @@
 			name = Resource;
 			sourceTree = "<group>";
 		};
+		AB42DB621E7736DF00549C65 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				AB42DB631E77370400549C65 /* ApiService.swift */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
+		AB42DB651E77460C00549C65 /* Home Page */ = {
+			isa = PBXGroup;
+			children = (
+				AB42DB3D1E73916200549C65 /* BaseCell.swift */,
+				AB42DB531E7508A300549C65 /* NewsScrollPages.swift */,
+				AB42DB5A1E755A9600549C65 /* NewsHorizontalCell.swift */,
+				AB42DB561E753BA400549C65 /* NewsSelectionView.swift */,
+				AB42DB581E753CFC00549C65 /* NewsSelectionCell.swift */,
+			);
+			name = "Home Page";
+			sourceTree = "<group>";
+		};
+		AB42DB661E77462D00549C65 /* Galery Page */ = {
+			isa = PBXGroup;
+			children = (
+				AB42DB3F1E73928700549C65 /* GaleryVC.xib */,
+				AB42DB451E739B8100549C65 /* GaleryPageSelectionBarView.swift */,
+				AB42DB491E73A92500549C65 /* GaleryPageSelectionCell.swift */,
+				AB42DB4B1E7437F000549C65 /* PhotosBaseCell.swift */,
+				AB42DB4D1E743BE800549C65 /* PhotosCell.swift */,
+				AB42DB511E74775E00549C65 /* VideosBaseCell.swift */,
+				AB42DB4F1E746F4900549C65 /* VideosCell.swift */,
+			);
+			name = "Galery Page";
+			sourceTree = "<group>";
+		};
+		AB42DB671E77464800549C65 /* News Page */ = {
+			isa = PBXGroup;
+			children = (
+				AB3F204B1E714A040058F327 /* NewsCell.swift */,
+				AB42DB351E73061500549C65 /* NewsVC.xib */,
+			);
+			name = "News Page";
+			sourceTree = "<group>";
+		};
+		AB42DB681E77465900549C65 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				AB42DB431E7397D200549C65 /* AnimatedLogoView.swift */,
+				AB42DB471E739BBB00549C65 /* DesignableView.swift */,
+				AB3F20461E708A6E0058F327 /* DesignableImageView.swift */,
+				AB3F20491E7090970058F327 /* SideMenuView.swift */,
+			);
+			name = "Custom Views";
+			sourceTree = "<group>";
+		};
+		AB42DB691E77466B00549C65 /* Side Menu */ = {
+			isa = PBXGroup;
+			children = (
+				AB3F20401E7030C40058F327 /* SideMenuCell.swift */,
+			);
+			name = "Side Menu";
+			sourceTree = "<group>";
+		};
+		AB42DB6A1E787DF400549C65 /* Teams Page */ = {
+			isa = PBXGroup;
+			children = (
+				AB42DB6F1E789BFD00549C65 /* TeamsCell.swift */,
+				AB42DB771E78C14E00549C65 /* CrewCell.swift */,
+				AB42DB6C1E787E6800549C65 /* TeamsVC.xib */,
+				AB42DB751E78BA4100549C65 /* TeamInfoVC.xib */,
+			);
+			name = "Teams Page";
+			sourceTree = "<group>";
+		};
+		CF0BFB66E9A11EC76BF4587C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C5A2C11E8E7D56E769E8649D /* Pods-BAU Spring Trophy.debug.xcconfig */,
+				05375D0D446632B99B98DCFB /* Pods-BAU Spring Trophy.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -177,9 +281,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB3F203A1E700FE40058F327 /* Build configuration list for PBXNativeTarget "BAU Spring Trophy" */;
 			buildPhases = (
+				55FED9588387085636AE2017 /* [CP] Check Pods Manifest.lock */,
 				AB3F20241E700FE40058F327 /* Sources */,
 				AB3F20251E700FE40058F327 /* Frameworks */,
 				AB3F20261E700FE40058F327 /* Resources */,
+				76079FFA57AD32B0381326BF /* [CP] Embed Pods Frameworks */,
+				47F7664DE9F3F36A1B222729 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -233,12 +340,63 @@
 				AB3F20361E700FE40058F327 /* LaunchScreen.storyboard in Resources */,
 				AB42DB371E73061500549C65 /* NewsVC.xib in Resources */,
 				AB3F20331E700FE40058F327 /* Assets.xcassets in Resources */,
+				AB42DB761E78BA4100549C65 /* TeamInfoVC.xib in Resources */,
 				AB3F20311E700FE40058F327 /* Main.storyboard in Resources */,
+				AB42DB6E1E787E6800549C65 /* TeamsVC.xib in Resources */,
 				AB42DB401E73928700549C65 /* GaleryVC.xib in Resources */,
+				AB42DB611E771E3600549C65 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		47F7664DE9F3F36A1B222729 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BAU Spring Trophy/Pods-BAU Spring Trophy-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		55FED9588387085636AE2017 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		76079FFA57AD32B0381326BF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BAU Spring Trophy/Pods-BAU Spring Trophy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AB3F20241E700FE40058F327 /* Sources */ = {
@@ -246,12 +404,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB42DB571E753BA400549C65 /* NewsSelectionView.swift in Sources */,
+				AB42DB741E78B9C700549C65 /* TeamInfoVC.swift in Sources */,
 				AB42DB3C1E73848000549C65 /* Extensions.swift in Sources */,
 				AB42DB591E753CFC00549C65 /* NewsSelectionCell.swift in Sources */,
 				AB3F202E1E700FE40058F327 /* HomeVC.swift in Sources */,
+				AB42DB781E78C14E00549C65 /* CrewCell.swift in Sources */,
 				AB42DB501E746F4900549C65 /* VideosCell.swift in Sources */,
+				AB42DB701E789BFD00549C65 /* TeamsCell.swift in Sources */,
 				AB42DB421E73929C00549C65 /* GaleryVC.swift in Sources */,
 				AB42DB481E739BBB00549C65 /* DesignableView.swift in Sources */,
+				AB42DB6D1E787E6800549C65 /* TeamsVC.swift in Sources */,
 				AB3F20471E708A6E0058F327 /* DesignableImageView.swift in Sources */,
 				AB42DB4A1E73A92500549C65 /* GaleryPageSelectionCell.swift in Sources */,
 				AB42DB461E739B8100549C65 /* GaleryPageSelectionBarView.swift in Sources */,
@@ -261,6 +423,7 @@
 				AB42DB4C1E7437F000549C65 /* PhotosBaseCell.swift in Sources */,
 				AB42DB361E73061500549C65 /* NewsVC.swift in Sources */,
 				AB3F202C1E700FE40058F327 /* AppDelegate.swift in Sources */,
+				AB42DB641E77370400549C65 /* ApiService.swift in Sources */,
 				AB42DB5B1E755A9600549C65 /* NewsHorizontalCell.swift in Sources */,
 				AB3F204C1E714A040058F327 /* NewsCell.swift in Sources */,
 				AB42DB5F1E76FF0900549C65 /* News.swift in Sources */,
@@ -387,6 +550,7 @@
 		};
 		AB3F203B1E700FE40058F327 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5A2C11E8E7D56E769E8649D /* Pods-BAU Spring Trophy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VYM7F3H4LX;
@@ -400,6 +564,7 @@
 		};
 		AB3F203C1E700FE40058F327 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05375D0D446632B99B98DCFB /* Pods-BAU Spring Trophy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VYM7F3H4LX;

@@ -20,6 +20,7 @@ class NewsCell: BaseCell {
 
     override func setupViews() {
         backgroundColor = UIColor.clear
+        
         addSubview(newsImageView)
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: newsImageView)
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: newsImageView)

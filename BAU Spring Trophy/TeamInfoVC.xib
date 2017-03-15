@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TeamInfoVC" customModule="BAU_Spring_Trophy" customModuleProvider="target">
+            <connections>
+                <outlet property="crewTableView" destination="VgC-Sl-64d" id="jDD-NH-RdT"/>
+                <outlet property="flamaView" destination="OtT-58-w7q" id="TuC-lU-Ri9"/>
+                <outlet property="flameLeftConstraint" destination="OkQ-1y-OgJ" id="cBr-Mk-gQq"/>
+                <outlet property="teamInfoImage" destination="cPE-S6-iAr" id="l7N-3S-hA2"/>
+                <outlet property="teamNameLbl" destination="HXJ-UJ-Scl" id="TZ8-sc-e6i"/>
+                <outlet property="teamsBackground" destination="9Px-2G-LQw" id="WAC-nM-DWE"/>
+                <outlet property="view" destination="uSL-9p-bOu" id="k1D-cK-TQs"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="uSL-9p-bOu">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="586"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fwe-K1-1MT" userLabel="Background">
+                    <rect key="frame" x="0.0" y="235" width="414" height="351"/>
+                    <color key="backgroundColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="www.bauisc.org" translatesAutoresizingMaskIntoConstraints="NO" id="JQL-s7-3eM" userLabel="Domain ImageView">
+                    <rect key="frame" x="162" y="544" width="90" height="12"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="6Bp-F1-aLW"/>
+                        <constraint firstAttribute="height" constant="12" id="ins-ho-aXj"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="lVC-nn-qrq"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="12" id="rRh-E5-pkR"/>
+                    </constraints>
+                </imageView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="30" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VgC-Sl-64d">
+                    <rect key="frame" x="0.0" y="404" width="414" height="182"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </tableView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BoatInfoBackground" translatesAutoresizingMaskIntoConstraints="NO" id="cPE-S6-iAr" customClass="DesignableImageView" customModule="BAU_Spring_Trophy" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="280" width="414" height="88"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="cPE-S6-iAr" secondAttribute="height" multiplier="207:44" id="x99-I3-gMe"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                            <real key="value" value="0.80000000000000004"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                            <size key="value" width="0.0" height="3"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                            <color key="value" cocoaTouchSystemColor="darkTextColor"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a3c-Nj-Zfx" customClass="DesignableImageView" customModule="BAU_Spring_Trophy" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="368" width="414" height="36"/>
+                    <color key="backgroundColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="a3c-Nj-Zfx" secondAttribute="height" multiplier="23:2" id="fjY-wZ-u9h"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                            <real key="value" value="0.80000000000000004"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                            <size key="value" width="0.0" height="3"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                            <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TableCellIcon" translatesAutoresizingMaskIntoConstraints="NO" id="wtM-7j-3g6">
+                    <rect key="frame" x="40" y="378" width="8" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="8" id="C5P-KX-55c"/>
+                        <constraint firstAttribute="height" constant="16" id="h2D-Ho-xOR"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EKİP LİSTESİ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="ViX-1U-kha">
+                    <rect key="frame" x="60" y="376" width="76.5" height="20"/>
+                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hsb-3e-PRw" customClass="DesignableImageView" customModule="BAU_Spring_Trophy" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="235" width="414" height="45"/>
+                    <color key="backgroundColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                            <real key="value" value="0.80000000000000004"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                            <size key="value" width="0.0" height="3"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                            <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEKNE BİLGİLERİ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="S2m-6i-FKt">
+                    <rect key="frame" x="60" y="247" width="104.5" height="20"/>
+                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TableCellIcon" translatesAutoresizingMaskIntoConstraints="NO" id="hbe-PM-G7H">
+                    <rect key="frame" x="40" y="249" width="8" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="a5J-ah-MwE"/>
+                        <constraint firstAttribute="width" constant="8" id="xXf-nA-LwH"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TeamsBackground" translatesAutoresizingMaskIntoConstraints="NO" id="9Px-2G-LQw" customClass="DesignableImageView" customModule="BAU_Spring_Trophy" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="235"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="9Px-2G-LQw" secondAttribute="height" multiplier="414:235" id="x9U-bU-q7X"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                            <real key="value" value="0.80000000000000004"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                            <size key="value" width="0.0" height="4"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                            <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flama" translatesAutoresizingMaskIntoConstraints="NO" id="OtT-58-w7q">
+                    <rect key="frame" x="0.0" y="30" width="123" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="OtT-58-w7q" secondAttribute="height" multiplier="123:64" id="FgZ-vZ-IIF"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BAU Golden Toy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="HXJ-UJ-Scl">
+                    <rect key="frame" x="2" y="57" width="111" height="10"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="10" id="Gfo-oM-l9C"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="10"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="9Px-2G-LQw" firstAttribute="top" secondItem="uSL-9p-bOu" secondAttribute="top" id="32T-Yt-BdY"/>
+                <constraint firstAttribute="trailing" secondItem="9Px-2G-LQw" secondAttribute="trailing" id="3Ov-v4-VZT"/>
+                <constraint firstAttribute="trailing" secondItem="VgC-Sl-64d" secondAttribute="trailing" id="4kd-Sd-emd"/>
+                <constraint firstAttribute="trailing" secondItem="cPE-S6-iAr" secondAttribute="trailing" id="8Hi-pB-ZF7"/>
+                <constraint firstItem="VgC-Sl-64d" firstAttribute="leading" secondItem="uSL-9p-bOu" secondAttribute="leading" id="BEU-He-jxm"/>
+                <constraint firstItem="S2m-6i-FKt" firstAttribute="top" secondItem="9Px-2G-LQw" secondAttribute="bottom" constant="12" id="DQJ-0k-K6O"/>
+                <constraint firstItem="fwe-K1-1MT" firstAttribute="top" secondItem="9Px-2G-LQw" secondAttribute="bottom" id="DkF-wv-KnD"/>
+                <constraint firstItem="fwe-K1-1MT" firstAttribute="leading" secondItem="uSL-9p-bOu" secondAttribute="leading" id="Had-e4-1uS"/>
+                <constraint firstItem="ViX-1U-kha" firstAttribute="leading" secondItem="wtM-7j-3g6" secondAttribute="trailing" constant="12" id="I9y-MO-O6H"/>
+                <constraint firstAttribute="trailing" secondItem="a3c-Nj-Zfx" secondAttribute="trailing" id="IF9-Yy-zAy"/>
+                <constraint firstItem="hbe-PM-G7H" firstAttribute="centerY" secondItem="hsb-3e-PRw" secondAttribute="centerY" id="KuE-Z3-WJ3"/>
+                <constraint firstItem="hsb-3e-PRw" firstAttribute="top" secondItem="9Px-2G-LQw" secondAttribute="bottom" id="Maz-nS-rSF"/>
+                <constraint firstItem="wtM-7j-3g6" firstAttribute="leading" secondItem="uSL-9p-bOu" secondAttribute="leading" constant="40" id="Ngo-LL-FBW"/>
+                <constraint firstItem="ViX-1U-kha" firstAttribute="top" secondItem="cPE-S6-iAr" secondAttribute="bottom" constant="8" id="OkH-Vn-toZ"/>
+                <constraint firstItem="OtT-58-w7q" firstAttribute="leading" secondItem="uSL-9p-bOu" secondAttribute="leading" id="OkQ-1y-OgJ"/>
+                <constraint firstItem="cPE-S6-iAr" firstAttribute="leading" secondItem="uSL-9p-bOu" secondAttribute="leading" id="QHe-XT-xKm"/>
+                <constraint firstItem="S2m-6i-FKt" firstAttribute="centerY" secondItem="hsb-3e-PRw" secondAttribute="centerY" id="QOC-t3-Kmq"/>
+                <constraint firstItem="a3c-Nj-Zfx" firstAttribute="top" secondItem="cPE-S6-iAr" secondAttribute="bottom" id="QUJ-ec-cfr"/>
+                <constraint firstAttribute="trailing" secondItem="hsb-3e-PRw" secondAttribute="trailing" id="RFq-VX-Kbf"/>
+                <constraint firstItem="HXJ-UJ-Scl" firstAttribute="centerY" secondItem="OtT-58-w7q" secondAttribute="centerY" id="Y2i-Mk-0R2"/>
+                <constraint firstItem="wtM-7j-3g6" firstAttribute="top" secondItem="cPE-S6-iAr" secondAttribute="bottom" constant="10" id="YiZ-wz-5MK"/>
+                <constraint firstItem="VgC-Sl-64d" firstAttribute="top" secondItem="ViX-1U-kha" secondAttribute="bottom" constant="8" id="Yjk-tL-N1C"/>
+                <constraint firstItem="hsb-3e-PRw" firstAttribute="leading" secondItem="uSL-9p-bOu" secondAttribute="leading" id="ZSk-br-CcM"/>
+                <constraint firstItem="hsb-3e-PRw" firstAttribute="width" secondItem="hsb-3e-PRw" secondAttribute="height" multiplier="46:5" id="b3L-Xy-LOK"/>
+                <constraint firstAttribute="trailing" secondItem="fwe-K1-1MT" secondAttribute="trailing" id="bbZ-B9-O9y"/>
+                <constraint firstItem="ViX-1U-kha" firstAttribute="centerY" secondItem="wtM-7j-3g6" secondAttribute="centerY" id="dxC-bw-4c0"/>
+                <constraint firstItem="S2m-6i-FKt" firstAttribute="leading" secondItem="uSL-9p-bOu" secondAttribute="leading" constant="60" id="gzk-MG-ez1"/>
+                <constraint firstItem="cPE-S6-iAr" firstAttribute="top" secondItem="hsb-3e-PRw" secondAttribute="bottom" id="i6x-Hq-3HW"/>
+                <constraint firstItem="JQL-s7-3eM" firstAttribute="centerX" secondItem="uSL-9p-bOu" secondAttribute="centerX" id="m4W-Fo-4ud"/>
+                <constraint firstItem="HXJ-UJ-Scl" firstAttribute="width" secondItem="OtT-58-w7q" secondAttribute="width" constant="-12" id="nJu-CV-Ou7"/>
+                <constraint firstAttribute="bottom" secondItem="VgC-Sl-64d" secondAttribute="bottom" id="qk9-Qo-3Nm"/>
+                <constraint firstItem="OtT-58-w7q" firstAttribute="top" secondItem="uSL-9p-bOu" secondAttribute="top" constant="30" id="rR2-eI-CUY"/>
+                <constraint firstItem="HXJ-UJ-Scl" firstAttribute="centerX" secondItem="OtT-58-w7q" secondAttribute="centerX" constant="-4" id="rXy-6A-Yvy"/>
+                <constraint firstAttribute="bottom" secondItem="JQL-s7-3eM" secondAttribute="bottom" constant="30" id="tFv-fA-YnF"/>
+                <constraint firstAttribute="bottom" secondItem="fwe-K1-1MT" secondAttribute="bottom" id="vbb-Vn-aT7"/>
+                <constraint firstItem="a3c-Nj-Zfx" firstAttribute="leading" secondItem="uSL-9p-bOu" secondAttribute="leading" id="w32-SF-CBX"/>
+                <constraint firstItem="hbe-PM-G7H" firstAttribute="leading" secondItem="uSL-9p-bOu" secondAttribute="leading" constant="40" id="xlc-gP-jgS"/>
+                <constraint firstItem="9Px-2G-LQw" firstAttribute="leading" secondItem="uSL-9p-bOu" secondAttribute="leading" id="yq7-bZ-tHo"/>
+                <constraint firstItem="OtT-58-w7q" firstAttribute="height" secondItem="9Px-2G-LQw" secondAttribute="height" multiplier="0.27" id="zyc-DC-VCt"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="33" y="88"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="BoatInfoBackground" width="410" height="84"/>
+        <image name="Flama" width="122" height="63"/>
+        <image name="TableCellIcon" width="7" height="16"/>
+        <image name="TeamsBackground" width="410" height="232"/>
+        <image name="www.bauisc.org" width="94" height="11"/>
+    </resources>
+</document>
