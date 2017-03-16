@@ -10,6 +10,10 @@ import UIKit
 
 class ResultsVC: UIViewController {
     
+    @IBOutlet weak var daysSectionView: DaysSectionView!
+    @IBOutlet weak var racesSectionView: TableSectionView!
+    @IBOutlet weak var tableSectionView: RacesSectionView!
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }

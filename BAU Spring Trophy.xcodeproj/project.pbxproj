@@ -46,6 +46,13 @@
 		AB42DB781E78C14E00549C65 /* CrewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB771E78C14E00549C65 /* CrewCell.swift */; };
 		AB42DB7C1E7A47FF00549C65 /* ResultsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB7A1E7A47FF00549C65 /* ResultsVC.swift */; };
 		AB42DB7D1E7A47FF00549C65 /* ResultsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB42DB7B1E7A47FF00549C65 /* ResultsVC.xib */; };
+		AB42DB7F1E7A543600549C65 /* DaysSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB7E1E7A543600549C65 /* DaysSectionView.swift */; };
+		AB42DB811E7A720E00549C65 /* DaysCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB801E7A720E00549C65 /* DaysCell.swift */; };
+		AB42DB831E7A816600549C65 /* TableSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB821E7A816600549C65 /* TableSectionView.swift */; };
+		AB42DB851E7A83DF00549C65 /* TableSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB841E7A83DF00549C65 /* TableSelectionCell.swift */; };
+		AB42DB871E7AAB1A00549C65 /* RacesSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB861E7AAB1A00549C65 /* RacesSectionView.swift */; };
+		AB42DB891E7AAE2500549C65 /* RacesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB881E7AAE2500549C65 /* RacesCell.swift */; };
+		AB42DB8B1E7AD66B00549C65 /* RacesSectionBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB8A1E7AD66B00549C65 /* RacesSectionBaseView.swift */; };
 		FD60F8A336291FF9445F2EF6 /* Pods_BAU_Spring_Trophy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8219F067E66EDAC2ADFDAC9 /* Pods_BAU_Spring_Trophy.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +101,13 @@
 		AB42DB771E78C14E00549C65 /* CrewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrewCell.swift; sourceTree = "<group>"; };
 		AB42DB7A1E7A47FF00549C65 /* ResultsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsVC.swift; sourceTree = "<group>"; };
 		AB42DB7B1E7A47FF00549C65 /* ResultsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultsVC.xib; sourceTree = "<group>"; };
+		AB42DB7E1E7A543600549C65 /* DaysSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysSectionView.swift; sourceTree = "<group>"; };
+		AB42DB801E7A720E00549C65 /* DaysCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysCell.swift; sourceTree = "<group>"; };
+		AB42DB821E7A816600549C65 /* TableSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableSectionView.swift; sourceTree = "<group>"; };
+		AB42DB841E7A83DF00549C65 /* TableSelectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableSelectionCell.swift; sourceTree = "<group>"; };
+		AB42DB861E7AAB1A00549C65 /* RacesSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RacesSectionView.swift; sourceTree = "<group>"; };
+		AB42DB881E7AAE2500549C65 /* RacesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RacesCell.swift; sourceTree = "<group>"; };
+		AB42DB8A1E7AD66B00549C65 /* RacesSectionBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RacesSectionBaseView.swift; sourceTree = "<group>"; };
 		C5A2C11E8E7D56E769E8649D /* Pods-BAU Spring Trophy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BAU Spring Trophy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BAU Spring Trophy/Pods-BAU Spring Trophy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -275,6 +289,13 @@
 			isa = PBXGroup;
 			children = (
 				AB42DB7B1E7A47FF00549C65 /* ResultsVC.xib */,
+				AB42DB7E1E7A543600549C65 /* DaysSectionView.swift */,
+				AB42DB801E7A720E00549C65 /* DaysCell.swift */,
+				AB42DB821E7A816600549C65 /* TableSectionView.swift */,
+				AB42DB841E7A83DF00549C65 /* TableSelectionCell.swift */,
+				AB42DB861E7AAB1A00549C65 /* RacesSectionView.swift */,
+				AB42DB881E7AAE2500549C65 /* RacesCell.swift */,
+				AB42DB8A1E7AD66B00549C65 /* RacesSectionBaseView.swift */,
 			);
 			name = "Results Page";
 			sourceTree = "<group>";
@@ -420,21 +441,25 @@
 			files = (
 				AB42DB571E753BA400549C65 /* NewsSelectionView.swift in Sources */,
 				AB42DB741E78B9C700549C65 /* TeamInfoVC.swift in Sources */,
+				AB42DB8B1E7AD66B00549C65 /* RacesSectionBaseView.swift in Sources */,
 				AB42DB3C1E73848000549C65 /* Extensions.swift in Sources */,
 				AB42DB591E753CFC00549C65 /* NewsSelectionCell.swift in Sources */,
 				AB3F202E1E700FE40058F327 /* HomeVC.swift in Sources */,
 				AB42DB781E78C14E00549C65 /* CrewCell.swift in Sources */,
 				AB42DB501E746F4900549C65 /* VideosCell.swift in Sources */,
+				AB42DB831E7A816600549C65 /* TableSectionView.swift in Sources */,
 				AB42DB701E789BFD00549C65 /* TeamsCell.swift in Sources */,
 				AB42DB421E73929C00549C65 /* GaleryVC.swift in Sources */,
 				AB42DB481E739BBB00549C65 /* DesignableView.swift in Sources */,
 				AB42DB6D1E787E6800549C65 /* TeamsVC.swift in Sources */,
 				AB3F20471E708A6E0058F327 /* DesignableImageView.swift in Sources */,
+				AB42DB851E7A83DF00549C65 /* TableSelectionCell.swift in Sources */,
 				AB42DB4A1E73A92500549C65 /* GaleryPageSelectionCell.swift in Sources */,
 				AB42DB7C1E7A47FF00549C65 /* ResultsVC.swift in Sources */,
 				AB42DB461E739B8100549C65 /* GaleryPageSelectionBarView.swift in Sources */,
 				AB42DB521E74775E00549C65 /* VideosBaseCell.swift in Sources */,
 				AB3F204A1E7090970058F327 /* SideMenuView.swift in Sources */,
+				AB42DB871E7AAB1A00549C65 /* RacesSectionView.swift in Sources */,
 				AB42DB4E1E743BE800549C65 /* PhotosCell.swift in Sources */,
 				AB42DB4C1E7437F000549C65 /* PhotosBaseCell.swift in Sources */,
 				AB42DB361E73061500549C65 /* NewsVC.swift in Sources */,
@@ -444,10 +469,13 @@
 				AB3F204C1E714A040058F327 /* NewsCell.swift in Sources */,
 				AB42DB5F1E76FF0900549C65 /* News.swift in Sources */,
 				AB42DB3E1E73916200549C65 /* BaseCell.swift in Sources */,
+				AB42DB811E7A720E00549C65 /* DaysCell.swift in Sources */,
 				AB42DB5D1E76FCED00549C65 /* Team.swift in Sources */,
 				AB3F20411E7030C40058F327 /* SideMenuCell.swift in Sources */,
+				AB42DB891E7AAE2500549C65 /* RacesCell.swift in Sources */,
 				AB42DB441E7397D200549C65 /* AnimatedLogoView.swift in Sources */,
 				AB42DB541E7508A300549C65 /* NewsScrollPages.swift in Sources */,
+				AB42DB7F1E7A543600549C65 /* DaysSectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
