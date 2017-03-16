@@ -12,10 +12,11 @@ class PhotosBaseCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
     
     lazy var collectionView: UICollectionView = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        cv.backgroundColor = UIColor.clear
+        cv.showsVerticalScrollIndicator = false
         cv.delegate = self
         cv.dataSource = self
         cv.register(PhotosCell.self, forCellWithReuseIdentifier: "photosCell")
-        cv.backgroundColor = UIColor.clear
         return cv
     }()
     

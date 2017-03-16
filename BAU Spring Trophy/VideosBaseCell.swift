@@ -12,10 +12,11 @@ class VideosBaseCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
     
     lazy var collectionView: UICollectionView = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        cv.backgroundColor = UIColor.clear
+        cv.showsVerticalScrollIndicator = false
         cv.delegate = self
         cv.dataSource = self
         cv.register(VideosCell.self, forCellWithReuseIdentifier: "videosCell")
-        cv.backgroundColor = UIColor.clear
         return cv
     }()
     
