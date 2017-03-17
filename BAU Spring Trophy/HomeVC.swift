@@ -194,11 +194,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         teamInfoVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.maxX, y: navigationBar.frame.maxY)
         teamInfoVC.view.alpha = 0
         
-        teamInfoVC.teamsBackground.shadowOpacity = 0.8
-        teamInfoVC.boatInfoBar.shadowOpacity = 0.8
-        teamInfoVC.teamInfoImage.shadowOpacity = 0.8
-        teamInfoVC.crewListBar.shadowOpacity = 0.8
-        
         homeView.bringSubview(toFront: homePageShadowView)
         
         UIView.animate(withDuration: calculateAnimationDuration(startingPoint: teamInfoVC.view.frame.origin, destinationPoint: CGPoint(x: 0, y: 0)), animations: {
@@ -238,10 +233,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             UIView.animate(withDuration: self.calculateAnimationDuration(startingPoint: self.teamInfoVC.view.frame.origin, destinationPoint: CGPoint(x: (self.teamInfoVC.view.frame.maxX), y: (self.navigationBar.frame.maxY))), animations: {
                 self.teamInfoVC.view.frame.origin = CGPoint(x: self.teamInfoVC.view.frame.maxX, y: (self.navigationBar.frame.maxY))
             }, completion: { (completion) in
-                self.teamInfoVC.teamsBackground.shadowOpacity = 0.8
-                self.teamInfoVC.boatInfoBar.shadowOpacity = 0.8
-                self.teamInfoVC.teamInfoImage.shadowOpacity = 0.8
-                self.teamInfoVC.crewListBar.shadowOpacity = 0.8
                 self.teamInfoVC.willMove(toParentViewController: self)
                 self.teamInfoVC.view.removeFromSuperview()
                 self.teamInfoVC.removeFromParentViewController()
@@ -275,10 +266,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             self.teamInfoVC.view.layoutIfNeeded()
             self.teamInfoVC.flamaView.alpha = 1
             self.teamInfoVC.teamNameLbl.alpha = 1
-            self.teamInfoVC.teamsBackground.shadowOpacity = 0
-            self.teamInfoVC.boatInfoBar.shadowOpacity = 0
-            self.teamInfoVC.teamInfoImage.shadowOpacity = 0
-            self.teamInfoVC.crewListBar.shadowOpacity = 0
             UIView.animate(withDuration: self.calculateAnimationDuration(startingPoint: self.teamInfoVC.flamaView.frame.origin, destinationPoint: CGPoint(x: 0, y: self.teamInfoVC.flamaView.frame.minY)), animations: {
                 self.teamInfoVC.flameLeftConstraint.constant = 0
                 self.teamInfoVC.view.layoutIfNeeded()
@@ -295,12 +282,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         view.isUserInteractionEnabled = false
         resultsVC.view.alpha = 1
-        
-        teamInfoVC.teamsBackground.shadowOpacity = 0
-        teamInfoVC.boatInfoBar.shadowOpacity = 0
-        teamInfoVC.teamInfoImage.shadowOpacity = 0
-        teamInfoVC.crewListBar.shadowOpacity = 0
-        
         UIView.animate(withDuration: calculateAnimationDuration(startingPoint: teamInfoVC.flamaView.frame.origin, destinationPoint: CGPoint(x: -200, y: homeScrollView.frame.minY)), animations: {
             self.teamInfoVC?.flameLeftConstraint.constant = -200
             self.teamInfoVC?.view.layoutIfNeeded()
@@ -421,6 +402,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             teamsVC.homeVC = self
         }
         
+        NotificationCenter.default.post(name: NSNotification.Name("AnyChildViewAdded"), object: nil)
+        
         homeView.bringSubview(toFront: homePageShadowView)
         
         UIView.animate(withDuration: calculateAnimationDuration(startingPoint: child.view.frame.origin, destinationPoint: CGPoint(x: 0, y: 0)), animations: {
@@ -435,7 +418,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         if child == resultsVC {
             NotificationCenter.default.addObserver(self, selector: #selector(HomeVC.teamSelectedNotificationReceived(_:)), name: NSNotification.Name("teamSelected"), object: nil)
         }
-        
+     
     }
     
     func removeAChildViewFromView(child: UIViewController, childToAdd: UIViewController?) {
@@ -455,6 +438,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 self.teamInfoVC.teamNameLbl.alpha = 0
                 self.teamInfoVC.teamsBackground.alpha = 0
             }
+            self.mainScrollView.isScrollEnabled = true
             child.willMove(toParentViewController: self)
             child.view.removeFromSuperview()
             child.removeFromParentViewController()
@@ -565,13 +549,11 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             break;
         case 1:
             for child in childs {
-                if child.view.frame == homeScrollView.frame {
+                if teamsVC.view.frame == homeScrollView.frame {
+                    removeCalled = true
+                } else if child.view.frame == homeScrollView.frame && child != teamsVC {
                     _ = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false, block: { (timer) in
-                        if child == self.teamInfoVC {
-                            self.removeTeamInfoPageFromView()
-                        }else {
-                            self.removeAChildViewFromView(child: child, childToAdd: self.teamsVC)
-                        }
+                        self.removeAChildViewFromView(child: child, childToAdd: self.teamsVC)
                     })
                     removeCalled = true
                 }
@@ -582,38 +564,62 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             break;
         case 2:
             for child in childs {
-                if child.view.frame == homeScrollView.frame {
+                if galeryVC.view.frame == homeScrollView.frame {
+                    removeCalled = true
+                } else if child.view.frame == homeScrollView.frame && child != galeryVC {
                     _ = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false, block: { (timer) in
                         self.removeAChildViewFromView(child: child, childToAdd: self.galeryVC)
                     })
+                    removeCalled = true
                 }
+            }
+            if !removeCalled {
+                addAChildViewToView(child: galeryVC)
             }
             break;
         case 3:
             for child in childs {
-                if child.view.frame == homeScrollView.frame {
+                if galeryVC.view.frame == homeScrollView.frame {
+                    removeCalled = true
+                } else if child.view.frame == homeScrollView.frame && child != galeryVC {
                     _ = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false, block: { (timer) in
                         self.removeAChildViewFromView(child: child, childToAdd: self.galeryVC)
                     })
+                    removeCalled = true
                 }
+            }
+            if !removeCalled {
+                addAChildViewToView(child: galeryVC)
             }
             break;
         case 4:
             for child in childs {
-                if child.view.frame == homeScrollView.frame {
+                if newsVC.view.frame == homeScrollView.frame {
+                    removeCalled = true
+                } else if child.view.frame == homeScrollView.frame && child != newsVC {
                     _ = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false, block: { (timer) in
                         self.removeAChildViewFromView(child: child, childToAdd: self.newsVC)
                     })
+                    removeCalled = true
                 }
+            }
+            if !removeCalled {
+                addAChildViewToView(child: newsVC)
             }
             break;
         case 5:
             for child in childs {
-                if child.view.frame == homeScrollView.frame {
+                if resultsVC.view.frame == homeScrollView.frame {
+                    removeCalled = true
+                } else if child.view.frame == homeScrollView.frame && child != resultsVC {
                     _ = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false, block: { (timer) in
                         self.removeAChildViewFromView(child: child, childToAdd: self.resultsVC)
                     })
+                    removeCalled = true
                 }
+            }
+            if !removeCalled {
+                addAChildViewToView(child: resultsVC)
             }
             break;
         default:
@@ -668,15 +674,15 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     }
   
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width / 2, height: UIScreen.main.bounds.width / 3)
+        return CGSize(width: UIScreen.main.bounds.width / 2 - 0.5, height: UIScreen.main.bounds.width / 3 - 0.5)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 1
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -19,8 +19,6 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var teamsBackground: DesignableImageView!
     @IBOutlet weak var flamaView: UIImageView!
     @IBOutlet weak var teamNameLbl: UILabel!
-    @IBOutlet weak var boatInfoBar: DesignableImageView!
-    @IBOutlet weak var crewListBar: DesignableImageView!
     
     @IBOutlet weak var flameLeftConstraint: NSLayoutConstraint!
     
@@ -129,6 +127,8 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        crewTableView.scrollsToTop = true
         
         view.addSubview(seperatorBar1)
         view.addConstraint(NSLayoutConstraint(item: seperatorBar1, attribute: .centerY, relatedBy: .equal, toItem: teamInfoImage, attribute: .centerY, multiplier: 1, constant: 0))

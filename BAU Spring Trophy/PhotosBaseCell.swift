@@ -44,7 +44,7 @@ class PhotosBaseCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.width / 2, height: frame.width / 3)
+        return CGSize(width: frame.width / 2 - 0.5, height: frame.width / 3 - 0.5)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

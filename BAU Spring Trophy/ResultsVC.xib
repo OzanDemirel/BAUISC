@@ -58,7 +58,7 @@
                                     <size key="value" width="0.0" height="3"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                    <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </imageView>

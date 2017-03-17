@@ -42,6 +42,12 @@ class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         classes = ["IRC0", "IRC1", "IRC2", "IRC3", "IRC4", "GEZGİN"]
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        teamsTableView.scrollsToTop = true
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let headerView: UIView = {

@@ -29,6 +29,9 @@ class ResultsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.layer.shouldRasterize = true
+        view.layer.rasterizationScale = UIScreen.main.scale
+        
         resultsTableContainer.delegate = self
         resultsTableContainer.dataSource = self
         resultsTableContainer.register(GeneralResultsContainer.self, forCellWithReuseIdentifier: generalCellId)

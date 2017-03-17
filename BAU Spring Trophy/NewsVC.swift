@@ -33,6 +33,12 @@ class NewsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        newsCollectionView.scrollsToTop = true
+    }
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
