@@ -10,6 +10,8 @@ import UIKit
 
 class DaysSectionView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    var resultsVC: ResultsVC?
+    
     lazy var selectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -36,6 +38,10 @@ class DaysSectionView: UIView, UICollectionViewDelegate, UICollectionViewDataSou
         
         selectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: [])
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        resultsVC?.scrollToSectionInRaces(indexPath: indexPath.row)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

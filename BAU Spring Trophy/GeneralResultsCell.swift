@@ -1,14 +1,14 @@
 //
-//  TeamsCell.swift
+//  GeneralResultsCell.swift
 //  BAU Spring Trophy
 //
-//  Created by Ozan Demirel on 15/03/2017.
+//  Created by Ozan Demirel on 16/03/2017.
 //  Copyright © 2017 BAUISC. All rights reserved.
 //
 
 import UIKit
 
-class TeamsCell: UITableViewCell {
+class GeneralResultsCell: UITableViewCell {
     
     let cellIcon: UIImageView = {
         let imageView = UIImageView()
@@ -47,11 +47,11 @@ class TeamsCell: UITableViewCell {
         return label
     }()
     
-    let boatRaiting: UILabel = {
+    let finishTime: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
         label.font = UIFont(name: "Futura-Bold", size: 10)
-        label.text = "1.057"
+        label.text = "3:42:35"
         label.textAlignment = .right
         return label
     }()
@@ -65,8 +65,25 @@ class TeamsCell: UITableViewCell {
         return label
     }()
     
+    let boatRaiting: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(red: 249/255, green: 185/255, blue: 24/255, alpha: 1)
+        label.font = UIFont(name: "Futura", size: 8)
+        label.text = "1.057"
+        return label
+    }()
+    
+    let extraTime: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.red
+        label.font = UIFont(name: "Futura", size: 8)
+        label.text = "+03:42"
+        label.textAlignment = .right
+        return label
+    }()
+    
     func setupViews(rowId: Int) {
-
+        
         backgroundColor = UIColor(red: 9/255, green: 63/255, blue: 99/255, alpha: 1)
         
         addSubview(cellIcon)
@@ -79,30 +96,41 @@ class TeamsCell: UITableViewCell {
         addConstraintsWithVisualFormat(format: "V:[v0(1)]|", views: seperatorBar)
         addConstraintsWithVisualFormat(format: "H:|-40-[v0]-40-|", views: seperatorBar)
         
-        addSubview(teamName)
-        addConstraintsWithVisualFormat(format: "H:|-60-[v0]-\(frame.width / 2)-|", views: teamName)
-        addConstraintsWithVisualFormat(format: "V:[v0(10)]", views: teamName)
-        addConstraint(NSLayoutConstraint(item: teamName, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
-        
         addSubview(arrowIcon)
         addConstraintsWithVisualFormat(format: "H:[v0(16)]-40-|", views: arrowIcon)
         addConstraintsWithVisualFormat(format: "V:[v0(16)]", views: arrowIcon)
         addConstraint(NSLayoutConstraint(item: arrowIcon, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
+        
+        addSubview(teamName)
+        addConstraintsWithVisualFormat(format: "H:|-60-[v0]-\(frame.width / 2)-|", views: teamName)
+        addConstraintsWithVisualFormat(format: "V:[v0(10)]", views: teamName)
+        addConstraint(NSLayoutConstraint(item: teamName, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
+        teamName.text = "\(rowId + 1)- BAU Golden Toy"
+        
+        addSubview(boatRaiting)
+        addConstraintsWithVisualFormat(format: "H:|-60-[v0]-\(frame.width / 2)-|", views: boatRaiting)
+        addConstraintsWithVisualFormat(format: "V:[v0(8)]", views: boatRaiting)
+        addConstraint(NSLayoutConstraint(item: boatRaiting, attribute: .top, relatedBy: .equal, toItem: teamName, attribute: .bottom, multiplier: 1, constant: 2))
         
         addSubview(boatType)
         addConstraintsWithVisualFormat(format: "H:|-60-[v0]-\(frame.width / 2)-|", views: boatType)
         addConstraintsWithVisualFormat(format: "V:[v0(8)]", views: boatType)
         addConstraint(NSLayoutConstraint(item: boatType, attribute: .bottom, relatedBy: .equal, toItem: teamName, attribute: .top, multiplier: 1, constant: -2))
         
-        addSubview(boatRaiting)
-        addConstraintsWithVisualFormat(format: "H:[v0(\(frame.width / 5))]-68-|", views: boatRaiting)
-        addConstraintsWithVisualFormat(format: "V:[v0(10)]", views: boatRaiting)
-        addConstraint(NSLayoutConstraint(item: boatRaiting, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
+        addSubview(finishTime)
+        addConstraintsWithVisualFormat(format: "H:[v0(\(frame.width / 5))]-68-|", views: finishTime)
+        addConstraintsWithVisualFormat(format: "V:[v0(10)]", views: finishTime)
+        addConstraint(NSLayoutConstraint(item: finishTime, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
         
         addSubview(boatClass)
         addConstraintsWithVisualFormat(format: "H:[v0(\(frame.width / 6))]-68-|", views: boatClass)
         addConstraintsWithVisualFormat(format: "V:[v0(8)]", views: boatClass)
-        addConstraint(NSLayoutConstraint(item: boatClass, attribute: .bottom, relatedBy: .equal, toItem: boatRaiting, attribute: .top, multiplier: 1, constant: -2))
+        addConstraint(NSLayoutConstraint(item: boatClass, attribute: .bottom, relatedBy: .equal, toItem: finishTime, attribute: .top, multiplier: 1, constant: -2))
+        
+        addSubview(extraTime)
+        addConstraintsWithVisualFormat(format: "H:[v0(\(frame.width / 6))]-68-|", views: extraTime)
+        addConstraintsWithVisualFormat(format: "V:[v0(8)]", views: extraTime)
+        addConstraint(NSLayoutConstraint(item: extraTime, attribute: .top, relatedBy: .equal, toItem: finishTime, attribute: .bottom, multiplier: 1, constant: 2))
         
     }
     

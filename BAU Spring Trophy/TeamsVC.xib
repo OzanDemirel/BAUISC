@@ -44,7 +44,7 @@
                             <real key="value" value="5"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                            <size key="value" width="0.0" height="3"/>
+                            <size key="value" width="0.0" height="4"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                             <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -67,13 +67,13 @@
                             <real key="value" value="0.80000000000000004"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
-                            <real key="value" value="5"/>
+                            <real key="value" value="4"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                            <size key="value" width="0.0" height="4"/>
+                            <size key="value" width="0.0" height="3"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                            <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </imageView>

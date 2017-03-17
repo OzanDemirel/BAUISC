@@ -42,7 +42,7 @@ class GaleryPageSelectionBarView: UIView, UICollectionViewDelegate, UICollection
         addConstraintsWithVisualFormat(format: "H:|-\(frame.width / 8)-[v0]-\(frame.width / 8)-|", views: selectionView)
         addConstraintsWithVisualFormat(format: "V:|-8-[v0]-8-|", views: selectionView)
         
-        selectionView.selectItem(at: NSIndexPath(item: 0, section: 0) as IndexPath, animated: false, scrollPosition: [])
+        selectionView.selectItem(at: NSIndexPath(item: 1, section: 0) as IndexPath, animated: false, scrollPosition: [])
         
     }
     

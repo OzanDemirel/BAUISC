@@ -14,11 +14,13 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var homeVC: HomeVC?
     
-    @IBOutlet weak var teamInfoImage: UIImageView!
+    @IBOutlet weak var teamInfoImage: DesignableImageView!
     @IBOutlet weak var crewTableView: UITableView!
-    @IBOutlet weak var teamsBackground: UIImageView!
+    @IBOutlet weak var teamsBackground: DesignableImageView!
     @IBOutlet weak var flamaView: UIImageView!
     @IBOutlet weak var teamNameLbl: UILabel!
+    @IBOutlet weak var boatInfoBar: DesignableImageView!
+    @IBOutlet weak var crewListBar: DesignableImageView!
     
     @IBOutlet weak var flameLeftConstraint: NSLayoutConstraint!
     
@@ -188,7 +190,11 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func leftEdgeGestureActive(sender: UIScreenEdgePanGestureRecognizer) {
         
         if sender.state == .began {
-            homeVC?.removeTeamInfoPageFromView()
+            if homeVC?.teamsVC.view.frame == homeVC?.homeScrollView.frame {
+                homeVC?.removeTeamInfoPageFromView()
+            } else {
+                homeVC?.removeTeamInfoPageFromViewFromResultsPage()
+            }
         }
 
     }

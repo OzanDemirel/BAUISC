@@ -13,10 +13,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TeamInfoVC" customModule="BAU_Spring_Trophy" customModuleProvider="target">
             <connections>
+                <outlet property="boatInfoBar" destination="hsb-3e-PRw" id="ODR-ud-kM5"/>
+                <outlet property="crewListBar" destination="a3c-Nj-Zfx" id="0yL-eL-KXu"/>
                 <outlet property="crewTableView" destination="VgC-Sl-64d" id="jDD-NH-RdT"/>
                 <outlet property="flamaView" destination="OtT-58-w7q" id="TuC-lU-Ri9"/>
                 <outlet property="flameLeftConstraint" destination="OkQ-1y-OgJ" id="cBr-Mk-gQq"/>
-                <outlet property="teamInfoImage" destination="cPE-S6-iAr" id="l7N-3S-hA2"/>
+                <outlet property="teamInfoImage" destination="cPE-S6-iAr" id="ow8-7P-oOn"/>
                 <outlet property="teamNameLbl" destination="HXJ-UJ-Scl" id="TZ8-sc-e6i"/>
                 <outlet property="teamsBackground" destination="9Px-2G-LQw" id="WAC-nM-DWE"/>
                 <outlet property="view" destination="uSL-9p-bOu" id="k1D-cK-TQs"/>
@@ -40,7 +42,7 @@
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="12" id="rRh-E5-pkR"/>
                     </constraints>
                 </imageView>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="30" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VgC-Sl-64d">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="30" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VgC-Sl-64d">
                     <rect key="frame" x="0.0" y="404" width="414" height="182"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </tableView>
@@ -51,7 +53,7 @@
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                            <real key="value" value="0.80000000000000004"/>
+                            <real key="value" value="0.0"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
                             <real key="value" value="5"/>
@@ -60,7 +62,7 @@
                             <size key="value" width="0.0" height="3"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                            <color key="value" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </imageView>
@@ -72,7 +74,7 @@
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                            <real key="value" value="0.80000000000000004"/>
+                            <real key="value" value="0.0"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
                             <real key="value" value="5"/>
@@ -103,7 +105,7 @@
                     <color key="backgroundColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                            <real key="value" value="0.80000000000000004"/>
+                            <real key="value" value="0.0"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
                             <real key="value" value="5"/>
@@ -136,7 +138,7 @@
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                            <real key="value" value="0.80000000000000004"/>
+                            <real key="value" value="0.0"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
                             <real key="value" value="5"/>

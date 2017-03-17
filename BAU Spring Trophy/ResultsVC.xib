@@ -14,7 +14,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ResultsVC" customModule="BAU_Spring_Trophy" customModuleProvider="target">
             <connections>
                 <outlet property="daysSectionView" destination="Vri-Pn-i3H" id="71I-eR-mjQ"/>
-                <outlet property="racesSectionView" destination="BWp-43-cwc" id="QQW-eW-9xn"/>
+                <outlet property="racesSectionView" destination="BWp-43-cwc" id="afT-fm-QMn"/>
+                <outlet property="resultsTableContainer" destination="HmC-2g-2hS" id="JOi-Ib-xGM"/>
                 <outlet property="tableSectionView" destination="3Ds-Kc-2EO" id="u3E-MC-mLp"/>
                 <outlet property="view" destination="RBI-cp-dfr" id="abg-rc-Fhy"/>
             </connections>
@@ -31,10 +32,10 @@
                         <constraint firstAttribute="width" constant="90" id="ruw-Nn-QpY"/>
                     </constraints>
                 </imageView>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="HmC-2g-2hS">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="HmC-2g-2hS">
                     <rect key="frame" x="0.0" y="180" width="414" height="406"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="s26-rC-G55">
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="s26-rC-G55">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -71,7 +72,7 @@
                         <constraint firstAttribute="trailing" secondItem="JHZ-TG-RnI" secondAttribute="trailing" id="uwK-pu-09X"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BWp-43-cwc" userLabel="Races Section" customClass="RacesSectionView" customModule="BAU_Spring_Trophy" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BWp-43-cwc" userLabel="Races Section" customClass="RacesSectionBaseView" customModule="BAU_Spring_Trophy" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="90" width="414" height="45"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MenuBar" translatesAutoresizingMaskIntoConstraints="NO" id="TSY-fe-BJi" customClass="DesignableImageView" customModule="BAU_Spring_Trophy" customModuleProvider="target">

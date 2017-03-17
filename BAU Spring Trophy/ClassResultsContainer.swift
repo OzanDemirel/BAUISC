@@ -1,45 +1,47 @@
 //
-//  ResultsVC.swift
+//  ClassResultsContainer.swift
 //  BAU Spring Trophy
 //
-//  Created by Ozan Demirel on 14/03/2017.
+//  Created by Ozan Demirel on 16/03/2017.
 //  Copyright © 2017 BAUISC. All rights reserved.
 //
 
 import UIKit
 
-class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var teamsTableView: UITableView!
-
-    var teamInfoVC: TeamInfoVC!
-    var homeVC: HomeVC?
+    lazy var tableView: UITableView = {
+        let table = UITableView()
+        table.backgroundColor = UIColor.clear
+        table.delegate = self
+        table.dataSource = self
+        table.showsVerticalScrollIndicator = false
+        table.separatorStyle = .none
+        return table
+    }()
     
-    struct Classes {
-        var classTitle: String!
-        var classMembers: [String]!
-    }
+    let cellId = "classResultsCell"
     
-    var classes: [String]!
+    let classes = ["IRC0", "IRC1", "IRC2", "IRC3", "IRC4", "GEZGİN"]
+    let classMemberCount = [9, 13, 16, 12, 19, 7]
     
-    let cellId = "teamsCell"
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        fatalError("init(coder:) has not been implemented")
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        teamsTableView.delegate = self
-        teamsTableView.dataSource = self
-        teamsTableView.register(TeamsCell.self, forCellReuseIdentifier: cellId)
+    override func setupViews() {
+        super.setupViews()
         
-        classes = ["IRC0", "IRC1", "IRC2", "IRC3", "IRC4", "GEZGİN"]
+        tableView.register(ClassResultsCell.self, forCellReuseIdentifier: cellId)
+        
+        addSubview(tableView)
+        addConstraintsWithVisualFormat(format: "H:|[v0]|", views: tableView)
+        addConstraintsWithVisualFormat(format: "V:|[v0]|", views: tableView)
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        NotificationCenter.default.post(name: NSNotification.Name("teamSelected"), object: nil)
+        
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -80,14 +82,10 @@ class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return 24
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        teamsTableView.deselectRow(at: indexPath, animated: true)
-        
-        
-        homeVC?.addTeamInfoPageToView()
-        homeVC?.mainScrollView.isScrollEnabled = false
-        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ClassResultsCell
+        cell.setupViews(rowId: indexPath.row)
+        return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -95,14 +93,7 @@ class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return classMemberCount[section]
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = teamsTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TeamsCell
-        cell.setupViews(rowId: indexPath.row)
-        return cell
-    }
-    
-
 }

@@ -10,6 +10,8 @@ import UIKit
 
 class TableSectionView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    var resultsVC: ResultsVC?
+    
     lazy var selectionView: UICollectionView = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         cv.dataSource = self
@@ -43,6 +45,10 @@ class TableSectionView: UIView, UICollectionViewDelegate, UICollectionViewDataSo
         
         selectionView.selectItem(at: NSIndexPath(item: 0, section: 0) as IndexPath, animated: false, scrollPosition: [])
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        resultsVC?.scrollCollectionView(indexPath: indexPath)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

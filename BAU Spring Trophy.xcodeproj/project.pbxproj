@@ -50,9 +50,13 @@
 		AB42DB811E7A720E00549C65 /* DaysCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB801E7A720E00549C65 /* DaysCell.swift */; };
 		AB42DB831E7A816600549C65 /* TableSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB821E7A816600549C65 /* TableSectionView.swift */; };
 		AB42DB851E7A83DF00549C65 /* TableSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB841E7A83DF00549C65 /* TableSelectionCell.swift */; };
-		AB42DB871E7AAB1A00549C65 /* RacesSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB861E7AAB1A00549C65 /* RacesSectionView.swift */; };
+		AB42DB871E7AAB1A00549C65 /* RacesBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB861E7AAB1A00549C65 /* RacesBaseCell.swift */; };
 		AB42DB891E7AAE2500549C65 /* RacesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB881E7AAE2500549C65 /* RacesCell.swift */; };
 		AB42DB8B1E7AD66B00549C65 /* RacesSectionBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB8A1E7AD66B00549C65 /* RacesSectionBaseView.swift */; };
+		AB42DB8D1E7B2CD900549C65 /* GeneralResultsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB8C1E7B2CD900549C65 /* GeneralResultsContainer.swift */; };
+		AB42DB8F1E7B2D7900549C65 /* ClassResultsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB8E1E7B2D7900549C65 /* ClassResultsContainer.swift */; };
+		AB42DB911E7B30CF00549C65 /* GeneralResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB901E7B30CF00549C65 /* GeneralResultsCell.swift */; };
+		AB42DB931E7B3D9B00549C65 /* ClassResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB921E7B3D9B00549C65 /* ClassResultsCell.swift */; };
 		FD60F8A336291FF9445F2EF6 /* Pods_BAU_Spring_Trophy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8219F067E66EDAC2ADFDAC9 /* Pods_BAU_Spring_Trophy.framework */; };
 /* End PBXBuildFile section */
 
@@ -105,9 +109,13 @@
 		AB42DB801E7A720E00549C65 /* DaysCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysCell.swift; sourceTree = "<group>"; };
 		AB42DB821E7A816600549C65 /* TableSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableSectionView.swift; sourceTree = "<group>"; };
 		AB42DB841E7A83DF00549C65 /* TableSelectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableSelectionCell.swift; sourceTree = "<group>"; };
-		AB42DB861E7AAB1A00549C65 /* RacesSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RacesSectionView.swift; sourceTree = "<group>"; };
+		AB42DB861E7AAB1A00549C65 /* RacesBaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RacesBaseCell.swift; sourceTree = "<group>"; };
 		AB42DB881E7AAE2500549C65 /* RacesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RacesCell.swift; sourceTree = "<group>"; };
 		AB42DB8A1E7AD66B00549C65 /* RacesSectionBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RacesSectionBaseView.swift; sourceTree = "<group>"; };
+		AB42DB8C1E7B2CD900549C65 /* GeneralResultsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralResultsContainer.swift; sourceTree = "<group>"; };
+		AB42DB8E1E7B2D7900549C65 /* ClassResultsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassResultsContainer.swift; sourceTree = "<group>"; };
+		AB42DB901E7B30CF00549C65 /* GeneralResultsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralResultsCell.swift; sourceTree = "<group>"; };
+		AB42DB921E7B3D9B00549C65 /* ClassResultsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassResultsCell.swift; sourceTree = "<group>"; };
 		C5A2C11E8E7D56E769E8649D /* Pods-BAU Spring Trophy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BAU Spring Trophy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BAU Spring Trophy/Pods-BAU Spring Trophy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -293,9 +301,13 @@
 				AB42DB801E7A720E00549C65 /* DaysCell.swift */,
 				AB42DB821E7A816600549C65 /* TableSectionView.swift */,
 				AB42DB841E7A83DF00549C65 /* TableSelectionCell.swift */,
-				AB42DB861E7AAB1A00549C65 /* RacesSectionView.swift */,
-				AB42DB881E7AAE2500549C65 /* RacesCell.swift */,
 				AB42DB8A1E7AD66B00549C65 /* RacesSectionBaseView.swift */,
+				AB42DB861E7AAB1A00549C65 /* RacesBaseCell.swift */,
+				AB42DB881E7AAE2500549C65 /* RacesCell.swift */,
+				AB42DB8C1E7B2CD900549C65 /* GeneralResultsContainer.swift */,
+				AB42DB901E7B30CF00549C65 /* GeneralResultsCell.swift */,
+				AB42DB8E1E7B2D7900549C65 /* ClassResultsContainer.swift */,
+				AB42DB921E7B3D9B00549C65 /* ClassResultsCell.swift */,
 			);
 			name = "Results Page";
 			sourceTree = "<group>";
@@ -446,6 +458,8 @@
 				AB42DB591E753CFC00549C65 /* NewsSelectionCell.swift in Sources */,
 				AB3F202E1E700FE40058F327 /* HomeVC.swift in Sources */,
 				AB42DB781E78C14E00549C65 /* CrewCell.swift in Sources */,
+				AB42DB8D1E7B2CD900549C65 /* GeneralResultsContainer.swift in Sources */,
+				AB42DB931E7B3D9B00549C65 /* ClassResultsCell.swift in Sources */,
 				AB42DB501E746F4900549C65 /* VideosCell.swift in Sources */,
 				AB42DB831E7A816600549C65 /* TableSectionView.swift in Sources */,
 				AB42DB701E789BFD00549C65 /* TeamsCell.swift in Sources */,
@@ -459,12 +473,13 @@
 				AB42DB461E739B8100549C65 /* GaleryPageSelectionBarView.swift in Sources */,
 				AB42DB521E74775E00549C65 /* VideosBaseCell.swift in Sources */,
 				AB3F204A1E7090970058F327 /* SideMenuView.swift in Sources */,
-				AB42DB871E7AAB1A00549C65 /* RacesSectionView.swift in Sources */,
+				AB42DB871E7AAB1A00549C65 /* RacesBaseCell.swift in Sources */,
 				AB42DB4E1E743BE800549C65 /* PhotosCell.swift in Sources */,
 				AB42DB4C1E7437F000549C65 /* PhotosBaseCell.swift in Sources */,
 				AB42DB361E73061500549C65 /* NewsVC.swift in Sources */,
 				AB3F202C1E700FE40058F327 /* AppDelegate.swift in Sources */,
 				AB42DB641E77370400549C65 /* ApiService.swift in Sources */,
+				AB42DB911E7B30CF00549C65 /* GeneralResultsCell.swift in Sources */,
 				AB42DB5B1E755A9600549C65 /* NewsHorizontalCell.swift in Sources */,
 				AB3F204C1E714A040058F327 /* NewsCell.swift in Sources */,
 				AB42DB5F1E76FF0900549C65 /* News.swift in Sources */,
@@ -476,6 +491,7 @@
 				AB42DB441E7397D200549C65 /* AnimatedLogoView.swift in Sources */,
 				AB42DB541E7508A300549C65 /* NewsScrollPages.swift in Sources */,
 				AB42DB7F1E7A543600549C65 /* DaysSectionView.swift in Sources */,
+				AB42DB8F1E7B2D7900549C65 /* ClassResultsContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,6 +619,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.BAUISC.BAUISC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -617,6 +634,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.BAUISC.BAUISC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
