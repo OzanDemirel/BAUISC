@@ -9,8 +9,6 @@
 import UIKit
 
 class NewsScrollPages: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    let newsCount = 5
         
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -26,7 +24,17 @@ class NewsScrollPages: UIView, UICollectionViewDelegate, UICollectionViewDataSou
         return cv
     }()
     
+    let backgroundImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "TrendCellBackground")
+        image.contentMode = UIViewContentMode.scaleAspectFill
+        image.clipsToBounds = true
+        return image
+    }()
+    
     var homeVC: HomeVC?
+    
+    var newsCount = 0
     
     override func awakeFromNib() {
         
@@ -34,6 +42,11 @@ class NewsScrollPages: UIView, UICollectionViewDelegate, UICollectionViewDataSou
         addSubview(collectionView)
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: collectionView)
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: collectionView)
+        
+        addSubview(backgroundImage)
+        addConstraintsWithVisualFormat(format: "H:|[v0]|", views: backgroundImage)
+        addConstraintsWithVisualFormat(format: "V:|[v0]|", views: backgroundImage)
+        sendSubview(toBack: backgroundImage)
         
     }
     
@@ -76,7 +89,7 @@ class NewsScrollPages: UIView, UICollectionViewDelegate, UICollectionViewDataSou
 
     func checkForIndex() {
         
-        let index = Int(round(Double(collectionView.contentOffset.x / frame.width).truncatingRemainder(dividingBy: 5))) < 5 ? Int(round(Double(collectionView.contentOffset.x / frame.width).truncatingRemainder(dividingBy: 5))) : 0
+        let index = Int(round(Double(collectionView.contentOffset.x / frame.width).truncatingRemainder(dividingBy: Double(newsCount)))) < newsCount ? Int(round(Double(collectionView.contentOffset.x / frame.width).truncatingRemainder(dividingBy: Double(newsCount)))) : 0
 
         homeVC?.newsSelectionView.collectionView.selectItem(at: IndexPath(item: index, section: 0), animated: false, scrollPosition: [])
         
@@ -92,11 +105,20 @@ class NewsScrollPages: UIView, UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 500
+        
+        if newsCount == 1 {
+            return 1
+        } else if newsCount > 1 {
+            return 9999
+        } else {
+            return 0
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "newsHorizontalCell", for: indexPath) as! NewsHorizontalCell
+        cell.news = homeVC?.news?[indexPath.row % (newsCount > 4 ? 5 : newsCount)]
         return cell
     }
     

@@ -128,7 +128,7 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        crewTableView.scrollsToTop = true
+        crewTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.middle, animated: false)
         
         view.addSubview(seperatorBar1)
         view.addConstraint(NSLayoutConstraint(item: seperatorBar1, attribute: .centerY, relatedBy: .equal, toItem: teamInfoImage, attribute: .centerY, multiplier: 1, constant: 0))

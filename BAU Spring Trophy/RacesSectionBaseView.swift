@@ -41,8 +41,12 @@ class RacesSectionBaseView: UIView, UICollectionViewDelegate, UICollectionViewDa
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: selectionView)
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: selectionView)
         
-        selectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: [])
+        NotificationCenter.default.addObserver(self, selector: #selector(RacesSectionBaseView.setSelection), name: NSNotification.Name("AnyChildAddedToView"), object: nil)
         
+    }
+    
+    func setSelection() {
+        selectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: UICollectionViewScrollPosition.centeredVertically, animated: false)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

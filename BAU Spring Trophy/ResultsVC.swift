@@ -37,6 +37,9 @@ class ResultsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         resultsTableContainer.register(GeneralResultsContainer.self, forCellWithReuseIdentifier: generalCellId)
         resultsTableContainer.register(ClassResultsContainer.self, forCellWithReuseIdentifier: classCellId)
         
+        resultsTableContainer.scrollToItem(at: IndexPath(item: 0, section: 0), at: UICollectionViewScrollPosition.centeredVertically, animated: false)
+        tableSectionView.selectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: [])
+        
         daysSectionView.resultsVC = self
         tableSectionView.resultsVC = self
     }
@@ -49,6 +52,10 @@ class ResultsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         tableSectionView.selectionView.selectItem(at: IndexPath(item: Int(scrollView.contentOffset.x / scrollView.frame.width), section: 0), animated: false, scrollPosition: [])
         
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        tableSectionView.selectionView.selectItem(at: IndexPath(item: Int(round(scrollView.contentOffset.x / scrollView.frame.width)), section: 0), animated: false, scrollPosition: [])
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

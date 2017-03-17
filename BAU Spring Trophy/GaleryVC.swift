@@ -37,6 +37,10 @@ class GaleryVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
         
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        selectionBarView.selectionView.selectItem(at: IndexPath(item: Int(round(scrollView.contentOffset.x / scrollView.frame.width)), section: 0), animated: false, scrollPosition: [])
+    }
+    
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         selectionBarView.selectionView.selectItem(at: IndexPath(item: Int(scrollView.contentOffset.x / scrollView.frame.width), section: 0), animated: false, scrollPosition: [])
         
@@ -46,8 +50,8 @@ class GaleryVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
         selectionBarView.selectionView.selectItem(at: IndexPath(item: Int(scrollView.contentOffset.x / scrollView.frame.width), section: 0), animated: false, scrollPosition: [])
     }
     
-    func scrollCollectionView(indexPath: IndexPath) {
-        baseCollectionView.scrollRectToVisible(CGRect(x: baseCollectionView.frame.maxX * CGFloat(indexPath.row), y: baseCollectionView.frame.minY, width: baseCollectionView.frame.width, height: baseCollectionView.frame.height), animated: true)
+    func scrollCollectionView(indexPath: Int) {
+        baseCollectionView.scrollRectToVisible(CGRect(x: baseCollectionView.frame.maxX * CGFloat(indexPath), y: baseCollectionView.frame.minY, width: baseCollectionView.frame.width, height: baseCollectionView.frame.height), animated: true)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

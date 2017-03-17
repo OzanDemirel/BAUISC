@@ -10,7 +10,7 @@ import UIKit
 
 class NewsSelectionView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var flashNewsCount = 5
+    var trendNewsCount = 0
 
     lazy var collectionView: UICollectionView = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -24,9 +24,14 @@ class NewsSelectionView: UIView, UICollectionViewDelegate, UICollectionViewDataS
         super.awakeFromNib()
         
         isUserInteractionEnabled = false
+        
+    }
+    
+    func setSelectionViews() {
+        
         addSubview(collectionView)
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: collectionView)
-        addConstraintsWithVisualFormat(format: "H:[v0(\((flashNewsCount * 10) + (2 * flashNewsCount - 1)))]", views: collectionView)
+        addConstraintsWithVisualFormat(format: "H:[v0(\((trendNewsCount * 10) + (2 * trendNewsCount - 1)))]", views: collectionView)
         addConstraint(NSLayoutConstraint(item: collectionView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
         collectionView.register(NewsSelectionCell.self, forCellWithReuseIdentifier: "newsSelectionCell")
         collectionView.selectItem(at: IndexPath(item: 0, section: 0) as IndexPath, animated: false, scrollPosition: [])
@@ -38,7 +43,7 @@ class NewsSelectionView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return flashNewsCount
+        return trendNewsCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -238,7 +238,7 @@
                                                                             <constraint firstAttribute="height" constant="10" id="zDN-ug-LgG"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vpN-l4-eTK" userLabel="LeftArrow">
+                                                                    <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vpN-l4-eTK" userLabel="LeftArrow">
                                                                         <rect key="frame" x="20" y="98" width="37.333333333333314" height="37"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="vpN-l4-eTK" secondAttribute="height" multiplier="1:1" id="frv-WS-KG9"/>
@@ -248,7 +248,7 @@
                                                                             <action selector="arrowsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rcX-Xu-q3e"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgz-Ob-vCs" userLabel="RightArrow">
+                                                                    <button hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgz-Ob-vCs" userLabel="RightArrow">
                                                                         <rect key="frame" x="357" y="98" width="37" height="37"/>
                                                                         <state key="normal" title="Button" image="RightArrow"/>
                                                                         <connections>

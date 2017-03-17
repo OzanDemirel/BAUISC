@@ -30,7 +30,13 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
         addSubview(tableView)
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: tableView)
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: tableView)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(GeneralResultsContainer.setTablePosition), name: NSNotification.Name("AnyChildAddedToView"), object: nil)
     
+    }
+    
+    func setTablePosition() {
+        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.middle, animated: false)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

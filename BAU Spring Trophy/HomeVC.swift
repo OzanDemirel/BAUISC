@@ -24,7 +24,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     @IBOutlet weak var trophyLogoView: AnimatedLogoView!
     @IBOutlet weak var newsSelectionView: NewsSelectionView!
     @IBOutlet weak var leftArrow: UIButton!
-    @IBOutlet weak var rightArrow :UIButton!
+    @IBOutlet weak var rightArrow: UIButton!
     
     @IBOutlet weak var mainScrollViewContentWidth: NSLayoutConstraint!
     @IBOutlet weak var mainScrollViewContentHeight: NSLayoutConstraint!
@@ -52,6 +52,10 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     var galeryVC: GaleryVC!
     
     var resultsVC: ResultsVC!
+    
+    var news: [News]?
+    
+    var postNotifUserInfo: [String: Int]!
     
     let sideMenuItems: [Dictionary<String, String>]! = [["Anasayfa / Home": "Home"], ["Takımlar / Teams": "Teams"] , ["Fotoğraflar / Photos": "Photos"], ["Videolar / Videos": "Videos"], ["Haberler / News": "News"], ["Sonuçlar / Results": "Results"], ["Yarışlar / Races": "Races"], ["İletişim / Contact": "Contact"], ["Sponsorlar / Sponsors": "Sponsors"]]
     
@@ -83,6 +87,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        fetchNews()
+        
         arrangeMainScrollViewPosition(animated: false)
         configureNewsCollectionView()
         
@@ -100,12 +106,38 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         trophyLogoView.startAnimation()
         bauiscLogoView.startAnimation()
         
-        newsScrollPages.collectionView.scrollRectToVisible(CGRect(x: newsScrollPages.frame.width * 250, y: 0, width: newsScrollPages.frame.width, height: newsScrollPages.frame.height), animated: false)
-        
         teamsTapGesture = UITapGestureRecognizer(target: self, action: #selector(HomeVC.teamsTapGestureActive(sender:)))
         teamsTapGesture.cancelsTouchesInView = false
         homeScrollView.addGestureRecognizer(teamsTapGesture)
         
+    }
+    
+    func fetchNews() {
+        
+        ApiService.sharedInstance.fetchNews { (news: [News]) in
+            self.news = news
+            self.setTrendNews(news: news)
+        }
+        
+    }
+    
+    func setTrendNews(news: [News]) {
+
+        if news.count > 0 {
+            newsScrollPages.newsCount = news.count > 4 ? 5 : news.count
+        }
+        if news.count > 1 {
+            leftArrow.isHidden = false
+            rightArrow.isHidden = false
+        }
+        newsSelectionView.trendNewsCount = news.count > 4 ? 5 : news.count % 5
+        newsSelectionView.setSelectionViews()
+        newsSelectionView.collectionView.reloadData()
+        if newsSelectionView.trendNewsCount > 0 {
+            newsSelectionView.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: [])
+        }
+        newsScrollPages.collectionView.reloadData()
+        newsScrollPages.collectionView.scrollRectToVisible(CGRect(x: newsScrollPages.frame.width * 250, y: 0, width: newsScrollPages.frame.width, height: newsScrollPages.frame.height), animated: false)
     }
     
     func teamsTapGestureActive(sender: UITapGestureRecognizer) {
@@ -402,7 +434,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             teamsVC.homeVC = self
         }
         
-        NotificationCenter.default.post(name: NSNotification.Name("AnyChildViewAdded"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name("AnyChildAddedToView"), object: nil)
         
         homeView.bringSubview(toFront: homePageShadowView)
         
@@ -563,6 +595,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             }
             break;
         case 2:
+            postNotifUserInfo = ["indexPath": (indexPath.row - 2)]
+            NotificationCenter.default.post(name: NSNotification.Name("AnyChildAddedToView"), object: nil, userInfo: postNotifUserInfo)
             for child in childs {
                 if galeryVC.view.frame == homeScrollView.frame {
                     removeCalled = true
@@ -578,6 +612,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             }
             break;
         case 3:
+            postNotifUserInfo = ["indexPath": (indexPath.row - 2)]
+            NotificationCenter.default.post(name: NSNotification.Name("AnyChildAddedToView"), object: nil, userInfo: postNotifUserInfo)
             for child in childs {
                 if galeryVC.view.frame == homeScrollView.frame {
                     removeCalled = true

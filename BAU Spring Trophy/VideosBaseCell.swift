@@ -26,6 +26,12 @@ class VideosBaseCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
         addSubview(collectionView)
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: collectionView)
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: collectionView)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(VideosBaseCell.arrangeCellPositions), name: NSNotification.Name("AnyChildAddedToView"), object: nil)
+    }
+    
+    func arrangeCellPositions() {
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: UICollectionViewScrollPosition.centeredVertically, animated: false)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

@@ -42,19 +42,22 @@ class GaleryPageSelectionBarView: UIView, UICollectionViewDelegate, UICollection
         addConstraintsWithVisualFormat(format: "H:|-\(frame.width / 8)-[v0]-\(frame.width / 8)-|", views: selectionView)
         addConstraintsWithVisualFormat(format: "V:|-8-[v0]-8-|", views: selectionView)
         
-        selectionView.selectItem(at: NSIndexPath(item: 1, section: 0) as IndexPath, animated: false, scrollPosition: [])
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(GaleryPageSelectionBarView.arrangeCellPositions), name: NSNotification.Name("AnyChildViewAdded"), object: nil)
-        
-    }
-    
-    func arrangeCellPositions() {
         selectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: [])
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(GaleryPageSelectionBarView.setSelection(_:)), name: NSNotification.Name("AnyChildAddedToView"), object: nil)
     }
     
+    func setSelection(_ notification: NSNotification) {
+
+        if let index = notification.userInfo?["indexPath"] as? Int {
+            selectionView.selectItem(at: IndexPath(item: index, section: 0), animated: false, scrollPosition: [])
+            galeryVC?.scrollCollectionView(indexPath: index)
+        }
+        
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        galeryVC?.scrollCollectionView(indexPath: indexPath)
+        galeryVC?.scrollCollectionView(indexPath: indexPath.row)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

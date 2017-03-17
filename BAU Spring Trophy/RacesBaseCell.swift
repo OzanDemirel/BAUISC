@@ -40,16 +40,14 @@ class RacesBaseCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSou
         selectionView.selectItem(at: NSIndexPath(item: 0, section: 0) as IndexPath, animated: false, scrollPosition: [])
         
         NotificationCenter.default.addObserver(self, selector: #selector(RacesBaseCell.selectFirstItemAtSection), name: NSNotification.Name("aDaySelected"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(RacesBaseCell.selectFirstItemAtSection), name: NSNotification.Name("AnyChildAddedToView"), object: nil)
     }
     
     func selectFirstItemAtSection() {
          selectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: [])
     }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        print("zsasd")
-    }
-    
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }

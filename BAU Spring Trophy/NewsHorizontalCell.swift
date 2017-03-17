@@ -10,19 +10,20 @@ import UIKit
 
 class NewsHorizontalCell: BaseCell {
     
-    let newsImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.darkGray
-        if let image = UIImage(named: "ScrollViewNewsFilter") {
-            imageView.image = image
-        }
-        if let highlightedImage = UIImage(named: "ScrollViewNews") {
-            imageView.highlightedImage = highlightedImage
-        }
+    let newsImageView: CustomImageView = {
+        let imageView = CustomImageView()
         imageView.contentMode = UIViewContentMode.scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
+    
+    var news: News? {
+        didSet {
+            newsDescription.text = news?.title
+            
+            setNewsImage()
+        }
+    }
     
     let newsDescription: UITextView = {
         let textView = UITextView()
@@ -30,7 +31,6 @@ class NewsHorizontalCell: BaseCell {
         textView.isScrollEnabled = false
         textView.backgroundColor = UIColor.clear
         textView.textAlignment = .center
-        textView.text = "BAUISC Yelkencilik Programları Başladı.."
         textView.isEditable = false
         textView.isSelectable = false
         textView.isScrollEnabled = false
@@ -39,6 +39,14 @@ class NewsHorizontalCell: BaseCell {
         textView.textContainer.maximumNumberOfLines = 2
         return textView
     }()
+    
+    func setNewsImage() {
+        
+        if let stringURL = news?.imageURL {
+            newsImageView.loadImageUsingUrlString(stringURL)
+        }
+        
+    }
     
     override func setupViews() {
         

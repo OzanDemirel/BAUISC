@@ -13,9 +13,6 @@ class News: NSObject {
     var title: String?
     var order: Int?
     var content: String?
-    var newsImageURL: String?
-    var filterNewsImageURL: String?
-    var newsImage: UIImage?
-    var filterNewsImage: UIImage?
+    var imageURL: String?
     
 }

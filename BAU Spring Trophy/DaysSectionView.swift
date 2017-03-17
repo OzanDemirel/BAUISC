@@ -38,6 +38,12 @@ class DaysSectionView: UIView, UICollectionViewDelegate, UICollectionViewDataSou
         
         selectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: [])
         
+        NotificationCenter.default.addObserver(self, selector: #selector(DaysSectionView.setSelection), name: NSNotification.Name("AnyChildAddedToView"), object: nil)
+        
+    }
+    
+    func setSelection() {
+        selectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: [])
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
