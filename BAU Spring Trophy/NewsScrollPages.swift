@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsScrollPages: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class NewsScrollPages: DesignableView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
         
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -32,21 +32,36 @@ class NewsScrollPages: UIView, UICollectionViewDelegate, UICollectionViewDataSou
         return image
     }()
     
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.color = UIColor(red: 251/255, green: 173/255, blue: 24/255, alpha: 1)
+        return indicator
+    }()
+    
     var homeVC: HomeVC?
     
     var newsCount = 0
     
     override func awakeFromNib() {
         
+        addSubview(backgroundImage)
+        addConstraintsWithVisualFormat(format: "H:|[v0]|", views: backgroundImage)
+        addConstraintsWithVisualFormat(format: "V:|[v0]|", views: backgroundImage)
+        
+        addSubview(activityIndicator)
+        addConstraintsWithVisualFormat(format: "H:[v0(30)]", views: activityIndicator)
+        addConstraintsWithVisualFormat(format: "V:[v0(30)]", views: activityIndicator)
+        addConstraint(NSLayoutConstraint(item: activityIndicator, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
+        addConstraint(NSLayoutConstraint(item: activityIndicator, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
+        activityIndicator.startAnimating()
+        
         collectionView.register(NewsHorizontalCell.self, forCellWithReuseIdentifier: "newsHorizontalCell")
         addSubview(collectionView)
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: collectionView)
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: collectionView)
         
-        addSubview(backgroundImage)
-        addConstraintsWithVisualFormat(format: "H:|[v0]|", views: backgroundImage)
-        addConstraintsWithVisualFormat(format: "V:|[v0]|", views: backgroundImage)
-        sendSubview(toBack: backgroundImage)
+        collectionView.isScrollEnabled = true
+        collectionView.scrollToItem(at: IndexPath(item: 500, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
         
     }
     
@@ -105,15 +120,7 @@ class NewsScrollPages: UIView, UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        if newsCount == 1 {
-            return 1
-        } else if newsCount > 1 {
-            return 9999
-        } else {
-            return 0
-        }
-        
+        return 9999
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

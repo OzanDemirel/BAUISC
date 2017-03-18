@@ -14,39 +14,42 @@ class ApiService: NSObject {
     static let sharedInstance = ApiService()
     
     let ref = FIRDatabase.database().reference()
-    let newsString = "news"
+    let newsRef = "news"
+    let teamsRef = "teams"
+    
     var news = [News]()
-
+    
     func fetchNews(_ completion: @escaping ([News]) -> ()) {
         
-        ref.child(newsString).observe(FIRDataEventType.value, with: { (snapshot) in
+        ref.child(newsRef).observe(FIRDataEventType.value, with: { (snapshot) in
             
             if let data = snapshot.value as? [String: AnyObject] {
-                self.news = [News]()
+                
+                self.news = []
                 
                 for dictionary in data {
                     
                     if let dict = dictionary.value as? [String: AnyObject] {
 
-                        let news = News()
+                        let new = News()
                     
                         if let title = dict["title"] as? String {
-                            news.title = title
+                            new.title = title
                         }
                     
                         if let content = dict["content"] as? String {
-                            news.content = content
+                            new.content = content
                         }
                     
                         if let order = dict["order"] as? Int {
-                            news.order = order
+                            new.order = order
                         }
                     
                         if let url = dict["image"] as? String {
-                            news.imageURL = url
+                            new.imageURL = url
                         }
                     
-                        self.news.append(news)
+                        self.news.append(new)
                     
                     }
             
@@ -57,22 +60,77 @@ class ApiService: NSObject {
                 DispatchQueue.main.async(execute: { 
                     completion(self.news)
                 })
-            } else {
-                DispatchQueue.main.async(execute: { 
-                    completion([News]())
-                })
             }
+            
         })
         
     }
+    
+    var teams = [Team]()
+    
+    func fetchTeams(_ completion: @escaping ([Team]) -> ()) {
+        
+        ref.child(teamsRef).observe(FIRDataEventType.value, with: { (snapshot) in
             
+            self.teams = []
+            
+            if let data = snapshot.value as? [String: AnyObject] {
+                
+                for dictionary in data {
+                    
+                    if let dict = dictionary.value as? [String: AnyObject] {
+                        
+                        let team = Team()
+                        
+                        if let teamName = dict["teamName"] as? String {
+                            team.teamName = teamName
+                        }
+                        
+                        if let boatClass = dict["boatClass"] as? String {
+                            team.boatClass = boatClass
+                        }
+                        
+                        if let boatId = dict["boatId"] as? String {
+                            team.boatId = boatId
+                        }
+                        
+                        if let boatRaiting = dict["boatRaiting"] as? String {
+                            team.boatRaiting = boatRaiting
+                        }
+                        
+                        if let boatType = dict["boatType"] as? String {
+                            team.boatType = boatType
+                        }
+                        
+                        if let skipper = dict["skipper"] as? String {
+                            team.skipper = skipper
+                        }
+                        
+                        if let crew = dict["crew"] as? [String] {
+                            team.crew = crew
+                        }
+                        
+                        self.teams.append(team)
+                        
+                    }
+                    
+                }
+                
+                DispatchQueue.main.async(execute: {
+                    completion(self.teams)
+                })
+            }
+            
+        })
+        
+    }
     
     
     
 //    func fetchData(completion: @escaping (([String]) -> Void)) {
 //
 //        ref.child("news").queryOrdered(byChild: "order").observe(.value, with: { (news) in
-//            
+//
 //            print(news)
 ////            if let news = news.value as? [String:AnyObject] {
 //                

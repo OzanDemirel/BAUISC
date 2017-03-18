@@ -55,6 +55,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
     var news: [News]?
     
+    var teams: [Team]?
+    
     var postNotifUserInfo: [String: Int]!
     
     let sideMenuItems: [Dictionary<String, String>]! = [["Anasayfa / Home": "Home"], ["Takımlar / Teams": "Teams"] , ["Fotoğraflar / Photos": "Photos"], ["Videolar / Videos": "Videos"], ["Haberler / News": "News"], ["Sonuçlar / Results": "Results"], ["Yarışlar / Races": "Races"], ["İletişim / Contact": "Contact"], ["Sponsorlar / Sponsors": "Sponsors"]]
@@ -86,7 +88,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+    
         fetchNews()
         
         arrangeMainScrollViewPosition(animated: false)
@@ -102,9 +104,11 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         arrangeShadowView()
         
         arrangeViews()
- 
-        trophyLogoView.startAnimation()
-        bauiscLogoView.startAnimation()
+        
+        _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { (timer) in
+            self.trophyLogoView.startAnimation()
+            self.bauiscLogoView.startAnimation()
+        })
         
         teamsTapGesture = UITapGestureRecognizer(target: self, action: #selector(HomeVC.teamsTapGestureActive(sender:)))
         teamsTapGesture.cancelsTouchesInView = false
@@ -120,24 +124,25 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         }
         
     }
-    
+
     func setTrendNews(news: [News]) {
 
         if news.count > 0 {
             newsScrollPages.newsCount = news.count > 4 ? 5 : news.count
+            print(newsScrollPages.newsCount)
         }
         if news.count > 1 {
-            leftArrow.isHidden = false
-            rightArrow.isHidden = false
+            leftArrow.isEnabled = true
+            rightArrow.isEnabled = true
         }
+        newsSelectionView.collectionView.reloadData()
+        newsScrollPages.collectionView.reloadData()
         newsSelectionView.trendNewsCount = news.count > 4 ? 5 : news.count % 5
         newsSelectionView.setSelectionViews()
-        newsSelectionView.collectionView.reloadData()
-        if newsSelectionView.trendNewsCount > 0 {
+        if newsSelectionView.trendNewsCount > 1 {
             newsSelectionView.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: [])
+            newsScrollPages.collectionView.isScrollEnabled = true
         }
-        newsScrollPages.collectionView.reloadData()
-        newsScrollPages.collectionView.scrollRectToVisible(CGRect(x: newsScrollPages.frame.width * 250, y: 0, width: newsScrollPages.frame.width, height: newsScrollPages.frame.height), animated: false)
     }
     
     func teamsTapGestureActive(sender: UITapGestureRecognizer) {
@@ -734,7 +739,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     }
     
     @IBAction func arrowsPressed(_ sender: UIButton) {
-
+        
         if sender.tag == 1 && newsScrollPages.collectionView.contentOffset.x.truncatingRemainder(dividingBy: newsScrollPages.collectionView.frame.width) == 0 {
             newsScrollPages.collectionView.scrollRectToVisible(CGRect(x: newsScrollPages.collectionView.contentOffset.x - newsScrollPages.collectionView.frame.width, y: 0, width: newsScrollPages.collectionView.frame.width, height: newsScrollPages.collectionView.frame.height), animated: true)
         } else if sender.tag == 2 && newsScrollPages.collectionView.contentOffset.x.truncatingRemainder(dividingBy: newsScrollPages.collectionView.frame.width) == 0 {

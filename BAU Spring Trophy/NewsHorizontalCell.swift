@@ -40,10 +40,21 @@ class NewsHorizontalCell: BaseCell {
         return textView
     }()
     
+    let filterView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = UIViewContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = UIImage(named: "TrendCellBackground")
+        imageView.alpha = 0.3
+        return imageView
+    }()
+    
     func setNewsImage() {
         
-        if let stringURL = news?.imageURL {
-            newsImageView.loadImageUsingUrlString(stringURL)
+        if let url = news?.imageURL {
+        
+            newsImageView.loadImageUsingUrlString(url)
+            
         }
         
     }
@@ -53,6 +64,10 @@ class NewsHorizontalCell: BaseCell {
         addSubview(newsImageView)
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: newsImageView)
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: newsImageView)
+        
+        addSubview(filterView)
+        addConstraintsWithVisualFormat(format: "H:|[v0]|", views: filterView)
+        addConstraintsWithVisualFormat(format: "V:|[v0]|", views: filterView)
         
         addSubview(newsDescription)
         addConstraintsWithVisualFormat(format: "H:[v0(\(frame.width / 2))]", views: newsDescription)

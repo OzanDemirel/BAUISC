@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 let imageCache = NSCache<NSString, UIImage>()
 
@@ -36,16 +37,60 @@ class CustomImageView: UIImageView {
             
             DispatchQueue.main.async(execute: {
                 
-                let imageToCache = UIImage(data: data!)
-                
-                if self.imageUrlString == urlString {
-                    self.image = imageToCache
+                if let imageToCache = UIImage(data: data!) {
+                    
+                    if self.imageUrlString == urlString {
+                        self.image = imageToCache
+                    }
+                    
+                    imageCache.setObject(imageToCache, forKey: urlString as NSString)
+                    
                 }
-                
-                imageCache.setObject(imageToCache!, forKey: urlString as NSString)
+
             })
             
         }).resume()
     }
     
 }
+
+//let imageCache = NSCache<NSString, UIImage>()
+//
+//class CustomImageView: UIImageView {
+//    
+//    var imageUrlString: String?
+//    
+//    func loadImageUsingUrlString(_ urlString: String) {
+//        
+//        imageUrlString = urlString
+//        image = nil
+//        
+//        if let imageFromCache = imageCache.object(forKey: urlString as NSString) {
+//            self.image = imageFromCache
+//            return
+//        }
+//        
+//        FIRStorage.storage().reference().child("Content10.jpeg").data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+//            
+//            
+//            if error != nil {
+//                print(error.debugDescription)
+//                return
+//            }
+//            
+//            DispatchQueue.main.async(execute: {
+//                
+//                let imageToCache = UIImage(data: data!)
+//                
+//                if self.imageUrlString == "10" {
+//                    self.image = imageToCache
+//                }
+//                
+//                imageCache.setObject(imageToCache!, forKey: "10" as NSString)
+//            })
+//            
+//        }
+//
+//    }
+//    
+//}

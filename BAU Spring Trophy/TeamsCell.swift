@@ -65,7 +65,7 @@ class TeamsCell: UITableViewCell {
         return label
     }()
     
-    func setupViews(rowId: Int) {
+    func setupViews(team: Team) {
 
         backgroundColor = UIColor(red: 9/255, green: 63/255, blue: 99/255, alpha: 1)
         
@@ -83,6 +83,7 @@ class TeamsCell: UITableViewCell {
         addConstraintsWithVisualFormat(format: "H:|-60-[v0]-\(frame.width / 2)-|", views: teamName)
         addConstraintsWithVisualFormat(format: "V:[v0(10)]", views: teamName)
         addConstraint(NSLayoutConstraint(item: teamName, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
+        teamName.text = team.teamName
         
         addSubview(arrowIcon)
         addConstraintsWithVisualFormat(format: "H:[v0(16)]-40-|", views: arrowIcon)
@@ -93,16 +94,19 @@ class TeamsCell: UITableViewCell {
         addConstraintsWithVisualFormat(format: "H:|-60-[v0]-\(frame.width / 2)-|", views: boatType)
         addConstraintsWithVisualFormat(format: "V:[v0(8)]", views: boatType)
         addConstraint(NSLayoutConstraint(item: boatType, attribute: .bottom, relatedBy: .equal, toItem: teamName, attribute: .top, multiplier: 1, constant: -2))
+        boatType.text = team.boatType
         
         addSubview(boatRaiting)
         addConstraintsWithVisualFormat(format: "H:[v0(\(frame.width / 5))]-68-|", views: boatRaiting)
         addConstraintsWithVisualFormat(format: "V:[v0(10)]", views: boatRaiting)
         addConstraint(NSLayoutConstraint(item: boatRaiting, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
+        boatRaiting.text = team.boatRaiting
         
         addSubview(boatClass)
         addConstraintsWithVisualFormat(format: "H:[v0(\(frame.width / 6))]-68-|", views: boatClass)
         addConstraintsWithVisualFormat(format: "V:[v0(8)]", views: boatClass)
         addConstraint(NSLayoutConstraint(item: boatClass, attribute: .bottom, relatedBy: .equal, toItem: boatRaiting, attribute: .top, multiplier: 1, constant: -2))
+        boatClass.text = team.boatClass
         
     }
     

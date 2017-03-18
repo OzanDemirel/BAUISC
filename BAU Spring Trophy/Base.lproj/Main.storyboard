@@ -75,16 +75,16 @@
                                                                         </constraints>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                                                <real key="value" value="1"/>
+                                                                                <real key="value" value="0.80000000000000004"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
                                                                                 <real key="value" value="5"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                                                <size key="value" width="0.0" height="3"/>
+                                                                                <size key="value" width="0.0" height="1"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
@@ -122,6 +122,7 @@
                                                                     </stackView>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Button" translatesAutoresizingMaskIntoConstraints="NO" id="ddg-lO-Mvz" userLabel="ResultsButtonImage" customClass="DesignableImageView" customModule="BAU_Spring_Trophy" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="299.33333333333331" width="414" height="66.333333333333371"/>
+                                                                        <color key="backgroundColor" red="0.98431372549999996" green="0.67843137249999996" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="ddg-lO-Mvz" secondAttribute="height" multiplier="25:4" id="Gct-XH-Eni"/>
                                                                         </constraints>
@@ -133,10 +134,10 @@
                                                                                 <real key="value" value="5"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                                                <size key="value" width="0.0" height="3"/>
+                                                                                <size key="value" width="0.0" height="1"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
@@ -185,10 +186,10 @@
                                                                                 <real key="value" value="5"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                                                <size key="value" width="0.0" height="3"/>
+                                                                                <size key="value" width="0.0" height="1"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
@@ -230,6 +231,20 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="5Wk-2x-iJF" secondAttribute="height" multiplier="16:9" id="PCF-ZC-wDF"/>
                                                                         </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                                <real key="value" value="0.80000000000000004"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
+                                                                                <real key="value" value="5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                                                <size key="value" width="0.0" height="3"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Bv-EH-nMN" userLabel="News Section View" customClass="NewsSelectionView" customModule="BAU_Spring_Trophy" customModuleProvider="target">
                                                                         <rect key="frame" x="178" y="203" width="58" height="10"/>
@@ -238,7 +253,7 @@
                                                                             <constraint firstAttribute="height" constant="10" id="zDN-ug-LgG"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vpN-l4-eTK" userLabel="LeftArrow">
+                                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vpN-l4-eTK" userLabel="LeftArrow">
                                                                         <rect key="frame" x="20" y="98" width="37.333333333333314" height="37"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="vpN-l4-eTK" secondAttribute="height" multiplier="1:1" id="frv-WS-KG9"/>
@@ -248,7 +263,7 @@
                                                                             <action selector="arrowsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rcX-Xu-q3e"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgz-Ob-vCs" userLabel="RightArrow">
+                                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgz-Ob-vCs" userLabel="RightArrow">
                                                                         <rect key="frame" x="357" y="98" width="37" height="37"/>
                                                                         <state key="normal" title="Button" image="RightArrow"/>
                                                                         <connections>

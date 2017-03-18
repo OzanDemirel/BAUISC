@@ -17,10 +17,14 @@ class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     struct Classes {
         var classTitle: String!
-        var classMembers: [String]!
+        var classMembers: [Team]?
     }
     
-    var classes: [String]!
+    var teams: [Team]?
+    
+    let classTitle = ["IRC0", "IRC1", "IRC2", "IRC3", "IRC4", "GEZGİN"]
+//    var classes = [Classes(classTitle: "IRC0", classMembers: []), Classes(classTitle: "IRC1", classMembers: []), Classes(classTitle: "IRC2", classMembers: []), Classes(classTitle: "IRC3", classMembers: []), Classes(classTitle: "IRC4", classMembers: []), Classes(classTitle: "GEZGİN", classMembers: [])]
+    var classes = [Classes]()
     
     let cellId = "teamsCell"
     
@@ -39,13 +43,107 @@ class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         teamsTableView.dataSource = self
         teamsTableView.register(TeamsCell.self, forCellReuseIdentifier: cellId)
         
-        classes = ["IRC0", "IRC1", "IRC2", "IRC3", "IRC4", "GEZGİN"]
+        fetchTeams()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        teamsTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.middle, animated: false)
+        if teams != nil {
+            teamsTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.middle, animated: false)
+        }
+        
+    }
+    
+    func fetchTeams() {
+        
+        ApiService.sharedInstance.fetchTeams { (teams: [Team]) in
+            if teams.count > 0 {
+                self.teams = teams
+                self.setTeams()
+            }
+        }
+        
+    }
+    
+    func setTeams() {
+        
+        if teams != nil {
+            
+            var IRC0 = [Team]()
+            var IRC1 = [Team]()
+            var IRC2 = [Team]()
+            var IRC3 = [Team]()
+            var IRC4 = [Team]()
+            var GEZGİN = [Team]()
+            
+            for team in teams! {
+                
+                if let boatClass = team.boatClass {
+                    
+                    switch boatClass {
+                    case "IRC0":
+                        IRC0.append(team)
+                        break;
+                    case "IRC1":
+                        IRC1.append(team)
+                        break;
+                    case "IRC2":
+                        IRC2.append(team)
+                        break;
+                    case "IRC3":
+                        IRC3.append(team)
+                        break;
+                    case "IRC4":
+                        IRC4.append(team)
+                        break;
+                    case "GEZGİN":
+                        GEZGİN.append(team)
+                        break;
+                    default:
+                        break;
+                    }
+                    
+                }
+
+            }
+            
+            for i in classTitle {
+                
+                switch i {
+                case "IRC0":
+                    let object = Classes(classTitle: i, classMembers: IRC0)
+                    classes.append(object)
+                    break;
+                case "IRC1":
+                    let object = Classes(classTitle: i, classMembers: IRC1)
+                    classes.append(object)
+                    break;
+                case "IRC2":
+                    let object = Classes(classTitle: i, classMembers: IRC2)
+                    classes.append(object)
+                    break;
+                case "IRC3":
+                    let object = Classes(classTitle: i, classMembers: IRC3)
+                    classes.append(object)
+                    break;
+                case "IRC4":
+                    let object = Classes(classTitle: i, classMembers: IRC4)
+                    classes.append(object)
+                    break;
+                case "GEZGİN":
+                    let object = Classes(classTitle: i, classMembers: GEZGİN)
+                    classes.append(object)
+                    break;
+                default:
+                    break;
+                }
+                
+            }
+            
+            teamsTableView.reloadData()
+            
+        }
         
     }
     
@@ -67,7 +165,7 @@ class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let label = UILabel()
             label.font = UIFont(name: "Futura-Bold", size: 8)
             label.textColor = UIColor(red: 1/255, green: 85/255, blue: 139/255, alpha: 1)
-            label.text = classes[section]
+            label.text = classes[section].classTitle
             return label
         }()
         
@@ -102,12 +200,12 @@ class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return classes[section].classMembers?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = teamsTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TeamsCell
-        cell.setupViews(rowId: indexPath.row)
+        cell.setupViews(team: (classes[indexPath.section].classMembers?[indexPath.row])!)
         return cell
     }
     

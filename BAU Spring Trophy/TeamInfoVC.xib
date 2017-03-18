@@ -93,7 +93,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EKİP LİSTESİ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="ViX-1U-kha">
-                    <rect key="frame" x="60" y="376" width="76.5" height="20"/>
+                    <rect key="frame" x="60" y="376" width="77" height="20"/>
                     <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="12"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -117,7 +117,7 @@
                     </userDefinedRuntimeAttributes>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEKNE BİLGİLERİ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="S2m-6i-FKt">
-                    <rect key="frame" x="60" y="247" width="104.5" height="20"/>
+                    <rect key="frame" x="60" y="247" width="105" height="20"/>
                     <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="12"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
