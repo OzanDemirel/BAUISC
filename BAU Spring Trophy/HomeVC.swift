@@ -61,8 +61,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
     let sideMenuItems: [Dictionary<String, String>]! = [["Anasayfa / Home": "Home"], ["Takımlar / Teams": "Teams"] , ["Fotoğraflar / Photos": "Photos"], ["Videolar / Videos": "Videos"], ["Haberler / News": "News"], ["Sonuçlar / Results": "Results"], ["Yarışlar / Races": "Races"], ["İletişim / Contact": "Contact"], ["Sponsorlar / Sponsors": "Sponsors"]]
     
-    let fakeNews: [[String: String]] = [["News1": "News1Filter"], ["News2": "News2Filter"], ["News3": "News3Filter"]]
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -92,14 +90,13 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         fetchNews()
         
         arrangeMainScrollViewPosition(animated: false)
-        configureNewsCollectionView()
         
         navigationBar.addSubview(navigationBarBtn)
         navigationBar.addConstraintsWithVisualFormat(format: "H:|-80-[v0]-0-|", views: navigationBarBtn)
         navigationBar.addConstraintsWithVisualFormat(format: "V:|[v0]|", views: navigationBarBtn)
         navigationBarBtn.addTarget(self, action: #selector(HomeVC.navigationBarBtnPressed), for: UIControlEvents.touchUpInside)
         
-        homeScrollView.isScrollEnabled = fakeNews.count > 0 ? true : false
+        homeScrollView.isScrollEnabled = news != nil ? ((news?.count)! > 0) : false
         
         arrangeShadowView()
         
@@ -129,7 +126,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
 
         if news.count > 0 {
             newsScrollPages.newsCount = news.count > 4 ? 5 : news.count
-            print(newsScrollPages.newsCount)
         }
         if news.count > 1 {
             leftArrow.isEnabled = true
@@ -138,6 +134,10 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         newsScrollPages.collectionView.scrollToItem(at: IndexPath(item: 5000, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
         newsSelectionView.collectionView.reloadData()
         newsScrollPages.collectionView.reloadData()
+        if news.count > 5 {
+            configureNewsCollectionView()
+        }
+        newsCollectionView.reloadData()
         newsSelectionView.trendNewsCount = news.count > 4 ? 5 : news.count % 5
         newsSelectionView.setSelectionViews()
         if newsSelectionView.trendNewsCount > 1 {
@@ -219,7 +219,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
      
     }
     
-    func addTeamInfoPageToView() {
+    func addTeamInfoPageToView(team: Team) {
         
         view.isUserInteractionEnabled = false
         
@@ -231,6 +231,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         teamInfoVC.view.frame = homeScrollView.frame
         teamInfoVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.maxX, y: navigationBar.frame.maxY)
         teamInfoVC.view.alpha = 0
+        
+        teamInfoVC.team = team
         
         homeView.bringSubview(toFront: homePageShadowView)
         
@@ -522,7 +524,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     func configureNewsCollectionView() {
         
         homeScrollContentViewHeight.constant = galeryBtnView.frame.maxY
-        newsCollectionView = UICollectionView(frame: CGRect(x: 0, y: homeScrollContentViewHeight.constant, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width / 3 * 5), collectionViewLayout: UICollectionViewFlowLayout())
+        newsCollectionView = UICollectionView(frame: CGRect(x: 0, y: homeScrollContentViewHeight.constant, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width / 3 * CGFloat(ceil((Double((news?.count)! - 5)) / 2))), collectionViewLayout: UICollectionViewFlowLayout())
         newsCollectionView.delegate = self
         newsCollectionView.dataSource = self
         newsCollectionView.isScrollEnabled = false
@@ -531,6 +533,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         homeScrollContentView.addSubview(newsCollectionView)
         homeScrollContentView.sendSubview(toBack: newsCollectionView)
         homeScrollContentViewHeight.constant += newsCollectionView.frame.height
+        homeScrollView.isScrollEnabled = news != nil ? ((news?.count)! > 0) : false
         
     }
     
@@ -702,7 +705,10 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        if news != nil {
+            return ((((news?.count)! - 5 > 10) ? 10 : ((news?.count)! < 5 ? 0 : ((news?.count)! - 5))) % 2 == 0) ? ((((news?.count)! - 5 > 10) ? 10 : ((news?.count)! < 5 ? 0 : ((news?.count)! - 5)))) : ((((news?.count)! - 5 > 10) ? 10 : ((news?.count)! < 5 ? 0 : ((news?.count)! - 5))) + 1)
+        }
+        return 0
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -711,7 +717,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = newsCollectionView.dequeueReusableCell(withReuseIdentifier: "newsCell", for: indexPath) as! NewsCell
-        cell.customizeNewsImages(news: fakeNews[indexPath.row % 3])
+        if indexPath.row < ((news?.count)! - 5) {
+            cell.news = news?[5 + indexPath.row]
+        }
         return cell
     }
   

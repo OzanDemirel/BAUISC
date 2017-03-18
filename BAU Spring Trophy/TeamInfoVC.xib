@@ -155,7 +155,7 @@
                         <constraint firstAttribute="width" secondItem="OtT-58-w7q" secondAttribute="height" multiplier="123:64" id="FgZ-vZ-IIF"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BAU Golden Toy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="HXJ-UJ-Scl">
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="HXJ-UJ-Scl">
                     <rect key="frame" x="2" y="57" width="111" height="10"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="10" id="Gfo-oM-l9C"/>

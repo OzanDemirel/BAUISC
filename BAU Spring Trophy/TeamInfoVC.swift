@@ -14,6 +14,19 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var homeVC: HomeVC?
     
+    var team: Team? {
+        didSet {
+            
+            boatId.text = team?.boatId?.uppercased()
+            boatType.text = team?.boatType?.uppercased()
+            boatClass.text = team?.boatClass?.uppercased()
+            boatRaiting.text = team?.boatRaiting?.uppercased()
+            teamNameLbl.text = team?.teamName?.capitalized
+            
+            crewTableView.reloadData()
+        }
+    }
+    
     @IBOutlet weak var teamInfoImage: DesignableImageView!
     @IBOutlet weak var crewTableView: UITableView!
     @IBOutlet weak var teamsBackground: DesignableImageView!
@@ -78,7 +91,6 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let label = UILabel()
         label.textColor = UIColor(red: 1/255, green: 85/255, blue: 139/255, alpha: 1)
         label.font = UIFont(name: "Futura", size: 8)
-        label.text = "TUR711"
         return label
     }()
     
@@ -86,7 +98,6 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let label = UILabel()
         label.textColor = UIColor(red: 1/255, green: 85/255, blue: 139/255, alpha: 1)
         label.font = UIFont(name: "Futura", size: 8)
-        label.text = "MUMM30"
         return label
     }()
     
@@ -94,7 +105,6 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let label = UILabel()
         label.textColor = UIColor(red: 1/255, green: 85/255, blue: 139/255, alpha: 1)
         label.font = UIFont(name: "Futura", size: 8)
-        label.text = "1.057"
         return label
     }()
     
@@ -102,7 +112,6 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let label = UILabel()
         label.textColor = UIColor(red: 1/255, green: 85/255, blue: 139/255, alpha: 1)
         label.font = UIFont(name: "Futura", size: 8)
-        label.text = "IRC1"
         return label
     }()
     
@@ -128,7 +137,9 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        crewTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.middle, animated: false)
+        if team?.crew != nil {
+            crewTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.middle, animated: false)
+        }
         
         view.addSubview(seperatorBar1)
         view.addConstraint(NSLayoutConstraint(item: seperatorBar1, attribute: .centerY, relatedBy: .equal, toItem: teamInfoImage, attribute: .centerY, multiplier: 1, constant: 0))
@@ -205,12 +216,14 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return team?.crew != nil ? (team?.crew?.count)! : 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = crewTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CrewCell
-        cell.setupViews()
+        if let member = team?.crew?[indexPath.row] {
+            cell.setupViews(member: member)
+        }
         return cell
     }
 

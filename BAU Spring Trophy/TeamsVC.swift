@@ -23,7 +23,6 @@ class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var teams: [Team]?
     
     let classTitle = ["IRC0", "IRC1", "IRC2", "IRC3", "IRC4", "GEZGİN"]
-//    var classes = [Classes(classTitle: "IRC0", classMembers: []), Classes(classTitle: "IRC1", classMembers: []), Classes(classTitle: "IRC2", classMembers: []), Classes(classTitle: "IRC3", classMembers: []), Classes(classTitle: "IRC4", classMembers: []), Classes(classTitle: "GEZGİN", classMembers: [])]
     var classes = [Classes]()
     
     let cellId = "teamsCell"
@@ -190,7 +189,7 @@ class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         teamsTableView.deselectRow(at: indexPath, animated: true)
         
         
-        homeVC?.addTeamInfoPageToView()
+        homeVC?.addTeamInfoPageToView(team: (classes[indexPath.section].classMembers?[indexPath.row])!)
         homeVC?.mainScrollView.isScrollEnabled = false
         
     }

@@ -49,7 +49,7 @@ class NewsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = newsCollectionView.dequeueReusableCell(withReuseIdentifier: "newsCell", for: indexPath) as! NewsCell
-        cell.customizeNewsImages(news: fakeNews[indexPath.row % 3])
+        
         return cell
     }
     
