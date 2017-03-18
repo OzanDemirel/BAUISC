@@ -135,6 +135,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             leftArrow.isEnabled = true
             rightArrow.isEnabled = true
         }
+        newsScrollPages.collectionView.scrollToItem(at: IndexPath(item: 5000, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
         newsSelectionView.collectionView.reloadData()
         newsScrollPages.collectionView.reloadData()
         newsSelectionView.trendNewsCount = news.count > 4 ? 5 : news.count % 5

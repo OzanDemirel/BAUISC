@@ -61,7 +61,7 @@ class NewsScrollPages: DesignableView, UICollectionViewDelegate, UICollectionVie
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: collectionView)
         
         collectionView.isScrollEnabled = true
-        collectionView.scrollToItem(at: IndexPath(item: 500, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
+        collectionView.scrollToItem(at: IndexPath(item: 5000, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
         
     }
     
