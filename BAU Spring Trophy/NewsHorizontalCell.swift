@@ -14,6 +14,7 @@ class NewsHorizontalCell: BaseCell {
         let imageView = CustomImageView()
         imageView.contentMode = UIViewContentMode.scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.layer.masksToBounds = true
         return imageView
     }()
     
@@ -40,34 +41,23 @@ class NewsHorizontalCell: BaseCell {
         return textView
     }()
     
-    let filterView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = UIViewContentMode.scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "TrendCellBackground")
-        imageView.alpha = 0.3
-        return imageView
-    }()
-    
     func setNewsImage() {
         
         if let url = news?.imageURL {
         
-            newsImageView.loadImageUsingUrlString(url)
+            newsImageView.loadImageUsingUrlString(url, filterName: "TrendNewsFilter", blendMode: .multiply, alpha: 0.8, {
+                
+            })
             
         }
         
     }
-    
+
     override func setupViews() {
         
         addSubview(newsImageView)
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: newsImageView)
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: newsImageView)
-        
-        addSubview(filterView)
-        addConstraintsWithVisualFormat(format: "H:|[v0]|", views: filterView)
-        addConstraintsWithVisualFormat(format: "V:|[v0]|", views: filterView)
         
         addSubview(newsDescription)
         addConstraintsWithVisualFormat(format: "H:[v0(\(frame.width / 2))]", views: newsDescription)

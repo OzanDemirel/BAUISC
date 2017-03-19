@@ -27,7 +27,7 @@ class RacesSectionBaseView: UIView, UICollectionViewDelegate, UICollectionViewDa
     
     let cellId = ["racesBaseCellOne", "racesBaseCellTwo", "racesBaseCellThree", "racesBaseCellOverall"]
     
-    let selectionNames = [["YARIŞ 1", "YARIŞ 2", "YARIŞ 3", "OVERALL"], ["YARIŞ 1"], ["YARIŞ 1", "YARIŞ 2", "YARIŞ 3", "OVERALL"], ["YARIŞ 1", "YARIŞ 2", "OVERALL"], ["YARIŞ 1"], ["YARIŞ 1", "YARIŞ 2", "YARIŞ 3", "OVERALL"], ["OVERALL"]]
+    let selectionNames = [["YARIŞ 1", "YARIŞ 2", "YARIŞ 3", "OVERALL"], ["YARIŞ 1"], ["YARIŞ 1", "YARIŞ 2", "YARIŞ 3", "OVERALL"], ["YARIŞ 1", "YARIŞ 2", "YARIŞ 3", "OVERALL"], ["YARIŞ 1"], ["YARIŞ 1", "YARIŞ 2", "YARIŞ 3", "OVERALL"], ["OVERALL"]]
     
     override func awakeFromNib() {
         super.awakeFromNib()

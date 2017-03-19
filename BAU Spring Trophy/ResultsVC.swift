@@ -29,6 +29,8 @@ class ResultsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchResultsForDay()
+        
         view.layer.shouldRasterize = true
         view.layer.rasterizationScale = UIScreen.main.scale
         
@@ -42,6 +44,17 @@ class ResultsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         
         daysSectionView.resultsVC = self
         tableSectionView.resultsVC = self
+        
+    }
+    
+    func fetchResultsForDay() {
+        
+        ApiService.sharedInstance.fetchResult(day: ApiService.sharedInstance.selectedDay) { (races: [Race]) in
+            
+            let results = ["results": races]
+            NotificationCenter.default.post(name: NSNotification.Name("resultsReceived"), object: nil, userInfo: results)
+        }
+        
     }
     
     func scrollToSectionInRaces(indexPath: Int) {

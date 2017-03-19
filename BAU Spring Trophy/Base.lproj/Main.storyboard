@@ -122,7 +122,6 @@
                                                                     </stackView>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Button" translatesAutoresizingMaskIntoConstraints="NO" id="ddg-lO-Mvz" userLabel="ResultsButtonImage" customClass="DesignableImageView" customModule="BAU_Spring_Trophy" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="299.33333333333331" width="414" height="66.333333333333371"/>
-                                                                        <color key="backgroundColor" red="0.98431372549999996" green="0.67843137249999996" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="ddg-lO-Mvz" secondAttribute="height" multiplier="25:4" id="Gct-XH-Eni"/>
                                                                         </constraints>
@@ -131,13 +130,13 @@
                                                                                 <real key="value" value="0.80000000000000004"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
-                                                                                <real key="value" value="5"/>
+                                                                                <real key="value" value="4"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                                                <size key="value" width="0.0" height="1"/>
+                                                                                <size key="value" width="0.0" height="2"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
@@ -183,13 +182,13 @@
                                                                                 <real key="value" value="0.80000000000000004"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
-                                                                                <real key="value" value="5"/>
+                                                                                <real key="value" value="4"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                                                <size key="value" width="0.0" height="1"/>
+                                                                                <size key="value" width="0.0" height="2"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>

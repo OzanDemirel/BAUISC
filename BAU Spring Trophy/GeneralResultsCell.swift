@@ -10,6 +10,13 @@ import UIKit
 
 class GeneralResultsCell: UITableViewCell {
     
+    var participant: Participant? {
+        didSet {
+
+            setupViews()
+        }
+    }
+    
     let cellIcon: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "TableCellIcon")
@@ -82,7 +89,7 @@ class GeneralResultsCell: UITableViewCell {
         return label
     }()
     
-    func setupViews(rowId: Int) {
+    func setupViews() {
         
         backgroundColor = UIColor(red: 9/255, green: 63/255, blue: 99/255, alpha: 1)
         
@@ -105,7 +112,6 @@ class GeneralResultsCell: UITableViewCell {
         addConstraintsWithVisualFormat(format: "H:|-60-[v0]-\(frame.width / 2)-|", views: teamName)
         addConstraintsWithVisualFormat(format: "V:[v0(10)]", views: teamName)
         addConstraint(NSLayoutConstraint(item: teamName, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
-        teamName.text = "\(rowId + 1)- BAU Golden Toy"
         
         addSubview(boatRaiting)
         addConstraintsWithVisualFormat(format: "H:|-60-[v0]-\(frame.width / 2)-|", views: boatRaiting)

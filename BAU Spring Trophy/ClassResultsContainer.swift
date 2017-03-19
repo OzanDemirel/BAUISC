@@ -90,7 +90,6 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ClassResultsCell
-        cell.setupViews(rowId: indexPath.row)
         return cell
     }
     

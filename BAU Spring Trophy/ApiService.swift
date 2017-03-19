@@ -16,6 +16,24 @@ class ApiService: NSObject {
     let ref = FIRDatabase.database().reference()
     let newsRef = "news"
     let teamsRef = "teams"
+    let racesRef = "races"
+    
+    var selectedDay: Int = 0 {
+        didSet {
+            print("Selected Day: \(selectedDay)")
+            selectedRace = 0
+        }
+    }
+    var selectedRace: Int = 0 {
+        didSet {
+            print("Selected Race: \(selectedRace)")
+        }
+    }
+    var selectedCategory: Int = 0 {
+        didSet {
+            print("Selected Category: \(selectedCategory)")
+        }
+    }
     
     var news = [News]()
     
@@ -125,30 +143,456 @@ class ApiService: NSObject {
         
     }
     
+    struct Result {
+        var day: Int
+        var races: [Race]?
+    }
     
+    var races = [Race]()
     
-//    func fetchData(completion: @escaping (([String]) -> Void)) {
-//
-//        ref.child("news").queryOrdered(byChild: "order").observe(.value, with: { (news) in
-//
-//            print(news)
-////            if let news = news.value as? [String:AnyObject] {
-//                
-////                for value in news {
-////                    
-////                    if let dict = value.value as? [String:AnyObject] {
-////                        
-////                        if let order = dict["title"] as? String {
-////                            
-////                        }
-////                        
-////                    }
-////                    
-////                }
-////            }
-////            print(orders)
-//        })
-//        
-//    }
+    var days = [Result(day: 0, races: []), Result(day: 1, races: []), Result(day: 2, races: []), Result(day: 3, races: []), Result(day: 4, races: []), Result(day: 5, races: []), Result(day: 6, races: [])]
+    
+    func fetchResult(day: Int,_ completion: @escaping ([Race]) -> ()) {
+        
+        var dayRef: String!
+        
+        
+        if day == 6 {
+            dayRef = "overall"
+        } else {
+            dayRef = "day\(day + 1)"
+        }
+        
+        ref.child(racesRef).child(dayRef).observe(FIRDataEventType.value, with: { (snapshot) in
+            
+            if let races = snapshot.value as? [String: AnyObject] {
+                
+                self.races = []
+                
+                if let race1 = races["race1"] as? [String: AnyObject] {
+                    
+                    let race = Race()
+                    
+                    var IRC0 = [Participant]()
+                    var IRC1 = [Participant]()
+                    var IRC2 = [Participant]()
+                    var IRC3 = [Participant]()
+                    var IRC4 = [Participant]()
+                    var GEZGİN = [Participant]()
+                    
+                    for team in race1 {
+                        
+                        if team.key == "status" {
+                        
+                            race.name = 0
+                            
+                            if let status = team.value as? Int {
+                                race.status = status
+                            }
+                            
+                        } else {
+                            
+                            if let result = team.value as? [String: AnyObject] {
+                                
+                                let participant = Participant()
+                                
+                                if let place = result["place"] as? Int {
+                                    
+                                    participant.place = place
+                                    
+                                }
+                                
+                                if let time = result["time"] as? String {
+                                    
+                                    participant.finishTime = time
+                                    
+                                }
+                                
+                                if let extraTime = result["extraTime"] as? String {
+                                    
+                                    participant.extraTime = extraTime
+                                    
+                                }
+                                
+                                if let boatId = result["boatId"] as? String {
+                                    
+                                    participant.team = self.teams.first(where: { $0.boatId == boatId })
+                                    
+                                }
+                                
+                                race.participantsByPlace.append(participant)
+                                
+                                if let boatClass = participant.team?.boatClass {
+                                    
+                                    switch boatClass {
+                                    case "IRC0":
+                                        IRC0.append(participant)
+                                        break;
+                                    case "IRC1":
+                                        IRC1.append(participant)
+                                        break;
+                                    case "IRC2":
+                                        IRC2.append(participant)
+                                        break;
+                                    case "IRC3":
+                                        IRC3.append(participant)
+                                        break;
+                                    case "IRC4":
+                                        IRC4.append(participant)
+                                        break;
+                                    case "GEZGİN":
+                                        GEZGİN.append(participant)
+                                        break;
+                                    default:
+                                        break;
+                                    }
+                                    
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                    IRC0 = IRC0.sorted(by: { $0.place! < $1.place!})
+                    IRC1 = IRC1.sorted(by: { $0.place! < $1.place!})
+                    IRC2 = IRC2.sorted(by: { $0.place! < $1.place!})
+                    IRC3 = IRC3.sorted(by: { $0.place! < $1.place!})
+                    IRC4 = IRC4.sorted(by: { $0.place! < $1.place!})
+                    GEZGİN = GEZGİN.sorted(by: { $0.place! < $1.place!})
+                    
+                    race.participantsByPlace = race.participantsByPlace.sorted(by: { $0.place! < $1.place!})
+
+                    race.participantsByPlaceOfClass = [0 : IRC0, 1: IRC1, 2: IRC2, 3: IRC3, 4: IRC4, 5: GEZGİN]
+                    
+                    self.races.append(race)
+                
+                }
+            
+            
+                if let race2 = races["race2"] as? [String: AnyObject] {
+                    
+                    let race = Race()
+
+                    var IRC0 = [Participant]()
+                    var IRC1 = [Participant]()
+                    var IRC2 = [Participant]()
+                    var IRC3 = [Participant]()
+                    var IRC4 = [Participant]()
+                    var GEZGİN = [Participant]()
+                    
+                    for team in race2 {
+                        
+                        if team.key == "status" {
+                            
+                            race.name = 0
+                            
+                            if let status = team.value as? Int {
+                                race.status = status
+                            }
+                            
+                        } else {
+                            
+                            if let result = team.value as? [String: AnyObject] {
+                                
+                                let participant = Participant()
+                                
+                                if let place = result["place"] as? Int {
+                                    
+                                    participant.place = place
+                                    
+                                }
+                                
+                                if let time = result["time"] as? String {
+                                    
+                                    participant.finishTime = time
+                                    
+                                }
+                                
+                                if let extraTime = result["extraTime"] as? String {
+                                    
+                                    participant.extraTime = extraTime
+                                    
+                                }
+                                
+                                if let boatId = result["boatId"] as? String {
+                                    
+                                    participant.team = self.teams.first(where: { $0.boatId == boatId })
+                                    
+                                }
+                                
+                                race.participantsByPlace.append(participant)
+                                
+                                if let boatClass = participant.team?.boatClass {
+                                    
+                                    switch boatClass {
+                                    case "IRC0":
+                                        IRC0.append(participant)
+                                        break;
+                                    case "IRC1":
+                                        IRC1.append(participant)
+                                        break;
+                                    case "IRC2":
+                                        IRC2.append(participant)
+                                        break;
+                                    case "IRC3":
+                                        IRC3.append(participant)
+                                        break;
+                                    case "IRC4":
+                                        IRC4.append(participant)
+                                        break;
+                                    case "GEZGİN":
+                                        GEZGİN.append(participant)
+                                        break;
+                                    default:
+                                        break;
+                                    }
+                                    
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                    IRC0 = IRC0.sorted(by: { $0.place! < $1.place!})
+                    IRC1 = IRC1.sorted(by: { $0.place! < $1.place!})
+                    IRC2 = IRC2.sorted(by: { $0.place! < $1.place!})
+                    IRC3 = IRC3.sorted(by: { $0.place! < $1.place!})
+                    IRC4 = IRC4.sorted(by: { $0.place! < $1.place!})
+                    GEZGİN = GEZGİN.sorted(by: { $0.place! < $1.place!})
+                    
+                    race.participantsByPlace = race.participantsByPlace.sorted(by: { $0.place! < $1.place!})
+                    
+                    race.participantsByPlaceOfClass = [0 : IRC0, 1: IRC1, 2: IRC2, 3: IRC3, 4: IRC4, 5: GEZGİN]
+                    
+                    self.races.append(race)
+                    
+                }
+                
+                if let race3 = races["race3"] as? [String: AnyObject] {
+                    
+                    let race = Race()
+
+                    var IRC0 = [Participant]()
+                    var IRC1 = [Participant]()
+                    var IRC2 = [Participant]()
+                    var IRC3 = [Participant]()
+                    var IRC4 = [Participant]()
+                    var GEZGİN = [Participant]()
+                    
+                    for team in race3 {
+                        
+                        if team.key == "status" {
+                            
+                            race.name = 0
+                            
+                            if let status = team.value as? Int {
+                                race.status = status
+                            }
+                            
+                        } else {
+                            
+                            if let result = team.value as? [String: AnyObject] {
+                                
+                                let participant = Participant()
+                                
+                                if let place = result["place"] as? Int {
+                                    
+                                    participant.place = place
+                                    
+                                }
+                                
+                                if let time = result["time"] as? String {
+                                    
+                                    participant.finishTime = time
+                                    
+                                }
+                                
+                                if let extraTime = result["extraTime"] as? String {
+                                    
+                                    participant.extraTime = extraTime
+                                    
+                                }
+                                
+                                if let boatId = result["boatId"] as? String {
+                                    
+                                    participant.team = self.teams.first(where: { $0.boatId == boatId })
+                                    
+                                }
+                                
+                                race.participantsByPlace.append(participant)
+                                
+                                if let boatClass = participant.team?.boatClass {
+                                    
+                                    switch boatClass {
+                                    case "IRC0":
+                                        IRC0.append(participant)
+                                        break;
+                                    case "IRC1":
+                                        IRC1.append(participant)
+                                        break;
+                                    case "IRC2":
+                                        IRC2.append(participant)
+                                        break;
+                                    case "IRC3":
+                                        IRC3.append(participant)
+                                        break;
+                                    case "IRC4":
+                                        IRC4.append(participant)
+                                        break;
+                                    case "GEZGİN":
+                                        GEZGİN.append(participant)
+                                        break;
+                                    default:
+                                        break;
+                                    }
+                                    
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                    IRC0 = IRC0.sorted(by: { $0.place! < $1.place!})
+                    IRC1 = IRC1.sorted(by: { $0.place! < $1.place!})
+                    IRC2 = IRC2.sorted(by: { $0.place! < $1.place!})
+                    IRC3 = IRC3.sorted(by: { $0.place! < $1.place!})
+                    IRC4 = IRC4.sorted(by: { $0.place! < $1.place!})
+                    GEZGİN = GEZGİN.sorted(by: { $0.place! < $1.place!})
+                    
+                    race.participantsByPlace = race.participantsByPlace.sorted(by: { $0.place! < $1.place!})
+                    
+                    race.participantsByPlaceOfClass = [0 : IRC0, 1: IRC1, 2: IRC2, 3: IRC3, 4: IRC4, 5: GEZGİN]
+                    
+                    self.races.append(race)
+                    
+                }
+                
+                
+                if let overall = races["overall"] as? [String: AnyObject] {
+                    
+                    let race = Race()
+
+                    var IRC0 = [Participant]()
+                    var IRC1 = [Participant]()
+                    var IRC2 = [Participant]()
+                    var IRC3 = [Participant]()
+                    var IRC4 = [Participant]()
+                    var GEZGİN = [Participant]()
+                    
+                    for team in overall {
+                        
+                        if team.key == "status" {
+                            
+                            race.name = 0
+                            
+                            if let status = team.value as? Int {
+                                race.status = status
+                            }
+                            
+                        } else {
+                            
+                            if let result = team.value as? [String: AnyObject] {
+                                
+                                let participant = Participant()
+                                
+                                if let place = result["place"] as? Int {
+                                    
+                                    participant.place = place
+                                    
+                                }
+                                
+                                if let time = result["time"] as? String {
+                                    
+                                    participant.finishTime = time
+                                    
+                                }
+                                
+                                if let extraTime = result["extraTime"] as? String {
+                                    
+                                    participant.extraTime = extraTime
+                                    
+                                }
+                                
+                                if let boatId = result["boatId"] as? String {
+                                    
+                                    participant.team = self.teams.first(where: { $0.boatId == boatId })
+                                    
+                                }
+                                
+                                race.participantsByPlace.append(participant)
+                                
+                                if let boatClass = participant.team?.boatClass {
+                                    
+                                    switch boatClass {
+                                    case "IRC0":
+                                        IRC0.append(participant)
+                                        break;
+                                    case "IRC1":
+                                        IRC1.append(participant)
+                                        break;
+                                    case "IRC2":
+                                        IRC2.append(participant)
+                                        break;
+                                    case "IRC3":
+                                        IRC3.append(participant)
+                                        break;
+                                    case "IRC4":
+                                        IRC4.append(participant)
+                                        break;
+                                    case "GEZGİN":
+                                        GEZGİN.append(participant)
+                                        break;
+                                    default:
+                                        break;
+                                    }
+                                    
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                    IRC0 = IRC0.sorted(by: { $0.place! < $1.place!})
+                    IRC1 = IRC1.sorted(by: { $0.place! < $1.place!})
+                    IRC2 = IRC2.sorted(by: { $0.place! < $1.place!})
+                    IRC3 = IRC3.sorted(by: { $0.place! < $1.place!})
+                    IRC4 = IRC4.sorted(by: { $0.place! < $1.place!})
+                    GEZGİN = GEZGİN.sorted(by: { $0.place! < $1.place!})
+                    
+                    race.participantsByPlace = race.participantsByPlace.sorted(by: { $0.place! < $1.place!})
+                    
+                    race.participantsByPlaceOfClass = [0 : IRC0, 1: IRC1, 2: IRC2, 3: IRC3, 4: IRC4, 5: GEZGİN]
+                    
+                    self.races.append(race)
+                    
+                }
+                
+                self.races = self.races.sorted(by: {$0.name < $1.name})
+                
+                self.days[day].races = self.races
+                
+                DispatchQueue.main.async(execute: { 
+                    
+                    if let races = self.days[day].races {
+                        
+                        completion(races)
+                        
+                    }
+                    
+                })
+
+            }
+            
+        })
+        
+    }
     
 }

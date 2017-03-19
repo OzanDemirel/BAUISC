@@ -48,6 +48,7 @@ class DaysSectionView: UIView, UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         resultsVC?.scrollToSectionInRaces(indexPath: indexPath.row)
+        ApiService.sharedInstance.selectedDay = indexPath.row
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

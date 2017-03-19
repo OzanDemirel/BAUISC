@@ -49,6 +49,7 @@ class TableSectionView: UIView, UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         resultsVC?.scrollCollectionView(indexPath: indexPath)
+        ApiService.sharedInstance.selectedCategory = indexPath.row
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

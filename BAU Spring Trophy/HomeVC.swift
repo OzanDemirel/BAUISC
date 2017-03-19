@@ -82,13 +82,13 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         newsScrollPages.homeVC = self
         
+        fetchNews()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     
-        fetchNews()
-        
         arrangeMainScrollViewPosition(animated: false)
         
         navigationBar.addSubview(navigationBarBtn)
@@ -524,7 +524,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     func configureNewsCollectionView() {
         
         homeScrollContentViewHeight.constant = galeryBtnView.frame.maxY
-        newsCollectionView = UICollectionView(frame: CGRect(x: 0, y: homeScrollContentViewHeight.constant, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width / 3 * CGFloat(ceil((Double((news?.count)! - 5)) / 2))), collectionViewLayout: UICollectionViewFlowLayout())
+        newsCollectionView = UICollectionView(frame: CGRect(x: 0, y: homeScrollContentViewHeight.constant, width: UIScreen.main.bounds.width, height: (UIScreen.main.bounds.width / 2) * CGFloat(ceil((Double((news?.count)! - 5)) / 2)) - 0.5), collectionViewLayout: UICollectionViewFlowLayout())
         newsCollectionView.delegate = self
         newsCollectionView.dataSource = self
         newsCollectionView.isScrollEnabled = false
@@ -719,12 +719,15 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         let cell = newsCollectionView.dequeueReusableCell(withReuseIdentifier: "newsCell", for: indexPath) as! NewsCell
         if indexPath.row < ((news?.count)! - 5) {
             cell.news = news?[5 + indexPath.row]
+        } else {
+            cell.activityIndicator.stopAnimating()
+            cell.activityIndicator.isHidden = true
         }
         return cell
     }
   
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width / 2 - 0.5, height: UIScreen.main.bounds.width / 3 - 0.5)
+        return CGSize(width: UIScreen.main.bounds.width / 2 - 0.5, height: UIScreen.main.bounds.width / 2 - 0.5)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

@@ -22,6 +22,12 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
     
     let cellId = "generalResultsCell"
     
+    var results: [Race]? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     override func setupViews() {
         super.setupViews()
         
@@ -32,7 +38,16 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: tableView)
         
         NotificationCenter.default.addObserver(self, selector: #selector(GeneralResultsContainer.setTablePosition), name: NSNotification.Name("AnyChildAddedToView"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(GeneralResultsContainer.resultsReceived(_:)), name: NSNotification.Name("resultsReceived"), object: nil)
     
+    }
+    
+    func resultsReceived(_ notification: NSNotification) {
+        
+        if let info = notification.userInfo?.first?.value as? [Race] {
+            results = info
+        }
     }
     
     func setTablePosition() {
@@ -48,7 +63,7 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! GeneralResultsCell
-        cell.setupViews(rowId: indexPath.row)
+        cell.participant = results?[ApiService.sharedInstance.selectedRace].participantsByPlace[indexPath.row]
         return cell
     }
     
@@ -57,7 +72,11 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 30
+        
+        if results != nil {
+            return results![ApiService.sharedInstance.selectedRace].participantsByPlace.count
+        }
+        return 0
     }
     
 }

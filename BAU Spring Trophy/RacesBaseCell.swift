@@ -52,6 +52,10 @@ class RacesBaseCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSou
         return 1
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        ApiService.sharedInstance.selectedRace = indexPath.row
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return selectionNames.count
     }

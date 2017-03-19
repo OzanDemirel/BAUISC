@@ -59,6 +59,7 @@
 		AB42DB931E7B3D9B00549C65 /* ClassResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB921E7B3D9B00549C65 /* ClassResultsCell.swift */; };
 		AB98ECB01E7C558200038185 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98ECAF1E7C558200038185 /* CustomImageView.swift */; };
 		AB98ECB21E7C5C5900038185 /* MediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98ECB11E7C5C5900038185 /* MediaCell.swift */; };
+		AB98ECB51E7DC68600038185 /* Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98ECB41E7DC68600038185 /* Race.swift */; };
 		FD60F8A336291FF9445F2EF6 /* Pods_BAU_Spring_Trophy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8219F067E66EDAC2ADFDAC9 /* Pods_BAU_Spring_Trophy.framework */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +121,7 @@
 		AB42DB921E7B3D9B00549C65 /* ClassResultsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassResultsCell.swift; sourceTree = "<group>"; };
 		AB98ECAF1E7C558200038185 /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		AB98ECB11E7C5C5900038185 /* MediaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCell.swift; sourceTree = "<group>"; };
+		AB98ECB41E7DC68600038185 /* Race.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Race.swift; sourceTree = "<group>"; };
 		C5A2C11E8E7D56E769E8649D /* Pods-BAU Spring Trophy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BAU Spring Trophy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BAU Spring Trophy/Pods-BAU Spring Trophy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -212,6 +214,7 @@
 				AB42DB3B1E73848000549C65 /* Extensions.swift */,
 				AB42DB5C1E76FCED00549C65 /* Team.swift */,
 				AB42DB5E1E76FF0900549C65 /* News.swift */,
+				AB98ECB41E7DC68600038185 /* Race.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				AB42DB421E73929C00549C65 /* GaleryVC.swift in Sources */,
 				AB42DB481E739BBB00549C65 /* DesignableView.swift in Sources */,
 				AB42DB6D1E787E6800549C65 /* TeamsVC.swift in Sources */,
+				AB98ECB51E7DC68600038185 /* Race.swift in Sources */,
 				AB3F20471E708A6E0058F327 /* DesignableImageView.swift in Sources */,
 				AB42DB851E7A83DF00549C65 /* TableSelectionCell.swift in Sources */,
 				AB42DB4A1E73A92500549C65 /* GaleryPageSelectionCell.swift in Sources */,
