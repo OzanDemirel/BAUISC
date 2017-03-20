@@ -27,6 +27,7 @@ class ApiService: NSObject {
     var selectedRace: Int = 0 {
         didSet {
             print("Selected Race: \(selectedRace)")
+            NotificationCenter.default.post(name: NSNotification.Name("dayOrRaceSelected"), object: nil)
         }
     }
     var selectedCategory: Int = 0 {
@@ -163,7 +164,7 @@ class ApiService: NSObject {
         }
         
         if day == 6 {
-            dayRef = "overall"
+            dayRef = "total"
         } else {
             dayRef = "day\(day + 1)"
         }
@@ -298,7 +299,7 @@ class ApiService: NSObject {
                         
                         if team.key == "status" {
                             
-                            race.name = 0
+                            race.name = 1
                             
                             if let status = team.value as? Int {
                                 race.status = status
@@ -399,7 +400,7 @@ class ApiService: NSObject {
                         
                         if team.key == "status" {
                             
-                            race.name = 0
+                            race.name = 2
                             
                             if let status = team.value as? Int {
                                 race.status = status
@@ -501,7 +502,7 @@ class ApiService: NSObject {
                         
                         if team.key == "status" {
                             
-                            race.name = 0
+                            race.name = 3
                             
                             if let status = team.value as? Int {
                                 race.status = status
@@ -582,6 +583,8 @@ class ApiService: NSObject {
                     race.participantsByPlace = race.participantsByPlace.sorted(by: { $0.place! < $1.place!})
                     
                     race.participantsByPlaceOfClass = [0 : IRC0, 1: IRC1, 2: IRC2, 3: IRC3, 4: IRC4, 5: GEZGİN]
+                    
+                    self.races.append(race)
                     
                 }
                 

@@ -112,7 +112,7 @@
                                                                                 </constraints>
                                                                             </stackView>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="jsZ-ru-0Vu">
-                                                                                <rect key="frame" x="43.333333333333371" y="21.333333333333314" width="22" height="12"/>
+                                                                                <rect key="frame" x="43.666666666666686" y="21.333333333333314" width="22" height="12"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="22" id="38k-3V-lEo"/>
                                                                                     <constraint firstAttribute="height" constant="12" id="Qmt-BB-adv"/>
@@ -452,10 +452,10 @@
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                                <real key="value" value="0.20000000000000001"/>
+                                                                <real key="value" value="0.80000000000000004"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                                <size key="value" width="0.0" height="6"/>
+                                                                <size key="value" width="0.0" height="3"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                                 <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>

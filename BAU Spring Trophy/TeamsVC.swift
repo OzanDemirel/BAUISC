@@ -60,7 +60,6 @@ class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             if teams.count > 0 {
                 self.teams = teams
                 self.setTeams()
-                print("done")
             }
         }
         

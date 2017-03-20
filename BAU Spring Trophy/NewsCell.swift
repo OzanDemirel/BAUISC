@@ -21,7 +21,7 @@ class NewsCell: BaseCell {
         didSet {
             newsDescription.text = news?.title
             
-            setNewsImage()
+            //setNewsImage()
         }
     }
     
@@ -33,7 +33,7 @@ class NewsCell: BaseCell {
     
     let newsDescription: UITextView = {
         let textView = UITextView()
-        textView.font = UIFont(name: "Futura-Medium", size: 15)
+        textView.font = UIFont(name: "Futura", size: 11)
         textView.isScrollEnabled = false
         textView.backgroundColor = UIColor.clear
         textView.textAlignment = .center
@@ -41,8 +41,9 @@ class NewsCell: BaseCell {
         textView.isSelectable = false
         textView.isScrollEnabled = false
         textView.isUserInteractionEnabled = false
+        textView.adjustsFontForContentSizeCategory = true
+        textView.textContainer.maximumNumberOfLines = 0
         textView.textColor = UIColor(red: 249/255, green: 185/255, blue: 24/255, alpha: 1)
-        textView.textContainer.maximumNumberOfLines = 2
         return textView
     }()
     
@@ -87,10 +88,10 @@ class NewsCell: BaseCell {
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: newsImageView)
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: newsImageView)
         
-//        addSubview(newsDescription)
-//        addConstraintsWithVisualFormat(format: "H:[v0(\(frame.width / 2))]", views: newsDescription)
-//        addConstraintsWithVisualFormat(format: "V:|-\(frame.height / 2 + 10)-[v0]-40-|", views: newsDescription)
-//        addConstraint(NSLayoutConstraint(item: newsDescription, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
+        addSubview(newsDescription)
+        addConstraintsWithVisualFormat(format: "H:|-10-[v0]-10-|", views: newsDescription)
+        addConstraintsWithVisualFormat(format: "V:|-\(frame.height / 2 + 20)-[v0]-10-|", views: newsDescription)
+        addConstraint(NSLayoutConstraint(item: newsDescription, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
         
     }
     

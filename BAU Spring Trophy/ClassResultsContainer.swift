@@ -26,8 +26,13 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
         return indicator
     }()
     
+    var status = 0
+    
     var results: [Race]? {
         didSet {
+            if results != nil, (results?.count)! >= ApiService.sharedInstance.selectedRace, let status = results?[ApiService.sharedInstance.selectedRace].status {
+                self.status = status
+            }
             tableView.reloadData()
             if results != nil {
                 activityIndicator.stopAnimating()
@@ -54,49 +59,31 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: tableView)
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: tableView)
         
-        fetchResultsForFirstTime()
+        fetchResults()
 
         NotificationCenter.default.addObserver(self, selector: #selector(ClassResultsContainer.setTablePosition), name: NSNotification.Name("AnyChildAddedToView"), object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(ClassResultsContainer.categorySelected), name: NSNotification.Name("categorySelected"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ClassResultsContainer.fetchResults), name: NSNotification.Name("dayOrRaceSelected"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ClassResultsContainer.fetchResults), name: NSNotification.Name("categorySelected"), object: nil)
         
     }
 
-    func fetchResultsForFirstTime() {
+    func fetchResults() {
         
         ApiService.sharedInstance.fetchResult(day: ApiService.sharedInstance.selectedDay) { (races) in
             self.results = races
-            self.tableView.reloadData()
         }
         
     }
 
     func setTablePosition() {
         
-        if results != nil {
-            if (results?[ApiService.sharedInstance.selectedRace].participantsByPlace.count)! > 0 {
-                tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.middle, animated: false)
-            }
-        }
-        
-        ApiService.sharedInstance.fetchResult(day: ApiService.sharedInstance.selectedDay) { (races: [Race]) in
+        ApiService.sharedInstance.fetchResult(day: 0) { (races: [Race]) in
             self.results = races
         }
         
     }
-    
-    func categorySelected() {
-        
-        if results == nil {
-            
-            ApiService.sharedInstance.fetchResult(day: ApiService.sharedInstance.selectedDay, { (races) in
-                self.results = races
-            })
-        } else {
-            tableView.reloadData()
-        }
-    }
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -153,7 +140,7 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfClass.count ?? 0
+        return status == 1 ? (results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfClass.count ?? 0) : 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
