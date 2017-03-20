@@ -20,11 +20,21 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
         return table
     }()
     
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.color = UIColor(red: 251/255, green: 173/255, blue: 24/255, alpha: 1)
+        return indicator
+    }()
+    
     let cellId = "generalResultsCell"
     
     var results: [Race]? {
         didSet {
             tableView.reloadData()
+            if results != nil {
+                activityIndicator.stopAnimating()
+                activityIndicator.isHidden = true
+            }
         }
     }
     
@@ -33,25 +43,43 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
         
         tableView.register(GeneralResultsCell.self, forCellReuseIdentifier: cellId)
         
+        addSubview(activityIndicator)
+        addConstraintsWithVisualFormat(format: "H:|-\(UIScreen.main.bounds.width / 2 - 20)-[v0(40)]-\(UIScreen.main.bounds.width / 2 - 20)-|", views: activityIndicator)
+        addConstraintsWithVisualFormat(format: "H:[v0(40)]", views: activityIndicator)
+        addConstraintsWithVisualFormat(format: "V:|-40-[v0(40)]", views: activityIndicator)
+        activityIndicator.startAnimating()
+        
         addSubview(tableView)
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: tableView)
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: tableView)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(GeneralResultsContainer.setTablePosition), name: NSNotification.Name("AnyChildAddedToView"), object: nil)
+        fetchResultsForFirstTime()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(GeneralResultsContainer.resultsReceived(_:)), name: NSNotification.Name("resultsReceived"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GeneralResultsContainer.setTablePosition), name: NSNotification.Name("AnyChildAddedToView"), object: nil)
     
     }
     
-    func resultsReceived(_ notification: NSNotification) {
+    func fetchResultsForFirstTime() {
         
-        if let info = notification.userInfo?.first?.value as? [Race] {
-            results = info
+        ApiService.sharedInstance.fetchResult(day: ApiService.sharedInstance.selectedDay) { (races) in
+            self.results = races
+            self.tableView.reloadData()
         }
+        
     }
     
     func setTablePosition() {
-        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.middle, animated: false)
+        
+        if results != nil {
+            if (results?[ApiService.sharedInstance.selectedRace].participantsByPlace.count)! > 0 {
+                tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.middle, animated: false)
+            }
+        }
+        
+        ApiService.sharedInstance.fetchResult(day: ApiService.sharedInstance.selectedDay) { (races: [Race]) in
+            self.results = races
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -73,10 +101,7 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if results != nil {
-            return results![ApiService.sharedInstance.selectedRace].participantsByPlace.count
-        }
-        return 0
+        return results?[ApiService.sharedInstance.selectedRace].participantsByPlace.count ?? 0
     }
     
 }

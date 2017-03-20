@@ -36,13 +36,23 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
     var homePageShadowView: UIImageView!
     
-    var newsCollectionView: UICollectionView!
+    lazy var newsCollectionView: UICollectionView = {
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        cv.register(NewsCell.self, forCellWithReuseIdentifier: "newsCell")
+        cv.delegate = self
+        cv.dataSource = self
+        cv.isScrollEnabled = false
+        cv.backgroundColor = UIColor.clear
+        cv.alpha = 0
+        return cv
+    }()
+    
     var navigationBarBtn: UIButton = {
         let button = UIButton()
         return button
     }()
     
-    var childs: [UIViewController]!
+    var bottomNewsCount = 0
     
     var teamsVC: TeamsVC!
     var teamInfoVC: TeamInfoVC!
@@ -64,6 +74,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchNews()
+        
         sideMenuTableView.delegate = self
         sideMenuTableView.dataSource = self
         mainScrollView.delegate = self
@@ -82,8 +94,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         newsScrollPages.homeVC = self
         
-        fetchNews()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -100,6 +110,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         arrangeShadowView()
         
+        
         arrangeViews()
         
         _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { (timer) in
@@ -110,8 +121,16 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         teamsTapGesture = UITapGestureRecognizer(target: self, action: #selector(HomeVC.teamsTapGestureActive(sender:)))
         teamsTapGesture.cancelsTouchesInView = false
         homeScrollView.addGestureRecognizer(teamsTapGesture)
+
+        homeScrollContentView.addSubview(newsCollectionView)
+        homeScrollContentView.sendSubview(toBack: newsCollectionView)
+        
+//        galeryBtnView.image = addFilterToImage(blendMode: .multiply, alpha: 1)
+//        resultsBtnView.image = addFilterToImage(blendMode: .multiply, alpha: 1)
+//        teamsBtnView.image = addFilterToImage(blendMode: .multiply, alpha: 1)
         
     }
+
     
     func fetchNews() {
         
@@ -131,13 +150,15 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             leftArrow.isEnabled = true
             rightArrow.isEnabled = true
         }
+        if news.count > 5 {
+            bottomNewsCount = news.count - 5
+        } else {
+            bottomNewsCount = 0
+        }
         newsScrollPages.collectionView.scrollToItem(at: IndexPath(item: 5000, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
         newsSelectionView.collectionView.reloadData()
         newsScrollPages.collectionView.reloadData()
-        if news.count > 5 {
-            configureNewsCollectionView()
-        }
-        newsCollectionView.reloadData()
+        setNewsCollectionView()
         newsSelectionView.trendNewsCount = news.count > 4 ? 5 : news.count % 5
         newsSelectionView.setSelectionViews()
         if newsSelectionView.trendNewsCount > 1 {
@@ -175,8 +196,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         galeryVC = GaleryVC(nibName: "GaleryVC", bundle: nil)
         
         resultsVC = ResultsVC(nibName: "ResultsVC", bundle: nil)
-        
-        childs = [teamsVC, teamInfoVC, newsVC, galeryVC, resultsVC]
     }
     
     func addTeamsPageToView() {
@@ -514,26 +533,24 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
     func navigationBarBtnPressed() {
         homeScrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: homeScrollView.frame.width, height: homeScrollView.frame.height), animated: true)
-        for child in childs {
-            if child.view.frame == homeScrollView.frame {
-                removeAChildViewFromView(child: child, childToAdd: nil)
-            }
+        for child in childViewControllers {
+            removeAChildViewFromView(child: child, childToAdd: nil)
+            
         }
     }
 
-    func configureNewsCollectionView() {
+    func setNewsCollectionView() {
         
         homeScrollContentViewHeight.constant = galeryBtnView.frame.maxY
-        newsCollectionView = UICollectionView(frame: CGRect(x: 0, y: homeScrollContentViewHeight.constant, width: UIScreen.main.bounds.width, height: (UIScreen.main.bounds.width / 2) * CGFloat(ceil((Double((news?.count)! - 5)) / 2)) - 0.5), collectionViewLayout: UICollectionViewFlowLayout())
-        newsCollectionView.delegate = self
-        newsCollectionView.dataSource = self
-        newsCollectionView.isScrollEnabled = false
-        newsCollectionView.backgroundColor = UIColor.clear
-        newsCollectionView.register(NewsCell.self, forCellWithReuseIdentifier: "newsCell")
-        homeScrollContentView.addSubview(newsCollectionView)
-        homeScrollContentView.sendSubview(toBack: newsCollectionView)
+        newsCollectionView.frame = CGRect(x: 0, y: homeScrollContentViewHeight.constant, width: UIScreen.main.bounds.width, height: (UIScreen.main.bounds.width / 2) * CGFloat(ceil(Double(bottomNewsCount) / 2)) - 0.5)
         homeScrollContentViewHeight.constant += newsCollectionView.frame.height
+        if newsCollectionView.alpha == 0 {
+            UIView.animate(withDuration: 1, animations: { 
+                self.newsCollectionView.alpha = 1
+            })
+        }
         homeScrollView.isScrollEnabled = news != nil ? ((news?.count)! > 0) : false
+        newsCollectionView.reloadData()
         
     }
     
@@ -580,16 +597,14 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         switch indexPath.row {
         case 0:
-            for child in childs {
-                if child.view.frame == homeScrollView.frame {
-                    _ = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false, block: { (timer) in
-                        self.removeAChildViewFromView(child: child, childToAdd: nil)
-                    })
-                }
+            for child in childViewControllers {
+                _ = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false, block: { (timer) in
+                    self.removeAChildViewFromView(child: child, childToAdd: nil)
+                })
             }
             break;
         case 1:
-            for child in childs {
+            for child in childViewControllers {
                 if teamsVC.view.frame == homeScrollView.frame {
                     removeCalled = true
                 } else if child.view.frame == homeScrollView.frame && child != teamsVC {
@@ -606,7 +621,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         case 2:
             postNotifUserInfo = ["indexPath": (indexPath.row - 2)]
             NotificationCenter.default.post(name: NSNotification.Name("AnyChildAddedToView"), object: nil, userInfo: postNotifUserInfo)
-            for child in childs {
+            for child in childViewControllers {
                 if galeryVC.view.frame == homeScrollView.frame {
                     removeCalled = true
                 } else if child.view.frame == homeScrollView.frame && child != galeryVC {
@@ -623,7 +638,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         case 3:
             postNotifUserInfo = ["indexPath": (indexPath.row - 2)]
             NotificationCenter.default.post(name: NSNotification.Name("AnyChildAddedToView"), object: nil, userInfo: postNotifUserInfo)
-            for child in childs {
+            for child in childViewControllers {
                 if galeryVC.view.frame == homeScrollView.frame {
                     removeCalled = true
                 } else if child.view.frame == homeScrollView.frame && child != galeryVC {
@@ -638,7 +653,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             }
             break;
         case 4:
-            for child in childs {
+            for child in childViewControllers {
                 if newsVC.view.frame == homeScrollView.frame {
                     removeCalled = true
                 } else if child.view.frame == homeScrollView.frame && child != newsVC {
@@ -653,7 +668,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             }
             break;
         case 5:
-            for child in childs {
+            for child in childViewControllers {
                 if resultsVC.view.frame == homeScrollView.frame {
                     removeCalled = true
                 } else if child.view.frame == homeScrollView.frame && child != resultsVC {
@@ -668,12 +683,11 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             }
             break;
         default:
-            for child in childs {
-                if child.view.frame == homeScrollView.frame {
-                    _ = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false, block: { (timer) in
-                        self.removeAChildViewFromView(child: child, childToAdd: nil)
-                    })
-                }
+            for child in childViewControllers {
+                _ = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false, block: { (timer) in
+                    self.removeAChildViewFromView(child: child, childToAdd: nil)
+                })
+                
             }
             break;
         }
@@ -682,6 +696,28 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             tableView.isUserInteractionEnabled = true
         })
     }
+    
+//    func addFilterToImage(blendMode: CGBlendMode, alpha: CGFloat) -> UIImage? {
+//        
+//        if let img = UIImage(named: "shadow"), let img2 = UIImage(named: "Button") {
+//            let rect = CGRect(x: 0, y: 0, width: galeryBtnView.frame.width, height: galeryBtnView.frame.height)
+//            let renderer = UIGraphicsImageRenderer(size: CGSize(width: galeryBtnView.frame.width, height: galeryBtnView.frame.height))
+//            
+//            let result = renderer.image { ctx in
+//                // fill the background with white so that translucent colors get lighter
+//                UIColor.white.set()
+//                ctx.fill(rect)
+//                
+//                img2.draw(in: rect, blendMode: .normal, alpha: 1)
+//                img.draw(in: CGRect(x: (galeryBtnView.frame.width - 323) / 2, y: 0, width: 323, height: 36), blendMode: blendMode, alpha: alpha)
+//            }
+//            
+//            return result
+//            
+//        }
+//        return nil
+//        
+//    }
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -705,10 +741,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if news != nil {
-            return ((((news?.count)! - 5 > 10) ? 10 : ((news?.count)! < 5 ? 0 : ((news?.count)! - 5))) % 2 == 0) ? ((((news?.count)! - 5 > 10) ? 10 : ((news?.count)! < 5 ? 0 : ((news?.count)! - 5)))) : ((((news?.count)! - 5 > 10) ? 10 : ((news?.count)! < 5 ? 0 : ((news?.count)! - 5))) + 1)
-        }
-        return 0
+        return bottomNewsCount % 2 == 1 ? bottomNewsCount + 1 : bottomNewsCount
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -717,12 +750,13 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = newsCollectionView.dequeueReusableCell(withReuseIdentifier: "newsCell", for: indexPath) as! NewsCell
-        if indexPath.row < ((news?.count)! - 5) {
+        if indexPath.row < bottomNewsCount {
             cell.news = news?[5 + indexPath.row]
         } else {
             cell.activityIndicator.stopAnimating()
             cell.activityIndicator.isHidden = true
         }
+        cell.backgroundColor = UIColor.white
         return cell
     }
   
@@ -745,7 +779,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     @IBAction func sideMenuBtnPressed(_ sender: UIButton) {
         if mainScrollView.contentOffset.x == 0 {
             arrangeMainScrollViewPosition(animated: true)
-        } else if mainScrollView.contentOffset.x == UIScreen.main.bounds.width / 3 * 2 {
+        } else if floor(mainScrollView.contentOffset.x) == floor(UIScreen.main.bounds.width / 3 * 2) {
             mainScrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), animated: true)
         }
     }

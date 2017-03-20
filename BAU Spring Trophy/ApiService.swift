@@ -32,6 +32,7 @@ class ApiService: NSObject {
     var selectedCategory: Int = 0 {
         didSet {
             print("Selected Category: \(selectedCategory)")
+            NotificationCenter.default.post(name: NSNotification.Name("categorySelected"), object: nil)
         }
     }
     
@@ -156,11 +157,22 @@ class ApiService: NSObject {
         
         var dayRef: String!
         
+        if (days[day].races?.count)! > 0 {
+            completion(days[day].races!)
+            return
+        }
         
         if day == 6 {
             dayRef = "overall"
         } else {
             dayRef = "day\(day + 1)"
+        }
+        
+        if teams.isEmpty {
+            ApiService.sharedInstance.fetchTeams({ (teams) in
+                ApiService.sharedInstance.fetchResult(day: ApiService.sharedInstance.selectedDay, completion)
+            })
+            return
         }
         
         ref.child(racesRef).child(dayRef).observe(FIRDataEventType.value, with: { (snapshot) in
@@ -570,8 +582,6 @@ class ApiService: NSObject {
                     race.participantsByPlace = race.participantsByPlace.sorted(by: { $0.place! < $1.place!})
                     
                     race.participantsByPlaceOfClass = [0 : IRC0, 1: IRC1, 2: IRC2, 3: IRC3, 4: IRC4, 5: GEZGİN]
-                    
-                    self.races.append(race)
                     
                 }
                 

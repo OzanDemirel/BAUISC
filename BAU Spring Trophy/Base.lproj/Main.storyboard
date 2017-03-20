@@ -78,10 +78,10 @@
                                                                                 <real key="value" value="0.80000000000000004"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
-                                                                                <real key="value" value="5"/>
+                                                                                <real key="value" value="4"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                                                <size key="value" width="0.0" height="1"/>
+                                                                                <size key="value" width="0.0" height="2"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                                                 <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -89,20 +89,20 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="nC3-QM-Vym">
-                                                                        <rect key="frame" x="148" y="387" width="118.33333333333337" height="33.333333333333314"/>
+                                                                        <rect key="frame" x="153.33333333333331" y="387" width="109.00000000000006" height="33.333333333333314"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="E4x-wu-sQP" userLabel="GaleryStackView">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="118.33333333333337" height="16.333333333333314"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="109.00000000000006" height="16.333333333333314"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GALERİ  /" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="Qru-dy-HTp">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="66" height="16.333333333333314"/>
-                                                                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="13"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="61" height="16.333333333333314"/>
+                                                                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="12"/>
                                                                                         <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  GALERY" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="F4i-B2-oKZ">
-                                                                                        <rect key="frame" x="66" y="0.0" width="52.333333333333371" height="16.333333333333314"/>
-                                                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
+                                                                                        <rect key="frame" x="61" y="0.0" width="48.000000000000057" height="16.333333333333314"/>
+                                                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="11"/>
                                                                                         <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
@@ -112,7 +112,7 @@
                                                                                 </constraints>
                                                                             </stackView>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="jsZ-ru-0Vu">
-                                                                                <rect key="frame" x="48.333333333333314" y="21.333333333333314" width="22" height="12"/>
+                                                                                <rect key="frame" x="43.333333333333371" y="21.333333333333314" width="22" height="12"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="22" id="38k-3V-lEo"/>
                                                                                     <constraint firstAttribute="height" constant="12" id="Qmt-BB-adv"/>
@@ -127,7 +127,7 @@
                                                                         </constraints>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                                                <real key="value" value="0.80000000000000004"/>
+                                                                                <real key="value" value="0.59999999999999998"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
                                                                                 <real key="value" value="4"/>
@@ -136,25 +136,25 @@
                                                                                 <size key="value" width="0.0" height="2"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="DY8-Hd-nD5">
-                                                                        <rect key="frame" x="132.33333333333331" y="321" width="149.66666666666669" height="33.333333333333314"/>
+                                                                        <rect key="frame" x="138.33333333333331" y="321" width="138.00000000000006" height="33.333333333333314"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="2UJ-iV-e4p" userLabel="ResultsStackView">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="149.66666666666669" height="16.333333333333314"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="138.00000000000006" height="16.333333333333314"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SONUÇLAR  /" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="DYh-oU-stM">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="94.666666666666686" height="16.333333333333314"/>
-                                                                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="13"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="87.666666666666686" height="16.333333333333314"/>
+                                                                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="12"/>
                                                                                         <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  RESULTS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="u7a-yM-o7G">
-                                                                                        <rect key="frame" x="94.666666666666686" y="0.0" width="55" height="16.333333333333314"/>
-                                                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
+                                                                                        <rect key="frame" x="87.666666666666686" y="0.0" width="50.333333333333371" height="16.333333333333314"/>
+                                                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="11"/>
                                                                                         <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
@@ -164,7 +164,7 @@
                                                                                 </constraints>
                                                                             </stackView>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Or1-gY-WZ3">
-                                                                                <rect key="frame" x="64" y="21.333333333333314" width="22" height="12"/>
+                                                                                <rect key="frame" x="58" y="21.333333333333314" width="22" height="12"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="22" id="J53-mc-VoG"/>
                                                                                     <constraint firstAttribute="height" constant="12" id="VdT-oR-wOS"/>
@@ -179,7 +179,7 @@
                                                                         </constraints>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                                                <real key="value" value="0.80000000000000004"/>
+                                                                                <real key="value" value="0.59999999999999998"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
                                                                                 <real key="value" value="4"/>
@@ -188,25 +188,25 @@
                                                                                 <size key="value" width="0.0" height="2"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="vcQ-ff-892">
-                                                                        <rect key="frame" x="139" y="254.99999999999997" width="136.33333333333337" height="33.333333333333286"/>
+                                                                        <rect key="frame" x="144.66666666666669" y="254.99999999999997" width="125.33333333333331" height="33.333333333333286"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="qHL-gg-acn" userLabel="TeamsStackView">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="136.33333333333337" height="16.333333333333314"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="125.33333333333331" height="16.333333333333314"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAKIMLAR  /" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="AKL-WF-9oM">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="88.666666666666686" height="16.333333333333314"/>
-                                                                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="13"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="81.666666666666629" height="16.333333333333314"/>
+                                                                                        <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="12"/>
                                                                                         <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  TEAMS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="US8-WP-wJP">
-                                                                                        <rect key="frame" x="88.666666666666686" y="0.0" width="47.666666666666686" height="16.333333333333314"/>
-                                                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="12"/>
+                                                                                        <rect key="frame" x="81.666666666666629" y="0.0" width="43.666666666666686" height="16.333333333333314"/>
+                                                                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="11"/>
                                                                                         <color key="textColor" red="0.0039215686274509803" green="0.33333333333333331" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
@@ -216,7 +216,7 @@
                                                                                 </constraints>
                                                                             </stackView>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="LoV-n7-5lB">
-                                                                                <rect key="frame" x="57.333333333333314" y="21.333333333333314" width="22" height="12"/>
+                                                                                <rect key="frame" x="51.666666666666629" y="21.333333333333314" width="22" height="12"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" constant="22" id="9Bq-Qn-kLY"/>
                                                                                     <constraint firstAttribute="height" constant="12" id="mTq-69-R66"/>
@@ -238,7 +238,7 @@
                                                                                 <real key="value" value="5"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                                                <size key="value" width="0.0" height="3"/>
+                                                                                <size key="value" width="0.0" height="2"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                                                 <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>

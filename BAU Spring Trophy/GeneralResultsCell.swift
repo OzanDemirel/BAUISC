@@ -12,7 +12,19 @@ class GeneralResultsCell: UITableViewCell {
     
     var participant: Participant? {
         didSet {
-
+            if let participant = participant {
+                if let place = participant.place , let team = participant.team {
+                    teamName.text = "\(place)" + "- " + ((team.teamName)?.uppercased())!
+                }
+                if let team = participant.team {
+                    boatType.text = team.boatType?.uppercased()
+                    finishTime.text = participant.finishTime
+                    boatClass.text = team.boatClass?.uppercased()
+                    boatRaiting.text = team.boatRaiting
+                    
+                    extraTime.text = participant.extraTime
+                }
+            }
             setupViews()
         }
     }
@@ -34,7 +46,6 @@ class GeneralResultsCell: UITableViewCell {
         let label = UILabel()
         label.textColor = UIColor.white
         label.font = UIFont(name: "Futura-Bold", size: 10)
-        label.text = "BAU Golden Toy"
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
@@ -50,7 +61,6 @@ class GeneralResultsCell: UITableViewCell {
         let label = UILabel()
         label.textColor = UIColor(red: 249/255, green: 185/255, blue: 24/255, alpha: 1)
         label.font = UIFont(name: "Futura", size: 8)
-        label.text = "Mumm 30"
         return label
     }()
     
@@ -58,7 +68,6 @@ class GeneralResultsCell: UITableViewCell {
         let label = UILabel()
         label.textColor = UIColor.white
         label.font = UIFont(name: "Futura-Bold", size: 10)
-        label.text = "3:42:35"
         label.textAlignment = .right
         return label
     }()
@@ -67,7 +76,6 @@ class GeneralResultsCell: UITableViewCell {
         let label = UILabel()
         label.textColor = UIColor(red: 249/255, green: 185/255, blue: 24/255, alpha: 1)
         label.font = UIFont(name: "Futura", size: 8)
-        label.text = "IRC 1"
         label.textAlignment = .right
         return label
     }()
@@ -76,7 +84,6 @@ class GeneralResultsCell: UITableViewCell {
         let label = UILabel()
         label.textColor = UIColor(red: 249/255, green: 185/255, blue: 24/255, alpha: 1)
         label.font = UIFont(name: "Futura", size: 8)
-        label.text = "1.057"
         return label
     }()
     
@@ -84,7 +91,6 @@ class GeneralResultsCell: UITableViewCell {
         let label = UILabel()
         label.textColor = UIColor.red
         label.font = UIFont(name: "Futura", size: 8)
-        label.text = "+03:42"
         label.textAlignment = .right
         return label
     }()

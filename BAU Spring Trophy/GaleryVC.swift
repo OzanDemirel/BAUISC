@@ -32,11 +32,6 @@ class GaleryVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         selectionBarView.selectionView.selectItem(at: IndexPath(item: Int(round(scrollView.contentOffset.x / scrollView.frame.width)), section: 0), animated: false, scrollPosition: [])
     }

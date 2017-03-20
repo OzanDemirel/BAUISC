@@ -36,7 +36,7 @@ class DesignableView: UIImageView {
     }
     
     override func awakeFromNib() {
-        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
+        //layer.shadowPath = UIBezierPath(rect: bounds).cgPath
         layer.shouldRasterize = true
     }
 }

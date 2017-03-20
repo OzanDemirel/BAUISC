@@ -137,6 +137,8 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidAppear(_ animated: Bool) {
         
+        crewTableView.reloadData()
+        
         if team?.crew != nil {
             crewTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.middle, animated: false)
         }
@@ -195,6 +197,7 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         view.addConstraint(NSLayoutConstraint(item: boatClass, attribute: .centerY, relatedBy: .equal, toItem: teamInfoImage, attribute: .centerY, multiplier: 1, constant: teamInfoImage.frame.height / 8 * 3))
         view.addConstraint(NSLayoutConstraint(item: boatClass, attribute: .leading, relatedBy: .equal, toItem: _boatClass, attribute: .trailing, multiplier: 1, constant: 10))
         view.addConstraintsWithVisualFormat(format: "V:[v0(8)]", views: boatClass)
+        
         
     }
     

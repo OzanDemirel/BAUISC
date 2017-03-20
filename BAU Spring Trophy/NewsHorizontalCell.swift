@@ -14,21 +14,21 @@ class NewsHorizontalCell: BaseCell {
         let imageView = CustomImageView()
         imageView.contentMode = UIViewContentMode.scaleAspectFill
         imageView.clipsToBounds = true
-        imageView.layer.masksToBounds = true
         return imageView
     }()
     
     var news: News? {
         didSet {
-            newsDescription.text = news?.title
+            newsTitle.text = news?.title
             
             setNewsImage()
+            
         }
     }
     
-    let newsDescription: UITextView = {
+    let newsTitle: UITextView = {
         let textView = UITextView()
-        textView.font = UIFont(name: "Futura-Medium", size: 15)
+        textView.font = UIFont(name: "Futura", size: 12)
         textView.isScrollEnabled = false
         textView.backgroundColor = UIColor.clear
         textView.textAlignment = .center
@@ -36,8 +36,9 @@ class NewsHorizontalCell: BaseCell {
         textView.isSelectable = false
         textView.isScrollEnabled = false
         textView.isUserInteractionEnabled = false
+        textView.adjustsFontForContentSizeCategory = true
+        textView.textContainer.maximumNumberOfLines = 0
         textView.textColor = UIColor(red: 249/255, green: 185/255, blue: 24/255, alpha: 1)
-        textView.textContainer.maximumNumberOfLines = 2
         return textView
     }()
     
@@ -59,10 +60,10 @@ class NewsHorizontalCell: BaseCell {
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: newsImageView)
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: newsImageView)
         
-        addSubview(newsDescription)
-        addConstraintsWithVisualFormat(format: "H:[v0(\(frame.width / 2))]", views: newsDescription)
-        addConstraintsWithVisualFormat(format: "V:|-\(frame.height / 2 + 10)-[v0]-40-|", views: newsDescription)
-        addConstraint(NSLayoutConstraint(item: newsDescription, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
+        addSubview(newsTitle)
+        addConstraintsWithVisualFormat(format: "H:|-70-[v0]-70-|", views: newsTitle)
+        addConstraintsWithVisualFormat(format: "V:|-\(frame.height / 2 + 10)-[v0]-30-|", views: newsTitle)
+        addConstraint(NSLayoutConstraint(item: newsTitle, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
         
     }
 

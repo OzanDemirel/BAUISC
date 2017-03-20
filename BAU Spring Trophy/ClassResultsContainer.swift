@@ -20,27 +20,83 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
         return table
     }()
     
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.color = UIColor(red: 251/255, green: 173/255, blue: 24/255, alpha: 1)
+        return indicator
+    }()
+    
+    var results: [Race]? {
+        didSet {
+            tableView.reloadData()
+            if results != nil {
+                activityIndicator.stopAnimating()
+                activityIndicator.isHidden = true
+            }
+        }
+    }
+    
     let cellId = "classResultsCell"
     
     let classes = ["IRC0", "IRC1", "IRC2", "IRC3", "IRC4", "GEZGİN"]
-    let classMemberCount = [9, 13, 16, 12, 19, 7]
     
     override func setupViews() {
         super.setupViews()
         
         tableView.register(ClassResultsCell.self, forCellReuseIdentifier: cellId)
         
+        addSubview(activityIndicator)
+        addConstraintsWithVisualFormat(format: "H:|-\(UIScreen.main.bounds.width / 2 - 20)-[v0(40)]-\(UIScreen.main.bounds.width / 2 - 20)-|", views: activityIndicator)
+        addConstraintsWithVisualFormat(format: "V:|-40-[v0(40)]", views: activityIndicator)
+        activityIndicator.startAnimating()
+        
         addSubview(tableView)
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: tableView)
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: tableView)
         
+        fetchResultsForFirstTime()
+
         NotificationCenter.default.addObserver(self, selector: #selector(ClassResultsContainer.setTablePosition), name: NSNotification.Name("AnyChildAddedToView"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ClassResultsContainer.categorySelected), name: NSNotification.Name("categorySelected"), object: nil)
+        
+    }
+
+    func fetchResultsForFirstTime() {
+        
+        ApiService.sharedInstance.fetchResult(day: ApiService.sharedInstance.selectedDay) { (races) in
+            self.results = races
+            self.tableView.reloadData()
+        }
+        
+    }
+
+    func setTablePosition() {
+        
+        if results != nil {
+            if (results?[ApiService.sharedInstance.selectedRace].participantsByPlace.count)! > 0 {
+                tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.middle, animated: false)
+            }
+        }
+        
+        ApiService.sharedInstance.fetchResult(day: ApiService.sharedInstance.selectedDay) { (races: [Race]) in
+            self.results = races
+        }
         
     }
     
-    func setTablePosition() {
-        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.middle, animated: false)
+    func categorySelected() {
+        
+        if results == nil {
+            
+            ApiService.sharedInstance.fetchResult(day: ApiService.sharedInstance.selectedDay, { (races) in
+                self.results = races
+            })
+        } else {
+            tableView.reloadData()
+        }
     }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -90,15 +146,18 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ClassResultsCell
+        if let participant = results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfClass[indexPath.section]?[indexPath.row] {
+            cell.participant = participant
+        }
         return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return classes.count
+        return results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfClass.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return classMemberCount[section]
+        return results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfClass[section]!.count ?? 0
     }
     
 }

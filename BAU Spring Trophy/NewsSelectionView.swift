@@ -29,6 +29,10 @@ class NewsSelectionView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     
     func setSelectionViews() {
         
+        if collectionView.frame != .zero {
+            collectionView.removeFromSuperview()
+        }
+        
         addSubview(collectionView)
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: collectionView)
         addConstraintsWithVisualFormat(format: "H:[v0(\((trendNewsCount * 10) + (2 * trendNewsCount - 1)))]", views: collectionView)
