@@ -19,11 +19,17 @@ class NewsCell: BaseCell {
     
     var news: News? {
         didSet {
-            newsDescription.text = news?.title
+            newsTitle.text = news?.title
             
             //setNewsImage()
+            
+            let height = CGFloat(calculateRequiredLineCount())
+            newsTitleHeightConstraint.constant = (height <= (frame.height / 2 - 5)) ? height : (frame.height / 2 - 5)
         }
+        
     }
+    
+    var newsTitleHeightConstraint: NSLayoutConstraint!
     
     let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
@@ -31,17 +37,21 @@ class NewsCell: BaseCell {
         return indicator
     }()
     
-    let newsDescription: UITextView = {
+    let newsTitle: UITextView = {
         let textView = UITextView()
-        textView.font = UIFont(name: "Futura", size: 11)
+        textView.font = UIFont(name: "Futura-Bold", size: 12)
         textView.isScrollEnabled = false
         textView.backgroundColor = UIColor.clear
         textView.textAlignment = .center
+        textView.layer.shadowColor = UIColor.black.cgColor
+        textView.layer.shadowOpacity = 1
+        textView.layer.shadowRadius = 1
+        textView.layer.shadowOffset = CGSize(width: 0, height: 0)
         textView.isEditable = false
         textView.isSelectable = false
         textView.isScrollEnabled = false
         textView.isUserInteractionEnabled = false
-        textView.adjustsFontForContentSizeCategory = true
+        textView.sizeToFit()
         textView.textContainer.maximumNumberOfLines = 0
         textView.textColor = UIColor(red: 249/255, green: 185/255, blue: 24/255, alpha: 1)
         return textView
@@ -59,7 +69,7 @@ class NewsCell: BaseCell {
         
         if let url = news?.imageURL {
             
-            newsImageView.loadImageUsingUrlString(url, filterName: "CellFilter", blendMode: .hue, alpha: 1, {
+            newsImageView.loadImageUsingUrlString(url, filterName: "CellFilter", blendMode: .hue, alpha: 1, forCell: true, {
                 
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.isHidden = true
@@ -70,6 +80,14 @@ class NewsCell: BaseCell {
         
     }
     
+    func calculateRequiredLineCount() -> Int {
+        var lineCount = 0;
+        let textSize = CGSize(width: frame.width - 10, height: CGFloat(Float.infinity))
+        let rHeight = lroundf(Float(newsTitle.sizeThatFits(textSize).height))
+        let charSize = lroundf(Float((newsTitle.font?.lineHeight)!))
+        lineCount = rHeight/charSize
+        return lineCount * charSize
+    }
 
     override func setupViews() {
         
@@ -87,11 +105,14 @@ class NewsCell: BaseCell {
         addSubview(newsImageView)
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: newsImageView)
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: newsImageView)
+
+        addSubview(newsTitle)
+        addConstraint(NSLayoutConstraint(item: newsTitle, attribute: .bottom, relatedBy: .equal, toItem: newsImageView, attribute: .bottom, multiplier: 1, constant: -5))
+        addConstraintsWithVisualFormat(format: "H:|-5-[v0]-5-|", views: newsTitle)
         
-        addSubview(newsDescription)
-        addConstraintsWithVisualFormat(format: "H:|-10-[v0]-10-|", views: newsDescription)
-        addConstraintsWithVisualFormat(format: "V:|-\(frame.height / 2 + 20)-[v0]-10-|", views: newsDescription)
-        addConstraint(NSLayoutConstraint(item: newsDescription, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
+        //height constraint
+        newsTitleHeightConstraint = NSLayoutConstraint(item: newsTitle, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: frame.height / 2)
+        addConstraint(newsTitleHeightConstraint!)
         
     }
     

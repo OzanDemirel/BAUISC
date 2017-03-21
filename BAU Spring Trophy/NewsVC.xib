@@ -59,7 +59,7 @@
                     </userDefinedRuntimeAttributes>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HABERLER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="iCp-da-cjt">
-                    <rect key="frame" x="175.5" y="14.5" width="64.5" height="16"/>
+                    <rect key="frame" x="174.5" y="15" width="65" height="16"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="iCp-da-cjt" secondAttribute="height" multiplier="65:16" id="vrN-LD-Ok6"/>
                     </constraints>

@@ -89,7 +89,11 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        NotificationCenter.default.post(name: NSNotification.Name("teamSelected"), object: nil)
+        if let team = results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfClass[indexPath.section]?[indexPath.row].team {
+            
+            NotificationCenter.default.post(name: NSNotification.Name("teamSelected"), object: nil, userInfo: ["team": team])
+            
+        }
         
     }
     

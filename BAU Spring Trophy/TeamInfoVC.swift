@@ -21,7 +21,7 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             boatType.text = team?.boatType?.uppercased()
             boatClass.text = team?.boatClass?.uppercased()
             boatRaiting.text = team?.boatRaiting?.uppercased()
-            teamNameLbl.text = team?.teamName?.capitalized
+            teamNameLbl.text = team?.teamName?.uppercased()
             
             crewTableView.reloadData()
         }

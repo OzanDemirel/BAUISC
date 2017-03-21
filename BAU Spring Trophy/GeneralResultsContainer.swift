@@ -10,6 +10,8 @@ import UIKit
 
 class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSource {
     
+    var homeVC: HomeVC?
+    
     lazy var tableView: UITableView = {
         let table = UITableView()
         table.backgroundColor = UIColor.clear
@@ -88,7 +90,11 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        NotificationCenter.default.post(name: NSNotification.Name("teamSelected"), object: nil)
+        if let team = results?[ApiService.sharedInstance.selectedRace].participantsByPlace[indexPath.row].team {
+            
+            NotificationCenter.default.post(name: NSNotification.Name("teamSelected"), object: nil, userInfo: ["team": team])
+            
+        }
         
     }
     

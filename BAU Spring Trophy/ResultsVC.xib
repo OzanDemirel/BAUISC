@@ -153,7 +153,7 @@
                     </userDefinedRuntimeAttributes>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SONUÇLAR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="H7a-5S-eWT">
-                    <rect key="frame" x="171.5" y="15" width="72.5" height="16"/>
+                    <rect key="frame" x="171" y="15" width="72" height="16"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="H7a-5S-eWT" secondAttribute="height" multiplier="9:2" id="44a-yb-RCJ"/>
                     </constraints>

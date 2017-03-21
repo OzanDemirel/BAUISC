@@ -113,6 +113,11 @@ class NewsScrollPages: DesignableView, UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+        
+        if let news = homeVC?.news?[indexPath.row % (newsCount > 4 ? 5 : newsCount)] {
+            homeVC?.addNewsContentViewToView(news: news)
+        }
+        
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

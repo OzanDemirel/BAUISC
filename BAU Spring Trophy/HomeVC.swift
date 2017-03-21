@@ -25,12 +25,16 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     @IBOutlet weak var newsSelectionView: NewsSelectionView!
     @IBOutlet weak var leftArrow: UIButton!
     @IBOutlet weak var rightArrow: UIButton!
+    @IBOutlet weak var launchScreenView: UIView!
+    @IBOutlet weak var adBanner: UIImageView!
+    @IBOutlet weak var adBannerButton: UIButton!
     
     @IBOutlet weak var mainScrollViewContentWidth: NSLayoutConstraint!
     @IBOutlet weak var mainScrollViewContentHeight: NSLayoutConstraint!
     @IBOutlet weak var sideMenuWidth: NSLayoutConstraint!
     @IBOutlet weak var mainMenuWidth: NSLayoutConstraint!
     @IBOutlet weak var homeScrollContentViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var launchScreenIconHeight: NSLayoutConstraint!
     
     var teamsTapGesture: UITapGestureRecognizer!
     
@@ -52,14 +56,28 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         return button
     }()
     
+    var shadowViewButton: UIButton = {
+        let button = UIButton()
+        return button
+    }()
+    
     var bottomNewsCount = 0
     
     var teamsVC: TeamsVC!
     var teamInfoVC: TeamInfoVC!
     
     var newsVC: NewsVC!
+    var newsContentVC: NewsContentVC!
     
     var galeryVC: GaleryVC!
+    
+    var imagePreviewScrollView = UIScrollView()
+    var imagePreview = UIImageView()
+    var imagePreviewTapGesture: UITapGestureRecognizer!
+    var imagePreviewNavigationBar = UIImageView()
+    var imagePreviewDoneButton = UIButton()
+    var imagePreviewSaveButton = UIButton()
+    var imagePreviewLogo = UIImageView()
     
     var resultsVC: ResultsVC!
     
@@ -121,7 +139,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         teamsTapGesture = UITapGestureRecognizer(target: self, action: #selector(HomeVC.teamsTapGestureActive(sender:)))
         teamsTapGesture.cancelsTouchesInView = false
         homeScrollView.addGestureRecognizer(teamsTapGesture)
-
+        
         homeScrollContentView.addSubview(newsCollectionView)
         homeScrollContentView.sendSubview(toBack: newsCollectionView)
         
@@ -129,14 +147,27 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
 //        resultsBtnView.image = addFilterToImage(blendMode: .multiply, alpha: 1)
 //        teamsBtnView.image = addFilterToImage(blendMode: .multiply, alpha: 1)
         
+        setImagePreviewView()
+        
     }
-
     
     func fetchNews() {
         
         ApiService.sharedInstance.fetchNews { (news: [News]) in
             self.news = news
             self.setTrendNews(news: news)
+            self.startLaunchScreenAnimation()
+        }
+        
+    }
+    
+    func startLaunchScreenAnimation() {
+        
+        UIView.animate(withDuration: 0.4, animations: {
+            self.launchScreenView.alpha = 0
+        }) { (true) in
+            self.view.isUserInteractionEnabled = true
+            self.launchScreenView.removeFromSuperview()
         }
         
     }
@@ -167,6 +198,180 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         }
     }
     
+    func setImagePreviewView() {
+        
+        imagePreviewScrollView.delegate = self
+        imagePreviewScrollView.frame = UIScreen.main.bounds
+        imagePreviewScrollView.showsVerticalScrollIndicator = false
+        imagePreviewScrollView.showsHorizontalScrollIndicator = false
+        imagePreviewScrollView.backgroundColor = UIColor.white
+        imagePreview.frame = imagePreviewScrollView.frame
+        imagePreview.isUserInteractionEnabled = true
+        imagePreview.contentMode = .scaleAspectFit
+        imagePreviewScrollView.addSubview(imagePreview)
+        
+        
+        imagePreviewNavigationBar.contentMode = .scaleAspectFill
+        imagePreviewNavigationBar.image = UIImage(named: "NavigationBarBackground")
+        imagePreviewNavigationBar.clipsToBounds = true
+        imagePreviewNavigationBar.isUserInteractionEnabled = true
+        imagePreviewNavigationBar.frame = CGRect(x: 0, y: -100, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width / 23 * 5)
+        
+        imagePreviewLogo.contentMode = .scaleAspectFit
+        imagePreviewLogo.image = UIImage(named: "TrophyHorizontalLogo")
+        imagePreviewNavigationBar.addSubview(imagePreviewLogo)
+        imagePreviewNavigationBar.addConstraintsWithVisualFormat(format: "V:|-20-[v0]-10-|", views: imagePreviewLogo)
+        imagePreviewNavigationBar.addConstraintsWithVisualFormat(format: "H:[v0(100)]", views: imagePreviewLogo)
+        imagePreviewNavigationBar.addConstraint(NSLayoutConstraint(item: imagePreviewLogo, attribute: .centerX, relatedBy: .equal, toItem: imagePreviewNavigationBar, attribute: .centerX, multiplier: 1, constant: 0))
+        
+        imagePreviewDoneButton.setImage(UIImage(named: "LeftArrow"), for: UIControlState.normal)
+        imagePreviewDoneButton.contentMode = UIViewContentMode.scaleAspectFit
+        imagePreviewDoneButton.addTarget(self, action: #selector(HomeVC.imagePreviewDoneButtonPressed(_:)), for: UIControlEvents.touchUpInside)
+        imagePreviewNavigationBar.addSubview(imagePreviewDoneButton)
+        imagePreviewNavigationBar.addConstraintsWithVisualFormat(format: "H:|-20-[v0(30)]", views: imagePreviewDoneButton)
+        imagePreviewNavigationBar.addConstraintsWithVisualFormat(format: "V:[v0(30)]", views: imagePreviewDoneButton)
+        imagePreviewNavigationBar.addConstraint(NSLayoutConstraint(item: imagePreviewDoneButton, attribute: .centerY, relatedBy: .equal, toItem: imagePreviewNavigationBar, attribute: .centerY, multiplier: 1, constant: 10))
+        
+        imagePreviewNavigationBar.addSubview(imagePreviewSaveButton)
+        imagePreviewSaveButton.setTitle("Kaydet", for: UIControlState.normal)
+        imagePreviewSaveButton.titleLabel?.textAlignment = .right
+        imagePreviewSaveButton.addTarget(self, action: #selector(HomeVC.imagePreviewSaveButtonPressed(_:)), for: .touchUpInside)
+        imagePreviewSaveButton.titleLabel?.font = UIFont(name: "Futura-Bold", size: 14)
+        imagePreviewSaveButton.setTitleColor(UIColor(red: 249/255, green: 185/255, blue: 24/255, alpha: 1), for: .normal)
+        imagePreviewNavigationBar.addConstraintsWithVisualFormat(format: "H:[v0]-20-|", views: imagePreviewSaveButton)
+        imagePreviewNavigationBar.addConstraintsWithVisualFormat(format: "V:[v0(50)]", views: imagePreviewSaveButton)
+        imagePreviewNavigationBar.addConstraint(NSLayoutConstraint(item: imagePreviewSaveButton, attribute: .centerY, relatedBy: .equal, toItem: imagePreviewNavigationBar, attribute: .centerY, multiplier: 1, constant: 10))
+        
+        imagePreviewTapGesture = UITapGestureRecognizer(target: self, action: #selector(HomeVC.imagePreviewTapGestureActive(_:)))
+        imagePreviewTapGesture.cancelsTouchesInView = false
+        imagePreviewScrollView.addGestureRecognizer(imagePreviewTapGesture)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(HomeVC.didSelectAnImage(_:)), name: NSNotification.Name("didSelectAnImage"), object: nil)
+        
+    }
+    
+    func imagePreviewDoneButtonPressed(_ button: UIButton) {
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.imagePreviewNavigationBar.frame.origin = CGPoint(x: 0, y: -self.imagePreviewNavigationBar.frame.height)
+        }) { (true) in
+            self.imagePreviewNavigationBar.removeFromSuperview()
+            self.mainScrollView.isScrollEnabled = true
+        }
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.imagePreviewScrollView.alpha = 0
+        }) { (true) in
+            self.imagePreviewScrollView.removeFromSuperview()
+        }
+    }
+    
+    func imagePreviewSaveButtonPressed(_ button: UIButton) {
+        
+        if let image = imagePreview.image {
+            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+            
+            let alert = UIAlertController(title: "Görsel Kaydedildi", message: "Görsel başarıyla fotoğraf galerisine kaydedildi.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Tamam", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+    }
+    
+    func imagePreviewTapGestureActive(_ gesture: UIGestureRecognizer) {
+        gesture.isEnabled = false
+        if imagePreviewNavigationBar.frame.minY != 0 {
+            presentImagePreviewNavigationBar(gesture)
+        } else {
+            dismissImagePreviewNavigationBar(gesture)
+        }
+    }
+    
+    
+    func dismissImagePreviewNavigationBar(_ gesture: UIGestureRecognizer?) {
+        if imagePreviewNavigationBar.frame.minY == 0 {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.imagePreviewNavigationBar.frame.origin = CGPoint(x: 0, y: -self.imagePreviewNavigationBar.frame.height)
+            }) { (true) in
+                if gesture != nil {
+                    gesture!.isEnabled = true
+                }
+            }
+        }
+    }
+    
+    func presentImagePreviewNavigationBar(_ gesture: UIGestureRecognizer?) {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.imagePreviewNavigationBar.frame.origin = CGPoint(x: 0, y: 0)
+        }) { (true) in
+            if gesture != nil {
+                gesture!.isEnabled = true
+            }
+        }
+    }
+    
+    func didSelectAnImage(_ notification: NSNotification) {
+        
+        if let userInfo = notification.userInfo as? [String: Any] {
+            
+            if let image = userInfo["image"] as? UIImage {
+                view.isUserInteractionEnabled = false
+                imagePreview.image = image
+                imagePreview.frame.size = image.size
+                
+                imagePreview.frame = CGRect(x: ((imagePreviewScrollView.frame.width - image.size.width) / 2) > 0 ? ((imagePreviewScrollView.frame.width - image.size.width) / 2) : 0, y: ((imagePreviewScrollView.frame.height - image.size.height) / 2) > 0 ? ((imagePreviewScrollView.frame.height - image.size.height) / 2) : 0, width: image.size.width < UIScreen.main.bounds.width ? image.size.width : UIScreen.main.bounds.width, height: image.size.height < UIScreen.main.bounds.height ? image.size.height : UIScreen.main.bounds.height)
+                
+                imagePreviewScrollView.contentSize = imagePreview.frame.size
+                imagePreviewScrollView.minimumZoomScale = 1
+                imagePreviewScrollView.maximumZoomScale = 3
+                
+                mainScrollView.isScrollEnabled = false
+                homeScrollView.isScrollEnabled = false
+                imagePreviewScrollView.alpha = 0
+                homeView.addSubview(imagePreviewScrollView)
+                homeView.addSubview(imagePreviewNavigationBar)
+                self.presentImagePreviewNavigationBar(nil)
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.imagePreviewScrollView.alpha = 1
+                }, completion: { (true) in
+                    self.view.isUserInteractionEnabled = true
+                })
+                
+            }
+            
+        }
+        
+    }
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        centerScrollViewContents()
+        dismissImagePreviewNavigationBar(nil)
+    }
+    
+    func centerScrollViewContents() {
+        let boundsSize = imagePreviewScrollView.bounds.size
+        var contentsFrame = imagePreview.frame
+        
+        if contentsFrame.size.width < boundsSize.width {
+            contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2
+        } else {
+            contentsFrame.origin.x = 0
+        }
+        
+        if contentsFrame.size.height < boundsSize.height {
+            contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2
+        } else {
+            contentsFrame.origin.y = 0
+        }
+        
+        imagePreview.frame = contentsFrame
+        
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imagePreview
+    }
+    
     func teamsTapGestureActive(sender: UITapGestureRecognizer) {
         
         if galeryBtnView.frame.contains(sender.location(in: homeScrollView)) {
@@ -192,6 +397,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         teamInfoVC = TeamInfoVC(nibName: "TeamInfoVC", bundle: nil)
         
         newsVC = NewsVC(nibName: "NewsVC", bundle: nil)
+        newsContentVC = NewsContentVC(nibName: "NewsContentVC", bundle: nil)
         
         galeryVC = GaleryVC(nibName: "GaleryVC", bundle: nil)
         
@@ -301,7 +507,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         })
     }
     
-    func addTeamInfoPageToViewFromResultsPage() {
+    func addTeamInfoPageToViewFromResultsPage(team: Team) {
         mainScrollView.isScrollEnabled = false
         view.isUserInteractionEnabled = false
         
@@ -309,6 +515,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         homeView.addSubview(teamInfoVC.view)
         teamInfoVC.didMove(toParentViewController: self)
         teamInfoVC.homeVC = self
+        
+        teamInfoVC.team = team
         
         teamInfoVC.view.frame = homeScrollView.frame
         teamInfoVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.maxX, y: navigationBar.frame.maxY)
@@ -334,7 +542,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 self.view.isUserInteractionEnabled = true
             }
         }
-        
     }
     
     func removeTeamInfoPageFromViewFromResultsPage() {
@@ -459,6 +666,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         child.view.alpha = 0
         if child == teamsVC {
             teamsVC.homeVC = self
+        } else if child == newsVC {
+            newsVC.homeVC = self
+            newsVC.newsCollectionView.layer.shouldRasterize = true
         }
         
         NotificationCenter.default.post(name: NSNotification.Name("AnyChildAddedToView"), object: nil)
@@ -472,6 +682,12 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             self.view.isUserInteractionEnabled = true
             self.homeView.bringSubview(toFront: self.homePageShadowView)
             self.homeScrollContentView.alpha = 0
+            if child == self.newsVC {
+//                UIView.animate(withDuration: 0.5, animations: {
+//                    self.newsVC.newsCollectionView.alpha = 1
+//                })
+                self.newsVC.newsCollectionView.layer.shouldRasterize = false
+            }
         }
     
         if child == resultsVC {
@@ -486,6 +702,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         if child == resultsVC {
             NotificationCenter.default.removeObserver(self, name: NSNotification.Name("teamSelected"), object: nil)
+        }
+        if child == newsVC {
+            newsVC.newsCollectionView.layer.shouldRasterize = true
         }
         
         UIView.animate(withDuration: calculateAnimationDuration(startingPoint: child.view.frame.origin, destinationPoint: CGPoint(x: UIScreen.main.bounds.maxX, y: navigationBar.frame.maxY)), animations: {
@@ -509,8 +728,71 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         }
     }
     
+    func addNewsContentViewToView(news: News) {
+        
+        view.isUserInteractionEnabled = false
+        mainScrollView.isScrollEnabled = false
+        
+        addChildViewController(newsContentVC)
+        homeView.addSubview(newsContentVC.view)
+        newsContentVC.didMove(toParentViewController: self)
+        newsContentVC.homeVC = self
+        
+        newsContentVC.view.frame = homeScrollView.frame
+        newsContentVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.maxX, y: navigationBar.frame.maxY)
+        newsContentVC.view.alpha = 0
+        
+        self.newsContentVC.news = news
+        
+        homeView.bringSubview(toFront: homePageShadowView)
+        
+        UIView.animate(withDuration: calculateAnimationDuration(startingPoint: newsContentVC.view.frame.origin, destinationPoint: CGPoint(x: 0, y: 0)), animations: {
+            self.newsContentVC.view.frame.origin = self.homeScrollView.frame.origin
+            self.newsContentVC.view.alpha = 1
+        }) { (completion) in
+            self.view.isUserInteractionEnabled = true
+            self.homeScrollContentView.alpha = 0
+            self.newsVC.view.alpha = 0
+        }
+        
+    }
+    
+    func removeNewsContentViewFromView() {
+        
+        view.isUserInteractionEnabled = false
+        newsVC.view.alpha = 1
+        if newsVC.view.frame != homeScrollView.frame {
+            homeScrollContentView.alpha = 1
+        }
+        
+        UIView.animate(withDuration: self.calculateAnimationDuration(startingPoint: self.newsContentVC.view.frame.origin, destinationPoint: CGPoint(x: (self.newsContentVC.view.frame.maxX), y: (self.navigationBar.frame.maxY))), animations: {
+            self.newsContentVC.view.frame.origin = CGPoint(x: self.newsContentVC.view.frame.maxX, y: (self.navigationBar.frame.maxY))
+            self.newsContentVC.view.alpha = 0
+        }, completion: { (completion) in
+            self.newsContentVC.newsTitle.text = ""
+            self.newsContentVC.newsText.text = ""
+            self.newsContentVC.newsImage.image = UIImage(named: "TrendCellBackground")
+            self.newsContentVC.willMove(toParentViewController: self)
+            self.newsContentVC.view.removeFromSuperview()
+            self.newsContentVC.removeFromParentViewController()
+            self.mainScrollView.isScrollEnabled = true
+            self.view.isUserInteractionEnabled = true
+        })
+        
+    }
+    
     func teamSelectedNotificationReceived(_ notification: NSNotification) {
-        addTeamInfoPageToViewFromResultsPage()
+        
+        if let notification = notification.userInfo as? [String: Any] {
+
+            if let team = notification["team"] as? Team {
+
+                addTeamInfoPageToViewFromResultsPage(team: team)
+                
+            }
+            
+        }
+        
     }
     
     func disableMainScrollView() {
@@ -528,6 +810,11 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         homePageShadowView.alpha = 0
         homePageShadowView.isUserInteractionEnabled = false
         homeView.addSubview(homePageShadowView)
+        
+        homePageShadowView.addSubview(shadowViewButton)
+        homePageShadowView.addConstraintsWithVisualFormat(format: "H:|[v0]|", views: shadowViewButton)
+        homePageShadowView.addConstraintsWithVisualFormat(format: "V:|[v0]|", views: shadowViewButton)
+        shadowViewButton.addTarget(self, action: #selector(HomeVC.closeSideMenu), for: UIControlEvents.touchUpInside)
         
     }
     
@@ -552,6 +839,10 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         homeScrollView.isScrollEnabled = news != nil ? ((news?.count)! > 0) : false
         newsCollectionView.reloadData()
         
+    }
+    
+    func closeSideMenu() {
+        mainScrollView.scrollRectToVisible(CGRect(x: UIScreen.main.bounds.width / 3 * 2, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), animated: true)
     }
     
     func arrangeMainScrollViewPosition(animated: Bool) {
@@ -590,6 +881,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         sideMenuTableView.deselectRow(at: indexPath, animated: true)
         tableView.isUserInteractionEnabled = false
+        mainScrollView.isUserInteractionEnabled = false
         
         arrangeMainScrollViewPosition(animated: true)
         
@@ -694,6 +986,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
             tableView.isUserInteractionEnabled = true
+            self.mainScrollView.isUserInteractionEnabled = true
         })
     }
     
@@ -740,6 +1033,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         return tableView.frame.height / 9
     }
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return bottomNewsCount % 2 == 1 ? bottomNewsCount + 1 : bottomNewsCount
     }
@@ -774,6 +1069,11 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         newsCollectionView.deselectItem(at: indexPath, animated: true)
+        
+        if let news = news?[indexPath.row + 5] {
+            addNewsContentViewToView(news: news)
+        }
+        
     }
     
     @IBAction func sideMenuBtnPressed(_ sender: UIButton) {
@@ -790,6 +1090,13 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             newsScrollPages.collectionView.scrollRectToVisible(CGRect(x: newsScrollPages.collectionView.contentOffset.x - newsScrollPages.collectionView.frame.width, y: 0, width: newsScrollPages.collectionView.frame.width, height: newsScrollPages.collectionView.frame.height), animated: true)
         } else if sender.tag == 2 && newsScrollPages.collectionView.contentOffset.x.truncatingRemainder(dividingBy: newsScrollPages.collectionView.frame.width) == 0 {
             newsScrollPages.collectionView.scrollRectToVisible(CGRect(x: newsScrollPages.collectionView.contentOffset.x + newsScrollPages.collectionView.frame.width, y: 0, width: newsScrollPages.collectionView.frame.width, height: newsScrollPages.collectionView.frame.height), animated: true)
+        }
+    }
+    
+    @IBAction func adBannerButtonPressed(_ sender: UIButton) {
+        
+        if let url = URL(string: "http://www.bauisc.org") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     

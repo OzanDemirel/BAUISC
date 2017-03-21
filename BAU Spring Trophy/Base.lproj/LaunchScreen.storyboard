@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,16 +22,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="h2j-Tl-4qm">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JCV-9D-IhB" userLabel="Launch Screen View">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                            </imageView>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="www.bauisc.org" translatesAutoresizingMaskIntoConstraints="NO" id="hcA-gp-E83" userLabel="Domain ImageView">
+                                        <rect key="frame" x="162" y="452" width="90" height="12"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="12" id="90Z-cS-UHd"/>
+                                            <constraint firstAttribute="width" constant="90" id="Jev-L6-qHe"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BAUSpringTrophyVerticalLogo" translatesAutoresizingMaskIntoConstraints="NO" id="5HB-Pe-qmU">
+                                        <rect key="frame" x="132" y="323" width="151" height="90"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="5HB-Pe-qmU" secondAttribute="height" multiplier="151:90" id="Tqv-cA-7Mo"/>
+                                            <constraint firstAttribute="height" constant="90" id="bqy-ui-bfS"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="5HB-Pe-qmU" firstAttribute="centerY" secondItem="JCV-9D-IhB" secondAttribute="centerY" id="BGm-Pn-Whg"/>
+                                    <constraint firstItem="hcA-gp-E83" firstAttribute="centerX" secondItem="JCV-9D-IhB" secondAttribute="centerX" id="EpK-3p-MFJ"/>
+                                    <constraint firstItem="hcA-gp-E83" firstAttribute="centerY" secondItem="JCV-9D-IhB" secondAttribute="centerY" constant="90" id="eM2-Aa-THt"/>
+                                    <constraint firstItem="5HB-Pe-qmU" firstAttribute="centerX" secondItem="JCV-9D-IhB" secondAttribute="centerX" id="hnC-k2-xf7"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="h2j-Tl-4qm" secondAttribute="bottom" id="0dg-xm-7VW"/>
-                            <constraint firstItem="h2j-Tl-4qm" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="TAj-2q-Vst"/>
-                            <constraint firstAttribute="trailing" secondItem="h2j-Tl-4qm" secondAttribute="trailing" id="mGE-1z-ZDg"/>
-                            <constraint firstItem="h2j-Tl-4qm" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="v9c-OU-ZZI"/>
+                            <constraint firstItem="JCV-9D-IhB" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="9OF-Bv-6tj"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="JCV-9D-IhB" secondAttribute="bottom" id="enI-hc-dxe"/>
+                            <constraint firstItem="JCV-9D-IhB" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="lIx-hO-dSp"/>
+                            <constraint firstAttribute="trailing" secondItem="JCV-9D-IhB" secondAttribute="trailing" id="w4f-rv-ieS"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -40,6 +64,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchScreen" width="414" height="736"/>
+        <image name="BAUSpringTrophyVerticalLogo" width="274" height="163"/>
+        <image name="www.bauisc.org" width="95" height="11"/>
     </resources>
 </document>

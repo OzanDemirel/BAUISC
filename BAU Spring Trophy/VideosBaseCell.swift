@@ -31,7 +31,7 @@ class VideosBaseCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func arrangeCellPositions() {
-        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: UICollectionViewScrollPosition.centeredVertically, animated: false)
+        //collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: UICollectionViewScrollPosition.centeredVertically, animated: false)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -39,7 +39,7 @@ class VideosBaseCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

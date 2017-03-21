@@ -11,12 +11,13 @@ import FirebaseStorage
 
 let imageCache = NSCache<NSString, UIImage>()
 let imageFilterCache = NSCache<NSString, UIImage>()
+let imageFilterForCellCache = NSCache<NSString, UIImage>()
 
 class CustomImageView: UIImageView {
     
     var imageUrlString: String?
     
-    func loadImageUsingUrlString(_ urlString: String, filterName: String, blendMode: CGBlendMode, alpha: CGFloat, _ complete: @escaping (() -> ())) {
+    func loadImageUsingUrlString(_ urlString: String, filterName: String, blendMode: CGBlendMode, alpha: CGFloat, forCell: Bool, _ complete: @escaping (() -> ())) {
         
         imageUrlString = urlString
         
@@ -25,9 +26,46 @@ class CustomImageView: UIImageView {
         image = nil
         highlightedImage = nil
         
-        if let imageFromCache = imageCache.object(forKey: urlString as NSString), let imageFromFilterCache = imageFilterCache.object(forKey: urlString as NSString) {
-            self.image = imageFromFilterCache
-            self.highlightedImage = imageFromCache
+        if let imageFromCache = imageCache.object(forKey: urlString as NSString) {
+            
+            highlightedImage = imageFromCache
+            
+            if forCell {
+                if let imageFromFilterCache = imageFilterForCellCache.object(forKey: urlString as NSString) {
+                    DispatchQueue.main.async(execute: { 
+                        self.image = imageFromFilterCache
+                        complete()
+                    })
+                    return
+                }
+            } else {
+                if let imageFromFilterCache = imageFilterCache.object(forKey: urlString as NSString) {
+                    self.image = imageFromFilterCache
+                    complete()
+                    return
+                }
+            }
+            if self.imageUrlString == urlString {
+                
+                DispatchQueue.main.async(execute: {
+                    
+                    let img = self.cropToBounds(image: imageFromCache)
+                    
+                    if let imageToFilterCache = self.addFilterToImage(baseImage: img, filterName: filterName, blendMode: blendMode, alpha: alpha) {
+                        
+                        if forCell {
+                            imageFilterForCellCache.setObject(imageToFilterCache, forKey: urlString as NSString)
+                        } else {
+                            imageFilterCache.setObject(imageToFilterCache, forKey: urlString as NSString)
+                        }
+                        if self.imageUrlString == urlString {
+                            self.image = imageToFilterCache
+                        }
+
+                    }
+                    complete()
+                })
+            }
             return
         }
         
@@ -42,22 +80,26 @@ class CustomImageView: UIImageView {
                 
                 if let imageToCache = UIImage(data: data!) {
                     
-                    let img = self.cropToBounds(image: imageToCache)
-                    
                     if self.imageUrlString == urlString {
-                        self.highlightedImage = img
-                    }
-                    
-                    imageCache.setObject(img, forKey: urlString as NSString)
-                    
-                    if let imageToFilterCache = self.addFilterToImage(filterName: filterName, blendMode: blendMode, alpha: alpha) {
+                        self.highlightedImage = imageToCache
                         
-                        if self.imageUrlString == urlString {
-                            self.image = imageToFilterCache
+                        let img = self.cropToBounds(image: imageToCache)
+                        
+                        imageCache.setObject(imageToCache, forKey: urlString as NSString)
+                        
+                        if let imageToFilterCache = self.addFilterToImage(baseImage: img, filterName: filterName, blendMode: blendMode, alpha: alpha) {
+                            
+                            if self.imageUrlString == urlString {
+                                self.image = imageToFilterCache
+                            }
+                            
+                            if forCell {
+                                imageFilterForCellCache.setObject(imageToFilterCache, forKey: urlString as NSString)
+                            } else {
+                                imageFilterCache.setObject(imageToFilterCache, forKey: urlString as NSString)
+                            }
+                            
                         }
-                        
-                        imageFilterCache.setObject(imageToFilterCache, forKey: urlString as NSString)
-                        
                     }
                     
                     complete()
@@ -70,9 +112,9 @@ class CustomImageView: UIImageView {
         
     }
     
-    func addFilterToImage(filterName: String, blendMode: CGBlendMode, alpha: CGFloat) -> UIImage? {
+    func addFilterToImage(baseImage: UIImage, filterName: String, blendMode: CGBlendMode, alpha: CGFloat) -> UIImage? {
         
-        if let img = highlightedImage, let img2 = UIImage(named: filterName) {
+        if let img2 = UIImage(named: filterName) {
             let rect = frame
             let renderer = UIGraphicsImageRenderer(size: bounds.size)
             
@@ -81,7 +123,7 @@ class CustomImageView: UIImageView {
                 UIColor.white.set()
                 ctx.fill(rect)
                 
-                img.draw(in: rect, blendMode: .normal, alpha: 1)
+                baseImage.draw(in: rect, blendMode: .normal, alpha: 1)
                 img2.draw(in: rect, blendMode: blendMode, alpha: alpha)
             }
             
