@@ -17,6 +17,8 @@ class ApiService: NSObject {
     let newsRef = "news"
     let teamsRef = "teams"
     let racesRef = "races"
+    let photosRef = "photos"
+    let adsRef = "ads"
     
     var selectedDay: Int = 0 {
         didSet {
@@ -139,6 +141,82 @@ class ApiService: NSObject {
                 DispatchQueue.main.async(execute: {
                     completion(self.teams)
                 })
+            }
+            
+        })
+        
+    }
+    
+    var photos = [Photo]()
+    
+    func fetchPhotos(_ completion: @escaping ([Photo]) -> ()) {
+        
+        ref.child(photosRef).observe(FIRDataEventType.value, with: { (snapshot) in
+            
+            self.photos = []
+            
+            if let data = snapshot.value as? [String: AnyObject] {
+                
+                for dictionary in data {
+                    
+                    if let dict = dictionary.value as? [String: AnyObject] {
+                        
+                        let photo = Photo()
+                        
+                        if let order = dict["order"] as? Int {
+                            photo.order = order
+                        }
+                        
+                        if let imageURL = dict["imageURL"] as? String {
+                            photo.imageURL = imageURL
+                        }
+                        
+                        self.photos.append(photo)
+                        
+                    }
+                    
+                }
+                
+                self.photos = self.photos.sorted(by: { $0.order! > $1.order!})
+                
+                DispatchQueue.main.async(execute: {
+                    completion(self.photos)
+                })
+            }
+            
+        })
+        
+    }
+    
+    func fetchAds(_ completion: @escaping (Ads) -> ()) {
+        
+        ref.child(adsRef).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            let ads = Ads()
+            let adsOrder = AdsOrder()
+            
+            if let data = snapshot.value as? [String: AnyObject] {
+                
+                if let fps = data["fps"] as? Int {
+                    
+                    ads.fps = TimeInterval(fps)
+                }
+                
+                for ad in data.values {
+                    
+                    if let addressURL = ad["addressURL"] as? String {
+                        
+                        
+                    }
+                    
+                    if let order = ad["order"] as? Int {
+                        
+                    }
+                    
+                    
+                    
+                }
+                
             }
             
         })

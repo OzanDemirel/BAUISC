@@ -26,7 +26,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     @IBOutlet weak var leftArrow: UIButton!
     @IBOutlet weak var rightArrow: UIButton!
     @IBOutlet weak var launchScreenView: UIView!
-    @IBOutlet weak var adBanner: UIImageView!
+    @IBOutlet weak var adBanner: AdsBanner!
     @IBOutlet weak var adBannerButton: UIButton!
     
     @IBOutlet weak var mainScrollViewContentWidth: NSLayoutConstraint!
@@ -71,9 +71,11 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
     var galeryVC: GaleryVC!
     
+    var imagePreviewBackgroundView = UIView()
     var imagePreviewScrollView = UIScrollView()
     var imagePreview = UIImageView()
     var imagePreviewTapGesture: UITapGestureRecognizer!
+    var imagePreviewTapGestureForScroll: UITapGestureRecognizer!
     var imagePreviewNavigationBar = UIImageView()
     var imagePreviewDoneButton = UIButton()
     var imagePreviewSaveButton = UIButton()
@@ -93,6 +95,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         super.viewDidLoad()
         
         fetchNews()
+        fetchAds()
         
         sideMenuTableView.delegate = self
         sideMenuTableView.dataSource = self
@@ -151,6 +154,14 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
     }
     
+    func fetchAds() {
+        
+        ApiService.sharedInstance.fetchAds { (ads) in
+            print("ads done")
+        }
+        
+    }
+    
     func fetchNews() {
         
         ApiService.sharedInstance.fetchNews { (news: [News]) in
@@ -200,6 +211,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
     func setImagePreviewView() {
         
+        imagePreviewBackgroundView.frame = UIScreen.main.bounds
+        imagePreviewBackgroundView.backgroundColor = UIColor.white
+        
         imagePreviewScrollView.delegate = self
         imagePreviewScrollView.frame = UIScreen.main.bounds
         imagePreviewScrollView.showsVerticalScrollIndicator = false
@@ -209,7 +223,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         imagePreview.isUserInteractionEnabled = true
         imagePreview.contentMode = .scaleAspectFit
         imagePreviewScrollView.addSubview(imagePreview)
-        
         
         imagePreviewNavigationBar.contentMode = .scaleAspectFill
         imagePreviewNavigationBar.image = UIImage(named: "NavigationBarBackground")
@@ -244,7 +257,11 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         imagePreviewTapGesture = UITapGestureRecognizer(target: self, action: #selector(HomeVC.imagePreviewTapGestureActive(_:)))
         imagePreviewTapGesture.cancelsTouchesInView = false
-        imagePreviewScrollView.addGestureRecognizer(imagePreviewTapGesture)
+        imagePreviewBackgroundView.addGestureRecognizer(imagePreviewTapGesture)
+        
+        imagePreviewTapGestureForScroll = UITapGestureRecognizer(target: self, action: #selector(HomeVC.imagePreviewTapGestureActive(_:)))
+        imagePreviewTapGestureForScroll.cancelsTouchesInView = false
+        imagePreviewScrollView.addGestureRecognizer(imagePreviewTapGestureForScroll)
         
         NotificationCenter.default.addObserver(self, selector: #selector(HomeVC.didSelectAnImage(_:)), name: NSNotification.Name("didSelectAnImage"), object: nil)
         
@@ -260,8 +277,10 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         }
         
         UIView.animate(withDuration: 0.5, animations: {
+            self.imagePreviewBackgroundView.alpha = 0
             self.imagePreviewScrollView.alpha = 0
         }) { (true) in
+            self.imagePreviewBackgroundView.removeFromSuperview()
             self.imagePreviewScrollView.removeFromSuperview()
         }
     }
@@ -319,20 +338,30 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 imagePreview.image = image
                 imagePreview.frame.size = image.size
                 
-                imagePreview.frame = CGRect(x: ((imagePreviewScrollView.frame.width - image.size.width) / 2) > 0 ? ((imagePreviewScrollView.frame.width - image.size.width) / 2) : 0, y: ((imagePreviewScrollView.frame.height - image.size.height) / 2) > 0 ? ((imagePreviewScrollView.frame.height - image.size.height) / 2) : 0, width: image.size.width < UIScreen.main.bounds.width ? image.size.width : UIScreen.main.bounds.width, height: image.size.height < UIScreen.main.bounds.height ? image.size.height : UIScreen.main.bounds.height)
+                if UIScreen.main.bounds.width / image.size.width <= UIScreen.main.bounds.height / image.size.height {
+                    imagePreview.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: image.size.height * (UIScreen.main.bounds.width / image.size.width))
+                    
+                } else {
+                    imagePreview.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width * (UIScreen.main.bounds.height / image.size.height), height: image.size.height)
+                }
+                imagePreviewScrollView.frame = CGRect(x: (UIScreen.main.bounds.width - imagePreview.frame.width) / 2, y: (UIScreen.main.bounds.height - imagePreview.frame.height) / 2, width: imagePreview.frame.width, height: imagePreview.frame.height)
+                imagePreviewScrollView.contentSize = image.size
                 
                 imagePreviewScrollView.contentSize = imagePreview.frame.size
                 imagePreviewScrollView.minimumZoomScale = 1
-                imagePreviewScrollView.maximumZoomScale = 3
+                imagePreviewScrollView.maximumZoomScale = 4
                 
                 mainScrollView.isScrollEnabled = false
                 homeScrollView.isScrollEnabled = false
                 imagePreviewScrollView.alpha = 0
+                imagePreviewBackgroundView.alpha = 0
+                homeView.addSubview(imagePreviewBackgroundView)
                 homeView.addSubview(imagePreviewScrollView)
                 homeView.addSubview(imagePreviewNavigationBar)
                 self.presentImagePreviewNavigationBar(nil)
                 UIView.animate(withDuration: 0.5, animations: {
                     self.imagePreviewScrollView.alpha = 1
+                    self.imagePreviewBackgroundView.alpha = 1
                 }, completion: { (true) in
                     self.view.isUserInteractionEnabled = true
                 })
@@ -349,23 +378,20 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     }
     
     func centerScrollViewContents() {
-        let boundsSize = imagePreviewScrollView.bounds.size
-        var contentsFrame = imagePreview.frame
-        
-        if contentsFrame.size.width < boundsSize.width {
-            contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2
-        } else {
-            contentsFrame.origin.x = 0
+        let contentsFrame = imagePreview.frame
+ 
+        if contentsFrame.width <= UIScreen.main.bounds.width && contentsFrame.height <= UIScreen.main.bounds.height {
+            imagePreviewScrollView.frame = contentsFrame
+        } else if contentsFrame.width <= UIScreen.main.bounds.width && contentsFrame.height > UIScreen.main.bounds.height {
+            imagePreviewScrollView.frame.size = CGSize(width: contentsFrame.size.width, height: UIScreen.main.bounds.height)
+        } else if contentsFrame.width > UIScreen.main.bounds.width && contentsFrame.height <= UIScreen.main.bounds.height {
+            imagePreviewScrollView.frame.size = CGSize(width: UIScreen.main.bounds.width, height: contentsFrame.height)
+        } else if contentsFrame.width > UIScreen.main.bounds.width && contentsFrame.height > UIScreen.main.bounds.height {
+            imagePreviewScrollView.frame.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         }
         
-        if contentsFrame.size.height < boundsSize.height {
-            contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2
-        } else {
-            contentsFrame.origin.y = 0
-        }
-        
-        imagePreview.frame = contentsFrame
-        
+        imagePreviewScrollView.contentSize = imagePreview.frame.size
+        imagePreviewScrollView.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {

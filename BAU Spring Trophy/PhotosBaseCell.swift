@@ -20,7 +20,16 @@ class PhotosBaseCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
         return cv
     }()
     
-    let fakeNews: [[String: String]] = [["News1": "News1Filter"], ["News2": "News2Filter"], ["News3": "News3Filter"]]
+    var photoCount = 0
+    
+    var photos: [Photo]? {
+        didSet {
+            if let photoCount = photos?.count {
+                self.photoCount = photoCount
+                collectionView.reloadData()
+            }
+        }
+    }
     
     override func setupViews() {
         addSubview(collectionView)
@@ -28,22 +37,35 @@ class PhotosBaseCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: collectionView)
         
         NotificationCenter.default.addObserver(self, selector: #selector(PhotosBaseCell.arrangeCellPositions), name: NSNotification.Name("AnyChildAddedToView"), object: nil)
+        
+        fetchPhotos()
 
     }
     
+    func fetchPhotos() {
+        
+        ApiService.sharedInstance.fetchPhotos { (photos: [Photo]) in
+            self.photos = photos
+        }
+        
+    }
+    
     func arrangeCellPositions() {
-        //collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: UICollectionViewScrollPosition.centeredVertically, animated: false)
+        if photoCount > 0 {
+            collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: UICollectionViewScrollPosition.centeredVertically, animated: false)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         
-        if let image = UIImage(named: fakeNews[indexPath.row].keys.first!) {
-         
-             NotificationCenter.default.post(name: NSNotification.Name("didSelectAnImage"), object: nil, userInfo: ["image": image])
-            
+        if let imageURL = photos?[indexPath.row].imageURL {
+            if let image = imageCache.object(forKey: imageURL as NSString) {
+                
+                NotificationCenter.default.post(name: NSNotification.Name("didSelectAnImage"), object: nil, userInfo: ["image": image])
+                
+            }
         }
-        
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -51,26 +73,26 @@ class PhotosBaseCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return photoCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photosCell", for: indexPath) as! PhotosCell
-        cell.customizeNewsImages(news: fakeNews[indexPath.row % 3])
+        cell.photo = photos?[indexPath.row]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.width / 2 - 0.5, height: frame.width / 3 - 0.5)
+        return CGSize(width: frame.width / 2 - 0.5, height: frame.width / 2 - 0.5)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 1
     }
     
 }

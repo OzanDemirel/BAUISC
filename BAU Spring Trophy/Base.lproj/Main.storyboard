@@ -38,7 +38,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3cz-zn-qDe" userLabel="Home Page View">
                                                 <rect key="frame" x="276" y="0.0" width="414" height="736"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xCn-Ll-2RY" userLabel="Ads ImageView">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xCn-Ll-2RY" userLabel="Ads ImageView" customClass="AdsBanner" customModule="BAU_Spring_Trophy" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="676" width="414" height="60"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -365,7 +365,7 @@
                                                             <constraint firstAttribute="width" secondItem="oY8-Sz-HtA" secondAttribute="height" multiplier="23:5" id="x7g-1X-J5a"/>
                                                         </constraints>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8b3-od-2e2">
+                                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8b3-od-2e2">
                                                         <rect key="frame" x="0.0" y="676" width="414" height="60"/>
                                                         <connections>
                                                             <action selector="adBannerButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qmt-DD-kTf"/>
