@@ -551,7 +551,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="690" height="736"/>
                     <connections>
-                        <outlet property="adBanner" destination="xCn-Ll-2RY" id="nYO-en-aSY"/>
+                        <outlet property="adBanner" destination="xCn-Ll-2RY" id="9ZH-JB-JZY"/>
                         <outlet property="adBannerButton" destination="8b3-od-2e2" id="iSt-De-Mb8"/>
                         <outlet property="bauiscLogoView" destination="H49-Qt-Mdg" id="AuH-ZH-eUb"/>
                         <outlet property="galeryBtnView" destination="f96-hJ-Qo0" id="GwS-Zu-mCC"/>

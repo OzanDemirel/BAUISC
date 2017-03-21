@@ -21,7 +21,7 @@ class NewsHorizontalCell: BaseCell {
         didSet {
             newsTitle.text = news?.title
             
-            setNewsImage()
+            //setNewsImage()
             
             for i in 0...3 {
                 let height = CGFloat(calculateRequiredLineCount())

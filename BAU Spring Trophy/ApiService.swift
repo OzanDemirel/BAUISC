@@ -193,7 +193,7 @@ class ApiService: NSObject {
         ref.child(adsRef).observeSingleEvent(of: .value, with: { (snapshot) in
             
             let ads = Ads()
-            let adsOrder = AdsOrder()
+            var adsOrder = AdsOrder()
             
             if let data = snapshot.value as? [String: AnyObject] {
                 
@@ -206,16 +206,29 @@ class ApiService: NSObject {
                     
                     if let addressURL = ad["addressURL"] as? String {
                         
+                        adsOrder.addressURL = addressURL
                         
-                    }
-                    
-                    if let order = ad["order"] as? Int {
-                        
-                    }
-                    
-                    
-                    
+                        if let order = ad["order"] as? Int {
+                            
+                            adsOrder.order = order
+                            
+                            if let imageURL = ad["imageURL"] as? String {
+                                
+                                adsOrder.imageURL = imageURL
+                                
+                            }
+                            
+                            ads.order.append(adsOrder)
+                        }
+                    }                
                 }
+                
+                ads.order = ads.order.sorted(by: { ($0.order! < $1.order!) })
+                
+                DispatchQueue.main.async(execute: {
+                    completion(ads)
+                    return
+                })
                 
             }
             

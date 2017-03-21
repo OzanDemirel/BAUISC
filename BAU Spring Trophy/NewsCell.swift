@@ -21,7 +21,7 @@ class NewsCell: BaseCell {
         didSet {
             newsTitle.text = news?.title
             
-            setNewsImage()
+            //setNewsImage()
             
             let height = CGFloat(calculateRequiredLineCount())
             newsTitleHeightConstraint.constant = (height <= (frame.height / 2 - 5)) ? height : (frame.height / 2 - 5)

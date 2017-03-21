@@ -157,7 +157,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     func fetchAds() {
         
         ApiService.sharedInstance.fetchAds { (ads) in
-            print("ads done")
+            self.adBanner.ads = ads
         }
         
     }
