@@ -193,48 +193,83 @@ class ApiService: NSObject {
         ref.child(adsRef).observeSingleEvent(of: .value, with: { (snapshot) in
             
             let ads = Ads()
-            var adsOrder = AdsOrder()
             
             if let data = snapshot.value as? [String: AnyObject] {
                 
-                if let fps = data["fps"] as? Int {
+                if let imageURL = data["imageURL"] as? String {
                     
-                    ads.fps = TimeInterval(fps)
+                    ads.imageURL = imageURL
                 }
                 
-                for ad in data.values {
+                if let addressURL = data["addressURL"] as? String {
                     
-                    if let addressURL = ad["addressURL"] as? String {
-                        
-                        adsOrder.addressURL = addressURL
-                        
-                        if let order = ad["order"] as? Int {
-                            
-                            adsOrder.order = order
-                            
-                            if let imageURL = ad["imageURL"] as? String {
-                                
-                                adsOrder.imageURL = imageURL
-                                
-                            }
-                            
-                            ads.order.append(adsOrder)
-                        }
-                    }                
+                    ads.addressURL = addressURL
                 }
                 
-                ads.order = ads.order.sorted(by: { ($0.order! < $1.order!) })
-                
-                DispatchQueue.main.async(execute: {
-                    completion(ads)
-                    return
-                })
+                if ads.imageURL != nil  || ads.addressURL != nil  {
+                 
+                    DispatchQueue.main.async(execute: {
+                        completion(ads)
+                    })
+                }
+                return
                 
             }
             
         })
         
     }
+    
+//    func fetchAds(_ completion: @escaping (Ads) -> ()) {
+//        
+//        ref.child(adsRef).observeSingleEvent(of: .value, with: { (snapshot) in
+//            
+//            let ads = Ads()
+//            var adsOrder = AdsOrder()
+//            
+//            if let data = snapshot.value as? [String: AnyObject] {
+//                
+//                if let fps = data["fps"] as? Int {
+//                    
+//                    ads.fps = TimeInterval(fps)
+//                }
+//                
+//                for ad in data.values {
+//                    
+//                    if let addressURL = ad["addressURL"] as? String {
+//                        
+//                        adsOrder.addressURL = addressURL
+//                        
+//                        if let order = ad["order"] as? Int {
+//                            
+//                            adsOrder.order = order
+//                            
+//                            if let imageURL = ad["imageURL"] as? String {
+//                                
+//                                adsOrder.imageURL = imageURL
+//                                
+//                            }
+//                            
+//                            ads.order.append(adsOrder)
+//                        }
+//                    }                
+//                }
+//                
+//                ads.order = ads.order.sorted(by: { ($0.order! < $1.order!) })
+//                
+//                DispatchQueue.main.async(execute: {
+//                    if ads.order.count > 0 {
+//                        completion(ads)
+//                        return
+//                    }
+//                    return
+//                })
+//                
+//            }
+//            
+//        })
+//        
+//    }
     
     struct Result {
         var day: Int

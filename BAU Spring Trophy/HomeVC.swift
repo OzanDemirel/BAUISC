@@ -1120,9 +1120,10 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     }
     
     @IBAction func adBannerButtonPressed(_ sender: UIButton) {
-        
-        if let url = URL(string: "http://www.bauisc.org") {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        if let urlString = adBanner.addressURL {
+            if let url = URL(string: urlString) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
         }
     }
     

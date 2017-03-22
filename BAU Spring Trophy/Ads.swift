@@ -8,17 +8,24 @@
 
 import UIKit
 
-struct AdsOrder {
-    
-    var order: Int?
-    var imageURL: String?
-    var addressURL: String?
-}
+//struct AdsOrder {
+//    
+//    var order: Int?
+//    var imageURL: String?
+//    var addressURL: String?
+//}
+//
+//class Ads: NSObject {
+//
+//    var currentAd = 0
+//    var fps: TimeInterval?
+//    var order = [AdsOrder]()
+//    
+//}
 
 class Ads: NSObject {
-
-    var currentAd = 0
-    var fps: TimeInterval?
-    var order = [AdsOrder]()
+    
+    var imageURL: String?
+    var addressURL: String?
     
 }
