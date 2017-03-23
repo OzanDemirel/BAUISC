@@ -23,15 +23,20 @@ class NewsHorizontalCell: BaseCell {
             
             //setNewsImage()
             
-            for i in 0...3 {
-                let height = CGFloat(calculateRequiredLineCount())
-                if height < frame.height / 2 - 30 {
-                    newsTitleHeightConstraint.constant = (height <= (frame.height / 2 - 30)) ? height : (frame.height / 2 - 30)
-                    break
-                } else {
-                    let size = 14 - i
-                    newsTitle.font = UIFont(name: "Futura-Bold", size: CGFloat(size))
+            if #available(iOS 10, *) {
+                for i in 0...3 {
+                    let height = CGFloat(calculateRequiredLineCount())
+                    if height < frame.height / 2 - 30 {
+                        newsTitleHeightConstraint.constant = (height <= (frame.height / 2 - 30)) ? height : (frame.height / 2 - 30)
+                        break
+                    } else {
+                        let size = 14 - i
+                        newsTitle.font = UIFont(name: "Futura-Bold", size: CGFloat(size))
+                    }
                 }
+            } else {
+                removeConstraint(newsTitleHeightConstraint)
+                addConstraint(NSLayoutConstraint(item: newsTitle, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 0, constant: frame.height / 2 - 30))
             }
         }
     }
@@ -75,7 +80,7 @@ class NewsHorizontalCell: BaseCell {
         let rHeight = lroundf(Float(newsTitle.sizeThatFits(textSize).height))
         let charSize = lroundf(Float((newsTitle.font?.lineHeight)!))
         lineCount = rHeight/charSize
-        return lineCount * charSize
+        return (lineCount * charSize)
     }
 
     override func setupViews() {
@@ -89,8 +94,6 @@ class NewsHorizontalCell: BaseCell {
         addConstraint(NSLayoutConstraint(item: newsTitle, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -30))
         newsTitleHeightConstraint = NSLayoutConstraint(item: newsTitle, attribute: .height, relatedBy: .equal, toItem: newsTitle, attribute: .height, multiplier: 1, constant: frame.height / 2 - 30)
         addConstraint(newsTitleHeightConstraint)
-//        addConstraintsWithVisualFormat(format: "V:|-\(frame.height / 2 + 10)-[v0]-30-|", views: newsTitle)
-//        addConstraint(NSLayoutConstraint(item: newsTitle, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
         
     }
 

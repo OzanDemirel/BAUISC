@@ -24,8 +24,18 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
     
     let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
-        indicator.color = UIColor(red: 251/255, green: 173/255, blue: 24/255, alpha: 1)
+        //indicator.color = UIColor(red: 182/255, green: 133/255, blue: 17/255, alpha: 1)
         return indicator
+    }()
+    
+    let statusLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(red: 182/255, green: 133/255, blue: 17/255, alpha: 1)
+        label.font = UIFont(name: "Futura", size: 14)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.alpha = 0
+        return label
     }()
     
     let cellId = "generalResultsCell"
@@ -37,11 +47,19 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
             if results != nil, (results?.count)! >= ApiService.sharedInstance.selectedRace, let status = results?[ApiService.sharedInstance.selectedRace].status {
                 self.status = status
             }
+            if status == 0 {
+                statusLabel.text = "Bu yarış henüz gerçekleşmemiştir."
+                statusLabel.alpha = 1
+            } else if status == 1 {
+                statusLabel.alpha = 0
+            } else if status == 2 {
+                statusLabel.text = "Bu yarış iptal edilmiştir."
+                statusLabel.alpha = 1
+            }
             tableView.reloadData()
             if results == nil {
-                print("nil")
-                activityIndicator.stopAnimating()
-                activityIndicator.isHidden = true
+                //activityIndicator.stopAnimating()
+                //activityIndicator.isHidden = true
             }
         }
     }
@@ -50,12 +68,17 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
         super.setupViews()
         
         tableView.register(GeneralResultsCell.self, forCellReuseIdentifier: cellId)
-        
+
         addSubview(activityIndicator)
-        addConstraintsWithVisualFormat(format: "H:|-\(UIScreen.main.bounds.width / 2 - 20)-[v0(40)]-\(UIScreen.main.bounds.width / 2 - 20)-|", views: activityIndicator)
+        addConstraint(NSLayoutConstraint(item: activityIndicator, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
+        addConstraint(NSLayoutConstraint(item: activityIndicator, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
         addConstraintsWithVisualFormat(format: "H:[v0(40)]", views: activityIndicator)
-        addConstraintsWithVisualFormat(format: "V:|-40-[v0(40)]", views: activityIndicator)
+        addConstraintsWithVisualFormat(format: "V:[v0(40)]", views: activityIndicator)
         activityIndicator.startAnimating()
+        
+        addSubview(statusLabel)
+        addConstraintsWithVisualFormat(format: "H:|-40-[v0]-40-|", views: statusLabel)
+        addConstraintsWithVisualFormat(format: "V:|-50-[v0(60)]", views: statusLabel)
         
         addSubview(tableView)
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: tableView)
@@ -73,6 +96,10 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
     
     func fetchResults() {
         
+        statusLabel.alpha = 0
+        status = -1
+        results = nil
+        
         ApiService.sharedInstance.fetchResult(day: ApiService.sharedInstance.selectedDay) { (races) in
             self.results = races
         }
@@ -81,6 +108,10 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
     
     func setTablePosition() {
 
+        statusLabel.alpha = 0
+        status = -1
+        results = nil
+        
         ApiService.sharedInstance.fetchResult(day: 0) { (races: [Race]) in
             self.results = races
         }

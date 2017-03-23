@@ -22,19 +22,16 @@ class ApiService: NSObject {
     
     var selectedDay: Int = 0 {
         didSet {
-            print("Selected Day: \(selectedDay)")
             selectedRace = 0
         }
     }
     var selectedRace: Int = 0 {
         didSet {
-            print("Selected Race: \(selectedRace)")
             NotificationCenter.default.post(name: NSNotification.Name("dayOrRaceSelected"), object: nil)
         }
     }
     var selectedCategory: Int = 0 {
         didSet {
-            print("Selected Category: \(selectedCategory)")
             NotificationCenter.default.post(name: NSNotification.Name("categorySelected"), object: nil)
         }
     }

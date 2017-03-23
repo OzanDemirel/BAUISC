@@ -116,22 +116,40 @@ class CustomImageView: UIImageView {
         
         if let img2 = UIImage(named: filterName) {
             let rect = frame
-            let renderer = UIGraphicsImageRenderer(size: bounds.size)
             
-            let result = renderer.image { ctx in
+            if #available(iOS 10.0, *) {
+                let renderer = UIGraphicsImageRenderer(size: bounds.size)
+                
+                let result = renderer.image { ctx in
+                    // fill the background with white so that translucent colors get lighter
+                    UIColor.white.set()
+                    ctx.fill(rect)
+                    
+                    baseImage.draw(in: rect, blendMode: .normal, alpha: 1)
+                    img2.draw(in: rect, blendMode: blendMode, alpha: alpha)
+                }
+                
+                return result
+            } else {
+                UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0)
+                let context = UIGraphicsGetCurrentContext()
+                
                 // fill the background with white so that translucent colors get lighter
-                UIColor.white.set()
-                ctx.fill(rect)
+                context!.setFillColor(UIColor.white.cgColor)
+                context!.fill(rect)
                 
                 baseImage.draw(in: rect, blendMode: .normal, alpha: 1)
                 img2.draw(in: rect, blendMode: blendMode, alpha: alpha)
+                
+                // grab the finished image and return it
+                let result = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+                
+                return result
             }
             
-            return result
-            
         }
-        return nil
-    
+        return nil    
     }
     
     func cropToBounds(image: UIImage) -> UIImage {

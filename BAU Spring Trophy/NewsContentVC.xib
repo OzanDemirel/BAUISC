@@ -56,8 +56,8 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Pbc-ko-499">
-                    <rect key="frame" x="40" y="245" width="354" height="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Pbc-ko-499">
+                    <rect key="frame" x="40" y="247.33333333333337" width="354" height="15.666666666666629"/>
                     <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="12"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -87,7 +87,6 @@
                 <constraint firstAttribute="trailing" secondItem="z6h-ok-IIZ" secondAttribute="trailing" id="NeD-pH-iAU"/>
                 <constraint firstItem="m5O-8T-uFv" firstAttribute="leading" secondItem="ItK-1L-gPm" secondAttribute="leading" id="TCl-SP-dUu"/>
                 <constraint firstAttribute="trailing" secondItem="Pbc-ko-499" secondAttribute="trailing" constant="20" id="TI4-8h-b0J"/>
-                <constraint firstItem="Pbc-ko-499" firstAttribute="top" secondItem="m5O-8T-uFv" secondAttribute="bottom" constant="12" id="a4S-tj-cfl"/>
                 <constraint firstAttribute="trailing" secondItem="3O1-nr-T7O" secondAttribute="trailing" constant="20" id="alh-Dc-uPz"/>
                 <constraint firstItem="z6h-ok-IIZ" firstAttribute="top" secondItem="m5O-8T-uFv" secondAttribute="bottom" id="jm2-QA-FzM"/>
                 <constraint firstItem="Pbc-ko-499" firstAttribute="leading" secondItem="ItK-1L-gPm" secondAttribute="leading" constant="40" id="jrO-FV-xyW"/>

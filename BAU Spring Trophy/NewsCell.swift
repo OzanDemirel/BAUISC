@@ -33,7 +33,7 @@ class NewsCell: BaseCell {
     
     let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
-        indicator.color = UIColor(red: 251/255, green: 173/255, blue: 24/255, alpha: 1)
+        indicator.color = UIColor(red: 182/255, green: 133/255, blue: 17/255, alpha: 1)
         return indicator
     }()
     

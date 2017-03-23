@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -32,7 +31,7 @@
                                             <constraint firstAttribute="width" constant="90" id="Jev-L6-qHe"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BAUSpringTrophyVerticalLogo" translatesAutoresizingMaskIntoConstraints="NO" id="5HB-Pe-qmU">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TrophyHorizontalLogo" translatesAutoresizingMaskIntoConstraints="NO" id="5HB-Pe-qmU">
                                         <rect key="frame" x="132" y="323" width="151" height="90"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="5HB-Pe-qmU" secondAttribute="height" multiplier="151:90" id="Tqv-cA-7Mo"/>
@@ -64,7 +63,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="BAUSpringTrophyVerticalLogo" width="274" height="163"/>
+        <image name="TrophyHorizontalLogo" width="151" height="90"/>
         <image name="www.bauisc.org" width="95" height="11"/>
     </resources>
 </document>

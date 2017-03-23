@@ -36,7 +36,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     @IBOutlet weak var homeScrollContentViewHeight: NSLayoutConstraint!
     @IBOutlet weak var launchScreenIconHeight: NSLayoutConstraint!
     
-    var teamsTapGesture: UITapGestureRecognizer!
+    var buttonsTapGesture: UITapGestureRecognizer!
     
     var homePageShadowView: UIImageView!
     
@@ -134,24 +134,32 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         arrangeViews()
         
-        _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { (timer) in
-            self.trophyLogoView.startAnimation()
-            self.bauiscLogoView.startAnimation()
-        })
+        if #available(iOS 10.0, *) {
+            _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { (timer) in
+                self.animateLogo()
+            })
+        } else {
+            animateLogo()
+        }
         
-        teamsTapGesture = UITapGestureRecognizer(target: self, action: #selector(HomeVC.teamsTapGestureActive(sender:)))
-        teamsTapGesture.cancelsTouchesInView = false
-        homeScrollView.addGestureRecognizer(teamsTapGesture)
+        buttonsTapGesture = UITapGestureRecognizer(target: self, action: #selector(HomeVC.buttonsTapGestureActive(sender:)))
+        buttonsTapGesture.cancelsTouchesInView = false
+        homeScrollView.addGestureRecognizer(buttonsTapGesture)
         
         homeScrollContentView.addSubview(newsCollectionView)
         homeScrollContentView.sendSubview(toBack: newsCollectionView)
         
-//        galeryBtnView.image = addFilterToImage(blendMode: .multiply, alpha: 1)
-//        resultsBtnView.image = addFilterToImage(blendMode: .multiply, alpha: 1)
-//        teamsBtnView.image = addFilterToImage(blendMode: .multiply, alpha: 1)
+        galeryBtnView.image = addFilterToImage(blendMode: .multiply, alpha: 1)
+        resultsBtnView.image = addFilterToImage(blendMode: .multiply, alpha: 1)
+        teamsBtnView.image = addFilterToImage(blendMode: .multiply, alpha: 1)
         
         setImagePreviewView()
         
+    }
+    
+    func animateLogo() {
+        trophyLogoView.startAnimation()
+        bauiscLogoView.startAnimation()
     }
     
     func fetchAds() {
@@ -274,6 +282,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         }) { (true) in
             self.imagePreviewNavigationBar.removeFromSuperview()
             self.mainScrollView.isScrollEnabled = true
+            self.homeScrollView.isScrollEnabled = true
         }
         
         UIView.animate(withDuration: 0.5, animations: {
@@ -398,7 +407,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         return imagePreview
     }
     
-    func teamsTapGestureActive(sender: UITapGestureRecognizer) {
+    func buttonsTapGestureActive(sender: UITapGestureRecognizer) {
         
         if galeryBtnView.frame.contains(sender.location(in: homeScrollView)) {
             sender.isEnabled = false
@@ -411,11 +420,21 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             addAChildViewToView(child: resultsVC)
         }
         
-        _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (timer) in
-            sender.isEnabled = true
-        })
+        if #available(iOS 10.0, *) {
+            _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (timer) in
+                sender.isEnabled = true
+            })
+        } else {
+            _ = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(HomeVC.tapGestureReactive) , userInfo: nil, repeats: false)
+        }
         
     }
+    
+    func tapGestureReactive() {
+        
+    }
+    
+    
     
     func arrangeViews() {
         
@@ -768,6 +787,10 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         newsContentVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.maxX, y: navigationBar.frame.maxY)
         newsContentVC.view.alpha = 0
         
+        self.newsContentVC.newsTitle.text = ""
+        self.newsContentVC.newsText.text = ""
+        self.newsContentVC.newsImage.image = UIImage(named: "TrendCellBackground")
+        
         self.newsContentVC.news = news
         
         homeView.bringSubview(toFront: homePageShadowView)
@@ -795,9 +818,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             self.newsContentVC.view.frame.origin = CGPoint(x: self.newsContentVC.view.frame.maxX, y: (self.navigationBar.frame.maxY))
             self.newsContentVC.view.alpha = 0
         }, completion: { (completion) in
-            self.newsContentVC.newsTitle.text = ""
-            self.newsContentVC.newsText.text = ""
-            self.newsContentVC.newsImage.image = UIImage(named: "TrendCellBackground")
             self.newsContentVC.willMove(toParentViewController: self)
             self.newsContentVC.view.removeFromSuperview()
             self.newsContentVC.removeFromParentViewController()
@@ -909,6 +929,16 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         tableView.isUserInteractionEnabled = false
         mainScrollView.isUserInteractionEnabled = false
         
+        if indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 8 {
+            let alert = UIAlertController(title: "Sayfa Yapım Aşamasındadır.", message: "Bu sayfa güncellemeyle birlikte aktif hale gelecektir.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Tamam", style: UIAlertActionStyle.cancel, handler: nil))
+            self.present(alert, animated: true, completion: { 
+                self.sideMenuTableView.isUserInteractionEnabled = true
+                self.mainScrollView.isUserInteractionEnabled = true
+            })
+            return
+        }
+        
         arrangeMainScrollViewPosition(animated: true)
         
         var removeCalled = false
@@ -916,9 +946,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         switch indexPath.row {
         case 0:
             for child in childViewControllers {
-                _ = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false, block: { (timer) in
-                    self.removeAChildViewFromView(child: child, childToAdd: nil)
-                })
+                executeChildRemovingAndAdding(child: child, childToAdd: nil)
             }
             break;
         case 1:
@@ -926,9 +954,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 if teamsVC.view.frame == homeScrollView.frame {
                     removeCalled = true
                 } else if child.view.frame == homeScrollView.frame && child != teamsVC {
-                    _ = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false, block: { (timer) in
-                        self.removeAChildViewFromView(child: child, childToAdd: self.teamsVC)
-                    })
+                    executeChildRemovingAndAdding(child: child, childToAdd: self.teamsVC)
                     removeCalled = true
                 }
             }
@@ -943,9 +969,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 if galeryVC.view.frame == homeScrollView.frame {
                     removeCalled = true
                 } else if child.view.frame == homeScrollView.frame && child != galeryVC {
-                    _ = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false, block: { (timer) in
-                        self.removeAChildViewFromView(child: child, childToAdd: self.galeryVC)
-                    })
+                    executeChildRemovingAndAdding(child: child, childToAdd: self.galeryVC)
                     removeCalled = true
                 }
             }
@@ -960,9 +984,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 if galeryVC.view.frame == homeScrollView.frame {
                     removeCalled = true
                 } else if child.view.frame == homeScrollView.frame && child != galeryVC {
-                    _ = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false, block: { (timer) in
-                        self.removeAChildViewFromView(child: child, childToAdd: self.galeryVC)
-                    })
+                    executeChildRemovingAndAdding(child: child, childToAdd: self.galeryVC)
                     removeCalled = true
                 }
             }
@@ -975,9 +997,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 if newsVC.view.frame == homeScrollView.frame {
                     removeCalled = true
                 } else if child.view.frame == homeScrollView.frame && child != newsVC {
-                    _ = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false, block: { (timer) in
-                        self.removeAChildViewFromView(child: child, childToAdd: self.newsVC)
-                    })
+                    executeChildRemovingAndAdding(child: child, childToAdd: self.newsVC)
                     removeCalled = true
                 }
             }
@@ -990,9 +1010,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 if resultsVC.view.frame == homeScrollView.frame {
                     removeCalled = true
                 } else if child.view.frame == homeScrollView.frame && child != resultsVC {
-                    _ = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false, block: { (timer) in
-                        self.removeAChildViewFromView(child: child, childToAdd: self.resultsVC)
-                    })
+                    executeChildRemovingAndAdding(child: child, childToAdd: self.resultsVC)
                     removeCalled = true
                 }
             }
@@ -1002,41 +1020,81 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             break;
         default:
             for child in childViewControllers {
-                _ = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false, block: { (timer) in
-                    self.removeAChildViewFromView(child: child, childToAdd: nil)
-                })
+                executeChildRemovingAndAdding(child: child, childToAdd: nil)
                 
             }
             break;
         }
         
-        _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
-            tableView.isUserInteractionEnabled = true
-            self.mainScrollView.isUserInteractionEnabled = true
-        })
+        if #available(iOS 10.0, *) {
+            _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (timer) in
+                self.reactiveInteraction()
+            })
+        } else {
+            _ = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(HomeVC.reactiveInteraction), userInfo: nil, repeats: false)
+        }
     }
     
-//    func addFilterToImage(blendMode: CGBlendMode, alpha: CGFloat) -> UIImage? {
-//        
-//        if let img = UIImage(named: "shadow"), let img2 = UIImage(named: "Button") {
-//            let rect = CGRect(x: 0, y: 0, width: galeryBtnView.frame.width, height: galeryBtnView.frame.height)
-//            let renderer = UIGraphicsImageRenderer(size: CGSize(width: galeryBtnView.frame.width, height: galeryBtnView.frame.height))
-//            
-//            let result = renderer.image { ctx in
-//                // fill the background with white so that translucent colors get lighter
-//                UIColor.white.set()
-//                ctx.fill(rect)
-//                
-//                img2.draw(in: rect, blendMode: .normal, alpha: 1)
-//                img.draw(in: CGRect(x: (galeryBtnView.frame.width - 323) / 2, y: 0, width: 323, height: 36), blendMode: blendMode, alpha: alpha)
-//            }
-//            
-//            return result
-//            
-//        }
-//        return nil
-//        
-//    }
+    func reactiveInteraction() {
+        sideMenuTableView.isUserInteractionEnabled = true
+        mainScrollView.isUserInteractionEnabled = true
+    }
+    
+    func executeChildRemovingAndAdding(child: UIViewController, childToAdd: UIViewController?) {
+        if #available(iOS 10.0, *) {
+            _ = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false, block: { (timer) in
+                self.removeAChildViewFromView(child: child, childToAdd: childToAdd)
+            })
+        } else {
+            UIView.animate(withDuration: 0.25, animations: {}, completion: { (true) in
+                self.removeAChildViewFromView(child: child, childToAdd: childToAdd)
+            })
+        }
+        
+    }
+    
+    func addFilterToImage(blendMode: CGBlendMode, alpha: CGFloat) -> UIImage? {
+        
+        if let img = UIImage(named: "Shadow"), let img2 = UIImage(named: "Button") {
+            let rect = CGRect(x: 0, y: 0, width: galeryBtnView.frame.width, height: galeryBtnView.frame.height)
+            if #available(iOS 10.0, *) {
+                let renderer = UIGraphicsImageRenderer(size: CGSize(width: galeryBtnView.frame.width, height: galeryBtnView.frame.height))
+                
+                let result = renderer.image { ctx in
+                    // fill the background with white so that translucent colors get lighter
+                    UIColor.white.set()
+                    ctx.fill(rect)
+                    
+                    img2.draw(in: rect, blendMode: .normal, alpha: 1)
+                    img.draw(in: CGRect(x: (galeryBtnView.frame.width - galeryBtnView.frame.width / 1.28) / 2, y: 0, width: galeryBtnView.frame.width / 1.28, height: galeryBtnView.frame.height / 1.83), blendMode: blendMode, alpha: alpha)
+                }
+                
+                return result
+                
+            } else {
+                
+                UIGraphicsBeginImageContextWithOptions(galeryBtnView.frame.size, true, 0)
+                let context = UIGraphicsGetCurrentContext()
+                
+                // fill the background with white so that translucent colors get lighter
+                context!.setFillColor(UIColor.white.cgColor)
+                context!.fill(rect)
+                
+                img.draw(in: CGRect(x: (galeryBtnView.frame.width - galeryBtnView.frame.width / 1.28) / 2, y: 0, width: galeryBtnView.frame.width / 1.28, height: galeryBtnView.frame.height / 1.83), blendMode: blendMode, alpha: alpha)
+                img2.draw(in: rect, blendMode: blendMode, alpha: alpha)
+                
+                // grab the finished image and return it
+                let result = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+                
+                return result
+                
+            }
+            
+        }
+        return nil
+        
+    }
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -1122,7 +1180,11 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     @IBAction func adBannerButtonPressed(_ sender: UIButton) {
         if let urlString = adBanner.addressURL {
             if let url = URL(string: urlString) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                } else {
+                    UIApplication.shared.openURL(url)
+                }
             }
         }
     }

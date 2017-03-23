@@ -22,8 +22,18 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
     
     let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
-        indicator.color = UIColor(red: 251/255, green: 173/255, blue: 24/255, alpha: 1)
+        indicator.color = UIColor(red: 182/255, green: 133/255, blue: 17/255, alpha: 1)
         return indicator
+    }()
+    
+    let statusLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(red: 182/255, green: 133/255, blue: 17/255, alpha: 1)
+        label.font = UIFont(name: "Futura", size: 14)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.alpha = 0
+        return label
     }()
     
     var status = 0
@@ -32,6 +42,15 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
         didSet {
             if results != nil, (results?.count)! >= ApiService.sharedInstance.selectedRace, let status = results?[ApiService.sharedInstance.selectedRace].status {
                 self.status = status
+            }
+            if status == 0 {
+                statusLabel.text = "Bu yarış henüz gerçekleşmemiştir."
+                statusLabel.alpha = 1
+            } else if status == 1 {
+                statusLabel.alpha = 0
+            } else if status == 2 {
+                statusLabel.text = "Bu yarış iptal edilmiştir."
+                statusLabel.alpha = 1
             }
             tableView.reloadData()
             if results != nil {
@@ -53,6 +72,10 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
         addSubview(activityIndicator)
         addConstraintsWithVisualFormat(format: "H:|-\(UIScreen.main.bounds.width / 2 - 20)-[v0(40)]-\(UIScreen.main.bounds.width / 2 - 20)-|", views: activityIndicator)
         addConstraintsWithVisualFormat(format: "V:|-40-[v0(40)]", views: activityIndicator)
+        
+        addSubview(statusLabel)
+        addConstraintsWithVisualFormat(format: "H:|-40-[v0]-40-|", views: statusLabel)
+        addConstraintsWithVisualFormat(format: "V:|-50-[v0(60)]", views: statusLabel)
         activityIndicator.startAnimating()
         
         addSubview(tableView)
@@ -71,6 +94,9 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
 
     func fetchResults() {
         
+        statusLabel.alpha = 0
+        results = nil
+        
         ApiService.sharedInstance.fetchResult(day: ApiService.sharedInstance.selectedDay) { (races) in
             self.results = races
         }
@@ -78,6 +104,9 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
     }
 
     func setTablePosition() {
+        
+        statusLabel.alpha = 0
+        results = nil
         
         ApiService.sharedInstance.fetchResult(day: 0) { (races: [Race]) in
             self.results = races

@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -114,8 +113,7 @@
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="jsZ-ru-0Vu">
                                                                                 <rect key="frame" x="43.666666666666686" y="21.333333333333314" width="22" height="12"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="width" constant="22" id="38k-3V-lEo"/>
-                                                                                    <constraint firstAttribute="height" constant="12" id="Qmt-BB-adv"/>
+                                                                                    <constraint firstAttribute="width" secondItem="jsZ-ru-0Vu" secondAttribute="height" multiplier="11:6" id="jos-hJ-euF"/>
                                                                                 </constraints>
                                                                             </imageView>
                                                                         </subviews>
@@ -125,20 +123,6 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="ddg-lO-Mvz" secondAttribute="height" multiplier="25:4" id="Gct-XH-Eni"/>
                                                                         </constraints>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                                                <real key="value" value="0.59999999999999998"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
-                                                                                <real key="value" value="4"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                                                <size key="value" width="0.0" height="2"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="DY8-Hd-nD5">
                                                                         <rect key="frame" x="138.33333333333331" y="321" width="138.00000000000006" height="33.333333333333314"/>
@@ -166,8 +150,7 @@
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Or1-gY-WZ3">
                                                                                 <rect key="frame" x="58" y="21.333333333333314" width="22" height="12"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="width" constant="22" id="J53-mc-VoG"/>
-                                                                                    <constraint firstAttribute="height" constant="12" id="VdT-oR-wOS"/>
+                                                                                    <constraint firstAttribute="width" secondItem="Or1-gY-WZ3" secondAttribute="height" multiplier="11:6" id="fkU-UF-bXe"/>
                                                                                 </constraints>
                                                                             </imageView>
                                                                         </subviews>
@@ -177,20 +160,6 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="Rhs-jz-zcR" secondAttribute="height" multiplier="25:4" id="4GC-69-XvD"/>
                                                                         </constraints>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                                                <real key="value" value="0.59999999999999998"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
-                                                                                <real key="value" value="4"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                                                <size key="value" width="0.0" height="2"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="vcQ-ff-892">
                                                                         <rect key="frame" x="144.66666666666669" y="254.99999999999997" width="125.33333333333331" height="33.333333333333286"/>
@@ -218,8 +187,7 @@
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="LoV-n7-5lB">
                                                                                 <rect key="frame" x="51.666666666666629" y="21.333333333333314" width="22" height="12"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="width" constant="22" id="9Bq-Qn-kLY"/>
-                                                                                    <constraint firstAttribute="height" constant="12" id="mTq-69-R66"/>
+                                                                                    <constraint firstAttribute="width" secondItem="LoV-n7-5lB" secondAttribute="height" multiplier="11:6" id="ddb-fv-wdR"/>
                                                                                 </constraints>
                                                                             </imageView>
                                                                         </subviews>
@@ -257,14 +225,14 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="vpN-l4-eTK" secondAttribute="height" multiplier="1:1" id="frv-WS-KG9"/>
                                                                         </constraints>
-                                                                        <state key="normal" title="Button" image="LeftArrow"/>
+                                                                        <state key="normal" image="LeftArrow"/>
                                                                         <connections>
                                                                             <action selector="arrowsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rcX-Xu-q3e"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgz-Ob-vCs" userLabel="RightArrow">
                                                                         <rect key="frame" x="357" y="98" width="37" height="37"/>
-                                                                        <state key="normal" title="Button" image="RightArrow"/>
+                                                                        <state key="normal" image="RightArrow"/>
                                                                         <connections>
                                                                             <action selector="arrowsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OBd-Qc-gZ8"/>
                                                                         </connections>
@@ -284,9 +252,11 @@
                                                                     <constraint firstItem="DY8-Hd-nD5" firstAttribute="centerY" secondItem="ddg-lO-Mvz" secondAttribute="centerY" constant="5" id="Rk4-e8-kyg"/>
                                                                     <constraint firstAttribute="trailing" secondItem="Rhs-jz-zcR" secondAttribute="trailing" id="W29-Zw-1yq"/>
                                                                     <constraint firstItem="vcQ-ff-892" firstAttribute="centerY" secondItem="Rhs-jz-zcR" secondAttribute="centerY" constant="5" id="WeV-Zx-oAl"/>
+                                                                    <constraint firstItem="jsZ-ru-0Vu" firstAttribute="height" secondItem="f96-hJ-Qo0" secondAttribute="height" multiplier="0.1818" id="Zt7-n4-fqd"/>
                                                                     <constraint firstAttribute="trailing" secondItem="f96-hJ-Qo0" secondAttribute="trailing" id="cOZ-Z7-MjQ"/>
                                                                     <constraint firstAttribute="trailing" secondItem="xgz-Ob-vCs" secondAttribute="trailing" constant="20" id="coX-Qb-b10"/>
                                                                     <constraint firstItem="ddg-lO-Mvz" firstAttribute="leading" secondItem="cFB-vp-LM5" secondAttribute="leading" id="cx2-UQ-Zlc"/>
+                                                                    <constraint firstItem="Or1-gY-WZ3" firstAttribute="height" secondItem="ddg-lO-Mvz" secondAttribute="height" multiplier="0.1818" id="eLW-po-Cit"/>
                                                                     <constraint firstItem="nC3-QM-Vym" firstAttribute="centerX" secondItem="f96-hJ-Qo0" secondAttribute="centerX" id="eeM-1u-cyR"/>
                                                                     <constraint firstItem="5Wk-2x-iJF" firstAttribute="leading" secondItem="cFB-vp-LM5" secondAttribute="leading" id="gc7-Z6-jfV"/>
                                                                     <constraint firstAttribute="height" constant="432" id="gku-A3-PtT"/>
@@ -296,6 +266,7 @@
                                                                     <constraint firstAttribute="trailing" secondItem="ddg-lO-Mvz" secondAttribute="trailing" id="mlD-UC-Vxg"/>
                                                                     <constraint firstItem="Qru-dy-HTp" firstAttribute="height" secondItem="f96-hJ-Qo0" secondAttribute="height" multiplier="0.25" id="qvp-2p-nFZ"/>
                                                                     <constraint firstItem="xgz-Ob-vCs" firstAttribute="height" secondItem="vpN-l4-eTK" secondAttribute="height" id="rzA-Rj-887"/>
+                                                                    <constraint firstItem="LoV-n7-5lB" firstAttribute="height" secondItem="Rhs-jz-zcR" secondAttribute="height" multiplier="0.1818" id="s30-th-Iis"/>
                                                                     <constraint firstItem="DYh-oU-stM" firstAttribute="height" secondItem="ddg-lO-Mvz" secondAttribute="height" multiplier="0.25" id="sVr-BW-RYB"/>
                                                                     <constraint firstItem="vpN-l4-eTK" firstAttribute="height" secondItem="5Wk-2x-iJF" secondAttribute="height" multiplier="0.16" id="t4B-m4-PqV"/>
                                                                     <constraint firstItem="nC3-QM-Vym" firstAttribute="centerY" secondItem="f96-hJ-Qo0" secondAttribute="centerY" constant="5" id="v0B-fL-86y"/>
@@ -499,7 +470,7 @@
                                                             <constraint firstAttribute="width" constant="90" id="osQ-5R-qZX"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BAUSpringTrophyVerticalLogo" translatesAutoresizingMaskIntoConstraints="NO" id="5rp-zD-aYM">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TrophyHorizontalLogo" translatesAutoresizingMaskIntoConstraints="NO" id="5rp-zD-aYM">
                                                         <rect key="frame" x="132" y="323" width="151" height="90"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="90" id="Euq-fU-zyG"/>
@@ -585,13 +556,13 @@
     <resources>
         <image name="BAUISCLogo" width="55" height="55"/>
         <image name="BAUSpringTrophyVerticalLogo" width="274" height="163"/>
-        <image name="Button" width="1242" height="283"/>
-        <image name="ButtonIcon" width="63" height="32"/>
-        <image name="Home" width="73" height="73"/>
-        <image name="LeftArrow" width="100" height="100"/>
-        <image name="NavigationBarBackground" width="1242" height="274"/>
-        <image name="RightArrow" width="100" height="100"/>
-        <image name="SideMenuIcon" width="66" height="39"/>
+        <image name="Button" width="414" height="94"/>
+        <image name="ButtonIcon" width="21" height="10"/>
+        <image name="Home" width="24" height="24"/>
+        <image name="LeftArrow" width="33" height="33"/>
+        <image name="NavigationBarBackground" width="414" height="91"/>
+        <image name="RightArrow" width="33" height="33"/>
+        <image name="SideMenuIcon" width="22" height="13"/>
         <image name="TrophyHorizontalLogo" width="151" height="90"/>
         <image name="www.bauisc.org" width="95" height="11"/>
     </resources>

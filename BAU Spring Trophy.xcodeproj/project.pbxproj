@@ -65,6 +65,7 @@
 		AB98ECBC1E817FA400038185 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98ECBB1E817FA400038185 /* Photo.swift */; };
 		AB98ECBF1E81BBB700038185 /* Ads.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98ECBE1E81BBB700038185 /* Ads.swift */; };
 		AB98ECC11E81BDD700038185 /* AdsBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98ECC01E81BDD700038185 /* AdsBanner.swift */; };
+		ABA209821E84689D00D7D119 /* MyriadPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB3F20431E7050980058F327 /* MyriadPro-Regular.otf */; };
 		FD60F8A336291FF9445F2EF6 /* Pods_BAU_Spring_Trophy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8219F067E66EDAC2ADFDAC9 /* Pods_BAU_Spring_Trophy.framework */; };
 /* End PBXBuildFile section */
 
@@ -423,6 +424,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABA209821E84689D00D7D119 /* MyriadPro-Regular.otf in Resources */,
 				AB42DB7D1E7A47FF00549C65 /* ResultsVC.xib in Resources */,
 				AB3F20361E700FE40058F327 /* LaunchScreen.storyboard in Resources */,
 				AB42DB371E73061500549C65 /* NewsVC.xib in Resources */,
@@ -663,6 +665,7 @@
 				CODE_SIGN_ENTITLEMENTS = "BAU Spring Trophy/BAU Spring Trophy.entitlements";
 				DEVELOPMENT_TEAM = VYM7F3H4LX;
 				INFOPLIST_FILE = "BAU Spring Trophy/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BAUISC.BAUISC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -679,6 +682,7 @@
 				CODE_SIGN_ENTITLEMENTS = "BAU Spring Trophy/BAU Spring Trophy.entitlements";
 				DEVELOPMENT_TEAM = VYM7F3H4LX;
 				INFOPLIST_FILE = "BAU Spring Trophy/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BAUISC.BAUISC;
 				PRODUCT_NAME = "$(TARGET_NAME)";

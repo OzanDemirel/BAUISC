@@ -17,6 +17,9 @@ class SideMenuCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        if UIScreen.main.bounds.width == 320 {
+            headline.font = UIFont(name: "Futura", size: 11)
+        }
 
     }
     

@@ -16,15 +16,18 @@ class AnimatedLogoView: UIImageView {
     }
     
     func startAnimation() {
-        
         if self.alpha == 0 {
             UIView.animate(withDuration: 1.5, animations: {
                 UIView.animate(withDuration: 2, animations: {
                     self.alpha = 1
                 }, completion: { (true) in
-                    _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { (_) in
-                        self.startAnimation()
-                    })
+                    if #available(iOS 10.0, *) {
+                        _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { (_) in
+                            self.startAnimation()
+                        })
+                    } else {
+                        _ = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(AnimatedLogoView.startAnimation), userInfo: nil, repeats: false)
+                    }
                 })
                 
             })
@@ -32,9 +35,13 @@ class AnimatedLogoView: UIImageView {
             UIView.animate(withDuration: 1.5, animations: {
                 self.alpha = 0
             }, completion: { (true) in
-                _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { (_) in
-                    self.startAnimation()
-                })
+                if #available(iOS 10.0, *) {
+                    _ = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { (_) in
+                        self.startAnimation()
+                    })
+                } else {
+                    _ = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(AnimatedLogoView.startAnimation), userInfo: nil, repeats: false)
+                }
             })
         }
         
