@@ -65,7 +65,8 @@
 		AB98ECBC1E817FA400038185 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98ECBB1E817FA400038185 /* Photo.swift */; };
 		AB98ECBF1E81BBB700038185 /* Ads.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98ECBE1E81BBB700038185 /* Ads.swift */; };
 		AB98ECC11E81BDD700038185 /* AdsBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98ECC01E81BDD700038185 /* AdsBanner.swift */; };
-		ABA209821E84689D00D7D119 /* MyriadPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB3F20431E7050980058F327 /* MyriadPro-Regular.otf */; };
+		ABA209851E8488EF00D7D119 /* Futura-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = ABA209831E8488B700D7D119 /* Futura-Bold.otf */; };
+		ABA209861E8488EF00D7D119 /* Futura-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = ABA209841E8488B700D7D119 /* Futura-Book.otf */; };
 		FD60F8A336291FF9445F2EF6 /* Pods_BAU_Spring_Trophy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8219F067E66EDAC2ADFDAC9 /* Pods_BAU_Spring_Trophy.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,7 +81,6 @@
 		AB3F20351E700FE40058F327 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB3F20371E700FE40058F327 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB3F20401E7030C40058F327 /* SideMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
-		AB3F20431E7050980058F327 /* MyriadPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-Regular.otf"; sourceTree = "<group>"; };
 		AB3F20461E708A6E0058F327 /* DesignableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableImageView.swift; sourceTree = "<group>"; };
 		AB3F20491E7090970058F327 /* SideMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		AB3F204B1E714A040058F327 /* NewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
@@ -134,6 +134,8 @@
 		AB98ECBB1E817FA400038185 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		AB98ECBE1E81BBB700038185 /* Ads.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ads.swift; sourceTree = "<group>"; };
 		AB98ECC01E81BDD700038185 /* AdsBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsBanner.swift; sourceTree = "<group>"; };
+		ABA209831E8488B700D7D119 /* Futura-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura-Bold.otf"; sourceTree = "<group>"; };
+		ABA209841E8488B700D7D119 /* Futura-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura-Book.otf"; sourceTree = "<group>"; };
 		C5A2C11E8E7D56E769E8649D /* Pods-BAU Spring Trophy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BAU Spring Trophy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BAU Spring Trophy/Pods-BAU Spring Trophy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -238,7 +240,8 @@
 			isa = PBXGroup;
 			children = (
 				AB98ECB61E7F9B1E00038185 /* BAU Spring Trophy.entitlements */,
-				AB3F20431E7050980058F327 /* MyriadPro-Regular.otf */,
+				ABA209831E8488B700D7D119 /* Futura-Bold.otf */,
+				ABA209841E8488B700D7D119 /* Futura-Book.otf */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -392,7 +395,7 @@
 					AB3F20271E700FE40058F327 = {
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = VYM7F3H4LX;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -424,7 +427,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABA209821E84689D00D7D119 /* MyriadPro-Regular.otf in Resources */,
+				ABA209851E8488EF00D7D119 /* Futura-Bold.otf in Resources */,
+				ABA209861E8488EF00D7D119 /* Futura-Book.otf in Resources */,
 				AB42DB7D1E7A47FF00549C65 /* ResultsVC.xib in Resources */,
 				AB3F20361E700FE40058F327 /* LaunchScreen.storyboard in Resources */,
 				AB42DB371E73061500549C65 /* NewsVC.xib in Resources */,
@@ -663,12 +667,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "BAU Spring Trophy/BAU Spring Trophy.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = VYM7F3H4LX;
 				INFOPLIST_FILE = "BAU Spring Trophy/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BAUISC.BAUISC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "02364ecd-a324-4d3f-aedc-f18741ca53ff";
+				PROVISIONING_PROFILE_SPECIFIER = BAUISC_Development;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -680,12 +688,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "BAU Spring Trophy/BAU Spring Trophy.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ozan Demirel (VYM7F3H4LX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ozan Demirel (VYM7F3H4LX)";
 				DEVELOPMENT_TEAM = VYM7F3H4LX;
 				INFOPLIST_FILE = "BAU Spring Trophy/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.BAUISC.BAUISC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5606eb23-4b4b-4366-ae0b-83feb9994a64";
+				PROVISIONING_PROFILE_SPECIFIER = BAUISC_Distribution;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

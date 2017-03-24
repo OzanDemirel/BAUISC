@@ -90,28 +90,28 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let boatId: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 1/255, green: 85/255, blue: 139/255, alpha: 1)
-        label.font = UIFont(name: "Futura", size: 8)
+        label.font = UIFont(name: "Futura-Book", size: 8)
         return label
     }()
     
     let boatType: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 1/255, green: 85/255, blue: 139/255, alpha: 1)
-        label.font = UIFont(name: "Futura", size: 8)
+        label.font = UIFont(name: "Futura-Book", size: 8)
         return label
     }()
     
     let boatRaiting: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 1/255, green: 85/255, blue: 139/255, alpha: 1)
-        label.font = UIFont(name: "Futura", size: 8)
+        label.font = UIFont(name: "Futura-Book", size: 8)
         return label
     }()
     
     let boatClass: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 1/255, green: 85/255, blue: 139/255, alpha: 1)
-        label.font = UIFont(name: "Futura", size: 8)
+        label.font = UIFont(name: "Futura-Book", size: 8)
         return label
     }()
     

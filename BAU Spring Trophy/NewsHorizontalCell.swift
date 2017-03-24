@@ -21,7 +21,7 @@ class NewsHorizontalCell: BaseCell {
         didSet {
             newsTitle.text = news?.title
             
-            //setNewsImage()
+            setNewsImage()
             
             if #available(iOS 10, *) {
                 for i in 0...3 {

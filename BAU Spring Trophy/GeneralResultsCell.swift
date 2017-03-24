@@ -60,7 +60,7 @@ class GeneralResultsCell: UITableViewCell {
     let boatType: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 249/255, green: 185/255, blue: 24/255, alpha: 1)
-        label.font = UIFont(name: "Futura", size: 8)
+        label.font = UIFont(name: "Futura-Book", size: 8)
         return label
     }()
     
@@ -75,7 +75,7 @@ class GeneralResultsCell: UITableViewCell {
     let boatClass: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 249/255, green: 185/255, blue: 24/255, alpha: 1)
-        label.font = UIFont(name: "Futura", size: 8)
+        label.font = UIFont(name: "Futura-Book", size: 8)
         label.textAlignment = .right
         return label
     }()
@@ -83,14 +83,14 @@ class GeneralResultsCell: UITableViewCell {
     let boatRaiting: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 249/255, green: 185/255, blue: 24/255, alpha: 1)
-        label.font = UIFont(name: "Futura", size: 8)
+        label.font = UIFont(name: "Futura-Book", size: 8)
         return label
     }()
     
     let extraTime: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.red
-        label.font = UIFont(name: "Futura", size: 8)
+        label.font = UIFont(name: "Futura-Book", size: 8)
         label.textAlignment = .right
         return label
     }()

@@ -28,6 +28,10 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     @IBOutlet weak var launchScreenView: UIView!
     @IBOutlet weak var adBanner: AdsBanner!
     @IBOutlet weak var adBannerButton: UIButton!
+    @IBOutlet weak var adLabel: UILabel!
+    @IBOutlet weak var sideMenuView: UIView!
+    @IBOutlet weak var sideMenuLogo: UIImageView!
+    @IBOutlet weak var sideMenuShadow: UIImageView!
     
     @IBOutlet weak var mainScrollViewContentWidth: NSLayoutConstraint!
     @IBOutlet weak var mainScrollViewContentHeight: NSLayoutConstraint!
@@ -119,6 +123,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        checkForInternet()
     
         arrangeMainScrollViewPosition(animated: false)
         
@@ -152,8 +158,70 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         galeryBtnView.image = addFilterToImage(blendMode: .multiply, alpha: 1)
         resultsBtnView.image = addFilterToImage(blendMode: .multiply, alpha: 1)
         teamsBtnView.image = addFilterToImage(blendMode: .multiply, alpha: 1)
+        sideMenuShadow.image = setSideMenuShadow(blendMode: .multiply, alpha: 1)
         
         setImagePreviewView()
+        
+    }
+    
+    func setSideMenuShadow(blendMode: CGBlendMode, alpha: CGFloat) -> UIImage? {
+        
+        if let img = UIImage(named: "Shadow"), let img2 = UIImage(named: "SideMenuShadowBackground") {
+            let rect = CGRect(x: 0, y: 0, width: sideMenuShadow.frame.width, height: sideMenuShadow.frame.height)
+            if #available(iOS 10.0, *) {
+                let renderer = UIGraphicsImageRenderer(size: CGSize(width: sideMenuShadow.frame.width, height: sideMenuShadow.frame.height))
+                
+                let result = renderer.image { ctx in
+                    // fill the background with white so that translucent colors get lighter
+                    UIColor.white.set()
+                    ctx.fill(rect)
+                    
+                    img2.draw(in: rect, blendMode: .normal, alpha: 1)
+                    img.draw(in: CGRect(x: 0, y: 0, width: sideMenuShadow.frame.width, height: sideMenuShadow.frame.height), blendMode: blendMode, alpha: alpha)
+                }
+                
+                return result
+                
+            } else {
+                
+                UIGraphicsBeginImageContextWithOptions(sideMenuShadow.frame.size, true, 0)
+                let context = UIGraphicsGetCurrentContext()
+                
+                // fill the background with white so that translucent colors get lighter
+                context!.setFillColor(UIColor.white.cgColor)
+                context!.fill(rect)
+                
+                img.draw(in: CGRect(x: 0, y: 0, width: sideMenuShadow.frame.width, height: sideMenuShadow.frame.height), blendMode: blendMode, alpha: alpha)
+                img2.draw(in: rect, blendMode: .normal, alpha: 1)
+                
+                // grab the finished image and return it
+                let result = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+                
+                return result
+                
+            }
+        }
+        return nil
+    }
+    
+        
+    
+    func checkForInternet() {
+        
+        if currentReachabilityStatus == .notReachable  {
+            internetConnectionAlert()
+        }
+        
+    }
+    
+    func internetConnectionAlert() {
+        
+        let alert = UIAlertController(title: "Bağlantı Hatası", message: "Bu uygulama internet bağlantısı gerektirmektedir.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Tamam", style: UIAlertActionStyle.cancel, handler: { (action) in
+            self.checkForInternet()
+        }))
+        present(alert, animated: true, completion: nil)
         
     }
     
@@ -166,6 +234,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         ApiService.sharedInstance.fetchAds { (ads) in
             self.adBanner.ads = ads
+            self.adLabel.isHidden = true
         }
         
     }
@@ -301,7 +370,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             
             let alert = UIAlertController(title: "Görsel Kaydedildi", message: "Görsel başarıyla fotoğraf galerisine kaydedildi.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Tamam", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: { 
+                alert.dismiss(animated: true, completion: nil)
+            })
         }
         
     }
@@ -425,13 +496,16 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 sender.isEnabled = true
             })
         } else {
-            _ = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(HomeVC.tapGestureReactive) , userInfo: nil, repeats: false)
+            _ = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(HomeVC.tapGestureReactive(_:)) , userInfo: sender, repeats: false)
         }
         
     }
     
-    func tapGestureReactive() {
+    func tapGestureReactive(_ timer: Timer) {
         
+        if let gesture = timer.userInfo as? UITapGestureRecognizer {
+            gesture.isEnabled = true
+        }
     }
     
     
@@ -893,6 +967,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
     func arrangeMainScrollViewPosition(animated: Bool) {
         mainScrollView.scrollRectToVisible(CGRect(x: UIScreen.main.bounds.width / 3 * 2, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), animated: animated)
+        sideMenuView.isHidden = false
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -963,8 +1038,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             }
             break;
         case 2:
-            postNotifUserInfo = ["indexPath": (indexPath.row - 2)]
-            NotificationCenter.default.post(name: NSNotification.Name("AnyChildAddedToView"), object: nil, userInfo: postNotifUserInfo)
             for child in childViewControllers {
                 if galeryVC.view.frame == homeScrollView.frame {
                     removeCalled = true
@@ -976,10 +1049,10 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             if !removeCalled {
                 addAChildViewToView(child: galeryVC)
             }
+            postNotifUserInfo = ["indexPath": (indexPath.row - 2)]
+            NotificationCenter.default.post(name: NSNotification.Name("AnyChildAddedToView"), object: nil, userInfo: postNotifUserInfo)
             break;
         case 3:
-            postNotifUserInfo = ["indexPath": (indexPath.row - 2)]
-            NotificationCenter.default.post(name: NSNotification.Name("AnyChildAddedToView"), object: nil, userInfo: postNotifUserInfo)
             for child in childViewControllers {
                 if galeryVC.view.frame == homeScrollView.frame {
                     removeCalled = true
@@ -991,6 +1064,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             if !removeCalled {
                 addAChildViewToView(child: galeryVC)
             }
+            postNotifUserInfo = ["indexPath": (indexPath.row - 2)]
+            NotificationCenter.default.post(name: NSNotification.Name("AnyChildAddedToView"), object: nil, userInfo: postNotifUserInfo)
             break;
         case 4:
             for child in childViewControllers {
@@ -1046,11 +1121,26 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 self.removeAChildViewFromView(child: child, childToAdd: childToAdd)
             })
         } else {
-            UIView.animate(withDuration: 0.25, animations: {}, completion: { (true) in
-                self.removeAChildViewFromView(child: child, childToAdd: childToAdd)
-            })
+            var childs = [UIViewController]()
+            if let childToAdd = childToAdd {
+               childs = [child, childToAdd]
+            } else {
+                childs = [child]
+            }
+            
+            _ = Timer.scheduledTimer(timeInterval: 0.25, target: self, selector: #selector(HomeVC.callForRevomeAChildFunction(_:)), userInfo: childs, repeats: false)
         }
         
+    }
+    
+    func callForRevomeAChildFunction(_ timer: Timer) {
+        if let childs = timer.userInfo as? [UIViewController] {
+            if childs.count == 2 {
+                removeAChildViewFromView(child: childs[0], childToAdd: childs[1])
+            } else if childs.count == 1 {
+                removeAChildViewFromView(child: childs[0], childToAdd: nil)
+            }
+        }
     }
     
     func addFilterToImage(blendMode: CGBlendMode, alpha: CGFloat) -> UIImage? {
@@ -1081,7 +1171,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 context!.fill(rect)
                 
                 img.draw(in: CGRect(x: (galeryBtnView.frame.width - galeryBtnView.frame.width / 1.28) / 2, y: 0, width: galeryBtnView.frame.width / 1.28, height: galeryBtnView.frame.height / 1.83), blendMode: blendMode, alpha: alpha)
-                img2.draw(in: rect, blendMode: blendMode, alpha: alpha)
+                img2.draw(in: rect, blendMode: .normal, alpha: 1)
                 
                 // grab the finished image and return it
                 let result = UIGraphicsGetImageFromCurrentImageContext()

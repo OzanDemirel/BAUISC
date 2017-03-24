@@ -56,6 +56,8 @@ class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func fetchTeams() {
         
         ApiService.sharedInstance.fetchTeams { (teams: [Team]) in
+            self.teams = nil
+            self.teamsTableView.reloadData()
             if teams.count > 0 {
                 self.teams = teams
                 self.setTeams()
@@ -67,6 +69,8 @@ class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func setTeams() {
         
         if teams != nil {
+            
+            classes = []
             
             var IRC0 = [Team]()
             var IRC1 = [Team]()

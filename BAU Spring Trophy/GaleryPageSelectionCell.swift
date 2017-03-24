@@ -15,7 +15,7 @@ class GaleryPageSelectionCell: BaseCell {
         lbl.textColor = UIColor(red: 182/255, green: 133/255, blue: 17/255, alpha: 1)
         lbl.highlightedTextColor = UIColor(red: 1/255, green: 85/255, blue: 139/255, alpha: 1)
         lbl.textAlignment = NSTextAlignment.center
-        lbl.font = UIFont(name: "Futura-Medium", size: 9)
+        lbl.font = UIFont(name: "Futura-Book", size: 9)
         return lbl
     }()
     

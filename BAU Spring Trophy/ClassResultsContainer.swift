@@ -13,6 +13,7 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
     lazy var tableView: UITableView = {
         let table = UITableView()
         table.backgroundColor = UIColor.clear
+        //table.contentInset.top = 40
         table.delegate = self
         table.dataSource = self
         table.showsVerticalScrollIndicator = false
@@ -29,7 +30,18 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
     let statusLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 182/255, green: 133/255, blue: 17/255, alpha: 1)
-        label.font = UIFont(name: "Futura", size: 14)
+        label.font = UIFont(name: "Futura-Book", size: 14)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.alpha = 0
+        return label
+    }()
+    
+    let resultStatusLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.red
+        label.font = UIFont(name: "Futura-Book", size: 14)
+        label.backgroundColor = UIColor(red: 9/255, green: 63/255, blue: 99/255, alpha: 1)
         label.textAlignment = .center
         label.numberOfLines = 0
         label.alpha = 0
@@ -37,18 +49,30 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
     }()
     
     var status = 0
+    var resultStatus = 0
     
     var results: [Race]? {
         didSet {
             if results != nil, (results?.count)! >= ApiService.sharedInstance.selectedRace, let status = results?[ApiService.sharedInstance.selectedRace].status {
                 self.status = status
+                if let resultStatus = results?[ApiService.sharedInstance.selectedRace].resultStatus {
+                    self.resultStatus = resultStatus
+                }
             }
             if status == 0 {
+                resultStatusLabel.alpha = 0
                 statusLabel.text = "Bu yarış henüz gerçekleşmemiştir."
                 statusLabel.alpha = 1
             } else if status == 1 {
                 statusLabel.alpha = 0
+                if resultStatus == 0 {
+                    resultStatusLabel.text = "RESMİ OLMAYAN SONUÇLAR"
+                } else if resultStatus == 1 {
+                    resultStatusLabel.text = "RESMİ SONUÇLAR"
+                }
+                resultStatusLabel.alpha = 1
             } else if status == 2 {
+                resultStatusLabel.alpha = 0
                 statusLabel.text = "Bu yarış iptal edilmiştir."
                 statusLabel.alpha = 1
             }
@@ -70,17 +94,25 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
         tableView.register(ClassResultsCell.self, forCellReuseIdentifier: cellId)
         
         addSubview(activityIndicator)
-        addConstraintsWithVisualFormat(format: "H:|-\(UIScreen.main.bounds.width / 2 - 20)-[v0(40)]-\(UIScreen.main.bounds.width / 2 - 20)-|", views: activityIndicator)
+        addConstraint(NSLayoutConstraint(item: activityIndicator, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
+        addConstraintsWithVisualFormat(format: "H:[v0(40)]", views: activityIndicator)
         addConstraintsWithVisualFormat(format: "V:|-40-[v0(40)]", views: activityIndicator)
+        activityIndicator.startAnimating()
         
         addSubview(statusLabel)
         addConstraintsWithVisualFormat(format: "H:|-40-[v0]-40-|", views: statusLabel)
         addConstraintsWithVisualFormat(format: "V:|-50-[v0(60)]", views: statusLabel)
         activityIndicator.startAnimating()
         
+        addSubview(resultStatusLabel)
+        addConstraintsWithVisualFormat(format: "H:|[v0]|", views: resultStatusLabel)
+        addConstraintsWithVisualFormat(format: "V:|[v0(40)]", views: resultStatusLabel)
+        
         addSubview(tableView)
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: tableView)
-        addConstraintsWithVisualFormat(format: "V:|[v0]|", views: tableView)
+        addConstraintsWithVisualFormat(format: "V:|-40-[v0]|", views: tableView)
+
+        layoutIfNeeded()
         
         fetchResults()
 
@@ -94,6 +126,10 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
 
     func fetchResults() {
         
+        activityIndicator.alpha = 1
+        activityIndicator.startAnimating()
+        resultStatusLabel.alpha = 0
+        status = -1
         statusLabel.alpha = 0
         results = nil
         
@@ -105,6 +141,10 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
 
     func setTablePosition() {
         
+        activityIndicator.alpha = 1
+        activityIndicator.startAnimating()
+        resultStatusLabel.alpha = 0
+        status = -1
         statusLabel.alpha = 0
         results = nil
         

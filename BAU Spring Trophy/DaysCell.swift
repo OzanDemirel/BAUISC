@@ -12,7 +12,7 @@ class DaysCell: BaseCell {
     
     let name: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Futura", size: 8)
+        label.font = UIFont(name: "Futura-Book", size: 8)
         label.adjustsFontSizeToFitWidth = true
         label.textColor = UIColor(red: 1/255, green: 85/255, blue: 139/255, alpha: 1)
         label.textAlignment = .center

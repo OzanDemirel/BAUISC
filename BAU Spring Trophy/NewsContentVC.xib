@@ -4,11 +4,15 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Futura-Book.otf">
+            <string>Futura-Book</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewsContentVC" customModule="BAU_Spring_Trophy" customModuleProvider="target">
             <connections>
@@ -56,8 +60,8 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Pbc-ko-499">
-                    <rect key="frame" x="40" y="247.33333333333337" width="354" height="15.666666666666629"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Pbc-ko-499">
+                    <rect key="frame" x="40" y="255.33333333333334" width="354" height="0.0"/>
                     <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="12"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -73,7 +77,7 @@
                     <rect key="frame" x="20" y="298" width="374" height="216"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <color key="textColor" red="0.9529411793" green="0.9529411793" blue="0.9529411793" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="10"/>
+                    <fontDescription key="fontDescription" name="Futura-Book" family="Futura" pointSize="12"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                 </textView>
             </subviews>
@@ -103,7 +107,7 @@
         </view>
     </objects>
     <resources>
-        <image name="NavigationBarBackground" width="1242" height="274"/>
+        <image name="NavigationBarBackground" width="414" height="91"/>
         <image name="TableCellIcon" width="7" height="16"/>
         <image name="TrendCellBackground" width="414" height="232"/>
         <image name="www.bauisc.org" width="95" height="11"/>

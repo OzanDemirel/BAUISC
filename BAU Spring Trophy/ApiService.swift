@@ -91,9 +91,9 @@ class ApiService: NSObject {
         
         ref.child(teamsRef).observe(FIRDataEventType.value, with: { (snapshot) in
             
-            self.teams = []
-            
             if let data = snapshot.value as? [String: AnyObject] {
+                
+                self.teams = []
                 
                 for dictionary in data {
                     
@@ -326,71 +326,70 @@ class ApiService: NSObject {
                                 race.status = status
                             }
                             
-                        } else {
+                        } else if team.key == "resultStatus" {
                             
-                            if let result = team.value as? [String: AnyObject] {
+                            if let resultStatus = team.value as? Int {
+                                race.resultStatus = resultStatus
+                            }
                                 
-                                let participant = Participant()
+                        } else if let result = team.value as? [String: AnyObject] {
+                            
+                            let participant = Participant()
+                            
+                            if let place = result["place"] as? Int {
                                 
-                                if let place = result["place"] as? Int {
-                                    
-                                    participant.place = place
-                                    
-                                }
-                                
-                                if let time = result["time"] as? String {
-                                    
-                                    participant.finishTime = time
-                                    
-                                }
-                                
-                                if let extraTime = result["extraTime"] as? String {
-                                    
-                                    participant.extraTime = extraTime
-                                    
-                                }
-                                
-                                if let boatId = result["boatId"] as? String {
-                                    
-                                    participant.team = self.teams.first(where: { $0.boatId == boatId })
-                                    
-                                }
-                                
-                                race.participantsByPlace.append(participant)
-                                
-                                if let boatClass = participant.team?.boatClass {
-                                    
-                                    switch boatClass {
-                                    case "IRC0":
-                                        IRC0.append(participant)
-                                        break;
-                                    case "IRC1":
-                                        IRC1.append(participant)
-                                        break;
-                                    case "IRC2":
-                                        IRC2.append(participant)
-                                        break;
-                                    case "IRC3":
-                                        IRC3.append(participant)
-                                        break;
-                                    case "IRC4":
-                                        IRC4.append(participant)
-                                        break;
-                                    case "GEZGİN":
-                                        GEZGİN.append(participant)
-                                        break;
-                                    default:
-                                        break;
-                                    }
-                                    
-                                }
+                                participant.place = place
                                 
                             }
                             
+                            if let time = result["time"] as? String {
+                                
+                                participant.finishTime = time
+                                
+                            }
+                            
+                            if let extraTime = result["extraTime"] as? String {
+                                
+                                participant.extraTime = extraTime
+                                
+                            }
+                            
+                            if let boatId = result["boatId"] as? String {
+                                
+                                participant.team = self.teams.first(where: { $0.boatId == boatId })
+                                
+                            }
+                            
+                            race.participantsByPlace.append(participant)
+                            
+                            if let boatClass = participant.team?.boatClass {
+                                
+                                switch boatClass {
+                                case "IRC0":
+                                    IRC0.append(participant)
+                                    break;
+                                case "IRC1":
+                                    IRC1.append(participant)
+                                    break;
+                                case "IRC2":
+                                    IRC2.append(participant)
+                                    break;
+                                case "IRC3":
+                                    IRC3.append(participant)
+                                    break;
+                                case "IRC4":
+                                    IRC4.append(participant)
+                                    break;
+                                case "GEZGİN":
+                                    GEZGİN.append(participant)
+                                    break;
+                                default:
+                                    break;
+                                }
+                            }
                         }
-                        
                     }
-                    
+                
                     IRC0 = IRC0.sorted(by: { $0.place! < $1.place!})
                     IRC1 = IRC1.sorted(by: { $0.place! < $1.place!})
                     IRC2 = IRC2.sorted(by: { $0.place! < $1.place!})
@@ -428,9 +427,13 @@ class ApiService: NSObject {
                                 race.status = status
                             }
                             
-                        } else {
+                        } else if team.key == "resultStatus" {
                             
-                            if let result = team.value as? [String: AnyObject] {
+                            if let resultStatus = team.value as? Int {
+                                race.resultStatus = resultStatus
+                            }
+                            
+                        } else if let result = team.value as? [String: AnyObject] {
                                 
                                 let participant = Participant()
                                 
@@ -491,7 +494,7 @@ class ApiService: NSObject {
                             
                         }
                         
-                    }
+                    
                     
                     IRC0 = IRC0.sorted(by: { $0.place! < $1.place!})
                     IRC1 = IRC1.sorted(by: { $0.place! < $1.place!})
@@ -529,9 +532,13 @@ class ApiService: NSObject {
                                 race.status = status
                             }
                             
-                        } else {
+                        } else if team.key == "resultStatus" {
                             
-                            if let result = team.value as? [String: AnyObject] {
+                            if let resultStatus = team.value as? Int {
+                                race.resultStatus = resultStatus
+                            }
+                            
+                        } else if let result = team.value as? [String: AnyObject] {
                                 
                                 let participant = Participant()
                                 
@@ -592,7 +599,7 @@ class ApiService: NSObject {
                             
                         }
                         
-                    }
+                    
                     
                     IRC0 = IRC0.sorted(by: { $0.place! < $1.place!})
                     IRC1 = IRC1.sorted(by: { $0.place! < $1.place!})
@@ -631,9 +638,13 @@ class ApiService: NSObject {
                                 race.status = status
                             }
                             
-                        } else {
+                        } else if team.key == "resultStatus" {
                             
-                            if let result = team.value as? [String: AnyObject] {
+                            if let resultStatus = team.value as? Int {
+                                race.resultStatus = resultStatus
+                            }
+                            
+                        } else if let result = team.value as? [String: AnyObject] {
                                 
                                 let participant = Participant()
                                 
@@ -690,8 +701,6 @@ class ApiService: NSObject {
                                     
                                 }
                                 
-                            }
-                            
                         }
                         
                     }

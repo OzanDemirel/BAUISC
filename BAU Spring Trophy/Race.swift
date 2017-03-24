@@ -12,6 +12,7 @@ class Race: NSObject {
     
     var name = 0
     var status = 0
+    var resultStatus = 0
     var participantsByPlace = [Participant]()
     var participantsByPlaceOfClass = [Int: [Participant]]()
     

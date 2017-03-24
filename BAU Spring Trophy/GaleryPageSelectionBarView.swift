@@ -46,7 +46,7 @@ class GaleryPageSelectionBarView: UIView, UICollectionViewDelegate, UICollection
         
         NotificationCenter.default.addObserver(self, selector: #selector(GaleryPageSelectionBarView.setSelection(_:)), name: NSNotification.Name("AnyChildAddedToView"), object: nil)
     }
-    
+
     func setSelection(_ notification: NSNotification) {
 
         if let index = notification.userInfo?["indexPath"] as? Int {

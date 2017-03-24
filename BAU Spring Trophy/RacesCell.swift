@@ -12,7 +12,7 @@ class RacesCell: BaseCell {
     
     let name: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Futura-Medium", size: 8)
+        label.font = UIFont(name: "Futura-Book", size: 8)
         label.adjustsFontSizeToFitWidth = true
         label.textColor = UIColor(red: 5/255, green: 58/255, blue: 92/255, alpha: 1)
         label.highlightedTextColor = UIColor(red: 251/255, green: 173/255, blue: 24/255, alpha: 1)

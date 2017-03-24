@@ -41,7 +41,7 @@ class TeamsCell: UITableViewCell {
     let boatType: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 249/255, green: 185/255, blue: 24/255, alpha: 1)
-        label.font = UIFont(name: "Futura", size: 8)
+        label.font = UIFont(name: "Futura-Book", size: 8)
         return label
     }()
     
@@ -56,7 +56,7 @@ class TeamsCell: UITableViewCell {
     let boatClass: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 249/255, green: 185/255, blue: 24/255, alpha: 1)
-        label.font = UIFont(name: "Futura", size: 8)
+        label.font = UIFont(name: "Futura-Book", size: 8)
         label.textAlignment = .right
         return label
     }()
@@ -79,7 +79,7 @@ class TeamsCell: UITableViewCell {
         addConstraintsWithVisualFormat(format: "H:|-60-[v0]-\(frame.width / 2)-|", views: teamName)
         addConstraintsWithVisualFormat(format: "V:[v0(10)]", views: teamName)
         addConstraint(NSLayoutConstraint(item: teamName, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
-        teamName.text = team.teamName?.capitalized
+        teamName.text = team.teamName?.uppercased()
         
         addSubview(arrowIcon)
         addConstraintsWithVisualFormat(format: "H:[v0(16)]-40-|", views: arrowIcon)

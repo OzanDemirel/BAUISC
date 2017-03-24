@@ -69,7 +69,7 @@ class TableSectionView: UIView, UICollectionViewDelegate, UICollectionViewDataSo
             cell.sectionTitle.textAlignment = .left
         }
         if UIScreen.main.bounds.width == 320 {
-            cell.sectionTitle.font = UIFont(name: "Futura-Medium", size: 8)
+            cell.sectionTitle.font = UIFont(name: "Futura-Book", size: 8)
         }
         return cell
     }

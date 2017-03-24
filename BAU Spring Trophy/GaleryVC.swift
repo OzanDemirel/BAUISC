@@ -29,7 +29,6 @@ class GaleryVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
         baseCollectionView.register(PhotosBaseCell.self, forCellWithReuseIdentifier: "photosBaseCell")
         baseCollectionView.register(VideosBaseCell.self, forCellWithReuseIdentifier: "videosBaseCell")
         selectionBarView.galeryVC = self
-        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -46,7 +45,7 @@ class GaleryVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
     }
     
     func scrollCollectionView(indexPath: Int) {
-        baseCollectionView.scrollRectToVisible(CGRect(x: baseCollectionView.frame.maxX * CGFloat(indexPath), y: baseCollectionView.frame.minY, width: baseCollectionView.frame.width, height: baseCollectionView.frame.height), animated: true)
+        baseCollectionView.scrollToItem(at: IndexPath(item: 0, section: indexPath), at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
