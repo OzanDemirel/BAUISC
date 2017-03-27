@@ -262,10 +262,12 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
 
     func setTrendNews(news: [News]) {
 
-        if news.count > 0 {
-            newsScrollPages.newsCount = news.count > 4 ? 5 : news.count
+        newsScrollPages.newsCount = news.count > 4 ? 5 : news.count
+        if news.count == 1 {
+            newsScrollPages.collectionView.isScrollEnabled = false
         }
         if news.count > 1 {
+            newsScrollPages.collectionView.isScrollEnabled = true
             leftArrow.isEnabled = true
             rightArrow.isEnabled = true
         }

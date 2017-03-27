@@ -57,6 +57,7 @@ class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         ApiService.sharedInstance.fetchTeams { (teams: [Team]) in
             self.teams = nil
+            self.classes = []
             self.teamsTableView.reloadData()
             if teams.count > 0 {
                 self.teams = teams
@@ -114,28 +115,40 @@ class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 switch i {
                 case "IRC0":
-                    let object = Classes(classTitle: i, classMembers: IRC0)
-                    classes.append(object)
+                    if IRC0.count > 0 {
+                        let object = Classes(classTitle: i, classMembers: IRC0)
+                        classes.append(object)
+                    }
                     break;
                 case "IRC1":
-                    let object = Classes(classTitle: i, classMembers: IRC1)
-                    classes.append(object)
+                    if IRC1.count > 0 {
+                        let object = Classes(classTitle: i, classMembers: IRC1)
+                        classes.append(object)
+                    }
                     break;
                 case "IRC2":
-                    let object = Classes(classTitle: i, classMembers: IRC2)
-                    classes.append(object)
+                    if IRC2.count > 0 {
+                        let object = Classes(classTitle: i, classMembers: IRC2)
+                        classes.append(object)
+                    }
                     break;
                 case "IRC3":
-                    let object = Classes(classTitle: i, classMembers: IRC3)
-                    classes.append(object)
+                    if IRC3.count > 0 {
+                        let object = Classes(classTitle: i, classMembers: IRC3)
+                        classes.append(object)
+                    }
                     break;
                 case "IRC4":
-                    let object = Classes(classTitle: i, classMembers: IRC4)
-                    classes.append(object)
+                    if IRC4.count > 0 {
+                        let object = Classes(classTitle: i, classMembers: IRC4)
+                        classes.append(object)
+                    }
                     break;
                 case "GEZGİN":
-                    let object = Classes(classTitle: i, classMembers: GEZGİN)
-                    classes.append(object)
+                    if GEZGİN.count > 0 {
+                        let object = Classes(classTitle: i, classMembers: GEZGİN)
+                        classes.append(object)
+                    }
                     break;
                 default:
                     break;
