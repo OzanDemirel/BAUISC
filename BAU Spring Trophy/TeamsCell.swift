@@ -76,8 +76,8 @@ class TeamsCell: UITableViewCell {
         addConstraintsWithVisualFormat(format: "H:|-40-[v0]-40-|", views: seperatorBar)
         
         addSubview(teamName)
-        addConstraintsWithVisualFormat(format: "H:|-60-[v0]-\(frame.width / 2)-|", views: teamName)
-        addConstraintsWithVisualFormat(format: "V:[v0(10)]", views: teamName)
+        addConstraintsWithVisualFormat(format: "H:|-60-[v0]-\(frame.width / 5 + 80)-|", views: teamName)
+        addConstraintsWithVisualFormat(format: "V:[v0(12)]", views: teamName)
         addConstraint(NSLayoutConstraint(item: teamName, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
         teamName.text = team.teamName?.uppercased()
         
@@ -94,7 +94,7 @@ class TeamsCell: UITableViewCell {
         
         addSubview(boatRaiting)
         addConstraintsWithVisualFormat(format: "H:[v0(\(frame.width / 5))]-68-|", views: boatRaiting)
-        addConstraintsWithVisualFormat(format: "V:[v0(10)]", views: boatRaiting)
+        addConstraintsWithVisualFormat(format: "V:[v0(12)]", views: boatRaiting)
         addConstraint(NSLayoutConstraint(item: boatRaiting, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
         boatRaiting.text = team.boatRaiting
         

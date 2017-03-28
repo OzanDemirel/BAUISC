@@ -8,13 +8,19 @@
 
 import UIKit
 
+struct Participants {
+    var classTitle: String!
+    var classMembers: [Participant]!
+}
+
 class Race: NSObject {
     
     var name = 0
     var status = 0
     var resultStatus = 0
     var participantsByPlace = [Participant]()
-    var participantsByPlaceOfClass = [Int: [Participant]]()
+    var participantsByPlaceOfClass = [Participants]()
+    var participantsByPlaceOfCategory = [Participants]()
     
 }
 

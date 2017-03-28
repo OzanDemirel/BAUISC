@@ -40,7 +40,14 @@ class NewsScrollPages: DesignableView, UICollectionViewDelegate, UICollectionVie
     
     var homeVC: HomeVC?
     
-    var newsCount = 0
+    var newsCount = 0 {
+        didSet {
+            collectionView.reloadData()
+            if newsCount > 1 {
+                collectionView.scrollToItem(at: IndexPath(item: 1000 * newsCount, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
+            }
+        }
+    }
     
     override func awakeFromNib() {
         
@@ -60,39 +67,7 @@ class NewsScrollPages: DesignableView, UICollectionViewDelegate, UICollectionVie
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: collectionView)
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: collectionView)
         
-        collectionView.isScrollEnabled = true
-        collectionView.scrollToItem(at: IndexPath(item: 5000, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
-        
     }
-    
-//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        
-//        isScrollEnabled = false
-//        
-//    }
-//    
-//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        
-//        if contentOffset.x <= 0 {
-//            
-//            scrollRectToVisible(CGRect(x: frame.width * CGFloat(newsScrollPages.count - 2), y: frame.minY, width: frame.width, height: frame.height), animated: false)
-//            homeVC?.selectItemInNewsSelection(itemIndex: newsImages.count - 3)
-//            
-//        } else if contentOffset.x >= frame.width * CGFloat(newsScrollPages.count - 1) {
-//            
-//            scrollRectToVisible(CGRect(x: frame.width, y: frame.minY, width: frame.width, height: frame.height), animated: false)
-//            homeVC?.selectItemInNewsSelection(itemIndex: 0)
-//            
-//        } else {
-//            
-//            let index = contentOffset.x / frame.width
-//            homeVC?.selectItemInNewsSelection(itemIndex: Int(index) - 1)
-//            
-//        }
-//        
-//        isScrollEnabled = true
-//        
-//    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         checkForIndex()
@@ -104,9 +79,11 @@ class NewsScrollPages: DesignableView, UICollectionViewDelegate, UICollectionVie
 
     func checkForIndex() {
         
-        let index = Int(round(Double(collectionView.contentOffset.x / frame.width).truncatingRemainder(dividingBy: Double(newsCount)))) < newsCount ? Int(round(Double(collectionView.contentOffset.x / frame.width).truncatingRemainder(dividingBy: Double(newsCount)))) : 0
-
-        homeVC?.newsSelectionView.collectionView.selectItem(at: IndexPath(item: index, section: 0), animated: false, scrollPosition: [])
+        if newsCount > 0 {
+            let index = Int(round(Double(collectionView.contentOffset.x / frame.width).truncatingRemainder(dividingBy: Double(newsCount)))) < newsCount ? Int(round(Double(collectionView.contentOffset.x / frame.width).truncatingRemainder(dividingBy: Double(newsCount)))) : 0
+            
+            homeVC?.newsSelectionView.collectionView.selectItem(at: IndexPath(item: index, section: 0), animated: false, scrollPosition: [])
+        }
         
     }
 
@@ -125,7 +102,7 @@ class NewsScrollPages: DesignableView, UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return newsCount == 0 ? 0 : 9999
+        return newsCount <= 1 ? newsCount : 2000 * newsCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

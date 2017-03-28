@@ -42,9 +42,9 @@ class ApiService: NSObject {
         
         ref.child(newsRef).observe(FIRDataEventType.value, with: { (snapshot) in
             
+            self.news = []
+            
             if let data = snapshot.value as? [String: AnyObject] {
-                
-                self.news = []
                 
                 for dictionary in data {
                     
@@ -91,9 +91,9 @@ class ApiService: NSObject {
         
         ref.child(teamsRef).observe(FIRDataEventType.value, with: { (snapshot) in
             
+            self.teams = []
+            
             if let data = snapshot.value as? [String: AnyObject] {
-                
-                self.teams = []
                 
                 for dictionary in data {
                     
@@ -139,6 +139,10 @@ class ApiService: NSObject {
                     completion(self.teams)
                 })
             }
+            
+            DispatchQueue.main.async(execute: {
+                completion(self.teams)
+            })
             
         })
         
@@ -315,6 +319,7 @@ class ApiService: NSObject {
                     var IRC3 = [Participant]()
                     var IRC4 = [Participant]()
                     var GEZGİN = [Participant]()
+                    var raceCategory = [Participant]()
                     
                     for team in race1 {
                         
@@ -366,15 +371,19 @@ class ApiService: NSObject {
                                 
                                 switch boatClass {
                                 case "IRC0":
+                                    raceCategory.append(participant)
                                     IRC0.append(participant)
                                     break;
                                 case "IRC1":
+                                    raceCategory.append(participant)
                                     IRC1.append(participant)
                                     break;
                                 case "IRC2":
+                                    raceCategory.append(participant)
                                     IRC2.append(participant)
                                     break;
                                 case "IRC3":
+                                    raceCategory.append(participant)
                                     IRC3.append(participant)
                                     break;
                                 case "IRC4":
@@ -389,18 +398,60 @@ class ApiService: NSObject {
                             }
                         }
                     }
-                
-                    IRC0 = IRC0.sorted(by: { $0.place! < $1.place!})
-                    IRC1 = IRC1.sorted(by: { $0.place! < $1.place!})
-                    IRC2 = IRC2.sorted(by: { $0.place! < $1.place!})
-                    IRC3 = IRC3.sorted(by: { $0.place! < $1.place!})
-                    IRC4 = IRC4.sorted(by: { $0.place! < $1.place!})
-                    GEZGİN = GEZGİN.sorted(by: { $0.place! < $1.place!})
+                    
+                    if raceCategory.count > 0 {
+                        raceCategory = raceCategory.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC 0-1-2-3"
+                        participants.classMembers = raceCategory
+                        race.participantsByPlaceOfCategory.append(participants)
+                    }
+            
+                    if IRC0.count > 0 {
+                        IRC0 = IRC0.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC0"
+                        participants.classMembers = IRC0
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
+                    if IRC1.count > 0 {
+                        IRC1 = IRC1.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC1"
+                        participants.classMembers = IRC1
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
+                    if IRC2.count > 0 {
+                        IRC2 = IRC2.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC2"
+                        participants.classMembers = IRC2
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
+                    if IRC3.count > 0 {
+                        IRC3 = IRC3.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC3"
+                        participants.classMembers = IRC3
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
+                    if IRC4.count > 0 {
+                        IRC4 = IRC4.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC4"
+                        participants.classMembers = IRC4
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
+                    if GEZGİN.count > 0 {
+                        GEZGİN = GEZGİN.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "GEZGİN"
+                        participants.classMembers = GEZGİN
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
                     
                     race.participantsByPlace = race.participantsByPlace.sorted(by: { $0.place! < $1.place!})
 
-                    race.participantsByPlaceOfClass = [0 : IRC0, 1: IRC1, 2: IRC2, 3: IRC3, 4: IRC4, 5: GEZGİN]
-                    
                     self.races.append(race)
                 
                 }
@@ -416,6 +467,7 @@ class ApiService: NSObject {
                     var IRC3 = [Participant]()
                     var IRC4 = [Participant]()
                     var GEZGİN = [Participant]()
+                    var raceCategory = [Participant]()
                     
                     for team in race2 {
                         
@@ -467,15 +519,19 @@ class ApiService: NSObject {
                                     
                                     switch boatClass {
                                     case "IRC0":
+                                        raceCategory.append(participant)
                                         IRC0.append(participant)
                                         break;
                                     case "IRC1":
+                                        raceCategory.append(participant)
                                         IRC1.append(participant)
                                         break;
                                     case "IRC2":
+                                        raceCategory.append(participant)
                                         IRC2.append(participant)
                                         break;
                                     case "IRC3":
+                                        raceCategory.append(participant)
                                         IRC3.append(participant)
                                         break;
                                     case "IRC4":
@@ -495,17 +551,58 @@ class ApiService: NSObject {
                         }
                         
                     
+                    if raceCategory.count > 0 {
+                        raceCategory = raceCategory.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC 0-1-2-3"
+                        participants.classMembers = raceCategory
+                        race.participantsByPlaceOfCategory.append(participants)
+                    }
                     
-                    IRC0 = IRC0.sorted(by: { $0.place! < $1.place!})
-                    IRC1 = IRC1.sorted(by: { $0.place! < $1.place!})
-                    IRC2 = IRC2.sorted(by: { $0.place! < $1.place!})
-                    IRC3 = IRC3.sorted(by: { $0.place! < $1.place!})
-                    IRC4 = IRC4.sorted(by: { $0.place! < $1.place!})
-                    GEZGİN = GEZGİN.sorted(by: { $0.place! < $1.place!})
+                    if IRC0.count > 0 {
+                        IRC0 = IRC0.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC0"
+                        participants.classMembers = IRC0
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
+                    if IRC1.count > 0 {
+                        IRC1 = IRC1.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC1"
+                        participants.classMembers = IRC1
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
+                    if IRC2.count > 0 {
+                        IRC2 = IRC2.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC2"
+                        participants.classMembers = IRC2
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
+                    if IRC3.count > 0 {
+                        IRC3 = IRC3.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC3"
+                        participants.classMembers = IRC3
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
+                    if IRC4.count > 0 {
+                        IRC4 = IRC4.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC4"
+                        participants.classMembers = IRC4
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
+                    if GEZGİN.count > 0 {
+                        GEZGİN = GEZGİN.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "GEZGİN"
+                        participants.classMembers = GEZGİN
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
                     
                     race.participantsByPlace = race.participantsByPlace.sorted(by: { $0.place! < $1.place!})
-                    
-                    race.participantsByPlaceOfClass = [0 : IRC0, 1: IRC1, 2: IRC2, 3: IRC3, 4: IRC4, 5: GEZGİN]
                     
                     self.races.append(race)
                     
@@ -521,6 +618,7 @@ class ApiService: NSObject {
                     var IRC3 = [Participant]()
                     var IRC4 = [Participant]()
                     var GEZGİN = [Participant]()
+                    var raceCategory = [Participant]()
                     
                     for team in race3 {
                         
@@ -572,15 +670,19 @@ class ApiService: NSObject {
                                     
                                     switch boatClass {
                                     case "IRC0":
+                                        raceCategory.append(participant)
                                         IRC0.append(participant)
                                         break;
                                     case "IRC1":
+                                        raceCategory.append(participant)
                                         IRC1.append(participant)
                                         break;
                                     case "IRC2":
+                                        raceCategory.append(participant)
                                         IRC2.append(participant)
                                         break;
                                     case "IRC3":
+                                        raceCategory.append(participant)
                                         IRC3.append(participant)
                                         break;
                                     case "IRC4":
@@ -592,25 +694,64 @@ class ApiService: NSObject {
                                     default:
                                         break;
                                     }
-                                    
                                 }
                                 
                             }
                             
                         }
-                        
                     
+                    if raceCategory.count > 0 {
+                        raceCategory = raceCategory.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC 0-1-2-3"
+                        participants.classMembers = raceCategory
+                        race.participantsByPlaceOfCategory.append(participants)
+                    }
                     
-                    IRC0 = IRC0.sorted(by: { $0.place! < $1.place!})
-                    IRC1 = IRC1.sorted(by: { $0.place! < $1.place!})
-                    IRC2 = IRC2.sorted(by: { $0.place! < $1.place!})
-                    IRC3 = IRC3.sorted(by: { $0.place! < $1.place!})
-                    IRC4 = IRC4.sorted(by: { $0.place! < $1.place!})
-                    GEZGİN = GEZGİN.sorted(by: { $0.place! < $1.place!})
+                    if IRC0.count > 0 {
+                        IRC0 = IRC0.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC0"
+                        participants.classMembers = IRC0
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
+                    if IRC1.count > 0 {
+                        IRC1 = IRC1.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC1"
+                        participants.classMembers = IRC1
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
+                    if IRC2.count > 0 {
+                        IRC2 = IRC2.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC2"
+                        participants.classMembers = IRC2
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
+                    if IRC3.count > 0 {
+                        IRC3 = IRC3.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC3"
+                        participants.classMembers = IRC3
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
+                    if IRC4.count > 0 {
+                        IRC4 = IRC4.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC4"
+                        participants.classMembers = IRC4
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
+                    if GEZGİN.count > 0 {
+                        GEZGİN = GEZGİN.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "GEZGİN"
+                        participants.classMembers = GEZGİN
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
                     
                     race.participantsByPlace = race.participantsByPlace.sorted(by: { $0.place! < $1.place!})
-                    
-                    race.participantsByPlaceOfClass = [0 : IRC0, 1: IRC1, 2: IRC2, 3: IRC3, 4: IRC4, 5: GEZGİN]
                     
                     self.races.append(race)
                     
@@ -627,6 +768,7 @@ class ApiService: NSObject {
                     var IRC3 = [Participant]()
                     var IRC4 = [Participant]()
                     var GEZGİN = [Participant]()
+                    var raceCategory = [Participant]()
                     
                     for team in overall {
                         
@@ -678,15 +820,19 @@ class ApiService: NSObject {
                                     
                                     switch boatClass {
                                     case "IRC0":
+                                        raceCategory.append(participant)
                                         IRC0.append(participant)
                                         break;
                                     case "IRC1":
+                                        raceCategory.append(participant)
                                         IRC1.append(participant)
                                         break;
                                     case "IRC2":
+                                        raceCategory.append(participant)
                                         IRC2.append(participant)
                                         break;
                                     case "IRC3":
+                                        raceCategory.append(participant)
                                         IRC3.append(participant)
                                         break;
                                     case "IRC4":
@@ -705,16 +851,58 @@ class ApiService: NSObject {
                         
                     }
                     
-                    IRC0 = IRC0.sorted(by: { $0.place! < $1.place!})
-                    IRC1 = IRC1.sorted(by: { $0.place! < $1.place!})
-                    IRC2 = IRC2.sorted(by: { $0.place! < $1.place!})
-                    IRC3 = IRC3.sorted(by: { $0.place! < $1.place!})
-                    IRC4 = IRC4.sorted(by: { $0.place! < $1.place!})
-                    GEZGİN = GEZGİN.sorted(by: { $0.place! < $1.place!})
+                    if raceCategory.count > 0 {
+                        raceCategory = raceCategory.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC 0-1-2-3"
+                        participants.classMembers = raceCategory
+                        race.participantsByPlaceOfCategory.append(participants)
+                    }
                     
-                    race.participantsByPlace = race.participantsByPlace.sorted(by: { $0.place! < $1.place!})
+                    if IRC0.count > 0 {
+                        IRC0 = IRC0.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC0"
+                        participants.classMembers = IRC0
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
+                    if IRC1.count > 0 {
+                        IRC1 = IRC1.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC1"
+                        participants.classMembers = IRC1
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
+                    if IRC2.count > 0 {
+                        IRC2 = IRC2.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC2"
+                        participants.classMembers = IRC2
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
+                    if IRC3.count > 0 {
+                        IRC3 = IRC3.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC3"
+                        participants.classMembers = IRC3
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
+                    if IRC4.count > 0 {
+                        IRC4 = IRC4.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "IRC4"
+                        participants.classMembers = IRC4
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
+                    if GEZGİN.count > 0 {
+                        GEZGİN = GEZGİN.sorted(by: { $0.place! < $1.place!})
+                        var participants = Participants()
+                        participants.classTitle = "GEZGİN"
+                        participants.classMembers = GEZGİN
+                        race.participantsByPlaceOfClass.append(participants)
+                    }
                     
-                    race.participantsByPlaceOfClass = [0 : IRC0, 1: IRC1, 2: IRC2, 3: IRC3, 4: IRC4, 5: GEZGİN]
+                    race.participantsByPlace = race.participantsByPlace.sorted(by: { $0.place! < $1.place!})                    
                     
                     self.races.append(race)
                     

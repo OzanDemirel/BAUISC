@@ -27,7 +27,7 @@ class RacesSectionBaseView: UIView, UICollectionViewDelegate, UICollectionViewDa
     
     let cellId = ["racesBaseCellOne", "racesBaseCellTwo", "racesBaseCellThree", "racesBaseCellOverall"]
     
-    let selectionNames = [["YARIŞ 1", "YARIŞ 2", "YARIŞ 3", "OVERALL"], ["YARIŞ 1"], ["YARIŞ 1", "YARIŞ 2", "YARIŞ 3", "OVERALL"], ["YARIŞ 1", "YARIŞ 2", "YARIŞ 3", "OVERALL"], ["YARIŞ 1"], ["YARIŞ 1", "YARIŞ 2", "YARIŞ 3", "OVERALL"], ["OVERALL"]]
+    let selectionNames = [["YARIŞ 1", "YARIŞ 2", "YARIŞ 3", "OVERALL"], ["YARIŞ 1", "OVERALL"], ["YARIŞ 1", "YARIŞ 2", "YARIŞ 3", "OVERALL"], ["YARIŞ 1", "YARIŞ 2", "YARIŞ 3", "OVERALL"], ["YARIŞ 1", "OVERALL"], ["YARIŞ 1", "YARIŞ 2", "YARIŞ 3", "OVERALL"], ["OVERALL"]]
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -59,13 +59,13 @@ class RacesSectionBaseView: UIView, UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell = UICollectionViewCell()
-        if selectionNames[indexPath.section].count == 1 && selectionNames[indexPath.section][0] != "OVERALL" {
+        if selectionNames[indexPath.section].count == 2 {
             cell = selectionView.dequeueReusableCell(withReuseIdentifier: cellId[0], for: indexPath) as! RacesBaseCellOne
         } else if selectionNames[indexPath.section].count == 3 {
             cell = selectionView.dequeueReusableCell(withReuseIdentifier: cellId[1], for: indexPath) as! RacesBaseCellTwo
         } else if selectionNames[indexPath.section].count == 4 {
             cell = selectionView.dequeueReusableCell(withReuseIdentifier: cellId[2], for: indexPath) as! RacesBaseCellThree
-        } else if selectionNames[indexPath.section].count == 1 && selectionNames[indexPath.section][0] == "OVERALL" {
+        } else if selectionNames[indexPath.section].count == 1 {
             cell = selectionView.dequeueReusableCell(withReuseIdentifier: cellId[3], for: indexPath) as! RacesBaseCellOverall
         }
         return cell

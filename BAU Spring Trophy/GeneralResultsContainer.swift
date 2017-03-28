@@ -78,6 +78,10 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
                 resultStatusLabel.alpha = 1
             } else if status == 2 {
                 resultStatusLabel.alpha = 0
+                statusLabel.text = "Bu yarış gerçekleşmemiştir."
+                statusLabel.alpha = 1
+            } else if status == 3 {
+                resultStatusLabel.alpha = 0
                 statusLabel.text = "Bu yarış iptal edilmiştir."
                 statusLabel.alpha = 1
             }
@@ -157,7 +161,7 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if let team = results?[ApiService.sharedInstance.selectedRace].participantsByPlace[indexPath.row].team {
+        if let team = results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfCategory[0].classMembers[indexPath.row].team {
             
             NotificationCenter.default.post(name: NSNotification.Name("teamSelected"), object: nil, userInfo: ["team": team])
             
@@ -167,7 +171,8 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! GeneralResultsCell
-        cell.participant = results?[ApiService.sharedInstance.selectedRace].participantsByPlace[indexPath.row]
+        cell.participant = results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfCategory[0].classMembers[indexPath.row]
+        cell.setPlace(place: indexPath.row)
         return cell
     }
     
@@ -176,7 +181,7 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return status == 1 ? (results?[ApiService.sharedInstance.selectedRace].participantsByPlace.count ?? 0) : 0
+        return status == 1 ? (results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfCategory[0].classMembers.count ?? 0) : 0
     }
     
 }

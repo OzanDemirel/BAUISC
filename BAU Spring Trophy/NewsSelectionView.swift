@@ -10,7 +10,15 @@ import UIKit
 
 class NewsSelectionView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var trendNewsCount = 0
+    var trendNewsCount = 0 {
+        didSet {
+            collectionView.reloadData()
+            setSelectionViews()
+            if trendNewsCount > 1 {
+                collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: [])
+            }
+        }
+    }
 
     lazy var collectionView: UICollectionView = {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())

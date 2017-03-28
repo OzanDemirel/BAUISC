@@ -73,6 +73,10 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
                 resultStatusLabel.alpha = 1
             } else if status == 2 {
                 resultStatusLabel.alpha = 0
+                statusLabel.text = "Bu yarış gerçekleşmemiştir."
+                statusLabel.alpha = 1
+            } else if status == 3 {
+                resultStatusLabel.alpha = 0
                 statusLabel.text = "Bu yarış iptal edilmiştir."
                 statusLabel.alpha = 1
             }
@@ -86,7 +90,7 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
     
     let cellId = "classResultsCell"
     
-    let classes = ["IRC0", "IRC1", "IRC2", "IRC3", "IRC4", "GEZGİN"]
+    //let classes = ["IRC0", "IRC1", "IRC2", "IRC3", "IRC4", "GEZGİN"]
     
     override func setupViews() {
         super.setupViews()
@@ -158,7 +162,7 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if let team = results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfClass[indexPath.section]?[indexPath.row].team {
+        if let team = results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfClass[indexPath.section].classMembers[indexPath.row].team {
             
             NotificationCenter.default.post(name: NSNotification.Name("teamSelected"), object: nil, userInfo: ["team": team])
             
@@ -184,7 +188,7 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
             let label = UILabel()
             label.font = UIFont(name: "Futura-Bold", size: 8)
             label.textColor = UIColor(red: 1/255, green: 85/255, blue: 139/255, alpha: 1)
-            label.text = classes[section]
+            label.text = results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfClass[section].classTitle
             return label
         }()
         
@@ -206,8 +210,9 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ClassResultsCell
-        if let participant = results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfClass[indexPath.section]?[indexPath.row] {
+        if let participant = results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfClass[indexPath.section].classMembers[indexPath.row] {
             cell.participant = participant
+            cell.setPlace(place: indexPath.row)
         }
         return cell
     }
@@ -217,7 +222,7 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfClass[section]!.count ?? 0
+        return results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfClass[section].classMembers.count ?? 0
     }
     
 }

@@ -34,6 +34,7 @@ class ResultsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         
         resultsTableContainer.delegate = self
         resultsTableContainer.dataSource = self
+        resultsTableContainer.allowsSelection = false
         resultsTableContainer.register(GeneralResultsContainer.self, forCellWithReuseIdentifier: generalCellId)
         resultsTableContainer.register(ClassResultsContainer.self, forCellWithReuseIdentifier: classCellId)
         

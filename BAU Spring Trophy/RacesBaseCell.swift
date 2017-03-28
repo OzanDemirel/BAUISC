@@ -80,7 +80,7 @@ class RacesBaseCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSou
 class RacesBaseCellOne: RacesBaseCell {
     
     override func setupViews() {
-        selectionNames = ["YARIŞ 1"]
+        selectionNames = ["YARIŞ 1", "OVERALL"]
         super.setupViews()
     }
     

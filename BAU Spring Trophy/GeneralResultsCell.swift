@@ -13,8 +13,8 @@ class GeneralResultsCell: UITableViewCell {
     var participant: Participant? {
         didSet {
             if let participant = participant {
-                if let place = participant.place , let team = participant.team {
-                    teamName.text = "\(place)" + "- " + ((team.teamName)?.uppercased())!
+                if let team = participant.team {
+                    teamName.text = "- " + ((team.teamName)?.uppercased())!
                 }
                 if let team = participant.team {
                     boatType.text = team.boatType?.uppercased()
@@ -115,8 +115,8 @@ class GeneralResultsCell: UITableViewCell {
         addConstraint(NSLayoutConstraint(item: arrowIcon, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
         
         addSubview(teamName)
-        addConstraintsWithVisualFormat(format: "H:|-60-[v0]-\(frame.width / 2)-|", views: teamName)
-        addConstraintsWithVisualFormat(format: "V:[v0(10)]", views: teamName)
+        addConstraintsWithVisualFormat(format: "H:|-60-[v0]-\(frame.width / 5 + 80)-|", views: teamName)
+        addConstraintsWithVisualFormat(format: "V:[v0(12)]", views: teamName)
         addConstraint(NSLayoutConstraint(item: teamName, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
         
         addSubview(boatRaiting)
@@ -131,7 +131,7 @@ class GeneralResultsCell: UITableViewCell {
         
         addSubview(finishTime)
         addConstraintsWithVisualFormat(format: "H:[v0(\(frame.width / 5))]-68-|", views: finishTime)
-        addConstraintsWithVisualFormat(format: "V:[v0(10)]", views: finishTime)
+        addConstraintsWithVisualFormat(format: "V:[v0(12)]", views: finishTime)
         addConstraint(NSLayoutConstraint(item: finishTime, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
         
         addSubview(boatClass)
@@ -144,6 +144,12 @@ class GeneralResultsCell: UITableViewCell {
         addConstraintsWithVisualFormat(format: "V:[v0(8)]", views: extraTime)
         addConstraint(NSLayoutConstraint(item: extraTime, attribute: .top, relatedBy: .equal, toItem: finishTime, attribute: .bottom, multiplier: 1, constant: 2))
         
+    }
+    
+    func setPlace(place: Int) {
+        if let teamName = teamName.text {
+            self.teamName.text = "\(place + 1)" + teamName
+        }
     }
     
 }

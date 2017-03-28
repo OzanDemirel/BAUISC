@@ -235,6 +235,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         ApiService.sharedInstance.fetchAds { (ads) in
             self.adBanner.ads = ads
             self.adLabel.isHidden = true
+            self.startLaunchScreenAnimation()
         }
         
     }
@@ -244,7 +245,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         ApiService.sharedInstance.fetchNews { (news: [News]) in
             self.news = news
             self.setTrendNews(news: news)
-            self.startLaunchScreenAnimation()
         }
         
     }
@@ -263,29 +263,26 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     func setTrendNews(news: [News]) {
 
         newsScrollPages.newsCount = news.count > 4 ? 5 : news.count
-        if news.count == 1 {
-            newsScrollPages.collectionView.isScrollEnabled = false
-        }
         if news.count > 1 {
-            newsScrollPages.collectionView.isScrollEnabled = true
             leftArrow.isEnabled = true
             rightArrow.isEnabled = true
+        } else {
+            leftArrow.isEnabled = false
+            rightArrow.isEnabled = false
         }
         if news.count > 5 {
             bottomNewsCount = news.count - 5
         } else {
             bottomNewsCount = 0
         }
-        newsScrollPages.collectionView.scrollToItem(at: IndexPath(item: 5000, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
-        newsSelectionView.collectionView.reloadData()
-        newsScrollPages.collectionView.reloadData()
-        setNewsCollectionView()
         newsSelectionView.trendNewsCount = news.count > 4 ? 5 : news.count % 5
-        newsSelectionView.setSelectionViews()
-        if newsSelectionView.trendNewsCount > 1 {
-            newsSelectionView.collectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: [])
-            newsScrollPages.collectionView.isScrollEnabled = true
-        }
+//        newsSelectionView.setSelectionViews()
+//        newsSelectionView.collectionView.reloadData()
+//        newsScrollPages.collectionView.reloadData()
+//        if news.count > 1 {
+//            newsScrollPages.collectionView.scrollToItem(at: IndexPath(item: 5000, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
+//        }
+        setNewsCollectionView()
     }
     
     func setImagePreviewView() {
