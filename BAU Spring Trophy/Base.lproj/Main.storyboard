@@ -88,10 +88,10 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="nC3-QM-Vym">
-                                                                        <rect key="frame" x="154" y="387" width="107" height="33.333333333333314"/>
+                                                                        <rect key="frame" x="154.33333333333331" y="387" width="107.00000000000006" height="33.333333333333314"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="E4x-wu-sQP" userLabel="GaleryStackView">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="107" height="16.333333333333314"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="107.00000000000006" height="16.333333333333314"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GALERİ  /" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="Qru-dy-HTp">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="61" height="16.333333333333314"/>
@@ -100,7 +100,7 @@
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  GALERY" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="F4i-B2-oKZ">
-                                                                                        <rect key="frame" x="61" y="0.0" width="46" height="16.333333333333314"/>
+                                                                                        <rect key="frame" x="61" y="0.0" width="46.000000000000057" height="16.333333333333314"/>
                                                                                         <fontDescription key="fontDescription" name="Futura-Book" family="Futura" pointSize="11"/>
                                                                                         <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <nil key="highlightedColor"/>
@@ -111,7 +111,7 @@
                                                                                 </constraints>
                                                                             </stackView>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="jsZ-ru-0Vu">
-                                                                                <rect key="frame" x="42.333333333333314" y="21.333333333333314" width="22" height="12"/>
+                                                                                <rect key="frame" x="42.666666666666686" y="21.333333333333314" width="22" height="12"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" secondItem="jsZ-ru-0Vu" secondAttribute="height" multiplier="11:6" id="jos-hJ-euF"/>
                                                                                 </constraints>
@@ -125,19 +125,19 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="DY8-Hd-nD5">
-                                                                        <rect key="frame" x="140.66666666666669" y="321" width="134.66666666666669" height="33.333333333333314"/>
+                                                                        <rect key="frame" x="140" y="321" width="134.66666666666663" height="33.333333333333314"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="2UJ-iV-e4p" userLabel="ResultsStackView">
-                                                                                <rect key="frame" x="0.33333333333337123" y="0.0" width="134.66666666666669" height="16.333333333333314"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="134.66666666666663" height="16.333333333333314"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SONUÇLAR  /" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="DYh-oU-stM">
-                                                                                        <rect key="frame" x="0.33333333333337123" y="0.0" width="87.666666666666629" height="16.333333333333314"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="87.666666666666686" height="16.333333333333314"/>
                                                                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="12"/>
                                                                                         <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  RESULTS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="u7a-yM-o7G">
-                                                                                        <rect key="frame" x="88" y="0.0" width="47.000000000000057" height="16.333333333333314"/>
+                                                                                        <rect key="frame" x="87.666666666666686" y="0.0" width="46.999999999999943" height="16.333333333333314"/>
                                                                                         <fontDescription key="fontDescription" name="Futura-Book" family="Futura" pointSize="11"/>
                                                                                         <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <nil key="highlightedColor"/>
@@ -148,7 +148,7 @@
                                                                                 </constraints>
                                                                             </stackView>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Or1-gY-WZ3">
-                                                                                <rect key="frame" x="56.666666666666686" y="21.333333333333314" width="22" height="12"/>
+                                                                                <rect key="frame" x="56.333333333333314" y="21.333333333333314" width="22" height="12"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" secondItem="Or1-gY-WZ3" secondAttribute="height" multiplier="11:6" id="fkU-UF-bXe"/>
                                                                                 </constraints>

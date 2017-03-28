@@ -12,6 +12,10 @@ class PhotosCell: BaseCell {
     
     var photo: Photo? {
         didSet {
+            if !activityIndicator.isAnimating {
+                activityIndicator.startAnimating()
+                activityIndicator.isHidden = false
+            }
             setPhotosImage()
         }
     }

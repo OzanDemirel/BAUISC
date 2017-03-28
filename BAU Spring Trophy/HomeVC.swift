@@ -120,7 +120,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         newsScrollPages.homeVC = self
         
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -1247,6 +1247,12 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             addNewsContentViewToView(news: news)
         }
         
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        get {
+            return true
+        }
     }
     
     @IBAction func sideMenuBtnPressed(_ sender: UIButton) {

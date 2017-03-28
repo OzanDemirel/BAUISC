@@ -64,7 +64,7 @@ class ApiService: NSObject {
                             new.order = order
                         }
                     
-                        if let url = dict["image"] as? String {
+                        if let url = dict["imageURL"] as? String {
                             new.imageURL = url
                         }
                     
