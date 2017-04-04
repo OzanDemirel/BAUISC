@@ -58,7 +58,7 @@ class PhotosCell: BaseCell {
 
     
     override func setupViews() {
-
+        
         addSubview(backgroundImage)
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: backgroundImage)
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: backgroundImage)
@@ -74,5 +74,5 @@ class PhotosCell: BaseCell {
         addConstraintsWithVisualFormat(format: "H:|[v0]|", views: photoImageView)
         addConstraintsWithVisualFormat(format: "V:|[v0]|", views: photoImageView)
     }
-    
+
 }

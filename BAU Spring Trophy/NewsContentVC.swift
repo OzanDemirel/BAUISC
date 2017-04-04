@@ -61,6 +61,8 @@ class NewsContentVC: UIViewController {
                             
                             if let imageFromData = UIImage(data: data) {
                                 
+                                imageCache.setObject(imageFromData, forKey: urlString as NSString)
+                                
                                 DispatchQueue.main.async(execute: {
                                     
                                     self.newsImage.image = imageFromData

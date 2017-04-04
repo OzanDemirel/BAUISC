@@ -15,10 +15,9 @@ let imageFilterForCellCache = NSCache<NSString, UIImage>()
 
 class CustomImageView: UIImageView {
     
-    var imageUrlString: String?
+    var imageUrlString: String!
     
     func loadImageUsingUrlString(_ urlString: String, filterName: String, blendMode: CGBlendMode, alpha: CGFloat, forCell: Bool, _ complete: @escaping (() -> ())) {
-        
         imageUrlString = urlString
         
         let url = URL(string: urlString)
@@ -188,6 +187,5 @@ class CustomImageView: UIImageView {
         
         return image
     }
-    
     
 }
