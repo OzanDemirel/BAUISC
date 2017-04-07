@@ -205,7 +205,6 @@ class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         teamsTableView.deselectRow(at: indexPath, animated: true)
         
         homeVC?.addTeamInfoPageToView(team: (classes[indexPath.section].classMembers?[indexPath.row])!)
-        homeVC?.mainScrollView.isScrollEnabled = false
         
     }
     

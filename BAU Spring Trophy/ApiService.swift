@@ -75,6 +75,7 @@ class ApiService: NSObject {
                 }
                 
                 self.news = self.news.sorted(by: { $0.order! > $1.order!})
+                NotificationCenter.default.post(name: NSNotification.Name("newsChanged"), object: nil)
                 
                 DispatchQueue.main.async(execute: { 
                     completion(self.news)

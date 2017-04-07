@@ -11,7 +11,6 @@ import UIKit
 class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var sideMenuTableView: UITableView!
-    @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var newsScrollPages: NewsScrollPages!
     @IBOutlet weak var homeScrollView: UIScrollView!
     @IBOutlet weak var homeScrollContentView: UIView!
@@ -33,12 +32,11 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     @IBOutlet weak var sideMenuLogo: UIImageView!
     @IBOutlet weak var sideMenuShadow: UIImageView!
     
-    @IBOutlet weak var mainScrollViewContentWidth: NSLayoutConstraint!
-    @IBOutlet weak var mainScrollViewContentHeight: NSLayoutConstraint!
-    @IBOutlet weak var sideMenuWidth: NSLayoutConstraint!
-    @IBOutlet weak var mainMenuWidth: NSLayoutConstraint!
     @IBOutlet weak var homeScrollContentViewHeight: NSLayoutConstraint!
     @IBOutlet weak var launchScreenIconHeight: NSLayoutConstraint!
+    @IBOutlet weak var homePageViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var sideMenuViewWidthConstraint: NSLayoutConstraint!
+    
     
     var buttonsTapGesture: UITapGestureRecognizer!
     
@@ -54,6 +52,11 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         cv.alpha = 0
         return cv
     }()
+    
+    var draggingGesture: UIPanGestureRecognizer!
+    var startingLocationOfPanGesture: CGFloat!
+    var lastLocationOfPanGesture: CGFloat!
+    var distance: CGFloat!
     
     var navigationBarBtn: UIButton = {
         let button = UIButton()
@@ -98,26 +101,23 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        homeView.layer.shouldRasterize = false
+        
         fetchNews()
         fetchAds()
         
         sideMenuTableView.delegate = self
         sideMenuTableView.dataSource = self
-        mainScrollView.delegate = self
-        
-        mainScrollViewContentWidth.constant = UIScreen.main.bounds.width / 3 * 5
-        mainScrollViewContentHeight.constant = UIScreen.main.bounds.height
-        sideMenuWidth.constant = UIScreen.main.bounds.width / 3 * 2
-        mainMenuWidth.constant = UIScreen.main.bounds.width
         
         homeScrollView.layer.shouldRasterize = true
         homeScrollView.layer.rasterizationScale = UIScreen.main.scale
-        mainScrollView.layer.shouldRasterize = true
-        mainScrollView.layer.rasterizationScale = UIScreen.main.scale
         
         homePageShadowView = UIImageView()
         
         newsScrollPages.homeVC = self
+        
+        draggingGesture = UIPanGestureRecognizer(target: self, action: #selector(draggingGestureActive(gesture:)))
+        draggingGesture.cancelsTouchesInView = false
         
     }
 
@@ -125,8 +125,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         super.viewDidAppear(animated)
         
         checkForInternet()
-    
-        arrangeMainScrollViewPosition(animated: false)
         
         navigationBar.addSubview(navigationBarBtn)
         navigationBar.addConstraintsWithVisualFormat(format: "H:|-80-[v0]-0-|", views: navigationBarBtn)
@@ -136,7 +134,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         homeScrollView.isScrollEnabled = news != nil ? ((news?.count)! > 0) : false
         
         arrangeShadowView()
-        
         
         arrangeViews()
         
@@ -162,6 +159,52 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         setImagePreviewView()
         
+        homeView.addGestureRecognizer(draggingGesture)
+        
+    }
+
+    func draggingGestureActive(gesture: UIPanGestureRecognizer) {
+
+        if gesture.state == .began {
+            startingLocationOfPanGesture = gesture.location(in: view).x
+            lastLocationOfPanGesture = startingLocationOfPanGesture
+            view.isUserInteractionEnabled = false
+        }
+
+        if gesture.state == .ended {
+            if abs(gesture.velocity(in: view).x) >= 300 {
+                if gesture.velocity(in: view).x >= 300 {
+                    UIView.animate(withDuration: TimeInterval(UIScrollViewDecelerationRateNormal / 8), animations: {
+                        self.homePageViewLeadingConstraint.constant = self.sideMenuViewWidthConstraint.multiplier * UIScreen.main.bounds.width
+                        self.view.updateConstraints()
+                        self.view.layoutIfNeeded()
+                        self.adjustShadowViewOpacity()
+                    }, completion: { (completion) in
+                        self.view.isUserInteractionEnabled = true
+                    })
+                } else if gesture.velocity(in: view).x <= -300 {
+                    UIView.animate(withDuration: TimeInterval(UIScrollViewDecelerationRateNormal / 8), animations: {
+                        self.homePageViewLeadingConstraint.constant = 0
+                        self.view.layoutIfNeeded()
+                        self.adjustShadowViewOpacity()
+                    }, completion: { (completion) in
+                        self.view.isUserInteractionEnabled = true
+                    })
+                }
+            } else {
+                if homePageViewLeadingConstraint.constant >= (sideMenuViewWidthConstraint.multiplier * UIScreen.main.bounds.width / 2) {
+                    openSideMenu()
+                } else {
+                    closeSideMenu()
+                }
+            }
+        } else {
+            distance = gesture.location(in: view).x - lastLocationOfPanGesture
+            homePageViewLeadingConstraint.constant = (homePageViewLeadingConstraint.constant + distance >= 0 && homePageViewLeadingConstraint.constant + distance <= sideMenuViewWidthConstraint.multiplier * UIScreen.main.bounds.width) ? homePageViewLeadingConstraint.constant + distance : homePageViewLeadingConstraint.constant
+            view.updateConstraints()
+            adjustShadowViewOpacity()
+            lastLocationOfPanGesture = gesture.location(in: view).x
+        }
     }
     
     func setSideMenuShadow(blendMode: CGBlendMode, alpha: CGFloat) -> UIImage? {
@@ -348,7 +391,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         }) { (true) in
             self.imagePreviewScrollView.setZoomScale(1, animated: false)
             self.imagePreviewNavigationBar.removeFromSuperview()
-            self.mainScrollView.isScrollEnabled = true
             self.homeScrollView.isScrollEnabled = true
         }
         
@@ -358,6 +400,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         }) { (true) in
             self.imagePreviewBackgroundView.removeFromSuperview()
             self.imagePreviewScrollView.removeFromSuperview()
+            self.draggingGesture.isEnabled = true
         }
     }
     
@@ -462,7 +505,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         imagePreviewScrollView.minimumZoomScale = 1
         imagePreviewScrollView.maximumZoomScale = 4
         
-        mainScrollView.isScrollEnabled = false
         homeScrollView.isScrollEnabled = false
         imagePreviewScrollView.alpha = 0
         imagePreviewBackgroundView.alpha = 0
@@ -475,6 +517,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             self.imagePreviewBackgroundView.alpha = 1
         }, completion: { (true) in
             self.view.isUserInteractionEnabled = true
+            self.draggingGesture.isEnabled = false
         })
     }
 
@@ -518,11 +561,11 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         }
         
         if #available(iOS 10.0, *) {
-            _ = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (timer) in
+            _ = Timer.scheduledTimer(withTimeInterval: calculateAnimationDuration(startingPoint: CGPoint(x: UIScreen.main.bounds.maxX, y: 0), destinationPoint: CGPoint(x: 0, y: 0)), repeats: false, block: { (timer) in
                 sender.isEnabled = true
             })
         } else {
-            _ = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(HomeVC.tapGestureReactive(_:)) , userInfo: sender, repeats: false)
+            _ = Timer.scheduledTimer(timeInterval: calculateAnimationDuration(startingPoint: CGPoint(x: UIScreen.main.bounds.maxX, y: 0), destinationPoint: CGPoint(x: 0, y: 0)), target: self, selector: #selector(HomeVC.tapGestureReactive(_:)) , userInfo: sender, repeats: false)
         }
         
     }
@@ -592,6 +635,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     func addTeamInfoPageToView(team: Team) {
         
         view.isUserInteractionEnabled = false
+        draggingGesture.isEnabled = false
         
         addChildViewController(teamInfoVC)
         homeView.addSubview(teamInfoVC.view)
@@ -614,7 +658,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             self.teamInfoVC.flamaView.alpha = 1
             self.teamInfoVC.teamNameLbl.alpha = 1
             self.teamInfoVC.view.layoutIfNeeded()
-            UIView.animate(withDuration: self.calculateAnimationDuration(startingPoint: self.teamInfoVC.flamaView.frame.origin, destinationPoint: CGPoint(x: 0, y: self.teamInfoVC.flamaView.frame.minY)), animations: {
+            UIView.animate(withDuration: self.calculateAnimationDuration(startingPoint: self.teamInfoVC.flamaView.frame.origin, destinationPoint: CGPoint(x: 0, y: self.teamInfoVC.flamaView.frame.minY)) * 2, animations: {
                 self.teamInfoVC.flameLeftConstraint.constant = 0
                 self.teamInfoVC.teamsBackground.alpha = 1
                 self.teamInfoVC.view.layoutIfNeeded()
@@ -633,7 +677,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         teamsVC.view.alpha = 1
         resultsVC.view.alpha = 0
         
-        UIView.animate(withDuration: calculateAnimationDuration(startingPoint: teamInfoVC.flamaView.frame.origin, destinationPoint: CGPoint(x: -200, y: homeScrollView.frame.minY)), animations: {
+        UIView.animate(withDuration: calculateAnimationDuration(startingPoint: teamInfoVC.flamaView.frame.origin, destinationPoint: CGPoint(x: -200, y: homeScrollView.frame.minY)) * 2, animations: {
             self.teamInfoVC?.teamsBackground.alpha = 0
             self.teamInfoVC?.flameLeftConstraint.constant = -200
             self.teamInfoVC?.view.layoutIfNeeded()
@@ -646,15 +690,15 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 self.teamInfoVC.willMove(toParentViewController: self)
                 self.teamInfoVC.view.removeFromSuperview()
                 self.teamInfoVC.removeFromParentViewController()
-                self.mainScrollView.isScrollEnabled = true
                 self.view.isUserInteractionEnabled = true
+                self.draggingGesture.isEnabled = true
             })
         })
     }
     
     func addTeamInfoPageToViewFromResultsPage(team: Team) {
-        mainScrollView.isScrollEnabled = false
         view.isUserInteractionEnabled = false
+        draggingGesture.isEnabled = false
         
         addChildViewController(teamInfoVC)
         homeView.addSubview(teamInfoVC.view)
@@ -678,7 +722,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             self.teamInfoVC.view.layoutIfNeeded()
             self.teamInfoVC.flamaView.alpha = 1
             self.teamInfoVC.teamNameLbl.alpha = 1
-            UIView.animate(withDuration: self.calculateAnimationDuration(startingPoint: self.teamInfoVC.flamaView.frame.origin, destinationPoint: CGPoint(x: 0, y: self.teamInfoVC.flamaView.frame.minY)), animations: {
+            UIView.animate(withDuration: self.calculateAnimationDuration(startingPoint: self.teamInfoVC.flamaView.frame.origin, destinationPoint: CGPoint(x: 0, y: self.teamInfoVC.flamaView.frame.minY)) * 2, animations: {
                 self.teamInfoVC.flameLeftConstraint.constant = 0
                 self.teamInfoVC.view.layoutIfNeeded()
             }) { (completion) in
@@ -693,7 +737,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         view.isUserInteractionEnabled = false
         resultsVC.view.alpha = 1
-        UIView.animate(withDuration: calculateAnimationDuration(startingPoint: teamInfoVC.flamaView.frame.origin, destinationPoint: CGPoint(x: -200, y: homeScrollView.frame.minY)), animations: {
+        UIView.animate(withDuration: calculateAnimationDuration(startingPoint: teamInfoVC.flamaView.frame.origin, destinationPoint: CGPoint(x: -200, y: homeScrollView.frame.minY)) * 2, animations: {
             self.teamInfoVC?.flameLeftConstraint.constant = -200
             self.teamInfoVC?.view.layoutIfNeeded()
         }, completion: { (completion) in
@@ -706,8 +750,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 self.teamInfoVC.willMove(toParentViewController: self)
                 self.teamInfoVC.view.removeFromSuperview()
                 self.teamInfoVC.removeFromParentViewController()
-                self.mainScrollView.isScrollEnabled = true
                 self.view.isUserInteractionEnabled = true
+                self.draggingGesture.isEnabled = true
             })
         })
     }
@@ -826,11 +870,10 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         }) { (completion) in
             self.view.isUserInteractionEnabled = true
             self.homeView.bringSubview(toFront: self.homePageShadowView)
-            self.homeScrollContentView.alpha = 0
+            if child.view.frame == self.homeScrollView.frame {
+                self.homeScrollContentView.alpha = 0
+            }
             if child == self.newsVC {
-//                UIView.animate(withDuration: 0.5, animations: {
-//                    self.newsVC.newsCollectionView.alpha = 1
-//                })
                 self.newsVC.newsCollectionView.layer.shouldRasterize = false
             }
         }
@@ -843,6 +886,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
     func removeAChildViewFromView(child: UIViewController, childToAdd: UIViewController?) {
         view.isUserInteractionEnabled = false
+        
         self.homeScrollContentView.alpha = 1
         
         if child == resultsVC {
@@ -861,7 +905,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 self.teamInfoVC.teamNameLbl.alpha = 0
                 self.teamInfoVC.teamsBackground.alpha = 0
             }
-            self.mainScrollView.isScrollEnabled = true
             child.willMove(toParentViewController: self)
             child.view.removeFromSuperview()
             child.removeFromParentViewController()
@@ -875,8 +918,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
     func addNewsContentViewToView(news: News) {
         
+        draggingGesture.isEnabled = false
         view.isUserInteractionEnabled = false
-        mainScrollView.isScrollEnabled = false
         
         addChildViewController(newsContentVC)
         homeView.addSubview(newsContentVC.view)
@@ -921,8 +964,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             self.newsContentVC.willMove(toParentViewController: self)
             self.newsContentVC.view.removeFromSuperview()
             self.newsContentVC.removeFromParentViewController()
-            self.mainScrollView.isScrollEnabled = true
             self.view.isUserInteractionEnabled = true
+            self.draggingGesture.isEnabled = true
         })
         
     }
@@ -939,10 +982,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             
         }
         
-    }
-    
-    func disableMainScrollView() {
-        mainScrollView.isScrollEnabled = false
     }
     
     func selectItemInNewsSelection(itemIndex: Int) {
@@ -966,9 +1005,11 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
     func navigationBarBtnPressed() {
         homeScrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: homeScrollView.frame.width, height: homeScrollView.frame.height), animated: true)
-        for child in childViewControllers {
-            removeAChildViewFromView(child: child, childToAdd: nil)
-            
+        if homePageViewLeadingConstraint.constant == 0 {
+            for child in childViewControllers {
+                removeAChildViewFromView(child: child, childToAdd: nil)
+                homeScrollContentView.alpha = 1
+            }
         }
     }
 
@@ -987,60 +1028,21 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
     }
     
-    func closeSideMenu() {
-        mainScrollView.scrollRectToVisible(CGRect(x: UIScreen.main.bounds.width / 3 * 2, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), animated: true)
-    }
-    
-    func arrangeMainScrollViewPosition(animated: Bool) {
-        mainScrollView.scrollRectToVisible(CGRect(x: UIScreen.main.bounds.width / 3 * 2, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), animated: animated)
-        sideMenuView.isHidden = false
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        homePageShadowView.alpha = ((UIScreen.main.bounds.width / 3 * 2) - (mainScrollView.contentOffset.x)) / (UIScreen.main.bounds.width / 3 * 4)
-        if homePageShadowView.alpha == 0.5 {
-            homePageShadowView.isUserInteractionEnabled = true
-        }
-        
-    }
-    
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-    
-        homePageShadowView.alpha = ((UIScreen.main.bounds.width / 3 * 2) - (mainScrollView.contentOffset.x)) / (UIScreen.main.bounds.width / 3 * 4)
-        if homePageShadowView.alpha == 0.5 {
-            homePageShadowView.isUserInteractionEnabled = true
-        }
-        
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        
-        homePageShadowView.alpha = ((UIScreen.main.bounds.width / 3 * 2) - (mainScrollView.contentOffset.x)) / (UIScreen.main.bounds.width / 3 * 4)
-        
-        if homePageShadowView.alpha == 0.5 {
-            homePageShadowView.isUserInteractionEnabled = true
-        }
-        
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         sideMenuTableView.deselectRow(at: indexPath, animated: true)
         tableView.isUserInteractionEnabled = false
-        mainScrollView.isUserInteractionEnabled = false
         
         if indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 8 {
             let alert = UIAlertController(title: "Sayfa Yapım Aşamasındadır.", message: "Bu sayfa güncellemeyle birlikte aktif hale gelecektir.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Tamam", style: UIAlertActionStyle.cancel, handler: nil))
             self.present(alert, animated: true, completion: { 
                 self.sideMenuTableView.isUserInteractionEnabled = true
-                self.mainScrollView.isUserInteractionEnabled = true
             })
             return
         }
         
-        arrangeMainScrollViewPosition(animated: true)
+        closeSideMenu()
         
         var removeCalled = false
         
@@ -1060,7 +1062,13 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 }
             }
             if !removeCalled {
-                addAChildViewToView(child: teamsVC)
+                if #available(iOS 10, *) {
+                    _ = Timer.scheduledTimer(withTimeInterval: calculateAnimationDuration(startingPoint: CGPoint(x: CGFloat(homePageViewLeadingConstraint.constant), y: 0), destinationPoint: CGPoint(x: 0, y: 0)), repeats: false, block: { (timer) in
+                        self.addAChildViewToView(child: self.teamsVC)
+                    })
+                } else {
+                    _ = Timer.scheduledTimer(timeInterval: calculateAnimationDuration(startingPoint: CGPoint(x: CGFloat(homePageViewLeadingConstraint.constant), y: 0), destinationPoint: CGPoint(x: 0, y: 0)), target: self, selector: #selector(callForAddChildFunction(timer:)), userInfo: teamsVC, repeats: false)
+                }
             }
             break;
         case 2:
@@ -1073,7 +1081,13 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 }
             }
             if !removeCalled {
-                addAChildViewToView(child: galeryVC)
+                if #available(iOS 10, *) {
+                    _ = Timer.scheduledTimer(withTimeInterval: calculateAnimationDuration(startingPoint: CGPoint(x: CGFloat(homePageViewLeadingConstraint.constant), y: 0), destinationPoint: CGPoint(x: 0, y: 0)), repeats: false, block: { (timer) in
+                        self.addAChildViewToView(child: self.galeryVC)
+                    })
+                } else {
+                    _ = Timer.scheduledTimer(timeInterval: calculateAnimationDuration(startingPoint: CGPoint(x: CGFloat(homePageViewLeadingConstraint.constant), y: 0), destinationPoint: CGPoint(x: 0, y: 0)), target: self, selector: #selector(callForAddChildFunction(timer:)), userInfo: galeryVC, repeats: false)
+                }
             }
             postNotifUserInfo = ["indexPath": (indexPath.row - 2)]
             NotificationCenter.default.post(name: NSNotification.Name("AnyChildAddedToView"), object: nil, userInfo: postNotifUserInfo)
@@ -1088,7 +1102,13 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 }
             }
             if !removeCalled {
-                addAChildViewToView(child: galeryVC)
+                if #available(iOS 10, *) {
+                    _ = Timer.scheduledTimer(withTimeInterval: calculateAnimationDuration(startingPoint: CGPoint(x: CGFloat(homePageViewLeadingConstraint.constant), y: 0), destinationPoint: CGPoint(x: 0, y: 0)), repeats: false, block: { (timer) in
+                        self.addAChildViewToView(child: self.galeryVC)
+                    })
+                } else {
+                    _ = Timer.scheduledTimer(timeInterval: calculateAnimationDuration(startingPoint: CGPoint(x: CGFloat(homePageViewLeadingConstraint.constant), y: 0), destinationPoint: CGPoint(x: 0, y: 0)), target: self, selector: #selector(callForAddChildFunction(timer:)), userInfo: galeryVC, repeats: false)
+                }
             }
             postNotifUserInfo = ["indexPath": (indexPath.row - 2)]
             NotificationCenter.default.post(name: NSNotification.Name("AnyChildAddedToView"), object: nil, userInfo: postNotifUserInfo)
@@ -1103,7 +1123,13 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 }
             }
             if !removeCalled {
-                addAChildViewToView(child: newsVC)
+                if #available(iOS 10, *) {
+                    _ = Timer.scheduledTimer(withTimeInterval: calculateAnimationDuration(startingPoint: CGPoint(x: CGFloat(homePageViewLeadingConstraint.constant), y: 0), destinationPoint: CGPoint(x: 0, y: 0)), repeats: false, block: { (timer) in
+                        self.addAChildViewToView(child: self.newsVC)
+                    })
+                } else {
+                    _ = Timer.scheduledTimer(timeInterval: calculateAnimationDuration(startingPoint: CGPoint(x: CGFloat(homePageViewLeadingConstraint.constant), y: 0), destinationPoint: CGPoint(x: 0, y: 0)), target: self, selector: #selector(callForAddChildFunction(timer:)), userInfo: newsVC, repeats: false)
+                }
             }
             break;
         case 5:
@@ -1116,29 +1142,39 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 }
             }
             if !removeCalled {
-                addAChildViewToView(child: resultsVC)
+                if #available(iOS 10, *) {
+                    _ = Timer.scheduledTimer(withTimeInterval: calculateAnimationDuration(startingPoint: CGPoint(x: CGFloat(homePageViewLeadingConstraint.constant), y: 0), destinationPoint: CGPoint(x: 0, y: 0)), repeats: false, block: { (timer) in
+                        self.addAChildViewToView(child: self.resultsVC)
+                    })
+                } else {
+                    _ = Timer.scheduledTimer(timeInterval: calculateAnimationDuration(startingPoint: CGPoint(x: CGFloat(homePageViewLeadingConstraint.constant), y: 0), destinationPoint: CGPoint(x: 0, y: 0)), target: self, selector: #selector(callForAddChildFunction(timer:)), userInfo: resultsVC, repeats: false)
+                }
             }
             break;
         default:
             for child in childViewControllers {
                 executeChildRemovingAndAdding(child: child, childToAdd: nil)
-                
             }
             break;
         }
         
         if #available(iOS 10.0, *) {
-            _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (timer) in
+            _ = Timer.scheduledTimer(withTimeInterval: 0.4, repeats: false, block: { (timer) in
                 self.reactiveInteraction()
             })
         } else {
-            _ = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(HomeVC.reactiveInteraction), userInfo: nil, repeats: false)
+            _ = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(HomeVC.reactiveInteraction), userInfo: nil, repeats: false)
+        }
+    }
+    
+    func callForAddChildFunction(timer: Timer) {
+        if let child = timer.userInfo as? UIViewController {
+            addAChildViewToView(child: child)
         }
     }
     
     func reactiveInteraction() {
         sideMenuTableView.isUserInteractionEnabled = true
-        mainScrollView.isUserInteractionEnabled = true
     }
     
     func executeChildRemovingAndAdding(child: UIViewController, childToAdd: UIViewController?) {
@@ -1236,7 +1272,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return bottomNewsCount % 2 == 1 ? bottomNewsCount + 1 : bottomNewsCount
+        return bottomNewsCount != 0 ? (bottomNewsCount < 6 ? (bottomNewsCount % 2 == 0 ? bottomNewsCount : bottomNewsCount - 1) : 6) : bottomNewsCount
     } 
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -1276,17 +1312,42 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
     }
     
-    override var prefersStatusBarHidden: Bool {
-        get {
-            return true
+    @IBAction func sideMenuBtnPressed(_ sender: UIButton) {
+        if homePageViewLeadingConstraint.constant == 0 {
+            openSideMenu()
+        } else if homePageViewLeadingConstraint.constant == (sideMenuViewWidthConstraint.multiplier * UIScreen.main.bounds.width) {
+            closeSideMenu()
         }
     }
     
-    @IBAction func sideMenuBtnPressed(_ sender: UIButton) {
-        if mainScrollView.contentOffset.x == 0 {
-            arrangeMainScrollViewPosition(animated: true)
-        } else if floor(mainScrollView.contentOffset.x) == floor(UIScreen.main.bounds.width / 3 * 2) {
-            mainScrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), animated: true)
+    func openSideMenu() {
+        view.isUserInteractionEnabled = false
+        UIView.animate(withDuration: calculateAnimationDuration(startingPoint: CGPoint(x: CGFloat(homePageViewLeadingConstraint.constant), y: 0), destinationPoint: CGPoint(x: sideMenuViewWidthConstraint.multiplier * UIScreen.main.bounds.width, y: 0)), animations: {
+            self.homePageViewLeadingConstraint.constant = self.sideMenuViewWidthConstraint.multiplier * UIScreen.main.bounds.width
+            self.view.layoutIfNeeded()
+            self.adjustShadowViewOpacity()
+        }) { (completion) in
+            self.view.isUserInteractionEnabled = true
+        }
+    }
+    
+    func closeSideMenu() {
+        view.isUserInteractionEnabled = false
+        UIView.animate(withDuration: calculateAnimationDuration(startingPoint: CGPoint(x: CGFloat(homePageViewLeadingConstraint.constant), y: 0), destinationPoint: CGPoint(x: 0, y: 0)), animations: {
+            self.homePageViewLeadingConstraint.constant = 0
+            self.view.layoutIfNeeded()
+            self.adjustShadowViewOpacity()
+        }) { (completion) in
+            self.view.isUserInteractionEnabled = true
+        }
+    }
+    
+    func adjustShadowViewOpacity() {
+        homePageShadowView.alpha = ((homePageViewLeadingConstraint.constant /  2) / (UIScreen.main.bounds.width * self.sideMenuViewWidthConstraint.multiplier))
+        if homePageShadowView.alpha == 0.5 {
+            homePageShadowView.isUserInteractionEnabled = true
+        } else {
+            homePageShadowView.isUserInteractionEnabled = false
         }
     }
     

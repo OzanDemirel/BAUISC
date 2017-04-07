@@ -85,9 +85,9 @@ extension UIViewController {
     func calculateAnimationDuration(startingPoint: CGPoint, destinationPoint: CGPoint) -> TimeInterval {
         
         if abs(startingPoint.x - destinationPoint.x) >= abs(startingPoint.y - destinationPoint.y) {
-            return abs(TimeInterval(startingPoint.x - destinationPoint.x)) / abs(TimeInterval((startingPoint.x - destinationPoint.x) * 1.5))
+            return abs(TimeInterval(startingPoint.x - destinationPoint.x)) / TimeInterval(600)
         } else {
-            return abs(TimeInterval(startingPoint.y - destinationPoint.y)) / abs(TimeInterval((startingPoint.y - destinationPoint.y) * 1.5))
+            return abs(TimeInterval(startingPoint.y - destinationPoint.y)) / TimeInterval(600)
         }
         
     }

@@ -26,6 +26,7 @@ class GaleryVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
         
         baseCollectionView.delegate = self
         baseCollectionView.dataSource = self
+        baseCollectionView.bounces = false
         baseCollectionView.register(PhotosBaseCell.self, forCellWithReuseIdentifier: "photosBaseCell")
         baseCollectionView.register(VideosBaseCell.self, forCellWithReuseIdentifier: "videosBaseCell")
         selectionBarView.galeryVC = self

@@ -31,6 +31,7 @@ class NewsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         newsCollectionView.delegate = self
         newsCollectionView.dataSource = self
         newsCollectionView.backgroundColor = UIColor.clear
+        newsCollectionView.bounces = false
         newsCollectionView.register(NewsCell.self, forCellWithReuseIdentifier: "newsCell")
         
     }
@@ -41,6 +42,11 @@ class NewsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         if ApiService.sharedInstance.news.count > 0 {
             newsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: UICollectionViewScrollPosition.centeredVertically, animated: false)
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(newsChanged), name: NSNotification.Name("newsChanged"), object: nil)
+    }
+    
+    func newsChanged() {
+        newsCollectionView.reloadData()
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

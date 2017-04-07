@@ -20,6 +20,7 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
         table.dataSource = self
         table.showsVerticalScrollIndicator = false
         table.separatorStyle = .none
+        table.bounces = false
         return table
     }()
     

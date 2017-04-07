@@ -53,6 +53,7 @@ class NewsHorizontalCell: BaseCell {
         textView.isSelectable = false
         textView.isScrollEnabled = false
         textView.isUserInteractionEnabled = false
+        textView.translatesAutoresizingMaskIntoConstraints = false
         textView.layer.shadowColor = UIColor.black.cgColor
         textView.layer.shadowOpacity = 1
         textView.layer.shadowRadius = 1
