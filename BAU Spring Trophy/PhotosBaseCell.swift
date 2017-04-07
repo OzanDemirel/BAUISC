@@ -60,9 +60,9 @@ class PhotosBaseCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
         collectionView.deselectItem(at: indexPath, animated: true)
         
         if let imageURL = photos?[indexPath.row].imageURL {
-            
-           NotificationCenter.default.post(name: NSNotification.Name("didSelectAnImage"), object: nil, userInfo: ["imageURL": imageURL])
-            
+            if let image = imageCache[imageURL] {
+                NotificationCenter.default.post(name: NSNotification.Name("didSelectAnImage"), object: nil, userInfo: ["image": image])
+            }            
         }
     }
     

@@ -42,7 +42,7 @@ class NewsContentVC: UIViewController {
         
         if let urlString = news?.imageURL {
             
-            if let img = imageCache.object(forKey: urlString as NSString) {
+            if let img = imageCache[urlString] {
                 
                 newsImage.image = img
                 
@@ -61,7 +61,7 @@ class NewsContentVC: UIViewController {
                             
                             if let imageFromData = UIImage(data: data) {
                                 
-                                imageCache.setObject(imageFromData, forKey: urlString as NSString)
+                                imageCache.updateValue(imageFromData, forKey: urlString)
                                 
                                 DispatchQueue.main.async(execute: {
                                     
