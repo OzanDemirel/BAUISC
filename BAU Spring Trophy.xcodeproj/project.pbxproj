@@ -57,6 +57,12 @@
 		AB42DB8F1E7B2D7900549C65 /* ClassResultsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB8E1E7B2D7900549C65 /* ClassResultsContainer.swift */; };
 		AB42DB911E7B30CF00549C65 /* GeneralResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB901E7B30CF00549C65 /* GeneralResultsCell.swift */; };
 		AB42DB931E7B3D9B00549C65 /* ClassResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB921E7B3D9B00549C65 /* ClassResultsCell.swift */; };
+		AB73DE811E97F27900D52591 /* RacesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB73DE7F1E97F27900D52591 /* RacesVC.swift */; };
+		AB73DE821E97F27900D52591 /* RacesVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB73DE801E97F27900D52591 /* RacesVC.xib */; };
+		AB73DE841E97F52A00D52591 /* RacesSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB73DE831E97F52A00D52591 /* RacesSelectionView.swift */; };
+		AB73DE861E97F71800D52591 /* RouteCardsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB73DE851E97F71800D52591 /* RouteCardsContainer.swift */; };
+		AB73DE881E97F76100D52591 /* RaceAnnouncementContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB73DE871E97F76100D52591 /* RaceAnnouncementContainer.swift */; };
+		AB73DE8A1E97FAB100D52591 /* RacesSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB73DE891E97FAB100D52591 /* RacesSelectionCell.swift */; };
 		AB98ECB01E7C558200038185 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98ECAF1E7C558200038185 /* CustomImageView.swift */; };
 		AB98ECB21E7C5C5900038185 /* MediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98ECB11E7C5C5900038185 /* MediaCell.swift */; };
 		AB98ECB51E7DC68600038185 /* Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98ECB41E7DC68600038185 /* Race.swift */; };
@@ -125,6 +131,12 @@
 		AB42DB8E1E7B2D7900549C65 /* ClassResultsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassResultsContainer.swift; sourceTree = "<group>"; };
 		AB42DB901E7B30CF00549C65 /* GeneralResultsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralResultsCell.swift; sourceTree = "<group>"; };
 		AB42DB921E7B3D9B00549C65 /* ClassResultsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassResultsCell.swift; sourceTree = "<group>"; };
+		AB73DE7F1E97F27900D52591 /* RacesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RacesVC.swift; sourceTree = "<group>"; };
+		AB73DE801E97F27900D52591 /* RacesVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RacesVC.xib; sourceTree = "<group>"; };
+		AB73DE831E97F52A00D52591 /* RacesSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RacesSelectionView.swift; sourceTree = "<group>"; };
+		AB73DE851E97F71800D52591 /* RouteCardsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCardsContainer.swift; sourceTree = "<group>"; };
+		AB73DE871E97F76100D52591 /* RaceAnnouncementContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceAnnouncementContainer.swift; sourceTree = "<group>"; };
+		AB73DE891E97FAB100D52591 /* RacesSelectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RacesSelectionCell.swift; sourceTree = "<group>"; };
 		AB98ECAF1E7C558200038185 /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		AB98ECB11E7C5C5900038185 /* MediaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaCell.swift; sourceTree = "<group>"; };
 		AB98ECB41E7DC68600038185 /* Race.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Race.swift; sourceTree = "<group>"; };
@@ -199,6 +211,7 @@
 		AB3F203D1E7017100058F327 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				AB73DE7F1E97F27900D52591 /* RacesVC.swift */,
 				AB42DB731E78B9C700549C65 /* TeamInfoVC.swift */,
 				AB42DB6B1E787E6800549C65 /* TeamsVC.swift */,
 				AB3F202D1E700FE40058F327 /* HomeVC.swift */,
@@ -220,6 +233,7 @@
 				AB42DB6A1E787DF400549C65 /* Teams Page */,
 				AB42DB661E77462D00549C65 /* Galery Page */,
 				AB42DB791E7A46F700549C65 /* Results Page */,
+				AB73DE7E1E97F22F00D52591 /* Races */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -342,6 +356,18 @@
 			name = "Results Page";
 			sourceTree = "<group>";
 		};
+		AB73DE7E1E97F22F00D52591 /* Races */ = {
+			isa = PBXGroup;
+			children = (
+				AB73DE801E97F27900D52591 /* RacesVC.xib */,
+				AB73DE831E97F52A00D52591 /* RacesSelectionView.swift */,
+				AB73DE891E97FAB100D52591 /* RacesSelectionCell.swift */,
+				AB73DE851E97F71800D52591 /* RouteCardsContainer.swift */,
+				AB73DE871E97F76100D52591 /* RaceAnnouncementContainer.swift */,
+			);
+			name = Races;
+			sourceTree = "<group>";
+		};
 		AB98ECBD1E817FF100038185 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,10 +432,10 @@
 			};
 			buildConfigurationList = AB3F20231E700FE40058F327 /* Build configuration list for PBXProject "BAU Spring Trophy" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = Turkish;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
+				tr,
 				Base,
 			);
 			mainGroup = AB3F201F1E700FE40058F327;
@@ -431,6 +457,7 @@
 				ABA209861E8488EF00D7D119 /* Futura-Book.otf in Resources */,
 				AB42DB7D1E7A47FF00549C65 /* ResultsVC.xib in Resources */,
 				AB3F20361E700FE40058F327 /* LaunchScreen.storyboard in Resources */,
+				AB73DE821E97F27900D52591 /* RacesVC.xib in Resources */,
 				AB42DB371E73061500549C65 /* NewsVC.xib in Resources */,
 				AB98ECBA1E7FC5BB00038185 /* NewsContentVC.xib in Resources */,
 				AB3F20331E700FE40058F327 /* Assets.xcassets in Resources */,
@@ -504,15 +531,18 @@
 				AB42DB591E753CFC00549C65 /* NewsSelectionCell.swift in Sources */,
 				AB3F202E1E700FE40058F327 /* HomeVC.swift in Sources */,
 				AB42DB781E78C14E00549C65 /* CrewCell.swift in Sources */,
+				AB73DE881E97F76100D52591 /* RaceAnnouncementContainer.swift in Sources */,
 				AB42DB8D1E7B2CD900549C65 /* GeneralResultsContainer.swift in Sources */,
 				AB42DB931E7B3D9B00549C65 /* ClassResultsCell.swift in Sources */,
 				AB42DB501E746F4900549C65 /* VideosCell.swift in Sources */,
 				AB42DB831E7A816600549C65 /* TableSectionView.swift in Sources */,
 				AB42DB701E789BFD00549C65 /* TeamsCell.swift in Sources */,
 				AB98ECB21E7C5C5900038185 /* MediaCell.swift in Sources */,
+				AB73DE861E97F71800D52591 /* RouteCardsContainer.swift in Sources */,
 				AB42DB421E73929C00549C65 /* GaleryVC.swift in Sources */,
 				AB42DB481E739BBB00549C65 /* DesignableView.swift in Sources */,
 				AB98ECBF1E81BBB700038185 /* Ads.swift in Sources */,
+				AB73DE811E97F27900D52591 /* RacesVC.swift in Sources */,
 				AB42DB6D1E787E6800549C65 /* TeamsVC.swift in Sources */,
 				AB98ECBC1E817FA400038185 /* Photo.swift in Sources */,
 				AB98ECB51E7DC68600038185 /* Race.swift in Sources */,
@@ -528,6 +558,8 @@
 				AB98ECB91E7FC5BB00038185 /* NewsContentVC.swift in Sources */,
 				AB42DB4C1E7437F000549C65 /* PhotosBaseCell.swift in Sources */,
 				AB42DB361E73061500549C65 /* NewsVC.swift in Sources */,
+				AB73DE8A1E97FAB100D52591 /* RacesSelectionCell.swift in Sources */,
+				AB73DE841E97F52A00D52591 /* RacesSelectionView.swift in Sources */,
 				AB3F202C1E700FE40058F327 /* AppDelegate.swift in Sources */,
 				AB42DB641E77370400549C65 /* ApiService.swift in Sources */,
 				AB42DB911E7B30CF00549C65 /* GeneralResultsCell.swift in Sources */,
@@ -574,6 +606,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -623,6 +656,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

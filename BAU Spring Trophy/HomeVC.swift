@@ -58,15 +58,17 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     var lastLocationOfPanGesture: CGFloat!
     var distance: CGFloat!
     
+    var closingSideMenuGesture: UITapGestureRecognizer!
+    
     var navigationBarBtn: UIButton = {
         let button = UIButton()
         return button
     }()
     
-    var shadowViewButton: UIButton = {
-        let button = UIButton()
-        return button
-    }()
+//    var shadowViewButton: UIButton = {
+//        let button = UIButton()
+//        return button
+//    }()
     
     var bottomNewsCount = 0
     
@@ -79,6 +81,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     var galeryVC: GaleryVC!
     
     var imagePreviewBackgroundView = UIView()
+    var imagePreviewBlurView = UIVisualEffectView()
     var imagePreviewScrollView = UIScrollView()
     var imagePreview = UIImageView()
     var imagePreviewTapGesture: UITapGestureRecognizer!
@@ -89,6 +92,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     var imagePreviewLogo = UIImageView()
     
     var resultsVC: ResultsVC!
+    
+    var racesVC: RacesVC!
     
     var news: [News]?
     
@@ -118,6 +123,10 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         draggingGesture = UIPanGestureRecognizer(target: self, action: #selector(draggingGestureActive(gesture:)))
         draggingGesture.cancelsTouchesInView = false
+        
+        closingSideMenuGesture = UITapGestureRecognizer(target: self, action: #selector(closeSideMenu))
+        closingSideMenuGesture.cancelsTouchesInView = false
+        closingSideMenuGesture.isEnabled = false
         
     }
 
@@ -160,6 +169,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         setImagePreviewView()
         
         homeView.addGestureRecognizer(draggingGesture)
+        homeView.addGestureRecognizer(closingSideMenuGesture)
         
     }
 
@@ -174,21 +184,23 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         if gesture.state == .ended {
             if abs(gesture.velocity(in: view).x) >= 300 {
                 if gesture.velocity(in: view).x >= 300 {
-                    UIView.animate(withDuration: TimeInterval(UIScrollViewDecelerationRateNormal / 8), animations: {
+                    UIView.animate(withDuration: TimeInterval(UIScrollViewDecelerationRateNormal / 6), animations: {
                         self.homePageViewLeadingConstraint.constant = self.sideMenuViewWidthConstraint.multiplier * UIScreen.main.bounds.width
                         self.view.updateConstraints()
                         self.view.layoutIfNeeded()
                         self.adjustShadowViewOpacity()
                     }, completion: { (completion) in
                         self.view.isUserInteractionEnabled = true
+                        self.closingSideMenuGesture.isEnabled = true
                     })
                 } else if gesture.velocity(in: view).x <= -300 {
-                    UIView.animate(withDuration: TimeInterval(UIScrollViewDecelerationRateNormal / 8), animations: {
+                    UIView.animate(withDuration: TimeInterval(UIScrollViewDecelerationRateNormal / 6), animations: {
                         self.homePageViewLeadingConstraint.constant = 0
                         self.view.layoutIfNeeded()
                         self.adjustShadowViewOpacity()
                     }, completion: { (completion) in
                         self.view.isUserInteractionEnabled = true
+                        self.closingSideMenuGesture.isEnabled = false
                     })
                 }
             } else {
@@ -234,8 +246,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 context!.setFillColor(UIColor.white.cgColor)
                 context!.fill(rect)
                 
-                img.draw(in: CGRect(x: 0, y: 0, width: sideMenuShadow.frame.width, height: sideMenuShadow.frame.height), blendMode: blendMode, alpha: alpha)
                 img2.draw(in: rect, blendMode: .normal, alpha: 1)
+                img.draw(in: CGRect(x: 0, y: 0, width: sideMenuShadow.frame.width, height: sideMenuShadow.frame.height), blendMode: blendMode, alpha: alpha)
                 
                 // grab the finished image and return it
                 let result = UIGraphicsGetImageFromCurrentImageContext()
@@ -331,13 +343,25 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     func setImagePreviewView() {
         
         imagePreviewBackgroundView.frame = UIScreen.main.bounds
-        imagePreviewBackgroundView.backgroundColor = UIColor.white
+        imagePreviewBackgroundView.backgroundColor = UIColor.clear
+        
+        imagePreviewBlurView.frame = imagePreviewBackgroundView.frame
+        var blurEffect = UIBlurEffect()
+        if #available(iOS 10.0, *) {
+            blurEffect = UIBlurEffect(style: .regular)
+        } else {
+            blurEffect = UIBlurEffect(style: .light)
+        }
+        imagePreviewBlurView.effect = blurEffect
+        imagePreviewBackgroundView.addSubview(imagePreviewBlurView)
+        
         
         imagePreviewScrollView.delegate = self
         imagePreviewScrollView.frame = UIScreen.main.bounds
         imagePreviewScrollView.showsVerticalScrollIndicator = false
         imagePreviewScrollView.showsHorizontalScrollIndicator = false
-        imagePreviewScrollView.backgroundColor = UIColor.white
+        imagePreviewScrollView.backgroundColor = UIColor.clear
+        imagePreviewScrollView.bounces = false
         imagePreview.frame = imagePreviewScrollView.frame
         imagePreview.isUserInteractionEnabled = true
         imagePreview.contentMode = .scaleAspectFit
@@ -395,7 +419,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         }
         
         UIView.animate(withDuration: 0.5, animations: {
-            self.imagePreviewBackgroundView.alpha = 0
             self.imagePreviewScrollView.alpha = 0
         }) { (true) in
             self.imagePreviewBackgroundView.removeFromSuperview()
@@ -473,14 +496,13 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 
                 homeScrollView.isScrollEnabled = false
                 imagePreviewScrollView.alpha = 0
-                imagePreviewBackgroundView.alpha = 0
                 homeView.addSubview(imagePreviewBackgroundView)
                 homeView.addSubview(imagePreviewScrollView)
                 homeView.addSubview(imagePreviewNavigationBar)
                 self.presentImagePreviewNavigationBar(nil)
                 UIView.animate(withDuration: 0.5, animations: {
                     self.imagePreviewScrollView.alpha = 1
-                    self.imagePreviewBackgroundView.alpha = 1
+                    self.view.layoutIfNeeded()
                 }, completion: { (true) in
                     self.view.isUserInteractionEnabled = true
                     self.draggingGesture.isEnabled = false
@@ -558,6 +580,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         galeryVC = GaleryVC(nibName: "GaleryVC", bundle: nil)
         
         resultsVC = ResultsVC(nibName: "ResultsVC", bundle: nil)
+        
+        racesVC = RacesVC(nibName: "RacesVC", bundle: nil)
     }
     
     func addTeamsPageToView() {
@@ -964,11 +988,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         homePageShadowView.isUserInteractionEnabled = false
         homeView.addSubview(homePageShadowView)
         
-        homePageShadowView.addSubview(shadowViewButton)
-        homePageShadowView.addConstraintsWithVisualFormat(format: "H:|[v0]|", views: shadowViewButton)
-        homePageShadowView.addConstraintsWithVisualFormat(format: "V:|[v0]|", views: shadowViewButton)
-        shadowViewButton.addTarget(self, action: #selector(HomeVC.closeSideMenu), for: UIControlEvents.touchUpInside)
-        
     }
     
     func navigationBarBtnPressed() {
@@ -977,6 +996,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             for child in childViewControllers {
                 removeAChildViewFromView(child: child, childToAdd: nil)
                 homeScrollContentView.alpha = 1
+                draggingGesture.isEnabled = true
             }
         }
     }
@@ -1001,7 +1021,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         sideMenuTableView.deselectRow(at: indexPath, animated: true)
         tableView.isUserInteractionEnabled = false
         
-        if indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 8 {
+        if indexPath.row == 7 || indexPath.row == 8 {
             let alert = UIAlertController(title: "Sayfa Yapım Aşamasındadır.", message: "Bu sayfa güncellemeyle birlikte aktif hale gelecektir.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Tamam", style: UIAlertActionStyle.cancel, handler: nil))
             self.present(alert, animated: true, completion: { 
@@ -1119,6 +1139,25 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 }
             }
             break;
+        case 6:
+            for child in childViewControllers {
+                if racesVC.view.frame == homeScrollView.frame {
+                    removeCalled = true
+                } else if child.view.frame == homeScrollView.frame && child != racesVC {
+                    executeChildRemovingAndAdding(child: child, childToAdd: self.racesVC)
+                    removeCalled = true
+                }
+            }
+            if !removeCalled {
+                if #available(iOS 10, *) {
+                    _ = Timer.scheduledTimer(withTimeInterval: calculateAnimationDuration(startingPoint: CGPoint(x: CGFloat(homePageViewLeadingConstraint.constant), y: 0), destinationPoint: CGPoint(x: 0, y: 0)), repeats: false, block: { (timer) in
+                        self.addAChildViewToView(child: self.racesVC)
+                    })
+                } else {
+                    _ = Timer.scheduledTimer(timeInterval: calculateAnimationDuration(startingPoint: CGPoint(x: CGFloat(homePageViewLeadingConstraint.constant), y: 0), destinationPoint: CGPoint(x: 0, y: 0)), target: self, selector: #selector(callForAddChildFunction(timer:)), userInfo: racesVC, repeats: false)
+                }
+            }
+            break;
         default:
             for child in childViewControllers {
                 executeChildRemovingAndAdding(child: child, childToAdd: nil)
@@ -1200,8 +1239,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 context!.setFillColor(UIColor.white.cgColor)
                 context!.fill(rect)
                 
-                img.draw(in: CGRect(x: (galeryBtnView.frame.width - galeryBtnView.frame.width / 1.28) / 2, y: 0, width: galeryBtnView.frame.width / 1.28, height: galeryBtnView.frame.height / 1.83), blendMode: blendMode, alpha: alpha)
                 img2.draw(in: rect, blendMode: .normal, alpha: 1)
+                img.draw(in: CGRect(x: (galeryBtnView.frame.width - galeryBtnView.frame.width / 1.28) / 2, y: 0, width: galeryBtnView.frame.width / 1.28, height: galeryBtnView.frame.height / 1.83), blendMode: blendMode, alpha: alpha)
                 
                 // grab the finished image and return it
                 let result = UIGraphicsGetImageFromCurrentImageContext()
@@ -1296,6 +1335,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             self.adjustShadowViewOpacity()
         }) { (completion) in
             self.view.isUserInteractionEnabled = true
+            self.closingSideMenuGesture.isEnabled = true
         }
     }
     
@@ -1307,6 +1347,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             self.adjustShadowViewOpacity()
         }) { (completion) in
             self.view.isUserInteractionEnabled = true
+            self.closingSideMenuGesture.isEnabled = false
         }
     }
     
