@@ -37,6 +37,20 @@ class NewsHorizontalCell: BaseCell {
             } else {
                 removeConstraint(newsTitleHeightConstraint)
                 addConstraint(NSLayoutConstraint(item: newsTitle, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 0, constant: frame.height / 2 - 30))
+                layoutIfNeeded()
+                let size = CGSize(width: newsTitle.frame.width, height: 1000)
+                let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+                if let font = UIFont(name: "Futura-Bold", size: 14) {
+                    
+                    let estimatedRect = NSString(string: newsTitle.text).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: font], context: nil)
+                    
+                    if estimatedRect.height > 34 {
+                        newsTitle.font = UIFont(name: "Futura-Bold", size: 12)
+                    } else {
+                        newsTitle.font = UIFont(name: "Futura-Bold", size: 14)
+                    }
+                    
+                }
             }
         }
     }
@@ -95,6 +109,7 @@ class NewsHorizontalCell: BaseCell {
         addConstraint(NSLayoutConstraint(item: newsTitle, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -30))
         newsTitleHeightConstraint = NSLayoutConstraint(item: newsTitle, attribute: .height, relatedBy: .equal, toItem: newsTitle, attribute: .height, multiplier: 1, constant: frame.height / 2 - 30)
         addConstraint(newsTitleHeightConstraint)
+        layoutIfNeeded()
         
     }
 

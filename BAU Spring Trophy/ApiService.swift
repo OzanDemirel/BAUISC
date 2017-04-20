@@ -222,57 +222,6 @@ class ApiService: NSObject {
         
     }
     
-//    func fetchAds(_ completion: @escaping (Ads) -> ()) {
-//        
-//        ref.child(adsRef).observeSingleEvent(of: .value, with: { (snapshot) in
-//            
-//            let ads = Ads()
-//            var adsOrder = AdsOrder()
-//            
-//            if let data = snapshot.value as? [String: AnyObject] {
-//                
-//                if let fps = data["fps"] as? Int {
-//                    
-//                    ads.fps = TimeInterval(fps)
-//                }
-//                
-//                for ad in data.values {
-//                    
-//                    if let addressURL = ad["addressURL"] as? String {
-//                        
-//                        adsOrder.addressURL = addressURL
-//                        
-//                        if let order = ad["order"] as? Int {
-//                            
-//                            adsOrder.order = order
-//                            
-//                            if let imageURL = ad["imageURL"] as? String {
-//                                
-//                                adsOrder.imageURL = imageURL
-//                                
-//                            }
-//                            
-//                            ads.order.append(adsOrder)
-//                        }
-//                    }                
-//                }
-//                
-//                ads.order = ads.order.sorted(by: { ($0.order! < $1.order!) })
-//                
-//                DispatchQueue.main.async(execute: {
-//                    if ads.order.count > 0 {
-//                        completion(ads)
-//                        return
-//                    }
-//                    return
-//                })
-//                
-//            }
-//            
-//        })
-//        
-//    }
-    
     struct Result {
         var day: Int
         var races: [Race]?

@@ -10,7 +10,9 @@ import UIKit
 
 class RacesSelectionView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    lazy var selectionView: UICollectionView = {
+    var racesVC: RacesVC?
+    
+    lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -43,23 +45,28 @@ class RacesSelectionView: UIView, UICollectionViewDelegate, UICollectionViewData
         addSubview(seperatorBar)
         addSubview(seperatorBar2)
         
-        addSubview(selectionView)
-        selectionView.register(RacesSelectionCell.self, forCellWithReuseIdentifier: cellId)
+        addSubview(collectionView)
+        collectionView.register(RacesSelectionCell.self, forCellWithReuseIdentifier: cellId)
         
-        addConstraintsWithVisualFormat(format: "H:|-\((frame.width - CGFloat(selections.count * 50)) / 4)-[v0]-\((frame.width - CGFloat(selections.count * 50)) / 4)-|", views: selectionView)
-        addConstraintsWithVisualFormat(format: "V:|[v0]|", views: selectionView)
-        selectionView.layoutIfNeeded()
+        addConstraint(NSLayoutConstraint(item: collectionView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
+        addConstraintsWithVisualFormat(format: "H:[v0(\(selections.count * 50 + (selections.count - 1) * 30))]", views: collectionView)
+        addConstraintsWithVisualFormat(format: "V:|[v0]|", views: collectionView)
+        collectionView.layoutIfNeeded()
         
         addConstraintsWithVisualFormat(format: "H:[v0(1)]", views: seperatorBar)
-        addConstraintsWithVisualFormat(format: "V:|-8-[v0]-8-|", views: seperatorBar)
-        addConstraint(NSLayoutConstraint(item: seperatorBar, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: -25 - (selectionView.frame.width - CGFloat(selections.count * 50)) / CGFloat(selections.count - 1) / 2))
+        addConstraintsWithVisualFormat(format: "V:|-12-[v0]-12-|", views: seperatorBar)
+        addConstraint(NSLayoutConstraint(item: seperatorBar, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: -35))
         
         addConstraintsWithVisualFormat(format: "H:[v0(1)]", views: seperatorBar2)
-        addConstraintsWithVisualFormat(format: "V:|-8-[v0]-8-|", views: seperatorBar2)
-        addConstraint(NSLayoutConstraint(item: seperatorBar2, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 25 + (selectionView.frame.width - CGFloat(selections.count * 50)) / CGFloat(selections.count - 1) / 2))
+        addConstraintsWithVisualFormat(format: "V:|-12-[v0]-12-|", views: seperatorBar2)
+        addConstraint(NSLayoutConstraint(item: seperatorBar2, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 35))
         
-        selectionView.selectItem(at: NSIndexPath(item: 0, section: 0) as IndexPath, animated: false, scrollPosition: [])
+        collectionView.selectItem(at: NSIndexPath(item: 0, section: 0) as IndexPath, animated: false, scrollPosition: [])
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        racesVC?.scrollCollectionView(indexPath: indexPath)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -71,7 +78,7 @@ class RacesSelectionView: UIView, UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = selectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! RacesSelectionCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! RacesSelectionCell
         cell.name.text = selections[indexPath.row]
         return cell
     }
@@ -79,13 +86,9 @@ class RacesSelectionView: UIView, UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 50, height: frame.height)
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return (frame.width - CGFloat(selections.count * 50)) / CGFloat(selections.count + 1)
-//    }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return (selectionView.frame.width - CGFloat(selections.count * 50)) / CGFloat(selections.count - 1)
+        return 30
         
     }
     

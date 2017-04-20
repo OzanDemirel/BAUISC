@@ -10,8 +10,6 @@ import UIKit
 
 class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSource {
     
-    var homeVC: HomeVC?
-    
     lazy var tableView: UITableView = {
         let table = UITableView()
         //table.contentInset.top = 40
@@ -97,6 +95,8 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
     override func setupViews() {
         super.setupViews()
         
+        draggingGesture.require(toFail: tableView.panGestureRecognizer)
+        
         tableView.register(GeneralResultsCell.self, forCellReuseIdentifier: cellId)
 
         addSubview(activityIndicator)
@@ -126,7 +126,7 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
         NotificationCenter.default.addObserver(self, selector: #selector(GeneralResultsContainer.fetchResults), name: NSNotification.Name("dayOrRaceSelected"), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(GeneralResultsContainer.fetchResults), name: NSNotification.Name("categorySelected"), object: nil)
-    
+        
     }
     
     func fetchResults() {

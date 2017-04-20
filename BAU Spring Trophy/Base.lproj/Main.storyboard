@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -183,7 +183,7 @@
                                                                 </constraints>
                                                             </stackView>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="kNa-ke-1QX">
-                                                                <rect key="frame" x="42.333333333333314" y="21" width="22" height="12"/>
+                                                                <rect key="frame" x="42.666666666666657" y="21" width="22" height="12"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="kNa-ke-1QX" secondAttribute="height" multiplier="11:6" id="bQP-HN-QwW"/>
                                                                 </constraints>
@@ -200,16 +200,16 @@
                                                         <rect key="frame" x="140.33333333333337" y="321" width="134.66666666666663" height="33"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="YbF-O1-H4R" userLabel="ResultsStackView">
-                                                                <rect key="frame" x="0.33333333333334281" y="0.0" width="134.66666666666666" height="16"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="134.66666666666666" height="16"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SONUÇLAR  /" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="fn5-dN-wdM">
-                                                                        <rect key="frame" x="0.33333333333334281" y="0.0" width="87.666666666666657" height="16"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="87.666666666666657" height="16"/>
                                                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="12"/>
                                                                         <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  RESULTS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="joa-x5-cN0">
-                                                                        <rect key="frame" x="88" y="0.0" width="47" height="16"/>
+                                                                        <rect key="frame" x="87.666666666666657" y="0.0" width="47" height="16"/>
                                                                         <fontDescription key="fontDescription" name="Futura-Book" family="Futura" pointSize="11"/>
                                                                         <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -220,7 +220,7 @@
                                                                 </constraints>
                                                             </stackView>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="P4K-08-Ttv">
-                                                                <rect key="frame" x="56.666666666666657" y="21" width="22" height="12"/>
+                                                                <rect key="frame" x="56.333333333333314" y="21" width="22" height="12"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="P4K-08-Ttv" secondAttribute="height" multiplier="11:6" id="WBL-QL-1mH"/>
                                                                 </constraints>
@@ -494,7 +494,14 @@
                             <constraint firstItem="SKg-4R-Owz" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="nkZ-Up-YB7"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="SKg-4R-Owz" secondAttribute="bottom" id="uyy-dw-602"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="SKg-4R-Owz"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="414" height="736"/>
                     <connections>
                         <outlet property="adBanner" destination="yRu-8q-VUl" id="aW8-m5-GjT"/>
                         <outlet property="adBannerButton" destination="h91-jR-tkG" id="dge-wy-B1B"/>

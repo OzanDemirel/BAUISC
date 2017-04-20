@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ResultsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ResultsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UIGestureRecognizerDelegate {
     
     @IBOutlet weak var daysSectionView: DaysSectionView!
     @IBOutlet weak var racesSectionView: RacesSectionBaseView!
@@ -23,14 +23,31 @@ class ResultsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         super.init(coder: aDecoder)
     }
     
+    var homeVC: HomeVC?
+    
     let classCellId = "classResultsContainer"
     let generalCellId = "generalResultsContainer"
+    
+    var contentOffset: CGFloat = 0 {
+        didSet {
+            _ = gestureRecognizer(draggingGesture, shouldRecognizeSimultaneouslyWith: resultsTableContainer.panGestureRecognizer)
+        }
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        if contentOffset == 0 {
+            return true
+        }
+        return false
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.layer.shouldRasterize = true
         view.layer.rasterizationScale = UIScreen.main.scale
+        
+        draggingGesture.delegate = self
         
         resultsTableContainer.delegate = self
         resultsTableContainer.dataSource = self
@@ -52,7 +69,7 @@ class ResultsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
         resultsTableContainer.reloadData()
         
     }
-
+    
     func scrollToSectionInRaces(indexPath: Int) {
         racesSectionView.selectionView.scrollToItem(at: IndexPath(item: 0, section: indexPath), at: [], animated: true)
         NotificationCenter.default.post(name: NSNotification.Name("aDaySelected"), object: nil)
@@ -60,15 +77,15 @@ class ResultsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         tableSectionView.selectionView.selectItem(at: IndexPath(item: Int(scrollView.contentOffset.x / scrollView.frame.width), section: 0), animated: false, scrollPosition: [])
-        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         tableSectionView.selectionView.selectItem(at: IndexPath(item: Int(round(scrollView.contentOffset.x / scrollView.frame.width)), section: 0), animated: false, scrollPosition: [])
+        draggingGesture.isEnabled = false
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        tableSectionView.selectionView.selectItem(at: IndexPath(item: Int(scrollView.contentOffset.x / scrollView.frame.width), section: 0), animated: false, scrollPosition: [])
+        contentOffset = scrollView.contentOffset.x
     }
     
     func scrollCollectionView(indexPath: IndexPath) {

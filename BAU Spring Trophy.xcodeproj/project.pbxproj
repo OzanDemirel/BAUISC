@@ -73,6 +73,9 @@
 		AB98ECC11E81BDD700038185 /* AdsBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98ECC01E81BDD700038185 /* AdsBanner.swift */; };
 		ABA209851E8488EF00D7D119 /* Futura-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = ABA209831E8488B700D7D119 /* Futura-Bold.otf */; };
 		ABA209861E8488EF00D7D119 /* Futura-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = ABA209841E8488B700D7D119 /* Futura-Book.otf */; };
+		ABE2609C1EA268A200BB26AE /* RaceScheduleContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE2609B1EA268A200BB26AE /* RaceScheduleContainer.swift */; };
+		ABE260A11EA2751F00BB26AE /* ContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE2609F1EA2751F00BB26AE /* ContactVC.swift */; };
+		ABE260A21EA2751F00BB26AE /* ContactVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABE260A01EA2751F00BB26AE /* ContactVC.xib */; };
 		FD60F8A336291FF9445F2EF6 /* Pods_BAU_Spring_Trophy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8219F067E66EDAC2ADFDAC9 /* Pods_BAU_Spring_Trophy.framework */; };
 /* End PBXBuildFile section */
 
@@ -148,6 +151,9 @@
 		AB98ECC01E81BDD700038185 /* AdsBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsBanner.swift; sourceTree = "<group>"; };
 		ABA209831E8488B700D7D119 /* Futura-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura-Bold.otf"; sourceTree = "<group>"; };
 		ABA209841E8488B700D7D119 /* Futura-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura-Book.otf"; sourceTree = "<group>"; };
+		ABE2609B1EA268A200BB26AE /* RaceScheduleContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceScheduleContainer.swift; sourceTree = "<group>"; };
+		ABE2609F1EA2751F00BB26AE /* ContactVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactVC.swift; sourceTree = "<group>"; };
+		ABE260A01EA2751F00BB26AE /* ContactVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactVC.xib; sourceTree = "<group>"; };
 		C5A2C11E8E7D56E769E8649D /* Pods-BAU Spring Trophy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BAU Spring Trophy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BAU Spring Trophy/Pods-BAU Spring Trophy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -233,7 +239,8 @@
 				AB42DB6A1E787DF400549C65 /* Teams Page */,
 				AB42DB661E77462D00549C65 /* Galery Page */,
 				AB42DB791E7A46F700549C65 /* Results Page */,
-				AB73DE7E1E97F22F00D52591 /* Races */,
+				AB73DE7E1E97F22F00D52591 /* Races Page */,
+				ABE2609E1EA274DE00BB26AE /* Contant Page */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -356,7 +363,7 @@
 			name = "Results Page";
 			sourceTree = "<group>";
 		};
-		AB73DE7E1E97F22F00D52591 /* Races */ = {
+		AB73DE7E1E97F22F00D52591 /* Races Page */ = {
 			isa = PBXGroup;
 			children = (
 				AB73DE801E97F27900D52591 /* RacesVC.xib */,
@@ -364,8 +371,9 @@
 				AB73DE891E97FAB100D52591 /* RacesSelectionCell.swift */,
 				AB73DE851E97F71800D52591 /* RouteCardsContainer.swift */,
 				AB73DE871E97F76100D52591 /* RaceAnnouncementContainer.swift */,
+				ABE2609B1EA268A200BB26AE /* RaceScheduleContainer.swift */,
 			);
-			name = Races;
+			name = "Races Page";
 			sourceTree = "<group>";
 		};
 		AB98ECBD1E817FF100038185 /* Helpers */ = {
@@ -374,6 +382,15 @@
 				AB42DB3B1E73848000549C65 /* Extensions.swift */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		ABE2609E1EA274DE00BB26AE /* Contant Page */ = {
+			isa = PBXGroup;
+			children = (
+				ABE2609F1EA2751F00BB26AE /* ContactVC.swift */,
+				ABE260A01EA2751F00BB26AE /* ContactVC.xib */,
+			);
+			name = "Contant Page";
 			sourceTree = "<group>";
 		};
 		CF0BFB66E9A11EC76BF4587C /* Pods */ = {
@@ -460,6 +477,7 @@
 				AB73DE821E97F27900D52591 /* RacesVC.xib in Resources */,
 				AB42DB371E73061500549C65 /* NewsVC.xib in Resources */,
 				AB98ECBA1E7FC5BB00038185 /* NewsContentVC.xib in Resources */,
+				ABE260A21EA2751F00BB26AE /* ContactVC.xib in Resources */,
 				AB3F20331E700FE40058F327 /* Assets.xcassets in Resources */,
 				AB42DB761E78BA4100549C65 /* TeamInfoVC.xib in Resources */,
 				AB3F20311E700FE40058F327 /* Main.storyboard in Resources */,
@@ -543,10 +561,12 @@
 				AB42DB481E739BBB00549C65 /* DesignableView.swift in Sources */,
 				AB98ECBF1E81BBB700038185 /* Ads.swift in Sources */,
 				AB73DE811E97F27900D52591 /* RacesVC.swift in Sources */,
+				ABE2609C1EA268A200BB26AE /* RaceScheduleContainer.swift in Sources */,
 				AB42DB6D1E787E6800549C65 /* TeamsVC.swift in Sources */,
 				AB98ECBC1E817FA400038185 /* Photo.swift in Sources */,
 				AB98ECB51E7DC68600038185 /* Race.swift in Sources */,
 				AB3F20471E708A6E0058F327 /* DesignableImageView.swift in Sources */,
+				ABE260A11EA2751F00BB26AE /* ContactVC.swift in Sources */,
 				AB42DB851E7A83DF00549C65 /* TableSelectionCell.swift in Sources */,
 				AB42DB4A1E73A92500549C65 /* GaleryPageSelectionCell.swift in Sources */,
 				AB42DB7C1E7A47FF00549C65 /* ResultsVC.swift in Sources */,

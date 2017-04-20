@@ -23,7 +23,8 @@ class RacesVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     
     let routeCardsCellId = "routeCardsContainer"
     let raceAnnouncementCellId = "raceAnnouncementContainer"
-    
+    let raceScheduleCellId = "raceScheduleContainer"
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,21 +34,19 @@ class RacesVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.allowsSelection = false
+        collectionView.register(RaceScheduleContainer.self, forCellWithReuseIdentifier: raceScheduleCellId)
         collectionView.register(RouteCardsContainer.self, forCellWithReuseIdentifier: routeCardsCellId)
         collectionView.register(RaceAnnouncementContainer.self, forCellWithReuseIdentifier: raceAnnouncementCellId)
         
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: UICollectionViewScrollPosition.centeredVertically, animated: false)
-//        tableSectionView.selectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: [])
-//        
-//        daysSectionView.resultsVC = self
-//        tableSectionView.resultsVC = self
         
+        selectionView.racesVC = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        resultsTableContainer.reloadData()
+        collectionView.reloadData()
         
     }
     
@@ -69,12 +68,16 @@ class RacesVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
 //        tableSectionView.selectionView.selectItem(at: IndexPath(item: Int(scrollView.contentOffset.x / scrollView.frame.width), section: 0), animated: false, scrollPosition: [])
 //    }
     
-//    func scrollCollectionView(indexPath: IndexPath) {
-//        resultsTableContainer.scrollRectToVisible(CGRect(x: resultsTableContainer.frame.maxX * CGFloat(indexPath.row), y: resultsTableContainer.frame.minY, width: resultsTableContainer.frame.width, height: resultsTableContainer.frame.height), animated: true)
-//    }
+    func scrollCollectionView(indexPath: IndexPath) {
+        collectionView.scrollRectToVisible(CGRect(x: collectionView.frame.maxX * CGFloat(indexPath.row), y: collectionView.frame.minY, width: collectionView.frame.width, height: collectionView.frame.height), animated: true)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        selectionView.collectionView.selectItem(at: IndexPath(item: Int(round(scrollView.contentOffset.x / scrollView.frame.width)), section: 0), animated: false, scrollPosition: [])
+    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -83,6 +86,8 @@ class RacesVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
+            return collectionView.dequeueReusableCell(withReuseIdentifier: raceScheduleCellId, for: indexPath) as! RaceScheduleContainer
+        } else if indexPath.section == 1 {
             return collectionView.dequeueReusableCell(withReuseIdentifier: routeCardsCellId, for: indexPath) as! RouteCardsContainer
         }
         return collectionView.dequeueReusableCell(withReuseIdentifier: raceAnnouncementCellId, for: indexPath) as! RaceAnnouncementContainer

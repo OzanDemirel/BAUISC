@@ -102,7 +102,7 @@ class NewsContentVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        newsText.scrollRectToVisible(CGRect(x: 0, y: 0, width: newsText.frame.width, height: newsText.frame.height), animated: false)
     }
     
     func leftEdgeGestureActive(sender: UIScreenEdgePanGestureRecognizer) {

@@ -8,7 +8,9 @@
 
 import UIKit
 
-class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+var draggingGesture: UIPanGestureRecognizer!
+
+class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var sideMenuTableView: UITableView!
     @IBOutlet weak var newsScrollPages: NewsScrollPages!
@@ -53,7 +55,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         return cv
     }()
     
-    var draggingGesture: UIPanGestureRecognizer!
     var startingLocationOfPanGesture: CGFloat!
     var lastLocationOfPanGesture: CGFloat!
     var distance: CGFloat!
@@ -65,11 +66,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         return button
     }()
     
-//    var shadowViewButton: UIButton = {
-//        let button = UIButton()
-//        return button
-//    }()
-    
     var bottomNewsCount = 0
     
     var teamsVC: TeamsVC!
@@ -79,6 +75,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     var newsContentVC: NewsContentVC!
     
     var galeryVC: GaleryVC!
+    
+    var contactVC: ContactVC!
     
     var imagePreviewBackgroundView = UIView()
     var imagePreviewBlurView = UIVisualEffectView()
@@ -101,7 +99,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
     var postNotifUserInfo: [String: Int]!
     
-    let sideMenuItems: [Dictionary<String, String>]! = [["Anasayfa / Home": "Home"], ["Takımlar / Teams": "Teams"] , ["Fotoğraflar / Photos": "Photos"], ["Videolar / Videos": "Videos"], ["Haberler / News": "News"], ["Sonuçlar / Results": "Results"], ["Yarışlar / Races": "Races"], ["İletişim / Contact": "Contact"], ["Sponsorlar / Sponsors": "Sponsors"]]
+    let sideMenuItems: [Dictionary<String, String>]! = [["Anasayfa / Home": "Home"], ["Takımlar / Teams": "Teams"] , ["Fotoğraflar / Photos": "Photos"], ["Videolar / Videos": "Videos"], ["Haberler / News": "News"], ["Sonuçlar / Results": "Results"], ["Yarışlar / Races": "Races"], ["Sponsorlar / Sponsors": "Sponsors"], ["İletişim / Contact": "Contact"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,7 +120,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         newsScrollPages.homeVC = self
         
         draggingGesture = UIPanGestureRecognizer(target: self, action: #selector(draggingGestureActive(gesture:)))
-        draggingGesture.cancelsTouchesInView = false
+        draggingGesture.cancelsTouchesInView = true
+        draggingGesture.delegate = self
         
         closingSideMenuGesture = UITapGestureRecognizer(target: self, action: #selector(closeSideMenu))
         closingSideMenuGesture.cancelsTouchesInView = false
@@ -331,12 +330,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             bottomNewsCount = 0
         }
         newsSelectionView.trendNewsCount = news.count > 4 ? 5 : news.count % 5
-//        newsSelectionView.setSelectionViews()
-//        newsSelectionView.collectionView.reloadData()
-//        newsScrollPages.collectionView.reloadData()
-//        if news.count > 1 {
-//            newsScrollPages.collectionView.scrollToItem(at: IndexPath(item: 5000, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
-//        }
         setNewsCollectionView()
     }
     
@@ -423,7 +416,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         }) { (true) in
             self.imagePreviewBackgroundView.removeFromSuperview()
             self.imagePreviewScrollView.removeFromSuperview()
-            self.draggingGesture.isEnabled = true
+            draggingGesture.isEnabled = true
         }
     }
     
@@ -505,7 +498,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                     self.view.layoutIfNeeded()
                 }, completion: { (true) in
                     self.view.isUserInteractionEnabled = true
-                    self.draggingGesture.isEnabled = false
+                    draggingGesture.isEnabled = false
                 })
             }
         }
@@ -579,9 +572,12 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         galeryVC = GaleryVC(nibName: "GaleryVC", bundle: nil)
         
-        resultsVC = ResultsVC(nibName: "ResultsVC", bundle: nil)
+        resultsVC = ResultsVC(nibName: "ResultsVC", bundle: nil)        
+        resultsVC.homeVC = self
         
         racesVC = RacesVC(nibName: "RacesVC", bundle: nil)
+        
+        contactVC = ContactVC(nibName: "ContactVC", bundle: nil)
     }
     
     func addTeamsPageToView() {
@@ -683,7 +679,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 self.teamInfoVC.view.removeFromSuperview()
                 self.teamInfoVC.removeFromParentViewController()
                 self.view.isUserInteractionEnabled = true
-                self.draggingGesture.isEnabled = true
+                draggingGesture.isEnabled = true
             })
         })
     }
@@ -743,7 +739,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 self.teamInfoVC.view.removeFromSuperview()
                 self.teamInfoVC.removeFromParentViewController()
                 self.view.isUserInteractionEnabled = true
-                self.draggingGesture.isEnabled = true
+                draggingGesture.isEnabled = true
             })
         })
     }
@@ -957,7 +953,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             self.newsContentVC.view.removeFromSuperview()
             self.newsContentVC.removeFromParentViewController()
             self.view.isUserInteractionEnabled = true
-            self.draggingGesture.isEnabled = true
+            draggingGesture.isEnabled = true
         })
         
     }
@@ -1011,7 +1007,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 self.newsCollectionView.alpha = 1
             })
         }
-        homeScrollView.isScrollEnabled = news != nil ? ((news?.count)! > 0) : false
+        homeScrollView.isScrollEnabled = news != nil ? ((bottomNewsCount) > 1) : false
         newsCollectionView.reloadData()
         
     }
@@ -1021,7 +1017,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         sideMenuTableView.deselectRow(at: indexPath, animated: true)
         tableView.isUserInteractionEnabled = false
         
-        if indexPath.row == 7 || indexPath.row == 8 {
+        if indexPath.row == 7 {
             let alert = UIAlertController(title: "Sayfa Yapım Aşamasındadır.", message: "Bu sayfa güncellemeyle birlikte aktif hale gelecektir.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Tamam", style: UIAlertActionStyle.cancel, handler: nil))
             self.present(alert, animated: true, completion: { 
@@ -1158,6 +1154,25 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 }
             }
             break;
+        case 8:
+            for child in childViewControllers {
+                if contactVC.view.frame == homeScrollView.frame {
+                    removeCalled = true
+                } else if child.view.frame == homeScrollView.frame && child != contactVC {
+                    executeChildRemovingAndAdding(child: child, childToAdd: self.contactVC)
+                    removeCalled = true
+                }
+            }
+            if !removeCalled {
+                if #available(iOS 10, *) {
+                    _ = Timer.scheduledTimer(withTimeInterval: calculateAnimationDuration(startingPoint: CGPoint(x: CGFloat(homePageViewLeadingConstraint.constant), y: 0), destinationPoint: CGPoint(x: 0, y: 0)), repeats: false, block: { (timer) in
+                        self.addAChildViewToView(child: self.contactVC)
+                    })
+                } else {
+                    _ = Timer.scheduledTimer(timeInterval: calculateAnimationDuration(startingPoint: CGPoint(x: CGFloat(homePageViewLeadingConstraint.constant), y: 0), destinationPoint: CGPoint(x: 0, y: 0)), target: self, selector: #selector(callForAddChildFunction(timer:)), userInfo: contactVC, repeats: false)
+                }
+            }
+            break;
         default:
             for child in childViewControllers {
                 executeChildRemovingAndAdding(child: child, childToAdd: nil)
@@ -1258,8 +1273,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 9
     }
