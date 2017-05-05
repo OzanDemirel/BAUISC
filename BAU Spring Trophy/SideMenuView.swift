@@ -37,6 +37,7 @@ class SideMenuView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
     }
 
 }

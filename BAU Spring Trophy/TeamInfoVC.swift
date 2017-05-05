@@ -36,6 +36,7 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var flameLeftConstraint: NSLayoutConstraint!
     
     var leftEgdeGesture: UIScreenEdgePanGestureRecognizer!
+    var swipeGesture: UISwipeGestureRecognizer!
     
     let seperatorBar1: UIImageView = {
         let imageView = UIImageView()
@@ -130,6 +131,9 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         crewTableView.dataSource = self
         crewTableView.register(CrewCell.self, forCellReuseIdentifier: cellId)
         
+        swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(TeamInfoVC.swipeGestureActive))
+        swipeGesture.direction = .right
+        
         leftEgdeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(TeamInfoVC.leftEdgeGestureActive(sender:)))
         leftEgdeGesture.edges = .left
  
@@ -198,6 +202,16 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         view.addConstraint(NSLayoutConstraint(item: boatClass, attribute: .leading, relatedBy: .equal, toItem: _boatClass, attribute: .trailing, multiplier: 1, constant: 10))
         view.addConstraintsWithVisualFormat(format: "V:[v0(8)]", views: boatClass)
         
+        
+    }
+    
+    func swipeGestureActive() {
+        
+        if homeVC?.teamsVC.view.frame == homeVC?.homeScrollView.frame {
+            homeVC?.removeTeamInfoPageFromView()
+        } else {
+            homeVC?.removeTeamInfoPageFromViewFromResultsPage()
+        }
         
     }
     

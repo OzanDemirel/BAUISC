@@ -49,7 +49,6 @@ class TableSectionView: UIView, UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         resultsVC?.scrollCollectionView(indexPath: indexPath)
-        resultsVC?.contentOffset = CGFloat(indexPath.row)
         ApiService.sharedInstance.selectedCategory = indexPath.row
     }
     

@@ -19,6 +19,8 @@ class ApiService: NSObject {
     let racesRef = "races"
     let photosRef = "photos"
     let adsRef = "ads"
+    let raceAccouncementRef = "raceAnnouncement"
+    let schedule = "schedule"
     
     var selectedDay: Int = 0 {
         didSet {
@@ -34,6 +36,93 @@ class ApiService: NSObject {
         didSet {
             NotificationCenter.default.post(name: NSNotification.Name("categorySelected"), object: nil)
         }
+    }
+    
+    func fetchRaceAnnouncement(_ completion: @escaping (String) -> ()) {
+        
+        ref.child(raceAccouncementRef).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let data = snapshot.value as? [String: AnyObject] {
+                
+                if let url = data["fileURL"] as? String {
+                    
+                    completion(url)
+                    
+                }
+                
+            }
+            
+        })
+        
+    }
+    
+    var schedules = [Day]()
+    
+    func fetchSchedule(_ completion: @escaping ([Day]) -> ()) {
+        
+        ref.child(schedule).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let data = snapshot.value as? [String:AnyObject] {
+                
+                for days in data {
+                    
+                    if let aDay = days.value as? [String: AnyObject] {
+                        
+                        var day = Day()
+                        
+                        if let name = aDay["name"] as? String {
+                            
+                            day.Name = name
+                            
+                            if let order = aDay["order"] as? Int {
+                                
+                                day.Order = order
+                                
+                                if let contents = aDay["content"] as? [String: AnyObject] {
+                                    
+                                    var dayContents = [DayContent]()
+                                    
+                                    for aContent in contents {
+                                        
+                                        var dayContent = DayContent()
+                                        
+                                        if let content = aContent.value as? [String: AnyObject] {
+                                            
+                                            if let name = content["name"] as? String {
+                                                
+                                                dayContent.Name = name
+                                                
+                                                if let order = content["order"] as? Int {
+                                                    
+                                                    dayContent.Order = order
+                                                    
+                                                    dayContents.append(dayContent)
+                                                }
+                                            }
+                                        }
+                                    }
+                                    
+                                    if dayContents.count > 0 {
+                                        
+                                        dayContents = dayContents.sorted(by: { $0.Order! < $1.Order!})
+                                        day.Content = dayContents
+                                        self.schedules.append(day)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                if self.schedules.count > 0 {
+                    
+                    self.schedules = self.schedules.sorted(by: { $0.Order! < $1.Order!})
+                    DispatchQueue.main.async(execute: { 
+                        completion(self.schedules)
+                    })
+                }
+            }
+        })
     }
     
     var news = [News]()

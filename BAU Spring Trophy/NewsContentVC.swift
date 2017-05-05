@@ -37,6 +37,7 @@ class NewsContentVC: UIViewController {
     }
     
     var leftEdgeGesture: UIScreenEdgePanGestureRecognizer!
+    var swipeGesture: UISwipeGestureRecognizer!
     
     func setNewsImage() {
         
@@ -96,7 +97,11 @@ class NewsContentVC: UIViewController {
 
         newsImage.clipsToBounds = true
         
-        leftEdgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(TeamInfoVC.leftEdgeGestureActive(sender:)))
+        swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(NewsContentVC.swipeGestureActive))
+        swipeGesture.direction = .right
+        view.addGestureRecognizer(swipeGesture)
+        
+        leftEdgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(NewsContentVC.leftEdgeGestureActive(sender:)))
         leftEdgeGesture.edges = .left
         view.addGestureRecognizer(leftEdgeGesture)
     }
@@ -105,8 +110,15 @@ class NewsContentVC: UIViewController {
         newsText.scrollRectToVisible(CGRect(x: 0, y: 0, width: newsText.frame.width, height: newsText.frame.height), animated: false)
     }
     
-    func leftEdgeGestureActive(sender: UIScreenEdgePanGestureRecognizer) {
+    func swipeGestureActive() {
         
+        homeVC?.removeNewsContentViewFromView()
+        
+    }
+    
+
+    func leftEdgeGestureActive(sender: UIGestureRecognizer) {
+
         if sender.state == .began {
 
             homeVC?.removeNewsContentViewFromView()

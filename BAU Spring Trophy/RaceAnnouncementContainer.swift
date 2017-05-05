@@ -37,7 +37,28 @@ class RaceAnnouncementContainer: BaseCell {
         addConstraint(NSLayoutConstraint(item: activityIndicator, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
         activityIndicator.startAnimating()
         
-        if let url = URL(string: "https://firebasestorage.googleapis.com/v0/b/bauisc-a520b.appspot.com/o/raceAnnouncement%2FBAU%20I%CC%87LKBAHAR%20TROFESI%CC%87%208%20Nisan%20Yar%C4%B1s%CC%A7%20I%CC%87lan%C4%B1_SON.pdf?alt=media&token=28d18817-b794-4509-bd74-487a5c1ab411") {
+        fetchAccouncementURL()
+        
+    }
+    
+    func fetchAccouncementURL() {
+        
+        ApiService.sharedInstance.fetchRaceAnnouncement { (url) in
+            self.fetchAnnouncementData(urlString: url)
+        }
+        
+    }
+    
+    func fetchAnnouncementData(urlString: String) {
+        
+        if let data = raceAnnouncementCache[urlString], let url = URL(string: urlString) {
+            
+            self.webView.load(data, mimeType: "application/pdf", characterEncodingName: "", baseURL: url.deletingLastPathComponent())
+            self.activityIndicator.stopAnimating()
+            return
+        }
+        
+        if let url = URL(string: urlString) {
             
             URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
                 
@@ -47,15 +68,18 @@ class RaceAnnouncementContainer: BaseCell {
                 }
                 
                 if let data = data {
+                    
+                    raceAnnouncementCache.updateValue(data, forKey: urlString)
+                    
                     DispatchQueue.main.async(execute: {
                         self.webView.load(data, mimeType: "application/pdf", characterEncodingName: "", baseURL: url.deletingLastPathComponent())
                         self.activityIndicator.stopAnimating()
                     })
-
+                    
                 }
                 
             }).resume()
-
+            
         }
         
     }

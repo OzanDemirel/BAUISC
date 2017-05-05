@@ -13,10 +13,6 @@ import FirebaseStorage
 //let imageFilterCache = NSCache<NSString, UIImage>()
 //let imageFilterForCellCache = NSCache<NSString, UIImage>()
 
-var imageCache = Dictionary<String, UIImage>()
-var imageFilterCache = Dictionary<String, UIImage>()
-var imageFilterForCellCache = Dictionary<String, UIImage>()
-
 class CustomImageView: UIImageView {
     
     var imageUrlString: String!

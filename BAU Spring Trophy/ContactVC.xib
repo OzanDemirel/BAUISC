@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Futura-Book.otf">
+            <string>Futura-Book</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContactVC" customModule="BAU_Spring_Trophy" customModuleProvider="target">
             <connections>
-                <outlet property="addressTextView" destination="6mY-bQ-3Hp" id="zsF-cG-NGp"/>
-                <outlet property="addressTextViewHeight" destination="9hq-w3-Uyg" id="woZ-bp-O9I"/>
+                <outlet property="addressTextView" destination="qqc-c1-qae" id="gGd-z2-WBt"/>
+                <outlet property="addressTextViewHeight" destination="aLP-dv-9je" id="2kE-wB-ICb"/>
+                <outlet property="contactPageHeightConstraint" destination="wyB-g2-EIc" id="vyp-GI-79h"/>
+                <outlet property="mapView" destination="eh5-OR-645" id="Oy6-PE-LZl"/>
+                <outlet property="scrollView" destination="J7w-W5-s3A" id="CdC-Gp-iZI"/>
+                <outlet property="scrollViewContentHeightConstraint" destination="z9b-7q-H4g" id="b2T-bT-1K0"/>
                 <outlet property="view" destination="I3a-Vj-odv" id="WWN-LQ-XtY"/>
             </connections>
         </placeholder>
@@ -22,49 +31,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="586"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Fu-03-N1M">
-                    <rect key="frame" x="0.0" y="45" width="414" height="165"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adres:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4Y-VT-YWH">
-                            <rect key="frame" x="186" y="16" width="42" height="16"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="42" id="7ir-M4-fhH"/>
-                                <constraint firstAttribute="height" constant="16" id="JTz-mE-aNR"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="12"/>
-                            <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6mY-bQ-3Hp">
-                            <rect key="frame" x="30" y="32" width="354" height="45"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="45" id="9hq-w3-Uyg"/>
-                            </constraints>
-                            <attributedString key="attributedText">
-                                <fragment>
-                                    <string key="content">Çırağan Caddesi, Osmanpaşa Mektebi Sokak, No: 4/6 34353
-Beşiktaş, İSTANBUL / TÜRKİYE</string>
-                                    <attributes>
-                                        <color key="NSColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <font key="NSFont" size="12" name="Futura-Book"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
-                            <textInputTraits key="textInputTraits"/>
-                        </textView>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="165" id="2DT-3W-bQU"/>
-                        <constraint firstAttribute="trailing" secondItem="6mY-bQ-3Hp" secondAttribute="trailing" constant="30" id="MyM-7j-mU1"/>
-                        <constraint firstItem="G4Y-VT-YWH" firstAttribute="top" secondItem="3Fu-03-N1M" secondAttribute="top" constant="16" id="Ud4-1y-8P9"/>
-                        <constraint firstItem="6mY-bQ-3Hp" firstAttribute="top" secondItem="G4Y-VT-YWH" secondAttribute="bottom" id="fb6-Qn-rHe"/>
-                        <constraint firstItem="G4Y-VT-YWH" firstAttribute="centerX" secondItem="3Fu-03-N1M" secondAttribute="centerX" id="uP6-5k-BnQ"/>
-                        <constraint firstItem="6mY-bQ-3Hp" firstAttribute="leading" secondItem="3Fu-03-N1M" secondAttribute="leading" constant="30" id="yRv-gQ-ryL"/>
-                    </constraints>
-                </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="www.bauisc.org" translatesAutoresizingMaskIntoConstraints="NO" id="y2G-Mi-3l4" userLabel="Domain ImageView">
                     <rect key="frame" x="162" y="544" width="90" height="12"/>
                     <constraints>
@@ -101,27 +67,227 @@ Beşiktaş, İSTANBUL / TÜRKİYE</string>
                     <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J7w-W5-s3A">
+                    <rect key="frame" x="0.0" y="45" width="414" height="469"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MC2-Qs-HhB">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="469"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gym-RG-hv4">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="161"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adres:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8d-ET-7gV">
+                                            <rect key="frame" x="186" y="16" width="42" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="16" id="bRU-fO-PBh"/>
+                                                <constraint firstAttribute="width" constant="42" id="pQH-9O-g1p"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="12"/>
+                                            <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqc-c1-qae">
+                                            <rect key="frame" x="30" y="32" width="354" height="45"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="45" id="aLP-dv-9je"/>
+                                            </constraints>
+                                            <attributedString key="attributedText">
+                                                <fragment>
+                                                    <string key="content">Çırağan Caddesi, Osmanpaşa Mektebi Sokak, No: 4/6 34353
+Beşiktaş, İSTANBUL / TÜRKİYE</string>
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <font key="NSFont" size="12" name="Futura-Book"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="ZNL-4e-KGp">
+                                            <rect key="frame" x="73" y="77" width="268" height="30"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hY5-75-1vN">
+                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="P4G-af-WYz"/>
+                                                        <constraint firstAttribute="width" constant="110" id="i6w-iu-eyd"/>
+                                                    </constraints>
+                                                    <state key="normal">
+                                                        <attributedString key="attributedTitle">
+                                                            <fragment content="www.">
+                                                                <attributes>
+                                                                    <color key="NSColor" red="0.97647058819999999" green="0.72549019609999998" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <font key="NSFont" size="13" name="Futura-Book"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                            <fragment content="bauisc">
+                                                                <attributes>
+                                                                    <color key="NSColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <font key="NSFont" size="12" name="Futura-Bold"/>
+                                                                    <font key="NSOriginalFont" size="13" name="Futura-Bold"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                            <fragment content=".org">
+                                                                <attributes>
+                                                                    <color key="NSColor" red="0.97647058819999999" green="0.72549019609999998" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <font key="NSFont" size="13" name="Futura-Book"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="vhe-s5-7j0"/>
+                                                    </connections>
+                                                </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ellipse" translatesAutoresizingMaskIntoConstraints="NO" id="44M-6d-Tw1">
+                                                    <rect key="frame" x="112" y="11" width="8" height="8"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="8" id="NfC-rD-9v0"/>
+                                                        <constraint firstAttribute="width" constant="8" id="ggy-9a-fKN"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g93-dU-BUk">
+                                                    <rect key="frame" x="122" y="0.0" width="146" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="146" id="cMW-83-bvB"/>
+                                                        <constraint firstAttribute="height" constant="30" id="e0X-kN-hcH"/>
+                                                    </constraints>
+                                                    <state key="normal">
+                                                        <attributedString key="attributedTitle">
+                                                            <fragment content="www.bahcesehir.edu.tr">
+                                                                <attributes>
+                                                                    <color key="NSColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <font key="NSFont" size="13" name="Futura-Book"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="wTC-UT-nST"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="c5B-s9-Bte">
+                                            <rect key="frame" x="120" y="115" width="175" height="30"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@bauisc" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ia8-t0-ZOs">
+                                                    <rect key="frame" x="0.0" y="4.5" width="55" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="06K-iQ-d4U"/>
+                                                        <constraint firstAttribute="width" constant="55" id="Oh6-U9-n2e"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Futura-Book" family="Futura" pointSize="13"/>
+                                                    <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ojk-Bi-gOZ">
+                                                    <rect key="frame" x="65" y="0.0" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="Zyl-LU-xhq"/>
+                                                        <constraint firstAttribute="height" constant="30" id="p5a-2d-J83"/>
+                                                    </constraints>
+                                                    <state key="normal" image="Instagram Icon"/>
+                                                    <connections>
+                                                        <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="ah7-if-Q55"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="39d-wN-jLI">
+                                                    <rect key="frame" x="105" y="0.0" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="Uqe-RE-Hon"/>
+                                                        <constraint firstAttribute="width" constant="30" id="VZc-sw-pRa"/>
+                                                    </constraints>
+                                                    <state key="normal" image="Twitter Icon"/>
+                                                    <connections>
+                                                        <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="jp7-YR-blf"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WbC-I4-uZH">
+                                                    <rect key="frame" x="145" y="0.0" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="fY3-lm-5OZ"/>
+                                                        <constraint firstAttribute="width" constant="30" id="qO5-ip-Dp8"/>
+                                                    </constraints>
+                                                    <state key="normal" image="Facebook Icon"/>
+                                                    <connections>
+                                                        <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="Qx9-LK-zDK"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="v8d-ET-7gV" firstAttribute="top" secondItem="gym-RG-hv4" secondAttribute="top" constant="16" id="2zR-ZL-FlS"/>
+                                        <constraint firstAttribute="trailing" secondItem="qqc-c1-qae" secondAttribute="trailing" constant="30" id="3t0-rU-o6t"/>
+                                        <constraint firstItem="qqc-c1-qae" firstAttribute="leading" secondItem="gym-RG-hv4" secondAttribute="leading" constant="30" id="7Bo-IN-73T"/>
+                                        <constraint firstItem="ZNL-4e-KGp" firstAttribute="top" secondItem="qqc-c1-qae" secondAttribute="bottom" id="DJx-9q-dXo"/>
+                                        <constraint firstItem="c5B-s9-Bte" firstAttribute="top" secondItem="ZNL-4e-KGp" secondAttribute="bottom" constant="8" id="UkF-2j-UzC"/>
+                                        <constraint firstItem="qqc-c1-qae" firstAttribute="top" secondItem="v8d-ET-7gV" secondAttribute="bottom" id="YsP-rh-jPe"/>
+                                        <constraint firstItem="v8d-ET-7gV" firstAttribute="centerX" secondItem="gym-RG-hv4" secondAttribute="centerX" id="Z2c-Ph-phO"/>
+                                        <constraint firstItem="ZNL-4e-KGp" firstAttribute="centerX" secondItem="gym-RG-hv4" secondAttribute="centerX" id="foU-NL-cid"/>
+                                        <constraint firstItem="c5B-s9-Bte" firstAttribute="centerX" secondItem="gym-RG-hv4" secondAttribute="centerX" id="myp-aC-8jF"/>
+                                        <constraint firstAttribute="height" constant="161" id="wyB-g2-EIc"/>
+                                    </constraints>
+                                </view>
+                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="eh5-OR-645">
+                                    <rect key="frame" x="0.0" y="161" width="414" height="308"/>
+                                </mapView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="eh5-OR-645" secondAttribute="trailing" id="XXk-dF-yjF"/>
+                                <constraint firstItem="eh5-OR-645" firstAttribute="top" secondItem="gym-RG-hv4" secondAttribute="bottom" id="f0Z-uM-96E"/>
+                                <constraint firstItem="gym-RG-hv4" firstAttribute="leading" secondItem="MC2-Qs-HhB" secondAttribute="leading" id="hdp-Fy-t09"/>
+                                <constraint firstItem="gym-RG-hv4" firstAttribute="top" secondItem="MC2-Qs-HhB" secondAttribute="top" id="pvX-NX-fbd"/>
+                                <constraint firstAttribute="bottom" secondItem="eh5-OR-645" secondAttribute="bottom" id="rwl-3R-C63"/>
+                                <constraint firstItem="eh5-OR-645" firstAttribute="leading" secondItem="MC2-Qs-HhB" secondAttribute="leading" id="wpr-3x-SUH"/>
+                                <constraint firstAttribute="trailing" secondItem="gym-RG-hv4" secondAttribute="trailing" id="yV1-Y1-l5F"/>
+                                <constraint firstAttribute="height" constant="469" id="z9b-7q-H4g"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="MC2-Qs-HhB" secondAttribute="bottom" id="f5f-Vp-qgo"/>
+                        <constraint firstItem="MC2-Qs-HhB" firstAttribute="top" secondItem="J7w-W5-s3A" secondAttribute="top" id="fNK-Ju-jYF"/>
+                        <constraint firstAttribute="trailing" secondItem="MC2-Qs-HhB" secondAttribute="trailing" id="lxn-M6-bsY"/>
+                        <constraint firstItem="MC2-Qs-HhB" firstAttribute="leading" secondItem="J7w-W5-s3A" secondAttribute="leading" id="ly2-rb-oId"/>
+                    </constraints>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="3Fu-03-N1M" firstAttribute="leading" secondItem="I3a-Vj-odv" secondAttribute="leading" id="8Zp-Z9-4p2"/>
+                <constraint firstItem="y2G-Mi-3l4" firstAttribute="top" secondItem="J7w-W5-s3A" secondAttribute="bottom" constant="30" id="BhE-T5-qbS"/>
                 <constraint firstItem="VVj-Ra-hIE" firstAttribute="leading" secondItem="I3a-Vj-odv" secondAttribute="leading" id="Ffm-dE-Uqo"/>
                 <constraint firstAttribute="bottom" secondItem="y2G-Mi-3l4" secondAttribute="bottom" constant="30" id="KDz-Qh-Z4N"/>
+                <constraint firstItem="J7w-W5-s3A" firstAttribute="top" secondItem="VVj-Ra-hIE" secondAttribute="bottom" id="ODA-Y7-c8T"/>
                 <constraint firstItem="bed-yx-LdS" firstAttribute="height" secondItem="VVj-Ra-hIE" secondAttribute="height" multiplier="0.35" id="YG9-de-fI7"/>
                 <constraint firstItem="bed-yx-LdS" firstAttribute="centerY" secondItem="VVj-Ra-hIE" secondAttribute="centerY" id="ZAZ-Sl-Cko"/>
-                <constraint firstAttribute="trailing" secondItem="3Fu-03-N1M" secondAttribute="trailing" id="gab-Uk-03Y"/>
                 <constraint firstItem="VVj-Ra-hIE" firstAttribute="top" secondItem="I3a-Vj-odv" secondAttribute="top" id="iqR-dY-pRG"/>
                 <constraint firstAttribute="trailing" secondItem="VVj-Ra-hIE" secondAttribute="trailing" id="kN5-1E-o0x"/>
+                <constraint firstItem="MC2-Qs-HhB" firstAttribute="width" secondItem="I3a-Vj-odv" secondAttribute="width" id="kcd-5q-RKO"/>
                 <constraint firstItem="y2G-Mi-3l4" firstAttribute="centerX" secondItem="I3a-Vj-odv" secondAttribute="centerX" id="rh6-Oa-jFc"/>
+                <constraint firstItem="J7w-W5-s3A" firstAttribute="leading" secondItem="I3a-Vj-odv" secondAttribute="leading" id="ri0-kb-25G"/>
                 <constraint firstItem="bed-yx-LdS" firstAttribute="centerX" secondItem="VVj-Ra-hIE" secondAttribute="centerX" id="syb-Nm-xTK"/>
-                <constraint firstItem="3Fu-03-N1M" firstAttribute="top" secondItem="VVj-Ra-hIE" secondAttribute="bottom" id="uPe-cQ-Tun"/>
+                <constraint firstAttribute="trailing" secondItem="J7w-W5-s3A" secondAttribute="trailing" id="ukt-VI-pK0"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="33" y="88"/>
         </view>
     </objects>
     <resources>
+        <image name="Ellipse" width="10" height="9"/>
+        <image name="Facebook Icon" width="29" height="29"/>
+        <image name="Instagram Icon" width="29" height="29"/>
         <image name="MenuBar" width="410" height="44"/>
+        <image name="Twitter Icon" width="29" height="29"/>
         <image name="www.bauisc.org" width="94" height="11"/>
     </resources>
 </document>

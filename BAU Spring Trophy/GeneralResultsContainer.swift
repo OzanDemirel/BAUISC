@@ -95,8 +95,6 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
     override func setupViews() {
         super.setupViews()
         
-        draggingGesture.require(toFail: tableView.panGestureRecognizer)
-        
         tableView.register(GeneralResultsCell.self, forCellReuseIdentifier: cellId)
 
         addSubview(activityIndicator)

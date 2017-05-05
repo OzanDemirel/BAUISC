@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ResultsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,UIGestureRecognizerDelegate {
+class ResultsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var daysSectionView: DaysSectionView!
     @IBOutlet weak var racesSectionView: RacesSectionBaseView!
@@ -27,27 +27,12 @@ class ResultsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     
     let classCellId = "classResultsContainer"
     let generalCellId = "generalResultsContainer"
-    
-    var contentOffset: CGFloat = 0 {
-        didSet {
-            _ = gestureRecognizer(draggingGesture, shouldRecognizeSimultaneouslyWith: resultsTableContainer.panGestureRecognizer)
-        }
-    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        if contentOffset == 0 {
-            return true
-        }
-        return false
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.layer.shouldRasterize = true
         view.layer.rasterizationScale = UIScreen.main.scale
-        
-        draggingGesture.delegate = self
         
         resultsTableContainer.delegate = self
         resultsTableContainer.dataSource = self
@@ -81,11 +66,6 @@ class ResultsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDat
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         tableSectionView.selectionView.selectItem(at: IndexPath(item: Int(round(scrollView.contentOffset.x / scrollView.frame.width)), section: 0), animated: false, scrollPosition: [])
-        draggingGesture.isEnabled = false
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        contentOffset = scrollView.contentOffset.x
     }
     
     func scrollCollectionView(indexPath: IndexPath) {

@@ -13,8 +13,6 @@ class RouteCardsContainer: BaseCell {
     override func setupViews() {
         super.setupViews()
         
-        backgroundColor = UIColor.blue
-        
     }
     
 }

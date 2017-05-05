@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB31A82D1EA92B7700C2F5AC /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB31A82C1EA92B7700C2F5AC /* AppUtility.swift */; };
+		AB31A82E1EA93E1300C2F5AC /* Futura-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = ABA209841E8488B700D7D119 /* Futura-Book.otf */; };
+		AB31A8301EA955C300C2F5AC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB31A82F1EA955C300C2F5AC /* Constants.swift */; };
+		AB31A8321EA959B200C2F5AC /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB31A8311EA959B200C2F5AC /* Storage.swift */; };
 		AB3F202C1E700FE40058F327 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3F202B1E700FE40058F327 /* AppDelegate.swift */; };
 		AB3F202E1E700FE40058F327 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3F202D1E700FE40058F327 /* HomeVC.swift */; };
 		AB3F20311E700FE40058F327 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB3F202F1E700FE40058F327 /* Main.storyboard */; };
@@ -72,7 +76,8 @@
 		AB98ECBF1E81BBB700038185 /* Ads.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98ECBE1E81BBB700038185 /* Ads.swift */; };
 		AB98ECC11E81BDD700038185 /* AdsBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98ECC01E81BDD700038185 /* AdsBanner.swift */; };
 		ABA209851E8488EF00D7D119 /* Futura-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = ABA209831E8488B700D7D119 /* Futura-Bold.otf */; };
-		ABA209861E8488EF00D7D119 /* Futura-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = ABA209841E8488B700D7D119 /* Futura-Book.otf */; };
+		ABD0536B1EB8C94100DB71D4 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD0536A1EB8C94100DB71D4 /* Schedule.swift */; };
+		ABD0536D1EB8E9B900DB71D4 /* RaceScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD0536C1EB8E9B900DB71D4 /* RaceScheduleCell.swift */; };
 		ABE2609C1EA268A200BB26AE /* RaceScheduleContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE2609B1EA268A200BB26AE /* RaceScheduleContainer.swift */; };
 		ABE260A11EA2751F00BB26AE /* ContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE2609F1EA2751F00BB26AE /* ContactVC.swift */; };
 		ABE260A21EA2751F00BB26AE /* ContactVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABE260A01EA2751F00BB26AE /* ContactVC.xib */; };
@@ -82,6 +87,9 @@
 /* Begin PBXFileReference section */
 		05375D0D446632B99B98DCFB /* Pods-BAU Spring Trophy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BAU Spring Trophy.release.xcconfig"; path = "Pods/Target Support Files/Pods-BAU Spring Trophy/Pods-BAU Spring Trophy.release.xcconfig"; sourceTree = "<group>"; };
 		A8219F067E66EDAC2ADFDAC9 /* Pods_BAU_Spring_Trophy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BAU_Spring_Trophy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB31A82C1EA92B7700C2F5AC /* AppUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
+		AB31A82F1EA955C300C2F5AC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		AB31A8311EA959B200C2F5AC /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		AB3F20281E700FE40058F327 /* BAU Spring Trophy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BAU Spring Trophy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB3F202B1E700FE40058F327 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB3F202D1E700FE40058F327 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -151,6 +159,8 @@
 		AB98ECC01E81BDD700038185 /* AdsBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdsBanner.swift; sourceTree = "<group>"; };
 		ABA209831E8488B700D7D119 /* Futura-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura-Bold.otf"; sourceTree = "<group>"; };
 		ABA209841E8488B700D7D119 /* Futura-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura-Book.otf"; sourceTree = "<group>"; };
+		ABD0536A1EB8C94100DB71D4 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		ABD0536C1EB8E9B900DB71D4 /* RaceScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceScheduleCell.swift; sourceTree = "<group>"; };
 		ABE2609B1EA268A200BB26AE /* RaceScheduleContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceScheduleContainer.swift; sourceTree = "<group>"; };
 		ABE2609F1EA2751F00BB26AE /* ContactVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactVC.swift; sourceTree = "<group>"; };
 		ABE260A01EA2751F00BB26AE /* ContactVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactVC.xib; sourceTree = "<group>"; };
@@ -217,6 +227,7 @@
 		AB3F203D1E7017100058F327 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				ABE2609F1EA2751F00BB26AE /* ContactVC.swift */,
 				AB73DE7F1E97F27900D52591 /* RacesVC.swift */,
 				AB42DB731E78B9C700549C65 /* TeamInfoVC.swift */,
 				AB42DB6B1E787E6800549C65 /* TeamsVC.swift */,
@@ -253,6 +264,7 @@
 				AB98ECB41E7DC68600038185 /* Race.swift */,
 				AB98ECBB1E817FA400038185 /* Photo.swift */,
 				AB98ECBE1E81BBB700038185 /* Ads.swift */,
+				ABD0536A1EB8C94100DB71D4 /* Schedule.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -271,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				AB42DB631E77370400549C65 /* ApiService.swift */,
+				AB31A8311EA959B200C2F5AC /* Storage.swift */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -372,6 +385,7 @@
 				AB73DE851E97F71800D52591 /* RouteCardsContainer.swift */,
 				AB73DE871E97F76100D52591 /* RaceAnnouncementContainer.swift */,
 				ABE2609B1EA268A200BB26AE /* RaceScheduleContainer.swift */,
+				ABD0536C1EB8E9B900DB71D4 /* RaceScheduleCell.swift */,
 			);
 			name = "Races Page";
 			sourceTree = "<group>";
@@ -380,6 +394,8 @@
 			isa = PBXGroup;
 			children = (
 				AB42DB3B1E73848000549C65 /* Extensions.swift */,
+				AB31A82C1EA92B7700C2F5AC /* AppUtility.swift */,
+				AB31A82F1EA955C300C2F5AC /* Constants.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -387,7 +403,6 @@
 		ABE2609E1EA274DE00BB26AE /* Contant Page */ = {
 			isa = PBXGroup;
 			children = (
-				ABE2609F1EA2751F00BB26AE /* ContactVC.swift */,
 				ABE260A01EA2751F00BB26AE /* ContactVC.xib */,
 			);
 			name = "Contant Page";
@@ -471,7 +486,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABA209851E8488EF00D7D119 /* Futura-Bold.otf in Resources */,
-				ABA209861E8488EF00D7D119 /* Futura-Book.otf in Resources */,
 				AB42DB7D1E7A47FF00549C65 /* ResultsVC.xib in Resources */,
 				AB3F20361E700FE40058F327 /* LaunchScreen.storyboard in Resources */,
 				AB73DE821E97F27900D52591 /* RacesVC.xib in Resources */,
@@ -484,6 +498,7 @@
 				AB42DB6E1E787E6800549C65 /* TeamsVC.xib in Resources */,
 				AB42DB401E73928700549C65 /* GaleryVC.xib in Resources */,
 				AB42DB611E771E3600549C65 /* GoogleService-Info.plist in Resources */,
+				AB31A82E1EA93E1300C2F5AC /* Futura-Book.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +557,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB31A82D1EA92B7700C2F5AC /* AppUtility.swift in Sources */,
 				AB42DB571E753BA400549C65 /* NewsSelectionView.swift in Sources */,
 				AB42DB741E78B9C700549C65 /* TeamInfoVC.swift in Sources */,
 				AB42DB8B1E7AD66B00549C65 /* RacesSectionBaseView.swift in Sources */,
@@ -550,6 +566,7 @@
 				AB3F202E1E700FE40058F327 /* HomeVC.swift in Sources */,
 				AB42DB781E78C14E00549C65 /* CrewCell.swift in Sources */,
 				AB73DE881E97F76100D52591 /* RaceAnnouncementContainer.swift in Sources */,
+				ABD0536B1EB8C94100DB71D4 /* Schedule.swift in Sources */,
 				AB42DB8D1E7B2CD900549C65 /* GeneralResultsContainer.swift in Sources */,
 				AB42DB931E7B3D9B00549C65 /* ClassResultsCell.swift in Sources */,
 				AB42DB501E746F4900549C65 /* VideosCell.swift in Sources */,
@@ -561,12 +578,14 @@
 				AB42DB481E739BBB00549C65 /* DesignableView.swift in Sources */,
 				AB98ECBF1E81BBB700038185 /* Ads.swift in Sources */,
 				AB73DE811E97F27900D52591 /* RacesVC.swift in Sources */,
+				AB31A8301EA955C300C2F5AC /* Constants.swift in Sources */,
 				ABE2609C1EA268A200BB26AE /* RaceScheduleContainer.swift in Sources */,
 				AB42DB6D1E787E6800549C65 /* TeamsVC.swift in Sources */,
 				AB98ECBC1E817FA400038185 /* Photo.swift in Sources */,
 				AB98ECB51E7DC68600038185 /* Race.swift in Sources */,
 				AB3F20471E708A6E0058F327 /* DesignableImageView.swift in Sources */,
 				ABE260A11EA2751F00BB26AE /* ContactVC.swift in Sources */,
+				AB31A8321EA959B200C2F5AC /* Storage.swift in Sources */,
 				AB42DB851E7A83DF00549C65 /* TableSelectionCell.swift in Sources */,
 				AB42DB4A1E73A92500549C65 /* GaleryPageSelectionCell.swift in Sources */,
 				AB42DB7C1E7A47FF00549C65 /* ResultsVC.swift in Sources */,
@@ -591,6 +610,7 @@
 				AB42DB811E7A720E00549C65 /* DaysCell.swift in Sources */,
 				AB98ECC11E81BDD700038185 /* AdsBanner.swift in Sources */,
 				AB42DB5D1E76FCED00549C65 /* Team.swift in Sources */,
+				ABD0536D1EB8E9B900DB71D4 /* RaceScheduleCell.swift in Sources */,
 				AB3F20411E7030C40058F327 /* SideMenuCell.swift in Sources */,
 				AB42DB891E7AAE2500549C65 /* RacesCell.swift in Sources */,
 				AB42DB441E7397D200549C65 /* AnimatedLogoView.swift in Sources */,
