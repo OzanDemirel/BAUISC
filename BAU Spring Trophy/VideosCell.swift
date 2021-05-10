@@ -13,14 +13,14 @@ class VideosCell: BaseCell {
     let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = UIColor.darkGray
-        imageView.contentMode = UIViewContentMode.scaleAspectFill
+        imageView.contentMode = UIView.ContentMode.scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
     
     let playButtonImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = UIViewContentMode.scaleAspectFit
+        imageView.contentMode = UIView.ContentMode.scaleAspectFit
         if let img = UIImage(named: "PlayButton") {
             imageView.image = img
         }

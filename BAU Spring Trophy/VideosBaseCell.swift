@@ -30,7 +30,7 @@ class VideosBaseCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
         NotificationCenter.default.addObserver(self, selector: #selector(VideosBaseCell.arrangeCellPositions), name: NSNotification.Name("AnyChildAddedToView"), object: nil)
     }
     
-    func arrangeCellPositions() {
+    @objc func arrangeCellPositions() {
         //collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: UICollectionViewScrollPosition.centeredVertically, animated: false)
     }
     

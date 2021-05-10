@@ -22,7 +22,7 @@ class RaceScheduleCell: UITableViewCell {
     let cellIcon: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "TableCellIcon")
-        imageView.contentMode = UIViewContentMode.scaleAspectFit
+        imageView.contentMode = UIView.ContentMode.scaleAspectFit
         imageView.isHidden = true
         return imageView
     }()

@@ -23,7 +23,7 @@ class RacesCell: BaseCell {
     let icon: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "RacesIcon")
-        imageView.contentMode = UIViewContentMode.scaleAspectFit
+        imageView.contentMode = UIView.ContentMode.scaleAspectFit
         return imageView
     }()
     

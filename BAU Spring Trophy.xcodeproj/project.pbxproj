@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D0D72AE2546CD3500541953 /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0D72AD2546CD3500541953 /* DesignableButton.swift */; };
+		6DB54E5E26499C7C00B07D5D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DB54E5D26499C7C00B07D5D /* GoogleService-Info.plist */; };
 		AB31A82D1EA92B7700C2F5AC /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB31A82C1EA92B7700C2F5AC /* AppUtility.swift */; };
 		AB31A82E1EA93E1300C2F5AC /* Futura-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = ABA209841E8488B700D7D119 /* Futura-Book.otf */; };
 		AB31A8301EA955C300C2F5AC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB31A82F1EA955C300C2F5AC /* Constants.swift */; };
@@ -40,7 +42,6 @@
 		AB42DB5B1E755A9600549C65 /* NewsHorizontalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB5A1E755A9600549C65 /* NewsHorizontalCell.swift */; };
 		AB42DB5D1E76FCED00549C65 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB5C1E76FCED00549C65 /* Team.swift */; };
 		AB42DB5F1E76FF0900549C65 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB5E1E76FF0900549C65 /* News.swift */; };
-		AB42DB611E771E3600549C65 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB42DB601E771E3600549C65 /* GoogleService-Info.plist */; };
 		AB42DB641E77370400549C65 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB631E77370400549C65 /* ApiService.swift */; };
 		AB42DB6D1E787E6800549C65 /* TeamsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB42DB6B1E787E6800549C65 /* TeamsVC.swift */; };
 		AB42DB6E1E787E6800549C65 /* TeamsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB42DB6C1E787E6800549C65 /* TeamsVC.xib */; };
@@ -78,14 +79,19 @@
 		ABA209851E8488EF00D7D119 /* Futura-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = ABA209831E8488B700D7D119 /* Futura-Bold.otf */; };
 		ABD0536B1EB8C94100DB71D4 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD0536A1EB8C94100DB71D4 /* Schedule.swift */; };
 		ABD0536D1EB8E9B900DB71D4 /* RaceScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD0536C1EB8E9B900DB71D4 /* RaceScheduleCell.swift */; };
-		ABE2609C1EA268A200BB26AE /* RaceScheduleContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE2609B1EA268A200BB26AE /* RaceScheduleContainer.swift */; };
 		ABE260A11EA2751F00BB26AE /* ContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE2609F1EA2751F00BB26AE /* ContactVC.swift */; };
 		ABE260A21EA2751F00BB26AE /* ContactVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ABE260A01EA2751F00BB26AE /* ContactVC.xib */; };
+		ABEE4F3A1EBCD0BD0091BB38 /* CollectionViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEE4F391EBCD0BD0091BB38 /* CollectionViewHeader.swift */; };
+		ABEE4F3C1EBE2DE60091BB38 /* RouteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEE4F3B1EBE2DE60091BB38 /* RouteCard.swift */; };
+		ABF9D11E1EBC9FD1003D25CB /* RaceScheduleContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF9D11D1EBC9FD1003D25CB /* RaceScheduleContainer.swift */; };
+		ABF9D1201EBCACBE003D25CB /* RouteCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF9D11F1EBCACBE003D25CB /* RouteCardCell.swift */; };
 		FD60F8A336291FF9445F2EF6 /* Pods_BAU_Spring_Trophy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8219F067E66EDAC2ADFDAC9 /* Pods_BAU_Spring_Trophy.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		05375D0D446632B99B98DCFB /* Pods-BAU Spring Trophy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BAU Spring Trophy.release.xcconfig"; path = "Pods/Target Support Files/Pods-BAU Spring Trophy/Pods-BAU Spring Trophy.release.xcconfig"; sourceTree = "<group>"; };
+		6D0D72AD2546CD3500541953 /* DesignableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
+		6DB54E5D26499C7C00B07D5D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A8219F067E66EDAC2ADFDAC9 /* Pods_BAU_Spring_Trophy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BAU_Spring_Trophy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB31A82C1EA92B7700C2F5AC /* AppUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		AB31A82F1EA955C300C2F5AC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -121,7 +127,6 @@
 		AB42DB5A1E755A9600549C65 /* NewsHorizontalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsHorizontalCell.swift; sourceTree = "<group>"; };
 		AB42DB5C1E76FCED00549C65 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		AB42DB5E1E76FF0900549C65 /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
-		AB42DB601E771E3600549C65 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AB42DB631E77370400549C65 /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		AB42DB6B1E787E6800549C65 /* TeamsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamsVC.swift; sourceTree = "<group>"; };
 		AB42DB6C1E787E6800549C65 /* TeamsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamsVC.xib; sourceTree = "<group>"; };
@@ -161,9 +166,12 @@
 		ABA209841E8488B700D7D119 /* Futura-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura-Book.otf"; sourceTree = "<group>"; };
 		ABD0536A1EB8C94100DB71D4 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		ABD0536C1EB8E9B900DB71D4 /* RaceScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceScheduleCell.swift; sourceTree = "<group>"; };
-		ABE2609B1EA268A200BB26AE /* RaceScheduleContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceScheduleContainer.swift; sourceTree = "<group>"; };
 		ABE2609F1EA2751F00BB26AE /* ContactVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactVC.swift; sourceTree = "<group>"; };
 		ABE260A01EA2751F00BB26AE /* ContactVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactVC.xib; sourceTree = "<group>"; };
+		ABEE4F391EBCD0BD0091BB38 /* CollectionViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewHeader.swift; sourceTree = "<group>"; };
+		ABEE4F3B1EBE2DE60091BB38 /* RouteCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCard.swift; sourceTree = "<group>"; };
+		ABF9D11D1EBC9FD1003D25CB /* RaceScheduleContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RaceScheduleContainer.swift; sourceTree = "<group>"; };
+		ABF9D11F1EBCACBE003D25CB /* RouteCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteCardCell.swift; sourceTree = "<group>"; };
 		C5A2C11E8E7D56E769E8649D /* Pods-BAU Spring Trophy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BAU Spring Trophy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BAU Spring Trophy/Pods-BAU Spring Trophy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -219,7 +227,7 @@
 				AB3F20321E700FE40058F327 /* Assets.xcassets */,
 				AB3F20341E700FE40058F327 /* LaunchScreen.storyboard */,
 				AB3F20371E700FE40058F327 /* Info.plist */,
-				AB42DB601E771E3600549C65 /* GoogleService-Info.plist */,
+				6DB54E5D26499C7C00B07D5D /* GoogleService-Info.plist */,
 			);
 			path = "BAU Spring Trophy";
 			sourceTree = "<group>";
@@ -251,7 +259,7 @@
 				AB42DB661E77462D00549C65 /* Galery Page */,
 				AB42DB791E7A46F700549C65 /* Results Page */,
 				AB73DE7E1E97F22F00D52591 /* Races Page */,
-				ABE2609E1EA274DE00BB26AE /* Contant Page */,
+				ABE2609E1EA274DE00BB26AE /* Contact Page */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -265,6 +273,7 @@
 				AB98ECBB1E817FA400038185 /* Photo.swift */,
 				AB98ECBE1E81BBB700038185 /* Ads.swift */,
 				ABD0536A1EB8C94100DB71D4 /* Schedule.swift */,
+				ABEE4F3B1EBE2DE60091BB38 /* RouteCard.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -334,6 +343,7 @@
 				AB3F20491E7090970058F327 /* SideMenuView.swift */,
 				AB98ECAF1E7C558200038185 /* CustomImageView.swift */,
 				AB98ECC01E81BDD700038185 /* AdsBanner.swift */,
+				6D0D72AD2546CD3500541953 /* DesignableButton.swift */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -384,8 +394,10 @@
 				AB73DE891E97FAB100D52591 /* RacesSelectionCell.swift */,
 				AB73DE851E97F71800D52591 /* RouteCardsContainer.swift */,
 				AB73DE871E97F76100D52591 /* RaceAnnouncementContainer.swift */,
-				ABE2609B1EA268A200BB26AE /* RaceScheduleContainer.swift */,
 				ABD0536C1EB8E9B900DB71D4 /* RaceScheduleCell.swift */,
+				ABF9D11D1EBC9FD1003D25CB /* RaceScheduleContainer.swift */,
+				ABF9D11F1EBCACBE003D25CB /* RouteCardCell.swift */,
+				ABEE4F391EBCD0BD0091BB38 /* CollectionViewHeader.swift */,
 			);
 			name = "Races Page";
 			sourceTree = "<group>";
@@ -400,12 +412,12 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
-		ABE2609E1EA274DE00BB26AE /* Contant Page */ = {
+		ABE2609E1EA274DE00BB26AE /* Contact Page */ = {
 			isa = PBXGroup;
 			children = (
 				ABE260A01EA2751F00BB26AE /* ContactVC.xib */,
 			);
-			name = "Contant Page";
+			name = "Contact Page";
 			sourceTree = "<group>";
 		};
 		CF0BFB66E9A11EC76BF4587C /* Pods */ = {
@@ -429,7 +441,6 @@
 				AB3F20251E700FE40058F327 /* Frameworks */,
 				AB3F20261E700FE40058F327 /* Resources */,
 				76079FFA57AD32B0381326BF /* [CP] Embed Pods Frameworks */,
-				47F7664DE9F3F36A1B222729 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -447,12 +458,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = BAUISC;
 				TargetAttributes = {
 					AB3F20271E700FE40058F327 = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = VYM7F3H4LX;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -464,7 +475,7 @@
 			};
 			buildConfigurationList = AB3F20231E700FE40058F327 /* Build configuration list for PBXProject "BAU Spring Trophy" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = Turkish;
+			developmentRegion = tr;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				tr,
@@ -497,42 +508,30 @@
 				AB3F20311E700FE40058F327 /* Main.storyboard in Resources */,
 				AB42DB6E1E787E6800549C65 /* TeamsVC.xib in Resources */,
 				AB42DB401E73928700549C65 /* GaleryVC.xib in Resources */,
-				AB42DB611E771E3600549C65 /* GoogleService-Info.plist in Resources */,
 				AB31A82E1EA93E1300C2F5AC /* Futura-Book.otf in Resources */,
+				6DB54E5E26499C7C00B07D5D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		47F7664DE9F3F36A1B222729 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BAU Spring Trophy/Pods-BAU Spring Trophy-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		55FED9588387085636AE2017 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BAU Spring Trophy-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		76079FFA57AD32B0381326BF /* [CP] Embed Pods Frameworks */ = {
@@ -541,13 +540,26 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BAU Spring Trophy/Pods-BAU Spring Trophy-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BAU Spring Trophy/Pods-BAU Spring Trophy-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BAU Spring Trophy/Pods-BAU Spring Trophy-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -579,19 +591,21 @@
 				AB98ECBF1E81BBB700038185 /* Ads.swift in Sources */,
 				AB73DE811E97F27900D52591 /* RacesVC.swift in Sources */,
 				AB31A8301EA955C300C2F5AC /* Constants.swift in Sources */,
-				ABE2609C1EA268A200BB26AE /* RaceScheduleContainer.swift in Sources */,
 				AB42DB6D1E787E6800549C65 /* TeamsVC.swift in Sources */,
 				AB98ECBC1E817FA400038185 /* Photo.swift in Sources */,
 				AB98ECB51E7DC68600038185 /* Race.swift in Sources */,
 				AB3F20471E708A6E0058F327 /* DesignableImageView.swift in Sources */,
 				ABE260A11EA2751F00BB26AE /* ContactVC.swift in Sources */,
+				6D0D72AE2546CD3500541953 /* DesignableButton.swift in Sources */,
 				AB31A8321EA959B200C2F5AC /* Storage.swift in Sources */,
+				ABF9D1201EBCACBE003D25CB /* RouteCardCell.swift in Sources */,
 				AB42DB851E7A83DF00549C65 /* TableSelectionCell.swift in Sources */,
 				AB42DB4A1E73A92500549C65 /* GaleryPageSelectionCell.swift in Sources */,
 				AB42DB7C1E7A47FF00549C65 /* ResultsVC.swift in Sources */,
 				AB42DB461E739B8100549C65 /* GaleryPageSelectionBarView.swift in Sources */,
 				AB42DB521E74775E00549C65 /* VideosBaseCell.swift in Sources */,
 				AB3F204A1E7090970058F327 /* SideMenuView.swift in Sources */,
+				ABEE4F3A1EBCD0BD0091BB38 /* CollectionViewHeader.swift in Sources */,
 				AB42DB871E7AAB1A00549C65 /* RacesBaseCell.swift in Sources */,
 				AB42DB4E1E743BE800549C65 /* PhotosCell.swift in Sources */,
 				AB98ECB91E7FC5BB00038185 /* NewsContentVC.swift in Sources */,
@@ -605,8 +619,10 @@
 				AB42DB5B1E755A9600549C65 /* NewsHorizontalCell.swift in Sources */,
 				AB3F204C1E714A040058F327 /* NewsCell.swift in Sources */,
 				AB98ECB01E7C558200038185 /* CustomImageView.swift in Sources */,
+				ABEE4F3C1EBE2DE60091BB38 /* RouteCard.swift in Sources */,
 				AB42DB5F1E76FF0900549C65 /* News.swift in Sources */,
 				AB42DB3E1E73916200549C65 /* BaseCell.swift in Sources */,
+				ABF9D11E1EBC9FD1003D25CB /* RaceScheduleContainer.swift in Sources */,
 				AB42DB811E7A720E00549C65 /* DaysCell.swift in Sources */,
 				AB98ECC11E81BDD700038185 /* AdsBanner.swift in Sources */,
 				AB42DB5D1E76FCED00549C65 /* Team.swift in Sources */,
@@ -652,15 +668,24 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -683,7 +708,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -702,15 +727,24 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -727,8 +761,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
@@ -741,17 +776,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "BAU Spring Trophy/BAU Spring Trophy.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = VYM7F3H4LX;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "BAU Spring Trophy/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.BAUISC.BAUISC;
+				PRODUCT_BUNDLE_IDENTIFIER = com.BAUISC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "02364ecd-a324-4d3f-aedc-f18741ca53ff";
-				PROVISIONING_PROFILE_SPECIFIER = BAUISC_Development;
-				SWIFT_VERSION = 3.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -762,17 +799,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "BAU Spring Trophy/BAU Spring Trophy.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Ozan Demirel (VYM7F3H4LX)";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ozan Demirel (VYM7F3H4LX)";
-				DEVELOPMENT_TEAM = VYM7F3H4LX;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "BAU Spring Trophy/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.BAUISC.BAUISC;
+				PRODUCT_BUNDLE_IDENTIFIER = com.BAUISC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "5606eb23-4b4b-4366-ae0b-83feb9994a64";
-				PROVISIONING_PROFILE_SPECIFIER = BAUISC_Distribution;
-				SWIFT_VERSION = 3.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

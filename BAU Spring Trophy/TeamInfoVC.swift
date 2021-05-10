@@ -19,8 +19,37 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             boatId.text = team?.boatId?.uppercased()
             boatType.text = team?.boatType?.uppercased()
-            boatClass.text = team?.boatClass?.uppercased()
-            boatRaiting.text = team?.boatRaiting?.uppercased()
+            
+            if let ircClass = team?.ircClass {
+                if ircClass != "" {
+                    boatClass.text = ircClass
+                }
+                if let orcClass = team?.orcClass {
+                    if orcClass != "" && boatClass.text != "" {
+                        boatClass.text = boatClass.text! + " / " + orcClass
+                    } else if orcClass != "" {
+                        boatClass.text = orcClass
+                    }
+                    
+                }
+            }
+            
+            if let ircRaiting = team?.ircRaiting {
+                if ircRaiting != "" {
+                    boatRaiting.text = ircRaiting
+                }
+                if let orcRaiting = team?.orcRaiting {
+                    if orcRaiting != "" && boatRaiting.text != "" {
+                        boatRaiting.text = boatRaiting.text! + " / " + orcRaiting
+                    } else if orcRaiting != "" {
+                        boatClass.text = orcRaiting
+                    } else {
+                        boatRaiting.text = "Unknown"
+                    }
+                    
+                }
+            }
+            
             teamNameLbl.text = team?.teamName?.uppercased()
             
             crewTableView.reloadData()
@@ -76,7 +105,7 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let label = UILabel()
         label.textColor = UIColor(red: 1/255, green: 85/255, blue: 139/255, alpha: 1)
         label.font = UIFont(name: "Futura-Bold", size: 8)
-        label.text = "REYTİNG:"
+        label.text = "TCC / TCL:"
         return label
     }()
     
@@ -144,7 +173,7 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         crewTableView.reloadData()
         
         if team?.crew != nil {
-            crewTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.middle, animated: false)
+            crewTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.middle, animated: false)
         }
         
         view.addSubview(seperatorBar1)
@@ -205,7 +234,7 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    func swipeGestureActive() {
+    @objc func swipeGestureActive() {
         
         if homeVC?.teamsVC.view.frame == homeVC?.homeScrollView.frame {
             homeVC?.removeTeamInfoPageFromView()
@@ -215,7 +244,7 @@ class TeamInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    func leftEdgeGestureActive(sender: UIScreenEdgePanGestureRecognizer) {
+    @objc func leftEdgeGestureActive(sender: UIScreenEdgePanGestureRecognizer) {
         
         if sender.state == .began {
             if homeVC?.teamsVC.view.frame == homeVC?.homeScrollView.frame {

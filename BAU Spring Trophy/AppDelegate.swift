@@ -21,14 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     var orientationLock = UIInterfaceOrientationMask.portrait
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        application.applicationIconBadgeNumber = 0;
+        //; vardı alt satırın sonunda
+        application.applicationIconBadgeNumber = 0
         
-        FIRApp.configure()
+        FirebaseApp.configure()
         
-        FIRAuth.auth()?.signInAnonymously(completion: { (user, error) in
+        Auth.auth().signInAnonymously(completion: { (user, error) in
         
             if error != nil {
                 print(error.debugDescription)
@@ -36,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
     
         })
-        
+
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
@@ -52,7 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             application.registerUserNotificationSettings(settings)
         }
         application.registerForRemoteNotifications()
-        
         return true
     }
     

@@ -16,19 +16,26 @@ struct Participants {
 class Race: NSObject {
     
     var name = 0
-    var status = 0
-    var resultStatus = 0
-    var participantsByPlace = [Participant]()
+    var isReleased = 0  // was status
+    var isOfficial = 0  // was resultStatus
+    var ircGroupCategory = [Participant]()
+    var ircGeneralCategory = [Participants]() // It was participantsByPlaceOfCategory
+    var orcGeneralCategory = [Participants]()
+    var orcGroupCategory = [Participant]()
+    //var participantsByPlace = [Participant]()
     var participantsByPlaceOfClass = [Participants]()
-    var participantsByPlaceOfCategory = [Participants]()
+    
     
 }
 
 class Participant: NSObject {
     
-    var place: Int?
     var team: Team?
-    var finishTime: String?
-    var extraTime: String?
-    
+    var ircRank: Int? // was place
+    var ircScore: String? // was extratime
+    var ircPoint: String?
+    var orcRank: Int?
+    var orcScore: String?
+    var orcPoint: String?
+
 }

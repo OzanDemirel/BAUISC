@@ -11,6 +11,11 @@ import UIKit
 class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var teamsTableView: UITableView!
+    
+    @IBOutlet weak var orcFlamaWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var ircFlamaWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var orcButton: DesignableButton!
+    @IBOutlet weak var ircButton: DesignableButton!
 
     var teamInfoVC: TeamInfoVC!
     var homeVC: HomeVC?
@@ -22,7 +27,7 @@ class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var teams: [Team]?
     
-    let classTitle = ["IRC0", "IRC1", "IRC2", "IRC3", "IRC4", "GEZGİN"]
+    let classTitle = ["IRC0", "IRC1", "IRC2", "IRC3", "IRC4", "ORC A", "ORC B", "ORC C", "ORC D", "ORC E", "GEZGİN"]
     var classes = [Classes]()
     
     let cellId = "teamsCell"
@@ -42,15 +47,26 @@ class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         teamsTableView.dataSource = self
         teamsTableView.register(TeamsCell.self, forCellReuseIdentifier: cellId)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.raitingTypeSelected), name: NSNotification.Name("raitingTypeSelectedInTeamsPage"), object: nil)
+        
+        //NotificationCenter.default.addObserver(self, selector: #selector(RacesBaseCell.selectFirstItemAtSection), name: NSNotification.Name("aDaySelected"), object: nil)
+        
+        ircButton.isActive = true
+        
         fetchTeams()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if teams != nil {
-            teamsTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableViewScrollPosition.middle, animated: false)
+            setTeams()
+            teamsTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.middle, animated: false)
         }
         
+    }
+    
+    @objc func raitingTypeSelected() {
+        setTeams()
     }
     
     func fetchTeams() {
@@ -73,85 +89,175 @@ class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             classes = []
             
-            var IRC0 = [Team]()
-            var IRC1 = [Team]()
-            var IRC2 = [Team]()
-            var IRC3 = [Team]()
-            var IRC4 = [Team]()
-            var GEZGİN = [Team]()
-            
-            for team in teams! {
+            if ircButton.isActive {
                 
-                if let boatClass = team.boatClass {
+                var IRC0 = [Team]()
+                var IRC1 = [Team]()
+                var IRC2 = [Team]()
+                var IRC3 = [Team]()
+                var IRC4 = [Team]()
+                var GEZGİN = [Team]()
+                
+                for team in teams! {
                     
-                    switch boatClass {
+                    if let ircClass = team.ircClass {
+                        
+                        switch ircClass {
+                        case "IRC0":
+                            IRC0.append(team)
+                            break;
+                        case "IRC1":
+                            IRC1.append(team)
+                            break;
+                        case "IRC2":
+                            IRC2.append(team)
+                            break;
+                        case "IRC3":
+                            IRC3.append(team)
+                            break;
+                        case "IRC4":
+                            IRC4.append(team)
+                            break;
+                        case "GEZGİN":
+                            GEZGİN.append(team)
+                            break;
+                        default:
+                            break;
+                        }
+                        
+                    }
+                    
+                }
+                
+                for i in classTitle {
+                    
+                    switch i {
                     case "IRC0":
-                        IRC0.append(team)
+                        if IRC0.count > 0 {
+                            let object = Classes(classTitle: i, classMembers: IRC0)
+                            classes.append(object)
+                        }
                         break;
                     case "IRC1":
-                        IRC1.append(team)
+                        if IRC1.count > 0 {
+                            let object = Classes(classTitle: i, classMembers: IRC1)
+                            classes.append(object)
+                        }
                         break;
                     case "IRC2":
-                        IRC2.append(team)
+                        if IRC2.count > 0 {
+                            let object = Classes(classTitle: i, classMembers: IRC2)
+                            classes.append(object)
+                        }
                         break;
                     case "IRC3":
-                        IRC3.append(team)
+                        if IRC3.count > 0 {
+                            let object = Classes(classTitle: i, classMembers: IRC3)
+                            classes.append(object)
+                        }
                         break;
                     case "IRC4":
-                        IRC4.append(team)
+                        if IRC4.count > 0 {
+                            let object = Classes(classTitle: i, classMembers: IRC4)
+                            classes.append(object)
+                        }
                         break;
                     case "GEZGİN":
-                        GEZGİN.append(team)
+                        if GEZGİN.count > 0 {
+                            let object = Classes(classTitle: i, classMembers: GEZGİN)
+                            classes.append(object)
+                        }
                         break;
                     default:
                         break;
                     }
                     
                 }
-
-            }
-            
-            for i in classTitle {
                 
-                switch i {
-                case "IRC0":
-                    if IRC0.count > 0 {
-                        let object = Classes(classTitle: i, classMembers: IRC0)
-                        classes.append(object)
+            } else if orcButton.isActive {
+                
+                var ORCA = [Team]()
+                var ORCB = [Team]()
+                var ORCC = [Team]()
+                var ORCD = [Team]()
+                var ORCE = [Team]()
+                var GEZGİN = [Team]()
+                
+                for team in teams! {
+                    
+                    if let orcClass = team.orcClass {
+                        
+                        switch orcClass {
+                        case "ORC A":
+                            ORCA.append(team)
+                            break;
+                        case "ORC B":
+                            ORCB.append(team)
+                            break;
+                        case "ORC C":
+                            ORCC.append(team)
+                            break;
+                        case "ORC D":
+                            ORCD.append(team)
+                            break;
+                        case "ORC E":
+                            ORCE.append(team)
+                            break;
+                        case "GEZGİN":
+                            GEZGİN.append(team)
+                            break;
+                        default:
+                            break;
+                            
+                        }
+                        
                     }
-                    break;
-                case "IRC1":
-                    if IRC1.count > 0 {
-                        let object = Classes(classTitle: i, classMembers: IRC1)
+                    
+                }
+                
+                for i in classTitle {
+                    
+                    switch i {
+                    case "ORC A":
+                        if ORCA.count > 0 {
+                            let object = Classes(classTitle: i, classMembers: ORCA)
+                            classes.append(object)
+                        }
+                        break;
+                    case "ORC B":
+                        if ORCB.count > 0 {
+                            let object = Classes(classTitle: i, classMembers: ORCB)
+                            classes.append(object)
+                        }
+                        break;
+                    case "ORC C":
+                        if ORCC.count > 0 {
+                            let object = Classes(classTitle: i, classMembers: ORCC)
+                            classes.append(object)
+                        }
+                        break;
+                    case "ORC D":
+                        if ORCD.count > 0 {
+                            let object = Classes(classTitle: i, classMembers: ORCD)
                         classes.append(object)
+                        }
+                        break;
+                    case "ORC E":
+                        if ORCE.count > 0 {
+                            let object = Classes(classTitle: i, classMembers: ORCE)
+                            classes.append(object)
+                        }
+                        break;
+                    case "GEZGİN":
+                        if GEZGİN.count > 0 {
+                            let object = Classes(classTitle: i, classMembers: GEZGİN)
+                            classes.append(object)
+                        }
+                        break;
+                    default:
+                        break;
                     }
-                    break;
-                case "IRC2":
-                    if IRC2.count > 0 {
-                        let object = Classes(classTitle: i, classMembers: IRC2)
-                        classes.append(object)
-                    }
-                    break;
-                case "IRC3":
-                    if IRC3.count > 0 {
-                        let object = Classes(classTitle: i, classMembers: IRC3)
-                        classes.append(object)
-                    }
-                    break;
-                case "IRC4":
-                    if IRC4.count > 0 {
-                        let object = Classes(classTitle: i, classMembers: IRC4)
-                        classes.append(object)
-                    }
-                    break;
-                case "GEZGİN":
-                    if GEZGİN.count > 0 {
-                        let object = Classes(classTitle: i, classMembers: GEZGİN)
-                        classes.append(object)
-                    }
-                    break;
-                default:
-                    break;
+                    
                 }
                 
             }
@@ -160,6 +266,42 @@ class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
         }
         
+    }
+    
+    @IBAction func categoryButtonPressed(sender: DesignableButton) {
+        if sender.isActive == false {
+            animateCategoryButtons()
+            teamsTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: UITableView.ScrollPosition.middle, animated: true)
+        }
+    }
+    
+    func animateCategoryButtons() {
+        
+        if ircButton.isActive == true {
+            ircFlamaWidthConstraint.constant = ircFlamaWidthConstraint.constant * 0.8
+        } else {
+            ircFlamaWidthConstraint.constant = ircFlamaWidthConstraint.constant * 1.25
+        }
+        
+        changeStatus(ircButton)
+        
+        if orcButton.isActive == true {
+            orcFlamaWidthConstraint.constant = orcFlamaWidthConstraint.constant * 0.8
+        } else {
+            orcFlamaWidthConstraint.constant = orcFlamaWidthConstraint.constant * 1.25
+        }
+        
+        changeStatus(orcButton)
+    }
+    
+    func changeStatus(_ button: DesignableButton) {
+        
+        if button.isActive == true {
+            button.isActive = false
+        } else {
+            button.isActive = true
+        }
+    
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -218,7 +360,11 @@ class TeamsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = teamsTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TeamsCell
-        cell.setupViews(team: (classes[indexPath.section].classMembers?[indexPath.row])!)
+        if ircButton.isActive {
+            cell.setupViews(team: (classes[indexPath.section].classMembers?[indexPath.row])!, raitingType: "IRC")
+        } else {
+            cell.setupViews(team: (classes[indexPath.section].classMembers?[indexPath.row])!, raitingType: "ORC")
+        }
         return cell
     }
     

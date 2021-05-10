@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -116,13 +113,13 @@
                     </userDefinedRuntimeAttributes>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEKNE BİLGİLERİ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="S2m-6i-FKt">
-                    <rect key="frame" x="60" y="247" width="105" height="20"/>
+                    <rect key="frame" x="60" y="247" width="105" height="21"/>
                     <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="12"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TableCellIcon" translatesAutoresizingMaskIntoConstraints="NO" id="hbe-PM-G7H">
-                    <rect key="frame" x="40" y="249" width="8" height="16"/>
+                    <rect key="frame" x="40" y="249.5" width="8" height="16"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="a5J-ah-MwE"/>
                         <constraint firstAttribute="width" constant="8" id="xXf-nA-LwH"/>
@@ -148,14 +145,28 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </imageView>
-                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flama" translatesAutoresizingMaskIntoConstraints="NO" id="OtT-58-w7q">
-                    <rect key="frame" x="0.0" y="30" width="123" height="64"/>
+                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flama" translatesAutoresizingMaskIntoConstraints="NO" id="OtT-58-w7q" customClass="DesignableImageView" customModule="BAU_Spring_Trophy" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="30" width="122" height="63.5"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="OtT-58-w7q" secondAttribute="height" multiplier="123:64" id="FgZ-vZ-IIF"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                            <real key="value" value="0.80000000000000004"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                            <size key="value" width="2" height="3"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="HXJ-UJ-Scl">
-                    <rect key="frame" x="2" y="57" width="111" height="10"/>
+                    <rect key="frame" x="2" y="56.5" width="110" height="10"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="10" id="Gfo-oM-l9C"/>
                     </constraints>
@@ -211,9 +222,9 @@
     </objects>
     <resources>
         <image name="BoatInfoBackground" width="410" height="84"/>
-        <image name="Flama" width="122" height="63"/>
-        <image name="TableCellIcon" width="7" height="16"/>
-        <image name="TeamsBackground" width="410" height="232"/>
-        <image name="www.bauisc.org" width="94" height="11"/>
+        <image name="Flama" width="122.5" height="63.5"/>
+        <image name="TableCellIcon" width="7.5" height="16"/>
+        <image name="TeamsBackground" width="410" height="232.5"/>
+        <image name="www.bauisc.org" width="94.5" height="11.5"/>
     </resources>
 </document>

@@ -13,7 +13,7 @@ class RaceAnnouncementContainer: BaseCell {
     
     var webView: WKWebView = {
         let web = WKWebView()
-        web.contentMode = UIViewContentMode.scaleAspectFit
+        web.contentMode = UIView.ContentMode.scaleAspectFit
         return web
     }()
     

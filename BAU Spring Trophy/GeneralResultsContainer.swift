@@ -12,7 +12,6 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
     
     lazy var tableView: UITableView = {
         let table = UITableView()
-        //table.contentInset.top = 40
         table.backgroundColor = UIColor.clear
         table.delegate = self
         table.dataSource = self
@@ -21,6 +20,12 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
         table.bounces = false
         return table
     }()
+    
+    var activeRaitingType: String = "IRC" {
+        didSet{
+            ApiService.sharedInstance.selectedRaitingType = activeRaitingType
+        }
+    }
     
     let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
@@ -52,34 +57,37 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
     
     let cellId = "generalResultsCell"
     
-    var status = 0
-    var resultStatus = 0
+    var isReleased = 0
+    var isOfficial = 0
     
     var results: [Race]? {
         didSet {
-            if results != nil, (results?.count)! >= ApiService.sharedInstance.selectedRace, let status = results?[ApiService.sharedInstance.selectedRace].status {
-                self.status = status
-                if let resultStatus = results?[ApiService.sharedInstance.selectedRace].resultStatus {
-                    self.resultStatus = resultStatus
+            if results != nil, (results?.count)! >= ApiService.sharedInstance.selectedRace, let isReleased = results?[ApiService.sharedInstance.selectedRace].isReleased {
+                self.isReleased = isReleased
+                if let isOfficial = results?[ApiService.sharedInstance.selectedRace].isOfficial {
+                    self.isOfficial = isOfficial
                 }
             }
-            if status == 0 {
+            if isReleased == 0 {
                 resultStatusLabel.alpha = 0
                 statusLabel.text = "Bu yarış henüz gerçekleşmemiştir."
                 statusLabel.alpha = 1
-            } else if status == 1 {
+            } else if isReleased == 1 {
                 statusLabel.alpha = 0
-                if resultStatus == 0 {
+                if isOfficial == 0 {
                     resultStatusLabel.text = "RESMİ OLMAYAN SONUÇLAR"
-                } else if resultStatus == 1 {
+                } else if isOfficial == 1 {
                     resultStatusLabel.text = "RESMİ SONUÇLAR"
                 }
                 resultStatusLabel.alpha = 1
-            } else if status == 2 {
+    
+                setRaitingType("")
+                
+            } else if isReleased == 2 {
                 resultStatusLabel.alpha = 0
                 statusLabel.text = "Bu yarış gerçekleşmemiştir."
                 statusLabel.alpha = 1
-            } else if status == 3 {
+            } else if isReleased == 3 {
                 resultStatusLabel.alpha = 0
                 statusLabel.text = "Bu yarış iptal edilmiştir."
                 statusLabel.alpha = 1
@@ -125,30 +133,78 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
         
         NotificationCenter.default.addObserver(self, selector: #selector(GeneralResultsContainer.fetchResults), name: NSNotification.Name("categorySelected"), object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.raitingTypeSelected(_:)), name: NSNotification.Name("raitingTypeSelectedInResultsPage"), object: nil)
+        
     }
     
-    func fetchResults() {
+    @objc func raitingTypeSelected(_ notification: NSNotification) {
+        if let dict = notification.userInfo as NSDictionary? {
+            if let id = dict["identifier"] as? String {
+                if id == "IRC" || id == "ORC" {
+                    setRaitingType(id)
+                }
+            }
+        }
+    }
+    
+    func setRaitingType(_ type: String) {
+        
+        if type == "IRC" || type == "ORC" {
+            if isReleased == 1 {
+                if type == "IRC" && results?[ApiService.sharedInstance.selectedRace].ircGeneralCategory.count ?? 0 > 0 && activeRaitingType != type {
+                    activeRaitingType = type
+                    //ApiService.sharedInstance.selectedRaitingType = "IRC"
+                } else if type == "ORC" && results?[ApiService.sharedInstance.selectedRace].orcGeneralCategory.count ?? 0 > 0 && activeRaitingType != type {
+                    activeRaitingType = type
+                    //ApiService.sharedInstance.selectedRaitingType = "ORC"
+                } else {
+                    presentAlert(selectedRaitingType: type, reselectRaitingType: true)
+//                    if activeRaitingType == "IRC" {
+//                        activeRaitingType = "ORC"
+//                    } else {
+//                        activeRaitingType = "IRC"
+//                    }
+                }
+            } else {
+                presentAlert(selectedRaitingType: "", reselectRaitingType: false)
+            }
+        } else {
+            if ApiService.sharedInstance.selectedRaitingType == "IRC" && !(results?[ApiService.sharedInstance.selectedRace].ircGeneralCategory.count ?? 0 > 0) {
+                if results?[ApiService.sharedInstance.selectedRace].orcGeneralCategory.count ?? 0 > 0 {
+                    activeRaitingType = "ORC"
+                }
+            } else if ApiService.sharedInstance.selectedRaitingType == "ORC" && !(results?[ApiService.sharedInstance.selectedRace].orcGeneralCategory.count ?? 0 > 0) {
+                if results?[ApiService.sharedInstance.selectedRace].ircGeneralCategory.count ?? 0 > 0 {
+                    activeRaitingType = "IRC"
+                }
+            }
+        }
+        
+    }
+    
+    @objc func fetchResults() {
         
         activityIndicator.alpha = 1
         activityIndicator.startAnimating()
         resultStatusLabel.alpha = 0
         statusLabel.alpha = 0
-        status = -1
+        isReleased = -1
         results = nil
         
+
         ApiService.sharedInstance.fetchResult(day: ApiService.sharedInstance.selectedDay) { (races) in
             self.results = races
         }
         
     }
     
-    func setTablePosition() {
+    @objc func setTablePosition() {
         
         activityIndicator.alpha = 1
         activityIndicator.startAnimating()
         resultStatusLabel.alpha = 0
         statusLabel.alpha = 0
-        status = -1
+        isReleased = -1
         results = nil
         
         ApiService.sharedInstance.fetchResult(day: 0) { (races: [Race]) in
@@ -157,10 +213,24 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
         
     }
     
+    func presentAlert(selectedRaitingType: String, reselectRaitingType: Bool) {
+        
+        let alert = UIAlertController(title: "Unreleased Results", message: "\(selectedRaitingType) Results havent been published yet.", preferredStyle: UIAlertController.Style.alert)
+        if reselectRaitingType {
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: { (notification) in
+                NotificationCenter.default.post(name: NSNotification.Name("raitingTypeHasBeenSetted"), object: nil)
+            }))
+        } else {
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
+        }
+        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+        
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if let team = results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfCategory[0].classMembers[indexPath.row].team {
+        if let team = results?[ApiService.sharedInstance.selectedRace].ircGeneralCategory[0].classMembers[indexPath.row].team {
             
             NotificationCenter.default.post(name: NSNotification.Name("teamSelected"), object: nil, userInfo: ["team": team])
             
@@ -170,7 +240,7 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! GeneralResultsCell
-        cell.participant = results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfCategory[0].classMembers[indexPath.row]
+        cell.participant = results?[ApiService.sharedInstance.selectedRace].ircGeneralCategory[0].classMembers[indexPath.row]
         cell.setPlace(place: indexPath.row)
         return cell
     }
@@ -180,7 +250,7 @@ class GeneralResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return status == 1 ? (results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfCategory[0].classMembers.count ?? 0) : 0
+        return isReleased == 1 ? (results?[ApiService.sharedInstance.selectedRace].ircGeneralCategory[0].classMembers.count ?? 0) : 0
     }
     
 }

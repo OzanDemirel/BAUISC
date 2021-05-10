@@ -44,7 +44,7 @@ class RacesBaseCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSou
         NotificationCenter.default.addObserver(self, selector: #selector(RacesBaseCell.selectFirstItemAtSection), name: NSNotification.Name("AnyChildAddedToView"), object: nil)
     }
     
-    func selectFirstItemAtSection() {
+    @objc func selectFirstItemAtSection() {
          selectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: false, scrollPosition: [])
     }
 

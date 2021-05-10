@@ -13,8 +13,10 @@ class Team: NSObject {
     var boatId: String?
     var teamName: String?
     var boatType: String?
-    var boatRaiting: String?
-    var boatClass: String?
+    var ircRaiting: String?
+    var ircClass: String?
+    var orcRaiting: String?
+    var orcClass: String?
     var crew: [String]?
     var skipper: String?
     

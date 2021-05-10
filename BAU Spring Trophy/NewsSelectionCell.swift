@@ -12,7 +12,7 @@ class NewsSelectionCell: BaseCell {
     
     let ellipseView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = UIViewContentMode.scaleAspectFit
+        imageView.contentMode = UIView.ContentMode.scaleAspectFit
         if let image = UIImage(named: "EmptyEllipse") {
             imageView.image = image
         }

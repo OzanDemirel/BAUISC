@@ -47,7 +47,7 @@ class GaleryPageSelectionBarView: UIView, UICollectionViewDelegate, UICollection
         NotificationCenter.default.addObserver(self, selector: #selector(GaleryPageSelectionBarView.setSelection(_:)), name: NSNotification.Name("AnyChildAddedToView"), object: nil)
     }
 
-    func setSelection(_ notification: NSNotification) {
+    @objc func setSelection(_ notification: NSNotification) {
 
         if let index = notification.userInfo?["indexPath"] as? Int {
             selectionView.selectItem(at: IndexPath(item: index, section: 0), animated: false, scrollPosition: [])

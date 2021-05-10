@@ -110,14 +110,14 @@ class NewsContentVC: UIViewController {
         newsText.scrollRectToVisible(CGRect(x: 0, y: 0, width: newsText.frame.width, height: newsText.frame.height), animated: false)
     }
     
-    func swipeGestureActive() {
+    @objc func swipeGestureActive() {
         
         homeVC?.removeNewsContentViewFromView()
         
     }
     
 
-    func leftEdgeGestureActive(sender: UIGestureRecognizer) {
+    @objc func leftEdgeGestureActive(sender: UIGestureRecognizer) {
 
         if sender.state == .began {
 

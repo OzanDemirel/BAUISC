@@ -40,12 +40,12 @@ class NewsVC: UIViewController, UICollectionViewDelegate, UICollectionViewDelega
         super.viewDidAppear(animated)
         
         if ApiService.sharedInstance.news.count > 0 {
-            newsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: UICollectionViewScrollPosition.centeredVertically, animated: false)
+            newsCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: UICollectionView.ScrollPosition.centeredVertically, animated: false)
         }
         NotificationCenter.default.addObserver(self, selector: #selector(newsChanged), name: NSNotification.Name("newsChanged"), object: nil)
     }
     
-    func newsChanged() {
+    @objc func newsChanged() {
         newsCollectionView.reloadData()
     }
     

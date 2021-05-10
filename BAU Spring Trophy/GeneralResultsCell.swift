@@ -18,11 +18,16 @@ class GeneralResultsCell: UITableViewCell {
                 }
                 if let team = participant.team {
                     boatType.text = team.boatType?.uppercased()
-                    finishTime.text = participant.finishTime
-                    boatClass.text = team.boatClass?.uppercased()
-                    boatRaiting.text = team.boatRaiting
                     
-                    extraTime.text = participant.extraTime
+//                    if let ircRank = participant.ircRank {
+//                        rank.text = String(ircRank)
+//                    }
+                    
+                    rank.text = participant.ircPoint
+                    boatClass.text = team.ircClass?.uppercased()
+                    boatRaiting.text = team.ircRaiting
+                    
+                    score.text = participant.ircScore
                 }
             }
             setupViews()
@@ -32,7 +37,7 @@ class GeneralResultsCell: UITableViewCell {
     let cellIcon: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "TableCellIcon")
-        imageView.contentMode = UIViewContentMode.scaleAspectFit
+        imageView.contentMode = UIView.ContentMode.scaleAspectFit
         return imageView
     }()
     
@@ -53,7 +58,7 @@ class GeneralResultsCell: UITableViewCell {
     let arrowIcon: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "TableCellArrow")
-        imageView.contentMode = UIViewContentMode.scaleAspectFit
+        imageView.contentMode = UIView.ContentMode.scaleAspectFit
         return imageView
     }()
     
@@ -64,7 +69,7 @@ class GeneralResultsCell: UITableViewCell {
         return label
     }()
     
-    let finishTime: UILabel = {
+    let rank: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
         label.font = UIFont(name: "Futura-Bold", size: 10)
@@ -87,7 +92,7 @@ class GeneralResultsCell: UITableViewCell {
         return label
     }()
     
-    let extraTime: UILabel = {
+    let score: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.red
         label.font = UIFont(name: "Futura-Book", size: 8)
@@ -129,20 +134,20 @@ class GeneralResultsCell: UITableViewCell {
         addConstraintsWithVisualFormat(format: "V:[v0(8)]", views: boatType)
         addConstraint(NSLayoutConstraint(item: boatType, attribute: .bottom, relatedBy: .equal, toItem: teamName, attribute: .top, multiplier: 1, constant: -2))
         
-        addSubview(finishTime)
-        addConstraintsWithVisualFormat(format: "H:[v0(\(frame.width / 5))]-68-|", views: finishTime)
-        addConstraintsWithVisualFormat(format: "V:[v0(12)]", views: finishTime)
-        addConstraint(NSLayoutConstraint(item: finishTime, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
+        addSubview(rank)
+        addConstraintsWithVisualFormat(format: "H:[v0(\(frame.width / 5))]-68-|", views: rank)
+        addConstraintsWithVisualFormat(format: "V:[v0(12)]", views: rank)
+        addConstraint(NSLayoutConstraint(item: rank, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
         
         addSubview(boatClass)
         addConstraintsWithVisualFormat(format: "H:[v0(\(frame.width / 6))]-68-|", views: boatClass)
         addConstraintsWithVisualFormat(format: "V:[v0(8)]", views: boatClass)
-        addConstraint(NSLayoutConstraint(item: boatClass, attribute: .bottom, relatedBy: .equal, toItem: finishTime, attribute: .top, multiplier: 1, constant: -2))
+        addConstraint(NSLayoutConstraint(item: boatClass, attribute: .bottom, relatedBy: .equal, toItem: rank, attribute: .top, multiplier: 1, constant: -2))
         
-        addSubview(extraTime)
-        addConstraintsWithVisualFormat(format: "H:[v0(\(frame.width / 6))]-68-|", views: extraTime)
-        addConstraintsWithVisualFormat(format: "V:[v0(8)]", views: extraTime)
-        addConstraint(NSLayoutConstraint(item: extraTime, attribute: .top, relatedBy: .equal, toItem: finishTime, attribute: .bottom, multiplier: 1, constant: 2))
+        addSubview(score)
+        addConstraintsWithVisualFormat(format: "H:[v0(\(frame.width / 6))]-68-|", views: score)
+        addConstraintsWithVisualFormat(format: "V:[v0(8)]", views: score)
+        addConstraint(NSLayoutConstraint(item: score, attribute: .top, relatedBy: .equal, toItem: rank, attribute: .bottom, multiplier: 1, constant: 2))
         
     }
     

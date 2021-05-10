@@ -13,7 +13,6 @@ import UIKit
 class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var mainScrollView: UIScrollView!
-    
     @IBOutlet weak var sideMenuTableView: UITableView!
     @IBOutlet weak var newsScrollPages: NewsScrollPages!
     @IBOutlet weak var homeScrollView: UIScrollView!
@@ -35,7 +34,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     @IBOutlet weak var sideMenuView: UIView!
     @IBOutlet weak var sideMenuLogo: UIImageView!
     @IBOutlet weak var sideMenuShadow: UIImageView!
-    
     @IBOutlet weak var homeScrollContentViewHeight: NSLayoutConstraint!
     @IBOutlet weak var launchScreenIconHeight: NSLayoutConstraint!
     @IBOutlet weak var sideMenuViewWidthConstraint: NSLayoutConstraint!
@@ -105,7 +103,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     var resultsVC: ResultsVC!
     
     var racesVC: RacesVC!
-    
     var news: [News]?
     
     var teams: [Team]?
@@ -158,7 +155,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         navigationBar.addSubview(navigationBarBtn)
         navigationBar.addConstraintsWithVisualFormat(format: "H:|-80-[v0]-0-|", views: navigationBarBtn)
         navigationBar.addConstraintsWithVisualFormat(format: "V:|[v0]|", views: navigationBarBtn)
-        navigationBarBtn.addTarget(self, action: #selector(HomeVC.navigationBarBtnPressed), for: UIControlEvents.touchUpInside)
+        navigationBarBtn.addTarget(self, action: #selector(HomeVC.navigationBarBtnPressed), for: UIControl.Event.touchUpInside)
         
         homeScrollView.isScrollEnabled = news != nil ? ((news?.count)! > 0) : false
         
@@ -179,7 +176,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         homeScrollView.addGestureRecognizer(buttonsTapGesture)
         
         homeScrollContentView.addSubview(newsCollectionView)
-        homeScrollContentView.sendSubview(toBack: newsCollectionView)
+        homeScrollContentView.sendSubviewToBack(newsCollectionView)
         
         galeryBtnView.image = addFilterToImage(blendMode: .multiply, alpha: 1)
         resultsBtnView.image = addFilterToImage(blendMode: .multiply, alpha: 1)
@@ -292,8 +289,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
     func internetConnectionAlert() {
         
-        let alert = UIAlertController(title: "Bağlantı Hatası", message: "Bu uygulama internet bağlantısı gerektirmektedir.", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Tamam", style: UIAlertActionStyle.cancel, handler: { (action) in
+        let alert = UIAlertController(title: "Bağlantı Hatası", message: "Bu uygulama internet bağlantısı gerektirmektedir.", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Tamam", style: UIAlertAction.Style.cancel, handler: { (action) in
             self.checkForInternet()
         }))
         present(alert, animated: true, completion: nil)
@@ -394,17 +391,17 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         imagePreviewNavigationBar.addConstraintsWithVisualFormat(format: "H:[v0(100)]", views: imagePreviewLogo)
         imagePreviewNavigationBar.addConstraint(NSLayoutConstraint(item: imagePreviewLogo, attribute: .centerX, relatedBy: .equal, toItem: imagePreviewNavigationBar, attribute: .centerX, multiplier: 1, constant: 0))
         
-        imagePreviewDoneButton.setImage(UIImage(named: "LeftArrow"), for: UIControlState.normal)
-        imagePreviewDoneButton.contentMode = UIViewContentMode.scaleAspectFit
-        imagePreviewDoneButton.addTarget(self, action: #selector(HomeVC.imagePreviewDoneButtonPressed(_:)), for: UIControlEvents.touchUpInside)
+        imagePreviewDoneButton.setImage(UIImage(named: "LeftArrow"), for: UIControl.State.normal)
+        imagePreviewDoneButton.contentMode = UIView.ContentMode.scaleAspectFit
+        imagePreviewDoneButton.addTarget(self, action: #selector(HomeVC.imagePreviewDoneButtonPressed(_:)), for: UIControl.Event.touchUpInside)
         imagePreviewNavigationBar.addSubview(imagePreviewDoneButton)
         imagePreviewNavigationBar.addConstraintsWithVisualFormat(format: "H:|-20-[v0(30)]", views: imagePreviewDoneButton)
         imagePreviewNavigationBar.addConstraintsWithVisualFormat(format: "V:[v0(30)]", views: imagePreviewDoneButton)
         imagePreviewNavigationBar.addConstraint(NSLayoutConstraint(item: imagePreviewDoneButton, attribute: .centerY, relatedBy: .equal, toItem: imagePreviewNavigationBar, attribute: .centerY, multiplier: 1, constant: 10))
         
         imagePreviewNavigationBar.addSubview(imagePreviewSaveButton)
-        imagePreviewSaveButton.setImage(UIImage(named: "DownloadIcon")!, for: UIControlState.normal)
-        imagePreviewSaveButton.contentMode = UIViewContentMode.scaleAspectFit
+        imagePreviewSaveButton.setImage(UIImage(named: "DownloadIcon")!, for: UIControl.State.normal)
+        imagePreviewSaveButton.contentMode = UIView.ContentMode.scaleAspectFit
         imagePreviewSaveButton.addTarget(self, action: #selector(HomeVC.imagePreviewSaveButtonPressed(_:)), for: .touchUpInside)
         imagePreviewNavigationBar.addConstraintsWithVisualFormat(format: "H:[v0(30)]-20-|", views: imagePreviewSaveButton)
         imagePreviewNavigationBar.addConstraintsWithVisualFormat(format: "V:[v0(50)]", views: imagePreviewSaveButton)
@@ -422,7 +419,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
     }
     
-    func imagePreviewDoneButtonPressed(_ button: UIButton) {
+    @objc func imagePreviewDoneButtonPressed(_ button: UIButton) {
         
         UIView.animate(withDuration: 0.5, animations: {
             self.imagePreviewNavigationBar.frame.origin = CGPoint(x: 0, y: -self.imagePreviewNavigationBar.frame.height)
@@ -441,13 +438,13 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         }
     }
     
-    func imagePreviewSaveButtonPressed(_ button: UIButton) {
+    @objc func imagePreviewSaveButtonPressed(_ button: UIButton) {
         
         if let image = imagePreview.image {
             UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
             
-            let alert = UIAlertController(title: "Görsel Kaydedildi", message: "Görsel başarıyla fotoğraf galerisine kaydedildi.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Tamam", style: UIAlertActionStyle.cancel, handler: { (action) in
+            let alert = UIAlertController(title: "Görsel Kaydedildi", message: "Görsel başarıyla fotoğraf galerisine kaydedildi.", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Tamam", style: UIAlertAction.Style.cancel, handler: { (action) in
                 self.dismiss(animated: true, completion: nil)
             }))
             self.present(alert, animated: true, completion: nil)
@@ -455,7 +452,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
     }
     
-    func imagePreviewTapGestureActive(_ gesture: UIGestureRecognizer) {
+    @objc func imagePreviewTapGestureActive(_ gesture: UIGestureRecognizer) {
         gesture.isEnabled = false
         if imagePreviewNavigationBar.frame.minY != 0 {
             presentImagePreviewNavigationBar(gesture)
@@ -487,7 +484,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         }
     }
     
-    func didSelectAnImage(_ notification: NSNotification) {
+    @objc func didSelectAnImage(_ notification: NSNotification) {
         
         if let userInfo = notification.userInfo as? [String: Any] {
             if let image = userInfo["image"] as? UIImage {
@@ -553,7 +550,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         return imagePreview
     }
     
-    func buttonsTapGestureActive(sender: UITapGestureRecognizer) {
+    @objc func buttonsTapGestureActive(sender: UITapGestureRecognizer) {
         
         if abs(mainScrollView.contentOffset.x - (sideMenuViewWidthConstraint.multiplier * UIScreen.main.bounds.width)) < 2 {
          
@@ -580,7 +577,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
     }
     
-    func tapGestureReactive(_ timer: Timer) {
+    @objc func tapGestureReactive(_ timer: Timer) {
         
         if let gesture = timer.userInfo as? UITapGestureRecognizer {
             gesture.isEnabled = true
@@ -610,9 +607,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     func addTeamsPageToView() {
         
         view.isUserInteractionEnabled = false
-        addChildViewController(teamsVC)
+        addChild(teamsVC)
         homeView.addSubview(teamsVC.view)
-        teamsVC.didMove(toParentViewController: self)
+        teamsVC.didMove(toParent: self)
         
         teamsVC.view.frame = homeScrollView.frame
         teamsVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.maxX, y: navigationBar.frame.maxY)
@@ -624,7 +621,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             self.teamsVC.view.frame.origin = self.homeScrollView.frame.origin
             self.teamsVC.view.alpha = 1
             self.view.isUserInteractionEnabled = true
-            self.homeView.bringSubview(toFront: self.homePageShadowView)
+            self.homeView.bringSubviewToFront(self.homePageShadowView)
         })
         
     }
@@ -639,9 +636,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             self.teamsVC.view.alpha = 0
             
         }) { (completion) in
-            self.teamsVC.willMove(toParentViewController: self)
+            self.teamsVC.willMove(toParent: self)
             self.teamsVC.view.removeFromSuperview()
-            self.teamsVC.removeFromParentViewController()
+            self.teamsVC.removeFromParent()
             self.view.isUserInteractionEnabled = true
         }
      
@@ -653,9 +650,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         mainScrollView.isScrollEnabled = false
 //        draggingGesture.isEnabled = false
         
-        addChildViewController(teamInfoVC)
+        addChild(teamInfoVC)
         homeView.addSubview(teamInfoVC.view)
-        teamInfoVC.didMove(toParentViewController: self)
+        teamInfoVC.didMove(toParent: self)
         teamInfoVC.homeVC = self
         
         teamInfoVC.view.frame = homeScrollView.frame
@@ -664,7 +661,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         teamInfoVC.team = team
         
-        homeView.bringSubview(toFront: homePageShadowView)
+        homeView.bringSubviewToFront(homePageShadowView)
         
         UIView.animate(withDuration: calculateAnimationDuration(startingPoint: teamInfoVC.view.frame.origin, destinationPoint: CGPoint(x: 0, y: 0)), animations: {
             self.teamInfoVC.view.frame.origin = self.homeScrollView.frame.origin
@@ -704,9 +701,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             UIView.animate(withDuration: self.calculateAnimationDuration(startingPoint: self.teamInfoVC.view.frame.origin, destinationPoint: CGPoint(x: (self.teamInfoVC.view.frame.maxX), y: (self.navigationBar.frame.maxY))), animations: {
                 self.teamInfoVC.view.frame.origin = CGPoint(x: self.teamInfoVC.view.frame.maxX, y: (self.navigationBar.frame.maxY))
             }, completion: { (completion) in
-                self.teamInfoVC.willMove(toParentViewController: self)
+                self.teamInfoVC.willMove(toParent: self)
                 self.teamInfoVC.view.removeFromSuperview()
-                self.teamInfoVC.removeFromParentViewController()
+                self.teamInfoVC.removeFromParent()
                 self.view.isUserInteractionEnabled = true                
                 self.mainScrollView.isScrollEnabled = true
 //                draggingGesture.isEnabled = true
@@ -719,9 +716,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         mainScrollView.isScrollEnabled = false
 //        draggingGesture.isEnabled = false
         
-        addChildViewController(teamInfoVC)
+        addChild(teamInfoVC)
         homeView.addSubview(teamInfoVC.view)
-        teamInfoVC.didMove(toParentViewController: self)
+        teamInfoVC.didMove(toParent: self)
         teamInfoVC.homeVC = self
         
         teamInfoVC.team = team
@@ -731,7 +728,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         teamInfoVC.view.alpha = 0
         teamInfoVC.teamsBackground.alpha = 1
         
-        homeView.bringSubview(toFront: homePageShadowView)
+        homeView.bringSubviewToFront(homePageShadowView)
         
         UIView.animate(withDuration: calculateAnimationDuration(startingPoint: teamInfoVC.view.frame.origin, destinationPoint: CGPoint(x: 0, y: 0)), animations: {
             self.teamInfoVC.view.frame.origin = self.homeScrollView.frame.origin
@@ -767,9 +764,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 self.teamInfoVC.view.frame.origin = CGPoint(x: self.teamInfoVC.view.frame.maxX, y: (self.navigationBar.frame.maxY))
             }, completion: { (completion) in
                 self.teamInfoVC.teamsBackground.alpha = 0
-                self.teamInfoVC.willMove(toParentViewController: self)
+                self.teamInfoVC.willMove(toParent: self)
                 self.teamInfoVC.view.removeFromSuperview()
-                self.teamInfoVC.removeFromParentViewController()
+                self.teamInfoVC.removeFromParent()
                 self.view.isUserInteractionEnabled = true
                 self.mainScrollView.isScrollEnabled = true
 //                draggingGesture.isEnabled = true
@@ -781,22 +778,22 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     func addGaleryPageToView() {
         view.isUserInteractionEnabled = false
         
-        addChildViewController(galeryVC)
+        addChild(galeryVC)
         homeView.addSubview(galeryVC.view)
-        galeryVC.didMove(toParentViewController: self)
+        galeryVC.didMove(toParent: self)
         
         galeryVC.view.frame = homeScrollView.frame
         galeryVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.maxX, y: navigationBar.frame.maxY)
         galeryVC.view.alpha = 0
         
-        homeView.bringSubview(toFront: homePageShadowView)
+        homeView.bringSubviewToFront(homePageShadowView)
         
         UIView.animate(withDuration: calculateAnimationDuration(startingPoint: galeryVC.view.frame.origin, destinationPoint: CGPoint(x: 0, y: 0)), animations: {
             self.galeryVC.view.frame.origin = self.homeScrollView.frame.origin
             self.galeryVC.view.alpha = 1
         }) { (completion) in
             self.view.isUserInteractionEnabled = true
-            self.homeView.bringSubview(toFront: self.homePageShadowView)
+            self.homeView.bringSubviewToFront(self.homePageShadowView)
         }
         
     }
@@ -811,9 +808,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             self.galeryVC.view.alpha = 0
             
         }) { (completion) in
-            self.galeryVC.willMove(toParentViewController: self)
+            self.galeryVC.willMove(toParent: self)
             self.galeryVC.view.removeFromSuperview()
-            self.galeryVC.removeFromParentViewController()
+            self.galeryVC.removeFromParent()
             self.view.isUserInteractionEnabled = true
         }
         
@@ -823,9 +820,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         view.isUserInteractionEnabled = false
         
-        addChildViewController(resultsVC)
+        addChild(resultsVC)
         homeView.addSubview(resultsVC.view)
-        resultsVC.didMove(toParentViewController: self)
+        resultsVC.didMove(toParent: self)
         
         resultsVC.view.frame = homeScrollView.frame
         resultsVC.view.frame.origin = CGPoint(x: UIScreen.main.bounds.maxX, y: navigationBar.frame.maxY)
@@ -836,7 +833,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             self.resultsVC.view.frame.origin = self.homeScrollView.frame.origin
             self.resultsVC.view.alpha = 1
             self.view.isUserInteractionEnabled = true
-            self.homeView.bringSubview(toFront: self.homePageShadowView)
+            self.homeView.bringSubviewToFront(self.homePageShadowView)
         })
         
         NotificationCenter.default.addObserver(self, selector: #selector(HomeVC.teamSelectedNotificationReceived(_:)), name: NSNotification.Name("teamSelected"), object: nil)
@@ -853,9 +850,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             self.resultsVC.view.alpha = 0
             
         }) { (completion) in
-            self.resultsVC.willMove(toParentViewController: self)
+            self.resultsVC.willMove(toParent: self)
             self.resultsVC.view.removeFromSuperview()
-            self.resultsVC.removeFromParentViewController()
+            self.resultsVC.removeFromParent()
             self.view.isUserInteractionEnabled = true
         }
         
@@ -867,9 +864,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         view.isUserInteractionEnabled = false
         
-        addChildViewController(child)
+        addChild(child)
         homeView.addSubview(child.view)
-        child.didMove(toParentViewController: self)
+        child.didMove(toParent: self)
         
         child.view.frame = homeScrollView.frame
         child.view.frame.origin = CGPoint(x: UIScreen.main.bounds.maxX, y: navigationBar.frame.maxY)
@@ -883,14 +880,14 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         NotificationCenter.default.post(name: NSNotification.Name("AnyChildAddedToView"), object: nil)
         
-        homeView.bringSubview(toFront: homePageShadowView)
+        homeView.bringSubviewToFront(homePageShadowView)
         
         UIView.animate(withDuration: calculateAnimationDuration(startingPoint: child.view.frame.origin, destinationPoint: CGPoint(x: 0, y: 0)), animations: {
             child.view.frame.origin = self.homeScrollView.frame.origin
             child.view.alpha = 1
         }) { (completion) in
             self.view.isUserInteractionEnabled = true
-            self.homeView.bringSubview(toFront: self.homePageShadowView)
+            self.homeView.bringSubviewToFront(self.homePageShadowView)
             if child.view.frame == self.homeScrollView.frame {
                 self.homeScrollContentView.alpha = 0
             }
@@ -926,9 +923,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
                 self.teamInfoVC.teamNameLbl.alpha = 0
                 self.teamInfoVC.teamsBackground.alpha = 0
             }
-            child.willMove(toParentViewController: self)
+            child.willMove(toParent: self)
             child.view.removeFromSuperview()
-            child.removeFromParentViewController()
+            child.removeFromParent()
             if childToAdd != nil {
                 self.addAChildViewToView(child: childToAdd!)
             } else {
@@ -943,9 +940,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         mainScrollView.isScrollEnabled = false
         view.isUserInteractionEnabled = false
         
-        addChildViewController(newsContentVC)
+        addChild(newsContentVC)
         homeView.addSubview(newsContentVC.view)
-        newsContentVC.didMove(toParentViewController: self)
+        newsContentVC.didMove(toParent: self)
         newsContentVC.homeVC = self
         
         newsContentVC.view.frame = homeScrollView.frame
@@ -958,7 +955,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         self.newsContentVC.news = news
         
-        homeView.bringSubview(toFront: homePageShadowView)
+        homeView.bringSubviewToFront(homePageShadowView)
         
         UIView.animate(withDuration: calculateAnimationDuration(startingPoint: newsContentVC.view.frame.origin, destinationPoint: CGPoint(x: 0, y: 0)), animations: {
             self.newsContentVC.view.frame.origin = self.homeScrollView.frame.origin
@@ -983,9 +980,9 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             self.newsContentVC.view.frame.origin = CGPoint(x: self.newsContentVC.view.frame.maxX, y: (self.navigationBar.frame.maxY))
             self.newsContentVC.view.alpha = 0
         }, completion: { (completion) in
-            self.newsContentVC.willMove(toParentViewController: self)
+            self.newsContentVC.willMove(toParent: self)
             self.newsContentVC.view.removeFromSuperview()
-            self.newsContentVC.removeFromParentViewController()
+            self.newsContentVC.removeFromParent()
             self.view.isUserInteractionEnabled = true
             self.mainScrollView.isScrollEnabled = true
 //            draggingGesture.isEnabled = true
@@ -993,7 +990,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
     }
     
-    func teamSelectedNotificationReceived(_ notification: NSNotification) {
+    @objc func teamSelectedNotificationReceived(_ notification: NSNotification) {
         
         if let notification = notification.userInfo as? [String: Any] {
 
@@ -1021,10 +1018,10 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
     }
     
-    func navigationBarBtnPressed() {
+    @objc func navigationBarBtnPressed() {
         if abs(mainScrollView.contentOffset.x - (sideMenuViewWidthConstraint.multiplier * UIScreen.main.bounds.width)) < 2 {
             homeScrollView.scrollRectToVisible(CGRect(x: 0, y: 0, width: homeScrollView.frame.width, height: homeScrollView.frame.height), animated: true)
-            for child in childViewControllers {
+            for child in children {
                 removeAChildViewFromView(child: child, childToAdd: nil)
                 homeScrollContentView.alpha = 1
                 mainScrollView.isScrollEnabled = true
@@ -1068,12 +1065,12 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
         switch indexPath.row {
         case 0:
-            for child in childViewControllers {
+            for child in children {
                 executeChildRemovingAndAdding(child: child, childToAdd: nil)
             }
             break;
         case 1:
-            for child in childViewControllers {
+            for child in children {
                 if teamsVC.view.frame == homeScrollView.frame {
                     removeCalled = true
                 } else if child.view.frame == homeScrollView.frame && child != teamsVC {
@@ -1092,7 +1089,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             }
             break;
         case 2:
-            for child in childViewControllers {
+            for child in children {
                 if galeryVC.view.frame == homeScrollView.frame {
                     removeCalled = true
                 } else if child.view.frame == homeScrollView.frame && child != galeryVC {
@@ -1113,7 +1110,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             NotificationCenter.default.post(name: NSNotification.Name("AnyChildAddedToView"), object: nil, userInfo: postNotifUserInfo)
             break;
         case 3:
-            for child in childViewControllers {
+            for child in children {
                 if galeryVC.view.frame == homeScrollView.frame {
                     removeCalled = true
                 } else if child.view.frame == homeScrollView.frame && child != galeryVC {
@@ -1134,7 +1131,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             NotificationCenter.default.post(name: NSNotification.Name("AnyChildAddedToView"), object: nil, userInfo: postNotifUserInfo)
             break;
         case 4:
-            for child in childViewControllers {
+            for child in children {
                 if newsVC.view.frame == homeScrollView.frame {
                     removeCalled = true
                 } else if child.view.frame == homeScrollView.frame && child != newsVC {
@@ -1153,7 +1150,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             }
             break;
         case 5:
-            for child in childViewControllers {
+            for child in children {
                 if resultsVC.view.frame == homeScrollView.frame {
                     removeCalled = true
                 } else if child.view.frame == homeScrollView.frame && child != resultsVC {
@@ -1172,7 +1169,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             }
             break;
         case 6:
-            for child in childViewControllers {
+            for child in children {
                 if racesVC.view.frame == homeScrollView.frame {
                     removeCalled = true
                 } else if child.view.frame == homeScrollView.frame && child != racesVC {
@@ -1191,7 +1188,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             }
             break;
         case 7:
-            for child in childViewControllers {
+            for child in children {
                 if contactVC.view.frame == homeScrollView.frame {
                     removeCalled = true
                 } else if child.view.frame == homeScrollView.frame && child != contactVC {
@@ -1210,7 +1207,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             }
             break;
         default:
-            for child in childViewControllers {
+            for child in children {
                 executeChildRemovingAndAdding(child: child, childToAdd: nil)
             }
             break;
@@ -1225,13 +1222,13 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         }
     }
     
-    func callForAddChildFunction(timer: Timer) {
+    @objc func callForAddChildFunction(timer: Timer) {
         if let child = timer.userInfo as? UIViewController {
             addAChildViewToView(child: child)
         }
     }
     
-    func reactiveInteraction() {
+    @objc func reactiveInteraction() {
         sideMenuTableView.isUserInteractionEnabled = true
     }
     
@@ -1253,7 +1250,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         
     }
     
-    func callForRevomeAChildFunction(_ timer: Timer) {
+    @objc func callForRevomeAChildFunction(_ timer: Timer) {
         if let childs = timer.userInfo as? [UIViewController] {
             if childs.count == 2 {
                 removeAChildViewFromView(child: childs[0], childToAdd: childs[1])
@@ -1399,7 +1396,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
 //        }
     }
     
-    func closeSideMenu() {
+    @objc func closeSideMenu() {
         view.isUserInteractionEnabled = false
         mainScrollView.scrollRectToVisible(CGRect(x: sideMenuViewWidthConstraint.multiplier * UIScreen.main.bounds.width, y: 0, width: mainScrollView.frame.width, height: mainScrollView.frame.height), animated: true)
 //        UIView.animate(withDuration: calculateAnimationDuration(startingPoint: CGPoint(x: CGFloat(mainScrollView.contentOffset.x), y: 0), destinationPoint: CGPoint(x: 0, y: 0)), animations: {
@@ -1420,12 +1417,12 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
             closingSideMenuGesture.isEnabled = true
             sideMenuView.layer.shouldRasterize = false
             sideMenuView.layer.shadowOpacity = 0.8
-            view.bringSubview(toFront: sideMenuView)
+            view.bringSubviewToFront(sideMenuView)
         } else {
             sideMenuView.layer.shouldRasterize = true
             closingSideMenuGesture.isEnabled = false
             sideMenuView.layer.shadowOpacity = 0
-            view.sendSubview(toBack: sideMenuView)
+            view.sendSubviewToBack(sideMenuView)
         }
     }
     
@@ -1442,7 +1439,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
         if let urlString = adBanner.addressURL {
             if let url = URL(string: urlString) {
                 if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
                 } else {
                     UIApplication.shared.openURL(url)
                 }
@@ -1452,3 +1449,8 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UISc
     
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+}

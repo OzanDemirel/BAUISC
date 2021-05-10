@@ -43,7 +43,7 @@ class ContactVC: UIViewController {
             let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
             if let font = UIFont(name: "Futura-Book", size: 12) {
                 
-                let estimatedRect = NSString(string: text).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: font], context: nil)
+                let estimatedRect = NSString(string: text).boundingRect(with: size, options: options, attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font): font]), context: nil)
                 
                 if estimatedRect.height > 28.8 {
                     addressTextViewHeight.constant = 60
@@ -68,10 +68,9 @@ class ContactVC: UIViewController {
         let londelta:CLLocationDegrees = 0.01
         
         let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
-        let span:MKCoordinateSpan = MKCoordinateSpanMake(latdelta, londelta)
+        let span:MKCoordinateSpan = MKCoordinateSpan.init(latitudeDelta: latdelta, longitudeDelta: londelta)
         
-        let region:MKCoordinateRegion = MKCoordinateRegionMake(coordinate, span)
-        
+        let region:MKCoordinateRegion = MKCoordinateRegion.init(center: coordinate, span: span)
         mapView.setRegion(region, animated: true)
         
         let annotation = MKPointAnnotation()
@@ -79,19 +78,17 @@ class ContactVC: UIViewController {
         annotation.title = "BAUISC"
         mapView.addAnnotation(annotation)
 
-        
     }
     
     func openWebsite(url: String) {
         
         if let url = URL(string: url) {
             if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             } else {
                 UIApplication.shared.openURL(url)
             }
         }
-        
     }
     
     func openApplication(urlString: String) {
@@ -104,15 +101,12 @@ class ContactVC: UIViewController {
                 
             } else {
                 //redirect to safari because the user doesn't have Instagram
-                
                 openWebsite(url: urlString)
             }
-            
         }
-        
     }
     
-    @IBAction func buttonPressed(_ sender: UIButton) {
+    @IBAction func buttonPressed(_ sender: UIButton) { 
         
         switch sender.tag {
         case 1:
@@ -136,4 +130,20 @@ class ContactVC: UIViewController {
         
     }
 
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

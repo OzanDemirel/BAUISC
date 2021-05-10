@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ResultsVC" customModule="BAU_Spring_Trophy" customModuleProvider="target">
             <connections>
                 <outlet property="daysSectionView" destination="Vri-Pn-i3H" id="71I-eR-mjQ"/>
+                <outlet property="ircButton" destination="Ly6-TZ-RFY" id="puC-xa-U5p"/>
+                <outlet property="ircFlamaWidthConstraint" destination="52K-7E-pbb" id="ClP-v0-oA3"/>
+                <outlet property="orcButton" destination="xeR-LY-IL5" id="jTh-6H-kET"/>
+                <outlet property="orcFlamaWidthConstraint" destination="o0f-Hs-g6F" id="cIH-w7-ocu"/>
                 <outlet property="racesSectionView" destination="BWp-43-cwc" id="afT-fm-QMn"/>
                 <outlet property="resultsTableContainer" destination="HmC-2g-2hS" id="JOi-Ib-xGM"/>
                 <outlet property="tableSectionView" destination="3Ds-Kc-2EO" id="u3E-MC-mLp"/>
@@ -41,6 +42,83 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xeR-LY-IL5" userLabel="ORC Button" customClass="DesignableButton" customModule="BAU_Spring_Trophy" customModuleProvider="target">
+                    <rect key="frame" x="62" y="180" width="32" height="32"/>
+                    <accessibility key="accessibilityConfiguration" identifier="ORC"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="32" id="o0f-Hs-g6F"/>
+                    </constraints>
+                    <state key="normal" image="VerticalFlama"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                            <real key="value" value="0.59999999999999998"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
+                            <real key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                            <size key="value" width="1" height="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="categoryButtonPressedWithSender:" destination="-2" eventType="touchUpInside" id="DTv-DF-62c"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E9B-0E-q26">
+                    <rect key="frame" x="67" y="188" width="22" height="16"/>
+                    <attributedString key="attributedText">
+                        <fragment content="ORC">
+                            <attributes>
+                                <color key="NSColor" red="0.99127715829999996" green="0.68240922690000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="16" name="Futura-Medium"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ly6-TZ-RFY" userLabel="IRC Button" customClass="DesignableButton" customModule="BAU_Spring_Trophy" customModuleProvider="target">
+                    <rect key="frame" x="20" y="180" width="40" height="40"/>
+                    <accessibility key="accessibilityConfiguration" identifier="IRC"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="52K-7E-pbb"/>
+                        <constraint firstAttribute="width" secondItem="Ly6-TZ-RFY" secondAttribute="height" multiplier="1:1" id="SQr-eP-RHL"/>
+                    </constraints>
+                    <state key="normal" image="VerticalFlama"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                            <real key="value" value="0.59999999999999998"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
+                            <real key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                            <size key="value" width="-1" height="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="categoryButtonPressedWithSender:" destination="-2" eventType="touchUpInside" id="kG5-gz-MJZ"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="klU-bi-6ar">
+                    <rect key="frame" x="30" y="192" width="20" height="16"/>
+                    <attributedString key="attributedText">
+                        <fragment content="IRC">
+                            <attributes>
+                                <color key="NSColor" red="0.98431372549999996" green="0.67843137249999996" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="16" name="Futura-Medium"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ds-Kc-2EO" userLabel="Table Section" customClass="TableSectionView" customModule="BAU_Spring_Trophy" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="135" width="414" height="45"/>
                     <subviews>
@@ -57,7 +135,7 @@
                                     <size key="value" width="0.0" height="3"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                    <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </imageView>
@@ -152,7 +230,7 @@
                     </userDefinedRuntimeAttributes>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SONUÇLAR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="H7a-5S-eWT">
-                    <rect key="frame" x="171" y="15" width="72" height="16"/>
+                    <rect key="frame" x="171.5" y="14.5" width="71" height="16"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="H7a-5S-eWT" secondAttribute="height" multiplier="9:2" id="44a-yb-RCJ"/>
                     </constraints>
@@ -165,32 +243,46 @@
             <constraints>
                 <constraint firstItem="Vri-Pn-i3H" firstAttribute="top" secondItem="YYB-aw-bsF" secondAttribute="bottom" id="0d2-AK-NRb"/>
                 <constraint firstItem="3Ds-Kc-2EO" firstAttribute="top" secondItem="BWp-43-cwc" secondAttribute="bottom" id="22o-94-s3T"/>
+                <constraint firstItem="klU-bi-6ar" firstAttribute="width" secondItem="Ly6-TZ-RFY" secondAttribute="width" multiplier="0.5" id="4DE-Tj-enY"/>
+                <constraint firstItem="E9B-0E-q26" firstAttribute="height" secondItem="xeR-LY-IL5" secondAttribute="height" multiplier="0.5" id="67k-4f-90v"/>
                 <constraint firstItem="3Ds-Kc-2EO" firstAttribute="leading" secondItem="RBI-cp-dfr" secondAttribute="leading" id="8Je-Va-hwM"/>
                 <constraint firstAttribute="trailing" secondItem="BWp-43-cwc" secondAttribute="trailing" id="9rb-JZ-vea"/>
+                <constraint firstItem="HmC-2g-2hS" firstAttribute="top" secondItem="3Ds-Kc-2EO" secondAttribute="bottom" id="A6V-eS-Sbn"/>
+                <constraint firstItem="klU-bi-6ar" firstAttribute="centerY" secondItem="Ly6-TZ-RFY" secondAttribute="centerY" id="BzA-Bm-XhR"/>
                 <constraint firstItem="YYB-aw-bsF" firstAttribute="top" secondItem="RBI-cp-dfr" secondAttribute="top" id="DP9-lq-0ee"/>
+                <constraint firstItem="klU-bi-6ar" firstAttribute="centerX" secondItem="Ly6-TZ-RFY" secondAttribute="centerX" id="DT9-9i-Tnj"/>
+                <constraint firstItem="E9B-0E-q26" firstAttribute="width" secondItem="xeR-LY-IL5" secondAttribute="width" multiplier="0.7" id="Epe-S4-OhQ"/>
                 <constraint firstAttribute="trailing" secondItem="HmC-2g-2hS" secondAttribute="trailing" id="GlK-RC-QuD"/>
+                <constraint firstItem="xeR-LY-IL5" firstAttribute="leading" secondItem="Ly6-TZ-RFY" secondAttribute="trailing" constant="2" id="J1s-5d-Sr0"/>
+                <constraint firstItem="Ly6-TZ-RFY" firstAttribute="leading" secondItem="RBI-cp-dfr" secondAttribute="leading" constant="20" id="LqS-uf-WdV"/>
                 <constraint firstItem="YYB-aw-bsF" firstAttribute="leading" secondItem="RBI-cp-dfr" secondAttribute="leading" id="NyN-48-S5z"/>
+                <constraint firstItem="E9B-0E-q26" firstAttribute="centerY" secondItem="xeR-LY-IL5" secondAttribute="centerY" id="OyX-5Q-QRy"/>
+                <constraint firstItem="xeR-LY-IL5" firstAttribute="top" secondItem="3Ds-Kc-2EO" secondAttribute="bottom" id="POI-Ht-Pph"/>
                 <constraint firstItem="HmC-2g-2hS" firstAttribute="leading" secondItem="RBI-cp-dfr" secondAttribute="leading" id="R5G-ap-x8G"/>
                 <constraint firstItem="Vri-Pn-i3H" firstAttribute="leading" secondItem="RBI-cp-dfr" secondAttribute="leading" id="TBN-fC-wj6"/>
                 <constraint firstAttribute="bottom" secondItem="HmC-2g-2hS" secondAttribute="bottom" id="UCv-gW-k7R"/>
                 <constraint firstAttribute="trailing" secondItem="YYB-aw-bsF" secondAttribute="trailing" id="W00-am-6BF"/>
                 <constraint firstItem="H7a-5S-eWT" firstAttribute="height" secondItem="YYB-aw-bsF" secondAttribute="height" multiplier="0.35" id="bVx-Pk-8C4"/>
                 <constraint firstItem="H7a-5S-eWT" firstAttribute="centerX" secondItem="YYB-aw-bsF" secondAttribute="centerX" id="dpj-3C-Rvl"/>
+                <constraint firstItem="xeR-LY-IL5" firstAttribute="width" secondItem="xeR-LY-IL5" secondAttribute="height" multiplier="1:1" id="eWo-H5-oxO"/>
+                <constraint firstItem="E9B-0E-q26" firstAttribute="centerX" secondItem="xeR-LY-IL5" secondAttribute="centerX" id="fz9-3H-Usf"/>
+                <constraint firstItem="klU-bi-6ar" firstAttribute="height" secondItem="Ly6-TZ-RFY" secondAttribute="height" multiplier="0.4" id="jZT-26-wCc"/>
+                <constraint firstItem="Ly6-TZ-RFY" firstAttribute="top" secondItem="3Ds-Kc-2EO" secondAttribute="bottom" id="kdo-N7-tJK"/>
                 <constraint firstAttribute="trailing" secondItem="Vri-Pn-i3H" secondAttribute="trailing" id="kfQ-h4-RDo"/>
                 <constraint firstAttribute="bottom" secondItem="57S-KQ-pkW" secondAttribute="bottom" constant="30" id="kkn-jf-Smm"/>
                 <constraint firstItem="BWp-43-cwc" firstAttribute="leading" secondItem="RBI-cp-dfr" secondAttribute="leading" id="pOk-rh-JHQ"/>
                 <constraint firstAttribute="trailing" secondItem="3Ds-Kc-2EO" secondAttribute="trailing" id="ph8-e0-06N"/>
                 <constraint firstItem="H7a-5S-eWT" firstAttribute="centerY" secondItem="YYB-aw-bsF" secondAttribute="centerY" id="pvJ-Pr-NN9"/>
                 <constraint firstItem="57S-KQ-pkW" firstAttribute="centerX" secondItem="RBI-cp-dfr" secondAttribute="centerX" id="srk-lH-GUv"/>
-                <constraint firstItem="HmC-2g-2hS" firstAttribute="top" secondItem="3Ds-Kc-2EO" secondAttribute="bottom" id="vhO-jl-2mY"/>
                 <constraint firstItem="BWp-43-cwc" firstAttribute="top" secondItem="Vri-Pn-i3H" secondAttribute="bottom" id="xas-Du-tWA"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="33" y="88"/>
+            <point key="canvasLocation" x="32" y="87.256371814092958"/>
         </view>
     </objects>
     <resources>
-        <image name="MenuBar" width="410" height="44"/>
-        <image name="www.bauisc.org" width="94" height="11"/>
+        <image name="MenuBar" width="410" height="44.5"/>
+        <image name="VerticalFlama" width="64" height="64"/>
+        <image name="www.bauisc.org" width="94.5" height="11.5"/>
     </resources>
 </document>

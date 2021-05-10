@@ -40,6 +40,14 @@ class DesignableImageView: UIImageView {
 //        layer.shadowPath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: frame.width, height: frame.height + 2)).cgPath
         layer.shouldRasterize = true
 //        layer.shadowPath = CGPath(rect: CGRect(x: 0, y: 2, width: frame.width, height: frame.height), transform: nil)
+        
+    }
+    
+    func setShadow() {
+        layer.shadowOpacity = 1
+        layer.shadowRadius = 2
+        layer.shadowOffset = CGSize(width: 0, height: 1.0)
+        layer.shadowColor = UIColor.black.cgColor
     }
     
 }

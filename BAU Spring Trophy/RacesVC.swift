@@ -38,9 +38,10 @@ class RacesVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataS
         collectionView.register(RouteCardsContainer.self, forCellWithReuseIdentifier: routeCardsCellId)
         collectionView.register(RaceAnnouncementContainer.self, forCellWithReuseIdentifier: raceAnnouncementCellId)
         
-        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: UICollectionViewScrollPosition.centeredVertically, animated: false)
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: UICollectionView.ScrollPosition.centeredVertically, animated: false)
         
         selectionView.racesVC = self
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -22,7 +22,7 @@ class PhotosCell: BaseCell {
     
     let photoImageView: CustomImageView = {
         let imageView = CustomImageView()
-        imageView.contentMode = UIViewContentMode.scaleAspectFill
+        imageView.contentMode = UIView.ContentMode.scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -36,7 +36,7 @@ class PhotosCell: BaseCell {
     let backgroundImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "TrendCellBackground")
-        image.contentMode = UIViewContentMode.scaleAspectFill
+        image.contentMode = UIView.ContentMode.scaleAspectFill
         image.clipsToBounds = true
         return image
     }()

@@ -24,7 +24,7 @@ class RacesSelectionCell: BaseCell {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "SelectionIcon")
         imageView.highlightedImage = UIImage(named: "SelectionIconHighlighted")
-        imageView.contentMode = UIViewContentMode.scaleAspectFit
+        imageView.contentMode = UIView.ContentMode.scaleAspectFit
         return imageView
     }()
     

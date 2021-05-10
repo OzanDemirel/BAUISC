@@ -50,7 +50,7 @@ class GaleryVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
     }
     
     func scrollCollectionView(indexPath: Int) {
-        baseCollectionView.scrollToItem(at: IndexPath(item: 0, section: indexPath), at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+        baseCollectionView.scrollToItem(at: IndexPath(item: 0, section: indexPath), at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

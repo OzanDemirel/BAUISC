@@ -12,7 +12,7 @@ class NewsHorizontalCell: BaseCell {
     
     let newsImageView: CustomImageView = {
         let imageView = CustomImageView()
-        imageView.contentMode = UIViewContentMode.scaleAspectFill
+        imageView.contentMode = UIView.ContentMode.scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -42,7 +42,7 @@ class NewsHorizontalCell: BaseCell {
                 let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
                 if let font = UIFont(name: "Futura-Bold", size: 14) {
                     
-                    let estimatedRect = NSString(string: newsTitle.text).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: font], context: nil)
+                    let estimatedRect = NSString(string: newsTitle.text).boundingRect(with: size, options: options, attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font): font]), context: nil)
                     
                     if estimatedRect.height > 34 {
                         newsTitle.font = UIFont(name: "Futura-Bold", size: 12)
@@ -113,4 +113,15 @@ class NewsHorizontalCell: BaseCell {
         
     }
 
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

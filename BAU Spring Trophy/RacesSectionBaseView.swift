@@ -45,8 +45,8 @@ class RacesSectionBaseView: UIView, UICollectionViewDelegate, UICollectionViewDa
         
     }
     
-    func setSelection() {
-        selectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: UICollectionViewScrollPosition.centeredVertically, animated: false)
+    @objc func setSelection() {
+        selectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: UICollectionView.ScrollPosition.centeredVertically, animated: false)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

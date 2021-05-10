@@ -15,7 +15,7 @@ class AnimatedLogoView: UIImageView {
         
     }
     
-    func startAnimation() {
+    @objc func startAnimation() {
         if self.alpha == 0 {
             UIView.animate(withDuration: 1.5, animations: {
                 UIView.animate(withDuration: 2, animations: {

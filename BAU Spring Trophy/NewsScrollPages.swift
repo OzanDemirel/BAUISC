@@ -27,7 +27,7 @@ class NewsScrollPages: DesignableView, UICollectionViewDelegate, UICollectionVie
     let backgroundImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "TrendCellBackground")
-        image.contentMode = UIViewContentMode.scaleAspectFill
+        image.contentMode = UIView.ContentMode.scaleAspectFill
         image.clipsToBounds = true
         return image
     }()
@@ -44,7 +44,7 @@ class NewsScrollPages: DesignableView, UICollectionViewDelegate, UICollectionVie
         didSet {
             collectionView.reloadData()
             if newsCount > 1 {
-                collectionView.scrollToItem(at: IndexPath(item: 1000 * newsCount, section: 0), at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
+                collectionView.scrollToItem(at: IndexPath(item: 1000 * newsCount, section: 0), at: UICollectionView.ScrollPosition.centeredHorizontally, animated: false)
             }
         }
     }

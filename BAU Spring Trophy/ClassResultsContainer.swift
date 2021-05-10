@@ -49,34 +49,34 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
         return label
     }()
     
-    var status = 0
-    var resultStatus = 0
+    var isReleased = 0
+    var isOfficial = 0
     
     var results: [Race]? {
         didSet {
-            if results != nil, (results?.count)! >= ApiService.sharedInstance.selectedRace, let status = results?[ApiService.sharedInstance.selectedRace].status {
-                self.status = status
-                if let resultStatus = results?[ApiService.sharedInstance.selectedRace].resultStatus {
-                    self.resultStatus = resultStatus
+            if results != nil, (results?.count)! >= ApiService.sharedInstance.selectedRace, let isReleased = results?[ApiService.sharedInstance.selectedRace].isReleased {
+                self.isReleased = isReleased
+                if let isOfficial = results?[ApiService.sharedInstance.selectedRace].isOfficial {
+                    self.isOfficial = isOfficial
                 }
             }
-            if status == 0 {
+            if isReleased == 0 {
                 resultStatusLabel.alpha = 0
                 statusLabel.text = "Bu yarış henüz gerçekleşmemiştir."
                 statusLabel.alpha = 1
-            } else if status == 1 {
+            } else if isReleased == 1 {
                 statusLabel.alpha = 0
-                if resultStatus == 0 {
+                if isOfficial == 0 {
                     resultStatusLabel.text = "RESMİ OLMAYAN SONUÇLAR"
-                } else if resultStatus == 1 {
+                } else if isOfficial == 1 {
                     resultStatusLabel.text = "RESMİ SONUÇLAR"
                 }
                 resultStatusLabel.alpha = 1
-            } else if status == 2 {
+            } else if isReleased == 2 {
                 resultStatusLabel.alpha = 0
                 statusLabel.text = "Bu yarış gerçekleşmemiştir."
                 statusLabel.alpha = 1
-            } else if status == 3 {
+            } else if isReleased == 3 {
                 resultStatusLabel.alpha = 0
                 statusLabel.text = "Bu yarış iptal edilmiştir."
                 statusLabel.alpha = 1
@@ -129,12 +129,12 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
         
     }
 
-    func fetchResults() {
+    @objc func fetchResults() {
         
         activityIndicator.alpha = 1
         activityIndicator.startAnimating()
         resultStatusLabel.alpha = 0
-        status = -1
+        isReleased = -1
         statusLabel.alpha = 0
         results = nil
         
@@ -144,12 +144,12 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
         
     }
 
-    func setTablePosition() {
+    @objc func setTablePosition() {
         
         activityIndicator.alpha = 1
         activityIndicator.startAnimating()
         resultStatusLabel.alpha = 0
-        status = -1
+        isReleased = -1
         statusLabel.alpha = 0
         results = nil
         
@@ -219,7 +219,7 @@ class ClassResultsContainer: BaseCell, UITableViewDelegate, UITableViewDataSourc
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return status == 1 ? (results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfClass.count ?? 0) : 0
+        return isReleased == 1 ? (results?[ApiService.sharedInstance.selectedRace].participantsByPlaceOfClass.count ?? 0) : 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

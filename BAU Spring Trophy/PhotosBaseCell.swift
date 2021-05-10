@@ -50,9 +50,9 @@ class PhotosBaseCell: BaseCell, UICollectionViewDelegate, UICollectionViewDataSo
         
     }
     
-    func arrangeCellPositions() {
+    @objc func arrangeCellPositions() {
         if photoCount > 0 {
-            collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: UICollectionViewScrollPosition.centeredVertically, animated: false)
+            collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: UICollectionView.ScrollPosition.centeredVertically, animated: false)
         }
     }
     

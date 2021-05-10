@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TeamsVC" customModule="BAU_Spring_Trophy" customModuleProvider="target">
             <connections>
+                <outlet property="ircButton" destination="sUk-FR-Ngx" id="pAE-JZ-EPe"/>
+                <outlet property="ircFlamaWidthConstraint" destination="hkD-ZT-Q5K" id="Kpo-Jh-0Ar"/>
+                <outlet property="orcButton" destination="NTg-f1-l29" id="cZ1-PY-mbP"/>
+                <outlet property="orcFlamaWidthConstraint" destination="all-TQ-5H4" id="n1D-le-3dN"/>
                 <outlet property="teamsTableView" destination="jeg-w7-0jF" id="vr3-Cg-dpK"/>
                 <outlet property="view" destination="gRY-tS-ASr" id="a2N-mp-3y3"/>
             </connections>
@@ -50,8 +52,86 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sUk-FR-Ngx" userLabel="IRC Button" customClass="DesignableButton" customModule="BAU_Spring_Trophy" customModuleProvider="target">
+                    <rect key="frame" x="20" y="235" width="40" height="40"/>
+                    <accessibility key="accessibilityConfiguration" identifier="ircTeams"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="sUk-FR-Ngx" secondAttribute="height" multiplier="1:1" id="aeP-65-Ljr"/>
+                        <constraint firstAttribute="width" constant="40" id="hkD-ZT-Q5K"/>
+                    </constraints>
+                    <state key="normal" image="VerticalFlama"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                            <real key="value" value="0.59999999999999998"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
+                            <real key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                            <size key="value" width="-1" height="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="categoryButtonPressedWithSender:" destination="-2" eventType="touchUpInside" id="3gt-mH-K2p"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lj4-4E-BLI">
+                    <rect key="frame" x="29" y="247" width="22" height="16"/>
+                    <attributedString key="attributedText">
+                        <fragment content="IRC">
+                            <attributes>
+                                <color key="NSColor" red="0.98431372549999996" green="0.67843137249999996" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="16" name="Futura-Medium"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTg-f1-l29" userLabel="ORC Button" customClass="DesignableButton" customModule="BAU_Spring_Trophy" customModuleProvider="target">
+                    <rect key="frame" x="62" y="235" width="32" height="32"/>
+                    <accessibility key="accessibilityConfiguration" identifier="orcTeams"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="NTg-f1-l29" secondAttribute="height" multiplier="1:1" id="54A-wq-vaB"/>
+                        <constraint firstAttribute="width" constant="32" id="all-TQ-5H4"/>
+                    </constraints>
+                    <state key="normal" image="VerticalFlama"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                            <real key="value" value="0.59999999999999998"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadious">
+                            <real key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                            <size key="value" width="1" height="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="categoryButtonPressedWithSender:" destination="-2" eventType="touchUpInside" id="ZJf-de-Y5N"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rt7-JW-GkH">
+                    <rect key="frame" x="67" y="243" width="22" height="16"/>
+                    <attributedString key="attributedText">
+                        <fragment content="ORC">
+                            <attributes>
+                                <color key="NSColor" red="0.99127715829999996" green="0.68240922690000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="16" name="Futura-Medium"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAKIMLAR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="3tP-Mn-vBm">
-                    <rect key="frame" x="173" y="247" width="67" height="21"/>
+                    <rect key="frame" x="173.5" y="247" width="67" height="21"/>
                     <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="12"/>
                     <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -79,11 +159,23 @@
             </subviews>
             <color key="backgroundColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="rt7-JW-GkH" firstAttribute="centerX" secondItem="NTg-f1-l29" secondAttribute="centerX" id="1CF-aA-9D1"/>
+                <constraint firstItem="sUk-FR-Ngx" firstAttribute="top" secondItem="Ycx-0W-3ec" secondAttribute="bottom" id="3UZ-aH-hhz"/>
                 <constraint firstItem="jeg-w7-0jF" firstAttribute="leading" secondItem="gRY-tS-ASr" secondAttribute="leading" id="6vE-Ts-6jH"/>
+                <constraint firstItem="rt7-JW-GkH" firstAttribute="centerY" secondItem="NTg-f1-l29" secondAttribute="centerY" id="7Bd-Gy-hE3"/>
+                <constraint firstItem="lj4-4E-BLI" firstAttribute="centerY" secondItem="sUk-FR-Ngx" secondAttribute="centerY" id="CF0-BG-85C"/>
+                <constraint firstItem="sUk-FR-Ngx" firstAttribute="width" secondItem="sUk-FR-Ngx" secondAttribute="height" multiplier="1:1" id="D3F-kK-JCg"/>
                 <constraint firstItem="C8e-ws-AtS" firstAttribute="top" secondItem="Ycx-0W-3ec" secondAttribute="bottom" id="G8f-nW-msV"/>
+                <constraint firstItem="lj4-4E-BLI" firstAttribute="height" secondItem="sUk-FR-Ngx" secondAttribute="height" multiplier="0.4" id="Hpc-RH-r6k"/>
+                <constraint firstItem="NTg-f1-l29" firstAttribute="top" secondItem="Ycx-0W-3ec" secondAttribute="bottom" id="JGL-cA-6SS"/>
+                <constraint firstItem="NTg-f1-l29" firstAttribute="top" secondItem="Ycx-0W-3ec" secondAttribute="bottom" id="MPp-jT-rdA"/>
                 <constraint firstAttribute="bottom" secondItem="jeg-w7-0jF" secondAttribute="bottom" id="QmM-6Q-7yK"/>
                 <constraint firstAttribute="trailing" secondItem="C8e-ws-AtS" secondAttribute="trailing" id="R0D-b3-Ksl"/>
                 <constraint firstItem="3tP-Mn-vBm" firstAttribute="top" secondItem="Ycx-0W-3ec" secondAttribute="bottom" constant="12" id="Urg-l2-DHa"/>
+                <constraint firstItem="lj4-4E-BLI" firstAttribute="width" secondItem="sUk-FR-Ngx" secondAttribute="width" multiplier="0.55" id="V9I-kU-790"/>
+                <constraint firstItem="lj4-4E-BLI" firstAttribute="centerX" secondItem="sUk-FR-Ngx" secondAttribute="centerX" id="VB6-zb-Ft4"/>
+                <constraint firstItem="sUk-FR-Ngx" firstAttribute="leading" secondItem="gRY-tS-ASr" secondAttribute="leading" constant="20" id="WPN-4W-D5l"/>
+                <constraint firstItem="rt7-JW-GkH" firstAttribute="width" secondItem="NTg-f1-l29" secondAttribute="width" multiplier="0.7" id="Xc0-i2-K72"/>
                 <constraint firstItem="jeg-w7-0jF" firstAttribute="top" secondItem="3tP-Mn-vBm" secondAttribute="bottom" constant="12" id="YJ3-ZB-XJk"/>
                 <constraint firstItem="TFe-ZX-5xO" firstAttribute="centerX" secondItem="gRY-tS-ASr" secondAttribute="centerX" id="YNE-y5-6Oq"/>
                 <constraint firstItem="Ycx-0W-3ec" firstAttribute="leading" secondItem="gRY-tS-ASr" secondAttribute="leading" id="ZQL-Su-dfA"/>
@@ -93,6 +185,9 @@
                 <constraint firstAttribute="trailing" secondItem="Ycx-0W-3ec" secondAttribute="trailing" id="hdl-D4-hPh"/>
                 <constraint firstAttribute="trailing" secondItem="jeg-w7-0jF" secondAttribute="trailing" id="iKX-5L-2a7"/>
                 <constraint firstItem="3tP-Mn-vBm" firstAttribute="centerX" secondItem="C8e-ws-AtS" secondAttribute="centerX" id="jQu-k6-aUZ"/>
+                <constraint firstItem="rt7-JW-GkH" firstAttribute="height" secondItem="NTg-f1-l29" secondAttribute="height" multiplier="0.5" id="koh-dK-pLb"/>
+                <constraint firstItem="NTg-f1-l29" firstAttribute="leading" secondItem="sUk-FR-Ngx" secondAttribute="trailing" constant="2" id="qwO-Kz-xu6"/>
+                <constraint firstItem="NTg-f1-l29" firstAttribute="width" secondItem="NTg-f1-l29" secondAttribute="height" multiplier="1:1" id="t9p-rf-gjP"/>
                 <constraint firstItem="Ycx-0W-3ec" firstAttribute="top" secondItem="gRY-tS-ASr" secondAttribute="top" id="vvC-3Y-50S"/>
                 <constraint firstItem="C8e-ws-AtS" firstAttribute="width" secondItem="C8e-ws-AtS" secondAttribute="height" multiplier="46:5" id="xTF-hF-uy5"/>
                 <constraint firstItem="3tP-Mn-vBm" firstAttribute="centerY" secondItem="C8e-ws-AtS" secondAttribute="centerY" id="z7D-3p-YhB"/>
@@ -102,8 +197,9 @@
         </view>
     </objects>
     <resources>
-        <image name="MenuBar" width="410" height="44"/>
-        <image name="TeamsBackground" width="410" height="232"/>
-        <image name="www.bauisc.org" width="94" height="11"/>
+        <image name="MenuBar" width="410" height="44.5"/>
+        <image name="TeamsBackground" width="410" height="232.5"/>
+        <image name="VerticalFlama" width="64" height="64"/>
+        <image name="www.bauisc.org" width="94.5" height="11.5"/>
     </resources>
 </document>

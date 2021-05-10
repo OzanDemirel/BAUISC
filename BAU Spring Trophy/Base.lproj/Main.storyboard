@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -32,27 +28,27 @@
                                 <rect key="frame" x="0.0" y="0.0" width="276" height="736"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TrophyHorizontalLogo" translatesAutoresizingMaskIntoConstraints="NO" id="6kw-C2-FGY">
-                                        <rect key="frame" x="92" y="40" width="92" height="61"/>
+                                        <rect key="frame" x="91.666666666666657" y="60" width="92.666666666666657" height="61.333333333333343"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="6kw-C2-FGY" secondAttribute="height" multiplier="98:65" id="zdL-b7-1E6"/>
                                         </constraints>
                                     </imageView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="40" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wnc-qs-Kwa">
-                                        <rect key="frame" x="30" y="141" width="216" height="454"/>
+                                        <rect key="frame" x="30" y="161.33333333333337" width="216" height="454"/>
                                         <color key="backgroundColor" red="0.0039215686274509803" green="0.33333333333333331" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="wnc-qs-Kwa" secondAttribute="height" multiplier="108:227" id="ZmJ-OG-yb6"/>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideMenuCell" id="8G0-Nt-PNN" customClass="SideMenuCell" customModule="BAU_Spring_Trophy" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="216" height="40"/>
+                                                <rect key="frame" x="0.0" y="24.333333969116211" width="216" height="40"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8G0-Nt-PNN" id="5Xz-Ya-wZk">
                                                     <rect key="frame" x="0.0" y="0.0" width="216" height="40"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="v79-8A-1bO">
-                                                            <rect key="frame" x="8" y="8" width="200" height="24"/>
+                                                            <rect key="frame" x="16" y="8" width="184" height="24"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Home" translatesAutoresizingMaskIntoConstraints="NO" id="VKy-mL-i2G">
                                                                     <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -63,7 +59,7 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anasayfa / Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="78Q-Jc-OZw">
-                                                                    <rect key="frame" x="39" y="0.0" width="161" height="24"/>
+                                                                    <rect key="frame" x="39" y="0.0" width="145" height="24"/>
                                                                     <fontDescription key="fontDescription" name="Futura-Book" family="Futura" pointSize="13"/>
                                                                     <color key="textColor" red="0.97647058823529409" green="0.72549019607843135" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -86,7 +82,7 @@
                                         </prototypes>
                                     </tableView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p6l-Pn-Z2H" userLabel="Side Menu Logo Shadow">
-                                        <rect key="frame" x="28" y="111" width="220" height="24.333333333333343"/>
+                                        <rect key="frame" x="27.666666666666671" y="131.33333333333334" width="220.66666666666663" height="24.666666666666657"/>
                                         <color key="backgroundColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="p6l-Pn-Z2H" secondAttribute="height" multiplier="9:1" id="FnE-VX-u0P"/>
@@ -100,7 +96,7 @@
                                     <constraint firstItem="6kw-C2-FGY" firstAttribute="centerX" secondItem="ST3-U3-LL1" secondAttribute="centerX" id="9BA-y5-D5t"/>
                                     <constraint firstItem="wnc-qs-Kwa" firstAttribute="leading" secondItem="ST3-U3-LL1" secondAttribute="leading" constant="30" id="CJY-g4-LPy"/>
                                     <constraint firstItem="p6l-Pn-Z2H" firstAttribute="top" secondItem="6kw-C2-FGY" secondAttribute="bottom" constant="10" id="N9y-Dg-w4B"/>
-                                    <constraint firstItem="6kw-C2-FGY" firstAttribute="top" secondItem="ST3-U3-LL1" secondAttribute="top" constant="40" id="epZ-kg-uPb"/>
+                                    <constraint firstItem="6kw-C2-FGY" firstAttribute="top" secondItem="ST3-U3-LL1" secondAttribute="top" constant="60" id="epZ-kg-uPb"/>
                                     <constraint firstItem="p6l-Pn-Z2H" firstAttribute="width" secondItem="ST3-U3-LL1" secondAttribute="width" multiplier="0.8" id="h6H-F1-rQL"/>
                                     <constraint firstItem="wnc-qs-Kwa" firstAttribute="top" secondItem="6kw-C2-FGY" secondAttribute="bottom" constant="40" id="u0q-WI-JLt"/>
                                     <constraint firstAttribute="trailing" secondItem="wnc-qs-Kwa" secondAttribute="trailing" constant="30" id="uer-iq-sHW"/>
@@ -137,7 +133,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reklam Alanı" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zOb-t4-WLJ" userLabel="Ads Label">
-                                                        <rect key="frame" x="162.33333333333331" y="695" width="90.000000000000057" height="23"/>
+                                                        <rect key="frame" x="162" y="694.66666666666663" width="90" height="23"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="90" id="HD4-37-vam"/>
                                                             <constraint firstAttribute="height" constant="23" id="dNc-up-88E"/>
@@ -147,7 +143,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="www.bauisc.org" translatesAutoresizingMaskIntoConstraints="NO" id="vUx-YO-Ijt" userLabel="Domain ImageView">
-                                                        <rect key="frame" x="162.33333333333331" y="634" width="90.000000000000057" height="12"/>
+                                                        <rect key="frame" x="162" y="634" width="90" height="12"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="90" id="4MW-lw-cVY"/>
                                                             <constraint firstAttribute="height" constant="12" id="Tf6-JD-6oB"/>
@@ -160,7 +156,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="432"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Button" translatesAutoresizingMaskIntoConstraints="NO" id="hCV-bq-2gu" userLabel="GaleryButtonImage" customClass="DesignableImageView" customModule="BAU_Spring_Trophy" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="365.66666666666674" width="414" height="66.333333333333314"/>
+                                                                        <rect key="frame" x="0.0" y="365.33333333333331" width="414" height="66.333333333333314"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="hCV-bq-2gu" secondAttribute="height" multiplier="25:4" id="IEv-9M-kDJ"/>
                                                                         </constraints>
@@ -180,19 +176,19 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wuh-is-5j3">
-                                                                        <rect key="frame" x="154" y="387" width="107" height="33.666666666666686"/>
+                                                                        <rect key="frame" x="153.66666666666669" y="386.66666666666669" width="107" height="33.666666666666686"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="gZg-HX-Iuk" userLabel="GaleryStackView">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="107" height="16.666666666666686"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="107" height="16.666666666666668"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GALERİ  /" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="jNx-kP-zHo">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="61" height="16.666666666666686"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="61" height="16.666666666666668"/>
                                                                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="12"/>
                                                                                         <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  GALERY" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="gcJ-Sh-FE8">
-                                                                                        <rect key="frame" x="61" y="0.0" width="46" height="16.666666666666686"/>
+                                                                                        <rect key="frame" x="61" y="0.0" width="46" height="16.666666666666668"/>
                                                                                         <fontDescription key="fontDescription" name="Futura-Book" family="Futura" pointSize="11"/>
                                                                                         <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <nil key="highlightedColor"/>
@@ -203,7 +199,7 @@
                                                                                 </constraints>
                                                                             </stackView>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="IZW-dL-g76">
-                                                                                <rect key="frame" x="43" y="21.666666666666686" width="21.333333333333314" height="12"/>
+                                                                                <rect key="frame" x="42.333333333333314" y="21.666666666666629" width="22" height="12"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" secondItem="IZW-dL-g76" secondAttribute="height" multiplier="11:6" id="Wf9-lz-h0g"/>
                                                                                 </constraints>
@@ -211,25 +207,25 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Button" translatesAutoresizingMaskIntoConstraints="NO" id="ZeD-3H-kMs" userLabel="ResultsButtonImage" customClass="DesignableImageView" customModule="BAU_Spring_Trophy" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="299.33333333333331" width="414" height="66.333333333333371"/>
+                                                                        <rect key="frame" x="0.0" y="299" width="414" height="66.333333333333314"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="ZeD-3H-kMs" secondAttribute="height" multiplier="25:4" id="xyM-Rl-jc8"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="2Py-wx-6m2">
-                                                                        <rect key="frame" x="140" y="320.66666666666669" width="134.66666666666663" height="33.666666666666629"/>
+                                                                        <rect key="frame" x="139.66666666666669" y="320.33333333333331" width="134.66666666666669" height="33.666666666666686"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="gy5-jI-7VI" userLabel="ResultsStackView">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="134.66666666666663" height="16.666666666666629"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="134.66666666666666" height="16.666666666666668"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SONUÇLAR  /" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="0bo-vX-Xzs">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="87.666666666666686" height="16.666666666666629"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="87.666666666666671" height="16.666666666666668"/>
                                                                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="12"/>
                                                                                         <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  RESULTS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="AJu-9J-2fY">
-                                                                                        <rect key="frame" x="87.666666666666686" y="0.0" width="46.999999999999943" height="16.666666666666629"/>
+                                                                                        <rect key="frame" x="87.666666666666629" y="0.0" width="47" height="16.666666666666668"/>
                                                                                         <fontDescription key="fontDescription" name="Futura-Book" family="Futura" pointSize="11"/>
                                                                                         <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <nil key="highlightedColor"/>
@@ -240,7 +236,7 @@
                                                                                 </constraints>
                                                                             </stackView>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="5UG-Lv-krH">
-                                                                                <rect key="frame" x="56.333333333333314" y="21.666666666666629" width="22.333333333333371" height="12"/>
+                                                                                <rect key="frame" x="56.333333333333314" y="21.666666666666686" width="22" height="12"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" secondItem="5UG-Lv-krH" secondAttribute="height" multiplier="11:6" id="Gen-Cn-8lH"/>
                                                                                 </constraints>
@@ -248,25 +244,25 @@
                                                                         </subviews>
                                                                     </stackView>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Button" translatesAutoresizingMaskIntoConstraints="NO" id="egu-x5-fx0" userLabel="TeamsButtonImage" customClass="DesignableImageView" customModule="BAU_Spring_Trophy" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="232.99999999999997" width="414" height="66.333333333333286"/>
+                                                                        <rect key="frame" x="0.0" y="233" width="414" height="66"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="egu-x5-fx0" secondAttribute="height" multiplier="25:4" id="iYa-6L-pr1"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="loq-4b-Ubz">
-                                                                        <rect key="frame" x="145.33333333333331" y="254.33333333333329" width="123.33333333333331" height="33.666666666666714"/>
+                                                                        <rect key="frame" x="145.33333333333331" y="254.33333333333334" width="123.33333333333331" height="33.333333333333343"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="yMv-Hi-ZE2" userLabel="TeamsStackView">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="123.33333333333331" height="16.666666666666686"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="123.33333333333333" height="16.333333333333332"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TAKIMLAR  /" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="sXt-PQ-rRb">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="81.666666666666686" height="16.666666666666686"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="81.666666666666671" height="16.333333333333332"/>
                                                                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="12"/>
                                                                                         <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  TEAMS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="qHc-Ps-fWy">
-                                                                                        <rect key="frame" x="81.666666666666686" y="0.0" width="41.666666666666629" height="16.666666666666686"/>
+                                                                                        <rect key="frame" x="81.666666666666686" y="0.0" width="41.666666666666657" height="16.333333333333332"/>
                                                                                         <fontDescription key="fontDescription" name="Futura-Book" family="Futura" pointSize="11"/>
                                                                                         <color key="textColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                         <nil key="highlightedColor"/>
@@ -277,7 +273,7 @@
                                                                                 </constraints>
                                                                             </stackView>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ButtonIcon" translatesAutoresizingMaskIntoConstraints="NO" id="zrL-7n-F5W">
-                                                                                <rect key="frame" x="50.666666666666686" y="21.666666666666686" width="22.333333333333314" height="12"/>
+                                                                                <rect key="frame" x="50.666666666666686" y="21.333333333333371" width="22" height="12"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="width" secondItem="zrL-7n-F5W" secondAttribute="height" multiplier="11:6" id="jZq-pu-CkP"/>
                                                                                 </constraints>
@@ -306,14 +302,14 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fdX-2S-Efo" userLabel="News Section View" customClass="NewsSelectionView" customModule="BAU_Spring_Trophy" customModuleProvider="target">
-                                                                        <rect key="frame" x="178.33333333333331" y="203" width="58.000000000000057" height="10"/>
+                                                                        <rect key="frame" x="178" y="203" width="58" height="10"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="58" id="8Eb-vn-TpC"/>
                                                                             <constraint firstAttribute="height" constant="10" id="Kmz-QQ-Fct"/>
                                                                         </constraints>
                                                                     </view>
                                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Az-Ui-OSZ" userLabel="LeftArrow">
-                                                                        <rect key="frame" x="20" y="98" width="37" height="37"/>
+                                                                        <rect key="frame" x="20.000000000000004" y="97.666666666666657" width="37.333333333333343" height="37.333333333333343"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="1Az-Ui-OSZ" secondAttribute="height" multiplier="1:1" id="G91-OB-fc6"/>
                                                                         </constraints>
@@ -323,7 +319,7 @@
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xz-4l-g9N" userLabel="RightArrow">
-                                                                        <rect key="frame" x="357" y="98" width="37" height="37"/>
+                                                                        <rect key="frame" x="356.66666666666663" y="97.666666666666657" width="37.333333333333314" height="37.333333333333343"/>
                                                                         <state key="normal" image="RightArrow"/>
                                                                         <connections>
                                                                             <action selector="arrowsPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3XV-om-7yg"/>
@@ -382,13 +378,13 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                                                             </imageView>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TrophyHorizontalLogo" translatesAutoresizingMaskIntoConstraints="NO" id="I5t-uJ-jnE" customClass="AnimatedLogoView" customModule="BAU_Spring_Trophy" customModuleProvider="target">
-                                                                <rect key="frame" x="158.33333333333331" y="20" width="97.666666666666686" height="60"/>
+                                                                <rect key="frame" x="158" y="20" width="98" height="60"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="I5t-uJ-jnE" secondAttribute="height" multiplier="49:30" id="ha5-mF-PHh"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BAUISCLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Mt6-of-DO1" customClass="AnimatedLogoView" customModule="BAU_Spring_Trophy" customModuleProvider="target">
-                                                                <rect key="frame" x="158.33333333333331" y="20" width="97.666666666666686" height="60"/>
+                                                                <rect key="frame" x="158" y="20" width="98" height="60"/>
                                                             </imageView>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SideMenuIcon" translatesAutoresizingMaskIntoConstraints="NO" id="7KO-hJ-1sw">
                                                                 <rect key="frame" x="20" y="48" width="22" height="14"/>
@@ -397,7 +393,7 @@
                                                                     <constraint firstAttribute="width" constant="22" id="bKX-HC-a8p"/>
                                                                 </constraints>
                                                             </imageView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbb-jK-q3g" userLabel="Side Menu Button">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbb-jK-q3g" userLabel="Side Menu Button">
                                                                 <rect key="frame" x="6" y="30" width="50" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="50" id="OPp-78-Wws"/>
@@ -428,7 +424,7 @@
                                                             <constraint firstItem="I5t-uJ-jnE" firstAttribute="centerX" secondItem="T8R-7z-GJz" secondAttribute="centerX" id="yDY-BV-yfW"/>
                                                         </constraints>
                                                     </view>
-                                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOM-YI-EOp">
+                                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOM-YI-EOp">
                                                         <rect key="frame" x="0.0" y="676" width="414" height="60"/>
                                                         <connections>
                                                             <action selector="adBannerButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="06c-uz-5KK"/>
@@ -499,7 +495,7 @@
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TrophyHorizontalLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Kh6-Yo-mVv">
-                                        <rect key="frame" x="132" y="323" width="151" height="90"/>
+                                        <rect key="frame" x="131.66666666666666" y="323" width="150.99999999999997" height="90"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Kh6-Yo-mVv" secondAttribute="height" multiplier="151:90" id="VPr-jq-GQ1"/>
                                             <constraint firstAttribute="height" constant="90" id="aVU-Q4-ZUO"/>
@@ -515,23 +511,23 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.0039215686269999999" green="0.33333333329999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0060960762199999997" green="0.33274567129999999" blue="0.54454839229999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="SKg-4R-Owz" secondAttribute="trailing" id="BKJ-lc-uz7"/>
                             <constraint firstItem="ST3-U3-LL1" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.666666" id="Bqy-cB-XQN"/>
                             <constraint firstItem="SKg-4R-Owz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="GSa-nE-2KI"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ST3-U3-LL1" secondAttribute="bottom" id="J8p-fE-WUZ"/>
+                            <constraint firstAttribute="bottom" secondItem="ST3-U3-LL1" secondAttribute="bottom" id="J8p-fE-WUZ"/>
                             <constraint firstItem="ST3-U3-LL1" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="O3Q-ye-4qM"/>
                             <constraint firstItem="SkF-Xh-g5n" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="TkF-gd-yif"/>
                             <constraint firstItem="oYc-YG-aX2" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="1.66667" id="aOl-rM-evz"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="SkF-Xh-g5n" secondAttribute="bottom" id="b6B-EN-dAc"/>
                             <constraint firstItem="ST3-U3-LL1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="j2P-va-qaP"/>
-                            <constraint firstItem="oYc-YG-aX2" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="lUu-bc-6bA"/>
+                            <constraint firstItem="oYc-YG-aX2" firstAttribute="height" secondItem="SkF-Xh-g5n" secondAttribute="height" id="lUu-bc-6bA"/>
                             <constraint firstItem="SKg-4R-Owz" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="nkZ-Up-YB7"/>
                             <constraint firstAttribute="trailing" secondItem="SkF-Xh-g5n" secondAttribute="trailing" id="oL2-55-Gvr"/>
-                            <constraint firstItem="SkF-Xh-g5n" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="s3v-hQ-UYg"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="SKg-4R-Owz" secondAttribute="bottom" id="uyy-dw-602"/>
+                            <constraint firstItem="SkF-Xh-g5n" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="s3v-hQ-UYg"/>
                             <constraint firstItem="1Pe-f2-cYU" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="wWx-h3-nYZ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="SKg-4R-Owz" secondAttribute="bottom" id="zLl-36-UYw"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -570,16 +566,27 @@
             <point key="canvasLocation" x="66.666666666666671" y="157.33695652173915"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="ZeD-3H-kMs">
+            <size key="intrinsicContentSize" width="414" height="94.333333333333329"/>
+        </designable>
+        <designable name="egu-x5-fx0">
+            <size key="intrinsicContentSize" width="414" height="94.333333333333329"/>
+        </designable>
+        <designable name="hCV-bq-2gu">
+            <size key="intrinsicContentSize" width="414" height="94.333333333333329"/>
+        </designable>
+    </designables>
     <resources>
-        <image name="BAUISCLogo" width="55" height="55"/>
-        <image name="Button" width="414" height="94"/>
-        <image name="ButtonIcon" width="21" height="10"/>
-        <image name="Home" width="24" height="24"/>
-        <image name="LeftArrow" width="33" height="33"/>
-        <image name="NavigationBarBackground" width="414" height="91"/>
-        <image name="RightArrow" width="33" height="33"/>
+        <image name="BAUISCLogo" width="55.333332061767578" height="55.333332061767578"/>
+        <image name="Button" width="414" height="94.333335876464844"/>
+        <image name="ButtonIcon" width="21" height="10.666666984558105"/>
+        <image name="Home" width="24.333333969116211" height="24.333333969116211"/>
+        <image name="LeftArrow" width="33.333332061767578" height="33.333332061767578"/>
+        <image name="NavigationBarBackground" width="414" height="91.333335876464844"/>
+        <image name="RightArrow" width="33.333332061767578" height="33.333332061767578"/>
         <image name="SideMenuIcon" width="22" height="13"/>
-        <image name="TrophyHorizontalLogo" width="151" height="90"/>
-        <image name="www.bauisc.org" width="95" height="11"/>
+        <image name="TrophyHorizontalLogo" width="151.66667175292969" height="90.333335876464844"/>
+        <image name="www.bauisc.org" width="95.333335876464844" height="11.666666984558105"/>
     </resources>
 </document>

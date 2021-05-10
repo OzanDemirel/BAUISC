@@ -22,13 +22,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="586"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="www.bauisc.org" translatesAutoresizingMaskIntoConstraints="NO" id="Lee-uv-dEA" userLabel="Domain ImageView">
-                    <rect key="frame" x="162" y="544" width="90" height="12"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="12" id="J3z-Yo-yNn"/>
-                        <constraint firstAttribute="width" constant="90" id="Kph-BR-7Li"/>
-                    </constraints>
-                </imageView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="1d8-gA-mEm">
                     <rect key="frame" x="0.0" y="125" width="414" height="461"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -107,13 +100,11 @@
                 <constraint firstItem="4Kg-49-CJC" firstAttribute="top" secondItem="mJr-kn-G4b" secondAttribute="top" id="Ahf-1D-frr"/>
                 <constraint firstItem="cg0-IC-ZEy" firstAttribute="leading" secondItem="mJr-kn-G4b" secondAttribute="leading" id="LKe-9e-Ccu"/>
                 <constraint firstItem="cg0-IC-ZEy" firstAttribute="top" secondItem="4Kg-49-CJC" secondAttribute="bottom" id="LZi-Yt-LGE"/>
-                <constraint firstItem="Lee-uv-dEA" firstAttribute="centerX" secondItem="mJr-kn-G4b" secondAttribute="centerX" id="R6d-ql-eYE"/>
                 <constraint firstAttribute="trailing" secondItem="1d8-gA-mEm" secondAttribute="trailing" id="akO-9r-7Sz"/>
                 <constraint firstAttribute="bottom" secondItem="1d8-gA-mEm" secondAttribute="bottom" id="g3b-aj-S2j"/>
                 <constraint firstItem="lpJ-wo-5IH" firstAttribute="height" secondItem="4Kg-49-CJC" secondAttribute="height" multiplier="0.35" id="h9B-xv-XfP"/>
                 <constraint firstAttribute="trailing" secondItem="4Kg-49-CJC" secondAttribute="trailing" id="hZu-Xb-YRE"/>
                 <constraint firstItem="lpJ-wo-5IH" firstAttribute="centerX" secondItem="4Kg-49-CJC" secondAttribute="centerX" id="o5D-Fi-S5x"/>
-                <constraint firstAttribute="bottom" secondItem="Lee-uv-dEA" secondAttribute="bottom" constant="30" id="qFz-NY-8Fk"/>
                 <constraint firstItem="1d8-gA-mEm" firstAttribute="leading" secondItem="mJr-kn-G4b" secondAttribute="leading" id="uIg-fN-tPX"/>
                 <constraint firstItem="4Kg-49-CJC" firstAttribute="leading" secondItem="mJr-kn-G4b" secondAttribute="leading" id="xlL-Bs-Gqh"/>
             </constraints>
@@ -123,6 +114,5 @@
     </objects>
     <resources>
         <image name="MenuBar" width="410" height="44"/>
-        <image name="www.bauisc.org" width="94" height="11"/>
     </resources>
 </document>
